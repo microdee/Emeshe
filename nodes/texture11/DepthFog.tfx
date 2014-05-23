@@ -1,0 +1,44 @@
+#include "ColorSpace.fxh"
+
+float FogPower = 1;
+float FogDensity = 1;
+float4 FogColor <bool color=true;> = 1;
+float4x4 tPi;
+Texture2D InDepth: PREVIOUS;
+Texture2D FrontDepth;
+Texture2D BackDepth;
+
+float2 R:TARGETSIZE;
+/*
+cbuffer controls:register(b0){
+	float Hue=0;
+	float Saturation=1;
+	float Contrast=0;
+	float Brightness=0;
+};
+*/
+SamplerState s0:IMMUTABLE <string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+
+float3 safenormalize(float3 x){
+		x=lerp(x,x+.00001,x==0);
+		return normalize(x);
+}
+float4 pFOG(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 inback = mul(float4(0,0,BackDepth.Sample(s0,x).r,1),tPi);
+	float inbackz = inback.z/inback.w;
+	float4 infront = mul(float4(0,0,FrontDepth.Sample(s0,x).r,1),tPi);
+	float infrontz = infront.z/infront.w;
+	float4 inscene = mul(float4(0,0,InDepth.Sample(s0,x).r,1),tPi);
+	float inscenez = inscene.z/inscene.w;
+	float back = min(inbackz,inscenez);
+	float d = pow(max((back-infrontz),0)*FogDensity,FogPower);
+	return float4(FogColor.xyz,d);
+}
+
+technique10 Fog{
+	pass P1
+	{SetPixelShader(CompileShader(ps_5_0,pFOG()));}
+}
+
+
+

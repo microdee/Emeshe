@@ -1,0 +1,149 @@
+Texture2D tex0: PREVIOUS;
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0)
+{
+	float4x4 ViewInverse;
+	float4x4 ProjectionInverse;
+	float4x4 Projection;
+	float4x4 View;
+	float4x4 PostWorldNormalTr;
+	float4x4 PostViewNormalTr;
+	float3 posCam;
+	bool ViewDepth;
+};
+
+struct VS_OUT
+{
+    float4 PosWVP: SV_POSITION;
+    float2 UV: TEXCOORD0;
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_LINEAR;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
+};
+
+float4 PosV(Texture2D tex, SamplerState s, float2 uv)
+{
+	float4 p = float4(0,0,0,1);
+	if(ViewDepth) p = float4(tex.Sample(s,uv).xyz,1);
+	else
+	{
+		p=float4(-1.0+2.0*uv.x,-1.0+2.0*uv.y,-1.0+2.0*tex.Sample(s,uv).x,1.0);
+		p.y*=-1.0;
+	}
+	if(!ViewDepth)
+	{
+		p=mul(p,ProjectionInverse);
+		p=float4(p.xyz*2.0/p.w,1.0);
+	}
+	return p;
+}
+float4 PosW(Texture2D tex, SamplerState s,float2 uv)
+{
+	return mul(PosV(tex,s0,uv),ViewInverse);
+}
+float4 NorW(Texture2D tex, SamplerState s,float2 uv)
+{
+	float3 w0=PosW(tex,s0,uv).xyz;
+	float3 w1=PosW(tex,s0,uv-float2(1,0)/R).xyz;
+	float3 w2=PosW(tex,s0,uv-float2(0,1)/R).xyz;
+	float3 NorW=normalize(cross(normalize(w1-w0),normalize(w2-w0)));
+	return float4(NorW,1);
+}
+float4 PS_NORW_fix(VS_OUT In): SV_Target{
+	float d = tex0.SampleLevel(s0,In.UV,0).x;
+	float3 w0=PosW(tex0,s0,In.UV).xyz;
+	float3 w1=PosW(tex0,s0,In.UV-float2(1,0)/R).xyz;
+	float3 w2=PosW(tex0,s0,In.UV-float2(0,1)/R).xyz;
+	float3 w3=PosW(tex0,s0,In.UV+float2(1,0)/R).xyz;
+	float3 w4=PosW(tex0,s0,In.UV+float2(0,1)/R).xyz;
+	
+	float3 c1=normalize(w1-w0);
+	float3 c2=normalize(w2-w0);
+	
+	c1=lerp(normalize(w1-w0),normalize(w0-w3),length(w1-w0)>length(w3-w0));
+	c2=lerp(normalize(w2-w0),normalize(w0-w4),length(w2-w0)>length(w4-w0));
+	float3 Eye=normalize(PosW(tex0,s0,In.UV).xyz-mul(float4(0,0,0,1),ViewInverse).xyz);
+	
+	float3 NorW=normalize(cross(c1,c2));
+	float4 c=float4(NorW,1);
+	if(d==1)c.rgb=Eye;
+	return c;
+}
+float4 NorV(Texture2D tex, SamplerState s,float2 uv)
+{
+	return mul(NorW(tex,s0,uv).xyz,View);
+}
+float4 PS_NORV_fix(VS_OUT In): SV_Target{
+	float d = tex0.SampleLevel(s0,In.UV,0).x;
+	float3 w0=PosV(tex0,s0,In.UV).xyz;
+	float3 w1=PosV(tex0,s0,In.UV-float2(1,0)/R).xyz;
+	float3 w2=PosV(tex0,s0,In.UV-float2(0,1)/R).xyz;
+	float3 w3=PosV(tex0,s0,In.UV+float2(1,0)/R).xyz;
+	float3 w4=PosV(tex0,s0,In.UV+float2(0,1)/R).xyz;
+	
+	float3 c1=normalize(w1-w0);
+	float3 c2=normalize(w2-w0);
+	
+	c1=lerp(normalize(w1-w0),normalize(w0-w3),length(w1-w0)>length(w3-w0));
+	c2=lerp(normalize(w2-w0),normalize(w0-w4),length(w2-w0)>length(w4-w0));
+	float3 Eye=normalize(PosV(tex0,s0,In.UV).xyz-mul(float4(0,0,0,1),ViewInverse).xyz);
+	
+	float3 NorV=normalize(cross(c1,c2));
+	float4 c=float4(NorV,1);
+	if(d==1)c.rgb=Eye;
+	return c;
+}
+float4 pPOS_WORLD(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
+    float4 c=float4(PosW(tex0,s0,uv).xyz,1);
+    return c;
+}
+float4 pNOR_VIEW(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
+	float4 c=float4(mul(NorV(tex0,s0,uv).xyz,PostViewNormalTr).xyz,1);
+    return c;
+}
+float4 pPOS_VIEW(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
+	float4 c=float4(PosV(tex0,s0,uv).xyz,1);
+    return c;
+}
+float4 pNOR_WORLD(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
+	float4 c=float4(mul(NorW(tex0,s0,uv).xyz,PostWorldNormalTr).xyz,1);
+    return c;
+}
+
+technique10 WorldPosition
+{
+	pass P0 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pPOS_WORLD()));}
+}
+technique10 ViewPosition
+{
+	pass P0 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pPOS_VIEW()));}
+}
+technique10 WorldNormal
+{
+	pass P0 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pNOR_WORLD()));}
+}
+technique10 WorldNormalFix
+{
+	pass P0 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,PS_NORW_fix()));}
+}
+technique10 ViewNormal
+{
+	pass P0 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pNOR_VIEW()));}
+}
+technique10 ViewNormalFix
+{
+	pass P0 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,PS_NORV_fix()));}
+}
+
+

@@ -1,0 +1,39 @@
+Texture2D PrevTex: PREVIOUS;
+Texture2D ColorTex: INITIAL;
+
+#define PI 3.14159265358979
+#include "LightUtils.fxh"
+#include "MRE.fxh"
+
+float2 ScreenSize:TARGETSIZE;
+
+cbuffer controls:register(b0)
+{
+	bool IsInitial = true;
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_POINT;
+	AddressU=WRAP;
+	AddressV=WRAP;
+	MipLODBias = -1;
+};
+
+float4 pEM(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+
+	float matid = mre_getmatid(s0,uv);
+	float maps = mre_getmaps(s0,uv).z;
+	float4 col = float4(0,0,0,1);
+	if(!IsInitial) col = ColorTex.Sample(s0, uv);
+	//col.rgb += matprop[mprpa.z].EmCol.rgb * matprop[mprpa.z].EmAmount * mprpb.z;
+	col.rgb += matprop[matid].EmCol.rgb * matprop[matid].EmAmount * maps;
+		
+	return col;
+}
+
+technique10 Emission{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,pEM()));}
+}

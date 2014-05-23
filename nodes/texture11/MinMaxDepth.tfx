@@ -1,0 +1,66 @@
+
+#define DEPTH_RES 1024
+#define N_LEVELS 10
+Texture2D tex0: PREVIOUS;
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_POINT;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+#define bld(op,c0,c1) float4(lerp((c0*c0.a+c1*c1.a*(1-c0.a))/saturate(c0.a+c1.a*(1-c0.a)),(op),c0.a*c1.a).rgb,saturate(c0.a+c1.a*(1-c0.a)))
+
+
+float2 ConvertDepth2PS(float4 vPos : SV_Position) : SV_Target0
+{
+    float fDepth = tex0.Load(uint3(vPos.x, vPos.y, 0));
+    return float2(fDepth, fDepth);
+}
+float2 CreateMip2PS(float4 vPos : SV_Position) : SV_Target0
+{
+    uint3 iPos = uint3((int)vPos.x << 1, (int)vPos.y << 1, 0);
+    float2 vDepth = tex0.Load(iPos), vDepth1;
+    ++iPos.x;
+    vDepth1 = tex0.Load(iPos);
+    vDepth = float2(min(vDepth.x, vDepth1.x), max(vDepth.y, vDepth1.y));
+    ++iPos.y;
+    vDepth1 = tex0.Load(iPos);
+    vDepth = float2(min(vDepth.x, vDepth1.x), max(vDepth.y, vDepth1.y));
+    --iPos.x;
+    vDepth1 = tex0.Load(iPos);
+    vDepth = float2(min(vDepth.x, vDepth1.x), max(vDepth.y, vDepth1.y));
+    return vDepth;
+}
+float2 ConvertToBigPS(float4 vPos : SV_Position) : SV_Target0
+{
+    uint3 iPos;
+    if (vPos.x < DEPTH_RES)
+    { // we fetch from the most detailed mip level
+        iPos.xy = uint2(vPos.x, vPos.y);
+        iPos.z = 0;
+    }
+    else
+    { // compute the level from which we fetch
+      iPos.z = N_LEVELS - (int)log2(vPos.y);
+      iPos.x = (vPos.x - DEPTH_RES);
+      iPos.y = (vPos.y - pow(2, N_LEVELS - iPos.z));
+    }
+    return tex0.Load(iPos);
+}
+
+
+
+technique10 ReworkDepth2
+{
+    pass ConvertDepth <string format="R32G32_Float";>
+    {
+        SetPixelShader(CompileShader(ps_4_0, ConvertDepth2PS()));
+    }
+    pass CreateMip <string format="R32G32_Float";>
+    {
+        SetPixelShader(CompileShader(ps_4_0, CreateMip2PS()));
+    }
+    pass ConvertToBig <string format="R32G32_Float"; bool mips=true;>
+    {
+        SetPixelShader(CompileShader(ps_4_0, ConvertToBigPS()));
+    }
+}
+

@@ -1,0 +1,57 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
+   <PATCH nodename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\modules\VelocityInpuElements (DX11 MRE).v4p" systemname="VelocityInpuElements (DX11 MRE)" filename="D:\vvvv\github\mdbot\mdbot\nodes\Modules\mre.mdmod.dx11\VelocityInpuElements (DX11 MRE).v4p">
+   <BOUNDS type="Window" left="18420" top="8745" width="9000" height="6000">
+   </BOUNDS>
+   <NODE systemname="InputElement (DX11.Geometry Join)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="InputElement (DX11.Geometry Join)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="1575" top="1740" width="1635" height="270">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Format" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="1" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="1575" top="600" width="1590" height="855">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1575" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="4" values="Position,Normal,TextureCoord,Color">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output Enum" dstnodeid="2" dstpinname="Element Type">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="0" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="3150" top="600" width="1770" height="885">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3150" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="4" values="R32G32B32_Float,R32G32B32_Float,R32G32_Float,R32G32B32A32_Float">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Output Enum" dstnodeid="2" dstpinname="Format">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="3" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1575" top="2205" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1575" top="2205" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Output">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="3" dstpinname="Input Node">
+   </LINK>
+   </PATCH>

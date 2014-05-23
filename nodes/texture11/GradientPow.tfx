@@ -1,0 +1,25 @@
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float4x4 tTex <string uiname="Transform";>;
+	float Factor <float uimin=0.0;float uimax=1.0;> =0.25;
+	float4 Color1 <bool color=true;> =float4(0,0,0,1);
+	float4 Color2 <bool color=true;> =1;
+	bool ClipColor=0;
+	float power = 1;
+};
+
+float4 pLINEAR(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c=0;
+	float2 x0=mul(float4((x.xy*2-1)*float2(1,-1),0,1),tTex).xy*0.5*float2(1,-1)+0.5;
+	float fade=x0.x;
+	if(ClipColor)fade=pow(saturate(fade),power);
+	c=lerp(Color1,Color2,fade);
+    return c;
+}
+technique10 Linear{
+	pass P1 <string format="R32G32B32A32_float";>
+	{SetPixelShader(CompileShader(ps_4_0,pLINEAR()));}}
+
+
+

@@ -1,0 +1,47 @@
+Texture2D tex0: PREVIOUS;
+Texture2D tex1 <string uiname="Control";>;
+
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float Shape=0.5;
+	float Brightness =1.0;
+	float Radius <float uimin=0.0;float uimax=1.0;> =0.75;
+	float ControlAmount = 0;
+	bool Alpha <bool visible=false;> =0;
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float pows(float a, float b)
+{
+	return pow(abs(a),b)*sign(a);
+}
+float4 pBLUR(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	float lod=max(1,log2(max(R.x,R.y)));
+	//float lod=4;
+    float4 c=0;
+	float kk=0;
+	for(float i=0;i<min(lod-(1-Radius*lod),14);i++){
+		float4 nc=tex0.SampleLevel(s0,x,1+i);
+		float k=pows(2,i*Shape-lod+1)*saturate(Radius*lod-i+1);
+		c+=nc*k;
+		kk+=k;
+	}
+	c/=kk;
+	c.rgb*=Brightness * lerp(1,tex1.Sample(s0,x).rgb,ControlAmount);
+	if(!Alpha)c.a=tex0.SampleLevel(s0,x,0).a;
+    return c;
+}
+
+float4 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	return tex0.SampleLevel(s0,x,0);
+}
+technique10 FastBlur{
+	pass P0 <bool mips=true;>
+	{SetPixelShader(CompileShader(ps_4_0,pMIPS()));}
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pBLUR()));}
+}
+
+
+

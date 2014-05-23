@@ -1,0 +1,124 @@
+
+ByteAddressBuffer GeomBuffer;
+int3 strideoffsets = int3(12,24,32);
+int strides = 32;
+float skipverts = 1;
+int vertcount = 3;
+
+struct VsInUsual
+{
+	float4 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+};
+struct VsOutUsual
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	nointerpolation float vid : TEXCOORD1;
+};
+VsOutUsual VsUsual(VsInUsual input, uint vid: SV_VertexID)
+{
+    VsOutUsual output;
+	
+    output.cpoint = input.cpoint;
+	output.norm = input.norm;
+	output.TexCd = input.TexCd;
+	output.vid = vid;
+	
+    return output;
+}
+[maxvertexcount(3)]
+void GsUsual(triangle VsOutUsual input[3], inout TriangleStream<VsOutUsual>GSOut)
+{
+	VsOutUsual v;
+	
+	for(uint i=0;i<3;i++)
+	{
+		VsOutUsual inp = input[i];
+		uint nvid = inp.vid/skipverts;
+		//if(nvid<(vertcount*skipverts*2))
+		//{
+			v.cpoint = float4(asfloat(GeomBuffer.Load3(nvid*strides)),1);
+			v.norm = asfloat(GeomBuffer.Load3(nvid*strides+strideoffsets.x));
+			v.TexCd = float4(asfloat(GeomBuffer.Load2(nvid*strides+strideoffsets.y)),0,1);
+			v.vid = 0;
+			GSOut.Append(v);
+		//}
+	}
+}
+GeometryShader StreamUsual = ConstructGSWithSO( CompileShader( gs_5_0, GsUsual() ), "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy" );
+technique11 UsualLayout
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VsUsual() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GsUsual() ) );
+	    SetGeometryShader( StreamUsual );
+
+	}
+}
+
+/////////////////////
+
+
+struct VsInVel
+{
+	float4 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+};
+struct VsOutVel
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+	nointerpolation float vid : TEXCOORD1;
+};
+VsOutVel VsVel(VsInVel input, uint vid: SV_VertexID)
+{
+    VsOutVel output;
+	
+    output.cpoint = input.cpoint;
+	output.norm = input.norm;
+	output.TexCd = input.TexCd;
+	output.ppos = input.ppos;
+	output.vid = vid;
+	
+    return output;
+}
+[maxvertexcount(3)]
+void GsVel(triangle VsOutVel input[3], inout TriangleStream<VsOutVel>GSOut)
+{
+	VsOutVel v;
+	
+	for(uint i=0;i<3;i++)
+	{
+		VsOutVel inp = input[i];
+		uint nvid = inp.vid/skipverts;
+		//if(nvid<(vertcount*skipverts*2))
+		//{
+			v.cpoint = float4(asfloat(GeomBuffer.Load3(nvid*strides)),1);
+			v.norm = asfloat(GeomBuffer.Load3(nvid*strides+strideoffsets.x));
+			v.TexCd = float4(asfloat(GeomBuffer.Load2(nvid*strides+strideoffsets.y)),0,1);
+			v.ppos = asfloat(GeomBuffer.Load4(nvid*strides+strideoffsets.z));
+			v.vid = 0;
+			GSOut.Append(v);
+		//}
+	}
+}
+GeometryShader StreamVel = ConstructGSWithSO( CompileShader( gs_5_0, GsVel() ), "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;COLOR0" );
+technique11 VelLayout
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VsVel() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GsVel() ) );
+	    SetGeometryShader( StreamVel );
+	}
+}

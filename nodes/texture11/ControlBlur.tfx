@@ -1,0 +1,42 @@
+Texture2D tex0: PREVIOUS;
+Texture2D control;
+float2 R:TARGETSIZE;
+StructuredBuffer<float2> BlurOffset;
+
+cbuffer controls:register(b0){
+	float BlurAmount = 0;
+	float MaxBlur = 0.04;
+	float BlurOffsetCount = 1;
+	float depthlimit = 1;
+};
+SamplerState s0:IMMUTABLE <string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float4 pADD(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 col = tex0.Sample(s0, x);
+	float4 orig = col;
+	float ctrl = control.Sample(s0, x).r;
+	float ml = (MaxBlur==0) ? (BlurAmount * ctrl) : min(MaxBlur, BlurAmount * ctrl);
+	
+	col.rgb = 0;
+	float bloc = BlurOffsetCount;
+	for (float i = 0; i<BlurOffsetCount; i++)
+	{
+		float2 txcdoffs = BlurOffset[i] * min(ml * float2(1,R.x/R.y),MaxBlur);
+		float2 texcd = x + txcdoffs;
+		float stepdepth = control.Sample(s0,texcd,0).r;
+		float diff = abs(ctrl-stepdepth);
+		txcdoffs *= lerp(1,saturate(1-diff),max(depthlimit-stepdepth,0)/depthlimit);
+		float2 texcd2 = x + txcdoffs;
+		float3 stepcol = tex0.SampleLevel(s0, texcd2, 0).rgb;
+		stepcol *= lerp(1,saturate(1-diff),max(depthlimit-stepdepth,0)/depthlimit);
+		col.rgb += stepcol/bloc;
+	}
+	return float4(col.rgb,1);
+}
+
+technique10 Scalar{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pADD()));}
+}
+
+
+

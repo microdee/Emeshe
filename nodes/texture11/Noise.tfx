@@ -1,0 +1,28 @@
+float2 R:TARGETSIZE;
+Texture2D tex0 : INITIAL;
+Texture2D texR <string uiname="RandomSpread";>;
+
+SamplerState s0  <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=WRAP;AddressV=WRAP;};
+
+cbuffer controls:register(b0){
+	float4 ColorA <bool color=true;> =float4(0,0,0,1);
+	float4 ColorB <bool color=true;> =1;
+	bool Grey;
+	float Seed=0;
+};
+
+float4 pNOISE(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	x=x+texR.Sample(s0,x*1.5+.2).x*.6;
+	x+=sin(x.yx*28+Seed)*4;
+    float4 c=float4(sin(x.yx*28)+x*x.yx*2,length(x*2),sin(x.x*12+x.y*28))+texR.Sample(s0,x+.2).x*3+texR.Sample(s0,(x.yx-.45)*.8+.45).x*2+texR.Sample(s0,(x-.5)*998.8+.5).x+texR.Sample(s0,(x.yx-.5)*798.8+.5+.31).x;
+    c=frac(Seed+c*sqrt(float4(3.5,5.54,7.5,9)*2243));
+    if(Grey)c=c.r;
+    c=lerp(ColorA,ColorB,c);
+    return c;
+}
+technique10 Noise{
+	pass PF <bool initial=true;float scale=1;>
+	{SetPixelShader(CompileShader(ps_4_0,pNOISE()));}
+}
+
+

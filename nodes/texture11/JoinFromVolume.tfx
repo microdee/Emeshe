@@ -1,0 +1,29 @@
+Texture2D PrevTex: PREVIOUS;
+Texture3D input;
+//Texture2D CorrVelTex: PASSRESULT0;
+//Texture2D OffsVelTex1: PASSRESULT2;
+//Texture2D OffsVelTex2: PASSRESULT3;
+
+float2 ScreenSize:TARGETSIZE;
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_POINT;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
+	MipLODBias = 0;
+};
+
+float4 JoinVol(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+	float4 col = 1;
+	col.r = input.Sample(s0,float3(uv,0+1/6)).r;
+	col.g = input.Sample(s0,float3(uv,1/3+1/6)).r;
+	col.b = input.Sample(s0,float3(uv,2/3+1/6)).r;
+    return col;
+}
+
+technique10 JoinVolume{
+	pass P0
+	{SetPixelShader(CompileShader(ps_5_0,JoinVol()));}
+}

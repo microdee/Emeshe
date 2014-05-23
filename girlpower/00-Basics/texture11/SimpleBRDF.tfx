@@ -1,0 +1,155 @@
+
+struct MaterialProp
+{
+    float3 Atten;
+    float Power;
+    float4 AmbCol;
+    float4 SpecCol;
+    float SpecAmount;
+    float4 EmCol;
+    float EmAmount;
+    float SSSAmount;
+    float SSSPower;
+    float MatThick;
+    float RimLAmount;
+    float RimLPower;
+    float4 SSSExtCoeff;
+    float Reflection;
+    float Refraction;
+	uint ReflectRefractTexID;
+};
+
+Texture2D PrevTex: PREVIOUS;
+Texture2D ColorTex: INITIAL;
+StructuredBuffer<MaterialProp> matprop <string uiname="Material Buffer";>;
+float4x4 ReflTransform;
+
+#define PI 3.14159265358979
+#include "MRE.fxh"
+
+TextureCube Environment;
+
+float2 ScreenSize:TARGETSIZE;
+
+cbuffer controls:register(b0)
+{
+	float4x4 tViewInverse;
+	bool IsInitial = true;
+	float Blur = 0;
+	float EnvStrength = 1;
+	float CubeMapRes = 512;
+	//float3 RefractIndices = { 0.80, 0.82, 0.84 };
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_LINEAR;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
+	AddressW=WRAP;
+	//MipLODBias = -1;
+};
+
+uint DecideComponent(float3 n)
+{
+	float3 d = 0;
+	n = normalize(n);
+	float mval = 0;
+	float pval = 0;
+	uint s = 0;
+	for(uint i = 0; i<3; i++)
+	{
+		mval = max(mval, abs(n[i]));
+		if(pval!=mval) s=i;
+	}
+	return s;
+}
+float2 Circle(float phase)
+{
+	return float2(cos(phase*PI*2),sin(phase*PI*2));
+}
+float3 FindCircle(float3 n, float phase)
+{
+	uint s = DecideComponent(n);
+	float2 AC = Circle(phase);
+	float2 SC = 0;
+	float D = 0;
+	float3 outp = 0;
+	
+	if(s==0)
+	{
+		SC = float2(n.y, n.z);
+		D = n.x;
+		outp.x = -(AC.x*SC.x + AC.y*SC.y)/D;
+		outp.yz = AC;
+	}
+	else if(s==1)
+	{
+		SC = float2(n.x, n.z);
+		D = n.y;
+		outp.y = -(AC.x*SC.x + AC.y*SC.y)/D;
+		outp.xz = AC;
+	}
+	else
+	{
+		SC = float2(n.x, n.y);
+		D = n.z;
+		outp.z = -(AC.x*SC.x + AC.y*SC.y)/D;
+		outp.xy = AC;
+	}
+	return normalize(outp);
+}
+
+float4 BlurCube(TextureCube ctex, SamplerState sm, float3 n, float Width, float res)
+{
+	float lod=1;
+	float4 c=0;
+	//float off=.5/res*pow(2,lod)*saturate(lod);
+	float off=Width;
+	
+	
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,0.0)*off,lod);
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,1/9)*off,lod);
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,2/9)*off,lod);
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,3/9)*off,lod);
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,4/9)*off,lod);
+	off*=1.86;
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,5/9)*off,lod);
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,6/9)*off,lod);
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,7/9)*off,lod);
+	c+=ctex.SampleLevel(sm,n+FindCircle(n,8/9)*off,lod);
+	c/=9;
+	return c;
+}
+
+float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+	float vPos = mre_getviewpos(s0,uv).z;
+	float4 col = float4(0,0,0,1);
+	if(vPos!=0)
+	{
+		float3 wPos = mre_getworldpos(s0,uv);
+		float matid = mre_getmatid(s0,uv);
+		float3 norm = mul(float4(mre_getworldnorm(s0,uv),0),ReflTransform).xyz;
+		if(!IsInitial) col = ColorTex.Sample(s0, uv);
+		if((matprop[matid].Reflection!=0) || (matprop[matid].Refraction!=0))
+		{
+			float3 rrV = normalize(tViewInverse[3].xyz - wPos);
+			float3 bn = normalize(norm);
+  			float3 rrR = reflect(-rrV, bn);
+    		//float4 reflColor = Environment.SampleLevel(s0,rrR,0);
+    		float4 reflColor = BlurCube(Environment,s0,rrR,Blur,CubeMapRes);
+			
+			//float fresnel = FresnelTextures.SampleLevel(s0, float3(dot(norm, rrV), 0, matprop[matid].ReflectRefractTexID), 0);
+			float refmap = mre_getmaps(s0,uv).x;
+			col.rgb += reflColor.rgb * matprop[matid].Reflection * 2 * refmap * EnvStrength;
+		}
+	}
+	
+	return float4(col.xyz,ColorTex.Sample(s0,uv).a);
+}
+
+technique10 Point{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,pRefleract()));}
+}

@@ -1,0 +1,19 @@
+Texture2D tex0: PREVIOUS;
+Texture2D tex1 <string uiname="Texture In 2";>;
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+bool Alphatest = false;
+float test = 0.1;
+
+float4 pMIX(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c0=tex0.Sample(s0,x);
+	float4 c1=tex1.Sample(s0,x);
+	float f = c1.a;
+	if(Alphatest) f = (c1.a>test) ? 1 : 0;
+	float4 c=lerp(c0,c1,f);
+    return float4(c.xyz,max(c0.a,c1.a));
+}
+
+
+technique10 Mix{pass P1{SetPixelShader(CompileShader(ps_4_0,pMIX()));}}

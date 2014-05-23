@@ -1,0 +1,75 @@
+Texture2D tex0: PREVIOUS;
+Texture2D tex1 <string uiname="Control";>;
+
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	bool Aspect;
+	float BlurWidth <float uimin=-1.0; float uimax=1.0;> = 0.2;
+	float BlurDir <float uimin=-1.0; float uimax=1.0;> = 0.0;
+	float MapSmooth <float uimin=0.0; float uimax=1.0;> = 0.1;
+	float CalibWidth=1;
+};
+
+SamplerState s0 <string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 r2d(float2 x,float a){a*=acos(-1)*2;return float2(cos(a)*x.x+sin(a)*x.y,cos(a)*x.y-sin(a)*x.x);}
+float4 pBLUR1(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	float2 asp=lerp(1,R.x/R,Aspect);
+    float lod=1+saturate(MapSmooth)*log2(max(R.x,R.y));
+    float4 c=0;
+    float kk=0;
+    float wd=pow(1,.1)*.25*BlurWidth;//*tex2D(s1,x);
+    float ang=abs(tex1.Sample(s0,x).x-.5);
+    float2 dir=sin((ang+BlurDir+float2(0,.25))*acos(-1)*2);
+    float2 off=pow(2,MapSmooth*6)*R/R.x;
+    dir=float2(tex1.SampleLevel(s0,x-off*float2(1,0)/R,lod).g-
+			   tex1.SampleLevel(s0,x+off*float2(1,0)/R,lod).g,
+			   tex1.SampleLevel(s0,x-off*float2(0,1)/R,lod).g-
+			   tex1.SampleLevel(s0,x+off*float2(0,1)/R,lod).g);
+
+    dir=normalize(r2d(dir,BlurDir/2+.25))*pow(length(dir.xy),1)*158*pow(2,MapSmooth*6);
+    for (float i=0;i<1;i+=1./16){
+        float k=1;
+        c+=tex0.Sample(s0,((x-.5)/asp+wd*dir*wd*(i))*asp+.5)*k;
+        kk+=k;
+    }
+    c=c/kk;
+    //c.rgb=abs(tex2D(s1,x).x-.5)*18;
+    return c;
+}
+float4 pBLUR2(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	float2 asp=lerp(1,R.x/R,Aspect);
+    float lod=1+saturate(MapSmooth)*log2(max(R.x,R.y));
+    float4 c=0;
+    float kk=0;
+    float wd=pow(16,.1)*.25*BlurWidth;//*tex2D(s1,x);
+    float ang=abs(tex1.Sample(s0,x).x-.5);
+    float2 dir=sin((ang+BlurDir+float2(0,.25))*acos(-1)*2);
+    float2 off=pow(2,MapSmooth*6)*R/R.x;
+    dir=float2(tex1.SampleLevel(s0,x-off*float2(1,0)/R,lod).g-
+			   tex1.SampleLevel(s0,x+off*float2(1,0)/R,lod).g,
+			   tex1.SampleLevel(s0,x-off*float2(0,1)/R,lod).g-
+			   tex1.SampleLevel(s0,x+off*float2(0,1)/R,lod).g);
+
+    dir=normalize(r2d(dir,BlurDir/2+.25))*pow(length(dir.xy),1)*158*pow(2,MapSmooth*6);
+    for (float i=0;i<1;i+=1./16){
+        float k=1;
+        c+=tex0.Sample(s0,((x-.5)/asp+wd*dir*wd*(i))*asp+.5)*k;
+        kk+=k;
+    }
+    c=c/kk;
+    //c.rgb=abs(tex2D(s1,x).x-.5)*18;
+    return c;
+}
+float4 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	return tex0.SampleLevel(s0,x,0);
+}
+technique10 FastBlur{
+	pass P0 <bool mips=true;>
+	{SetPixelShader(CompileShader(ps_4_0,pBLUR1()));}
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pBLUR2()));}
+}
+
+
+

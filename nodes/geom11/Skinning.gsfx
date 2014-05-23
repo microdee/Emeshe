@@ -1,0 +1,87 @@
+
+StructuredBuffer<float4x4> SkinningMatrices;
+StructuredBuffer<float4x4> PrevSkinningMatrices;
+float BoneCount = 60;
+
+struct VS_IN
+{   
+	float3 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 BlendId : BLENDINDICES;
+	float4 BlendWeight : BLENDWEIGHT;
+	float4 TexCd : TEXCOORD0;
+	uint ii : SV_InstanceID;
+};
+
+struct VS_OUTPUT
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	nointerpolation float4 BlendId : BLENDINDICES;
+	nointerpolation float4 BlendWeight : BLENDWEIGHT;
+	float4 TexCd : TEXCOORD0;
+	float4 velocity : COLOR0;
+};
+
+
+
+VS_OUTPUT VS(VS_IN input)
+{
+    VS_OUTPUT output;
+	float4 bldw = input.BlendWeight;
+	float4 bldi = input.BlendId+input.ii*BoneCount;
+	float4 pos = float4(0,0,0,1);
+	float4 ppos = float4(0,0,0,1);
+	float3 norm = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		pos = pos + mul(float4(input.cpoint.xyz,1), SkinningMatrices[bldi[i]]) * bldw[i];
+		ppos = ppos + mul(float4(input.cpoint.xyz,1), PrevSkinningMatrices[bldi[i]]) * bldw[i];
+		norm = norm + mul(input.norm, SkinningMatrices[bldi[i]]) * bldw[i];
+	}
+	// input.cpoint+
+    output.cpoint = pos;
+	output.velocity = ppos;
+	//output.cpoint = float4(input.cpoint,1);
+	output.norm = normalize(norm);
+	output.TexCd = input.TexCd;
+	output.BlendId = bldi;
+	output.velocity.w = input.ii;
+	output.BlendWeight = bldw;
+	
+    return output;
+}
+
+
+
+[maxvertexcount(3)]
+void GS(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT>GSOut)
+{
+	VS_OUTPUT v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GS() ),
+	"SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;BLENDINDICES;BLENDWEIGHT;COLOR0"
+	// 80
+);
+
+technique11 MeshJoin
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}

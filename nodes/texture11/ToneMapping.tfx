@@ -1,0 +1,324 @@
+Texture2D tex0: PREVIOUS;
+Texture2D tex1 <string uiname="AvgLuminance";>;
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+cbuffer PPConstants : register(b0)
+{
+    float BloomThreshold;
+    float Exposure;
+    float KeyValue;
+    float AutoExposure;
+    float WhiteLevel;
+    float ShoulderStrength;
+    float LinearStrength;
+    float LinearAngle;
+    float ToeStrength;
+    float ToeNumerator;
+    float ToeDenominator;
+    float LinearWhite;
+    float LuminanceSaturation;
+    float LumMapMipLevel;
+	float Bias;
+	float MaxValue = 1.25;
+};
+
+// ------------------------------------------------------------------------------------------------
+// Helper Functions
+// ------------------------------------------------------------------------------------------------
+float pows(float a, float b)
+{
+	return pow(abs(a),b)*sign(a);
+}
+float2 pows(float2 a, float b)
+{
+	return pow(abs(a),b)*sign(a);
+}
+float3 pows(float3 a, float b)
+{
+	return pow(abs(a),b)*sign(a);
+}
+float4 pows(float4 a, float b)
+{
+	return pow(abs(a),b)*sign(a);
+}
+
+// Approximates luminance from an RGB value
+float CalcLuminance(float3 color)
+{
+    return max(dot(color, float3(0.299f, 0.587f, 0.114f)), 0.0001f);
+}
+
+// Retrieves the log-average lumanaince from the texture
+float GetAvgLuminance(Texture2D lumTex, float2 texCoord)
+{
+	return exp(length(lumTex.SampleLevel(s0, texCoord, LumMapMipLevel).rgb));
+}
+
+// Logarithmic mapping
+float3 ToneMapLogarithmic(float3 color)
+{
+	float pixelLuminance = CalcLuminance(color);    
+    float toneMappedLuminance = log10(1 + pixelLuminance) / log10(1 + WhiteLevel);
+	return toneMappedLuminance * pows(color / pixelLuminance, LuminanceSaturation); 
+}
+
+// Drago's Logarithmic mapping
+float3 ToneMapDragoLogarithmic(float3 color)
+{
+	float pixelLuminance = CalcLuminance(color);    
+    float toneMappedLuminance = log10(1 + pixelLuminance);
+	toneMappedLuminance /= log10(1 + WhiteLevel);
+	toneMappedLuminance /= log10(2 + 8 * ((pixelLuminance / WhiteLevel) * log10(Bias) / log10(0.5f)));
+	return toneMappedLuminance * pows(color / pixelLuminance, LuminanceSaturation); 
+}
+
+// Exponential mapping
+float3 ToneMapExponential(float3 color)
+{
+	float pixelLuminance = CalcLuminance(color);    
+    float toneMappedLuminance = 1 - exp(-pixelLuminance / WhiteLevel);
+	return toneMappedLuminance * pows(color / pixelLuminance, LuminanceSaturation);
+}
+
+// Applies Reinhard's basic tone mapping operator
+float3 ToneMapReinhard(float3 color) 
+{
+	float pixelLuminance = CalcLuminance(color);    
+    float toneMappedLuminance = pixelLuminance / (pixelLuminance + 1);
+	return toneMappedLuminance * pows(color / pixelLuminance, LuminanceSaturation);    
+}
+
+// Applies Reinhard's modified tone mapping operator
+float3 ToneMapReinhardModified(float3 color) 
+{    
+    float pixelLuminance = CalcLuminance(color);
+	float toneMappedLuminance = pixelLuminance * (1.0f + pixelLuminance / (WhiteLevel * WhiteLevel)) / (1.0f + pixelLuminance);
+	return toneMappedLuminance * pows(color / pixelLuminance, LuminanceSaturation);
+}
+
+// Applies the filmic curve from John Hable's presentation
+float3 ToneMapFilmicALU(float3 color)
+{
+    color = max(0, color - 0.004f);
+    color = (color * (6.2f * color + 0.5f)) / (color * (6.2f * color + 1.7f)+ 0.06f);
+
+    // result has 1/2.2 baked in
+    return pows(color, 2.2f);
+}
+
+// Function used by the Uncharte2D tone mapping curve
+float3 U2Func(float3 x)
+{
+    float A = ShoulderStrength;
+    float B = LinearStrength;
+    float C = LinearAngle;
+    float D = ToeStrength;
+    float E = ToeNumerator;
+    float F = ToeDenominator;
+    return ((x*(A*x+C*B)+D*E)/(x*(A*x+B)+D*F)) - E/F;
+}
+
+// Applies the Uncharted 2 filmic tone mapping curve
+float3 ToneMapFilmicU2(float3 color)
+{
+    float3 numerator = U2Func(color);        
+    float3 denominator = U2Func(LinearWhite);
+
+    return numerator / denominator;
+}
+
+// Determines the color based on exposure settings
+float3 CalcExposedColor(float3 color, float avgLuminance, float threshold, out float exposure)
+{    
+    exposure = 0;
+
+    if (AutoExposure >= 1 && AutoExposure <= 2)
+    {
+        // Use geometric mean        
+        avgLuminance = max(avgLuminance, 0.001f);
+
+        float keyValue = 0;
+        if (AutoExposure == 1)
+            keyValue = KeyValue;
+        else if (AutoExposure == 2)
+            keyValue = 1.03f - (2.0f / (2 + log10(avgLuminance + 1)));
+
+        float linearExposure = (keyValue / avgLuminance);
+        exposure = log2(max(linearExposure, 0.0001f));
+    }
+    else
+    {
+        // Use exposure setting
+        exposure = Exposure;
+    }
+
+    exposure -= threshold;
+    return exp2(exposure) * color;
+}
+/*
+// Applies exposure and tone mapping to the specific color, and applies
+// the threshold to the exposure value. 
+float3 ToneMap(float3 color, float avgLuminance, float threshold, out float exposure)
+{
+    float pixelLuminance = CalcLuminance(color);
+    color = CalcExposedColor(color, avgLuminance, threshold, exposure);
+
+	[branch]
+    if (ToneMapTechnique == 0)
+    {
+        // Do nothing!
+    }
+	else if (ToneMapTechnique == 1)
+    {
+		color = ToneMapLogarithmic(color);
+    }
+    else if (ToneMapTechnique == 2)
+    {
+        color = ToneMapExponential(color);
+    }	
+	else if (ToneMapTechnique == 3)
+    {
+		color = ToneMapDragoLogarithmic(color);
+    }
+    else if (ToneMapTechnique == 4)
+    {
+		color = ToneMapReinhard(color);
+    }
+    else if (ToneMapTechnique == 5)
+    {
+        color = ToneMapReinhardModified(color);
+    }	
+    else if (ToneMapTechnique == 6)
+    {
+        color = ToneMapFilmicALU(color);
+    }
+    else
+    {
+        color = ToneMapFilmicU2(color);
+    }
+
+    return color;
+}
+*/
+
+float3 AutoExpo(float3 color, float avgLuminance, float threshold, out float exposure)
+{
+    float pixelLuminance = CalcLuminance(color);
+    color = CalcExposedColor(color, avgLuminance, threshold, exposure);
+
+    return color;
+}
+
+float4 pLinear(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	
+    float3 color = 0;
+
+    color = tex0.Sample(s0, x).rgb;
+
+    // Tone map it to threshold
+    float avgLuminance = GetAvgLuminance(tex1, x);
+	float exposure = 0;
+    color = AutoExpo(color, avgLuminance, BloomThreshold, exposure);
+    return float4(saturate(color/MaxValue)*MaxValue, 1.0f);
+}
+float4 pLogarithmic(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	
+    float3 color = 0;
+
+    color = tex0.Sample(s0, x).rgb;
+
+    // Tone map it to threshold
+    float avgLuminance = GetAvgLuminance(tex1, x);
+	float exposure = 0;
+    color = AutoExpo(color, avgLuminance, BloomThreshold, exposure);
+	color = ToneMapLogarithmic(color);
+    return float4(saturate(color/MaxValue)*MaxValue, 1.0f);
+}
+float4 pExponential(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	
+    float3 color = 0;
+
+    color = tex0.Sample(s0, x).rgb;
+
+    // Tone map it to threshold
+    float avgLuminance = GetAvgLuminance(tex1, x);
+	float exposure = 0;
+    color = AutoExpo(color, avgLuminance, BloomThreshold, exposure);
+	color = ToneMapExponential(color);
+    return float4(saturate(color/MaxValue)*MaxValue, 1.0f);
+}
+float4 pDragoLogarithmic(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	
+    float3 color = 0;
+
+    color = tex0.Sample(s0, x).rgb;
+
+    // Tone map it to threshold
+    float avgLuminance = GetAvgLuminance(tex1, x);
+	float exposure = 0;
+    color = AutoExpo(color, avgLuminance, BloomThreshold, exposure);
+	color = ToneMapDragoLogarithmic(color);
+    return float4(saturate(color/MaxValue)*MaxValue, 1.0f);
+}
+float4 pReinhard(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	
+    float3 color = 0;
+
+    color = tex0.Sample(s0, x).rgb;
+
+    // Tone map it to threshold
+    float avgLuminance = GetAvgLuminance(tex1, x);
+	float exposure = 0;
+    color = AutoExpo(color, avgLuminance, BloomThreshold, exposure);
+	color = ToneMapReinhard(color);
+    return float4(saturate(color/MaxValue)*MaxValue, 1.0f);
+}
+float4 pReinhardModified(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	
+    float3 color = 0;
+
+    color = tex0.Sample(s0, x).rgb;
+
+    // Tone map it to threshold
+    float avgLuminance = GetAvgLuminance(tex1, x);
+	float exposure = 0;
+    color = AutoExpo(color, avgLuminance, BloomThreshold, exposure);
+	color = ToneMapReinhardModified(color);
+    return float4(saturate(color/MaxValue)*MaxValue, 1.0f);
+}
+float4 pFilmicALU(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	
+    float3 color = 0;
+
+    color = tex0.Sample(s0, x).rgb;
+
+    // Tone map it to threshold
+    float avgLuminance = GetAvgLuminance(tex1, x);
+	float exposure = 0;
+    color = AutoExpo(color, avgLuminance, BloomThreshold, exposure);
+	color = ToneMapFilmicALU(color);
+    return float4(saturate(color/MaxValue)*MaxValue, 1.0f);
+}
+float4 pFilmicU2(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	
+    float3 color = 0;
+
+    color = tex0.Sample(s0, x).rgb;
+
+    // Tone map it to threshold
+    float avgLuminance = GetAvgLuminance(tex1, x);
+	float exposure = 0;
+    color = AutoExpo(color, avgLuminance, BloomThreshold, exposure);
+	color = ToneMapFilmicU2(color);
+    return float4(saturate(color/MaxValue)*MaxValue, 1.0f);
+}
+technique10 Linear{pass P1{SetPixelShader(CompileShader(ps_4_0,pLinear()));}}
+technique10 Logarithmic{pass P1{SetPixelShader(CompileShader(ps_4_0,pLogarithmic()));}}
+technique10 Exponential{pass P1{SetPixelShader(CompileShader(ps_4_0,pExponential()));}}
+technique10 DragoLogarithmic{pass P1{SetPixelShader(CompileShader(ps_4_0,pDragoLogarithmic()));}}
+technique10 Reinhard{pass P1{SetPixelShader(CompileShader(ps_4_0,pReinhard()));}}
+technique10 ReinhardModified{pass P1{SetPixelShader(CompileShader(ps_4_0,pReinhardModified()));}}
+technique10 FilmicALU{pass P1{SetPixelShader(CompileShader(ps_4_0,pFilmicALU()));}}
+technique10 FilmicU2{pass P1{SetPixelShader(CompileShader(ps_4_0,pFilmicU2()));}}

@@ -1,0 +1,73 @@
+ByteAddressBuffer Geom1;
+ByteAddressBuffer Geom2;
+
+float normoffset = 12;
+float texcdoffset = 24;
+float prevposoffset = 32;
+float strides = 48;
+float Fade = 0;
+float pFade = 0;
+
+struct VS_IN
+{   
+	float3 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float2 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+	uint vid : SV_VertexID;
+};
+
+struct VS_OUTPUT
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float2 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+};
+
+
+
+VS_OUTPUT VS(VS_IN input)
+{
+    VS_OUTPUT output;
+	
+	// input.cpoint+
+	uint ii = input.vid*strides;
+    output.cpoint = float4(lerp(asfloat(Geom1.Load3(ii)),asfloat(Geom2.Load3(ii)),Fade),1);
+	output.norm = lerp(asfloat(Geom1.Load3(ii+normoffset)),asfloat(Geom2.Load3(ii+normoffset)),Fade);
+	output.TexCd = lerp(asfloat(Geom1.Load2(ii+texcdoffset)),asfloat(Geom2.Load2(ii+texcdoffset)),Fade);
+	output.ppos = lerp(asfloat(Geom1.Load4(ii+prevposoffset)),asfloat(Geom2.Load4(ii+prevposoffset)),pFade);
+	
+    return output;
+}
+
+
+
+[maxvertexcount(3)]
+void GS(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT>GSOut)
+{
+	VS_OUTPUT v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GS() ), "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;COLOR0" );
+
+technique11 MeshJoin
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}

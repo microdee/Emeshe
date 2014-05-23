@@ -1,0 +1,322 @@
+
+float4x4 tTex;
+float4x4 ptTex;
+float Extrusion = 0.2;
+float pExtrusion = 0.2;
+float InnerExtrusion = 0;
+float pInnerExtrusion = 0;
+float3 ExtrDir = float3(0,0,1);
+
+Texture2D texture2d <string uiname="Texture";>;
+Texture2D ptexture2d <string uiname="Previous Texture";>;
+
+SamplerState g_samLinear
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+
+struct vsin
+{
+	float4 pos : POSITION;
+	float3 norm : NORMAL;
+	float2 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+};
+
+struct vsinsv
+{
+	float4 pos : POSITION;
+	float3 norm : NORMAL;
+	float2 TexCd : TEXCOORD0;
+};
+
+struct vs2gs
+{
+    float4 pos : POSITION;
+	float2 TexCd : TEXCOORD0;
+	float2 pTexCd : TEXCOORD1;
+	float4 ppos : COLOR0;
+};
+
+struct gsOut
+{
+    float4 pos: SV_Position;
+    float3 norm : NORMAL;
+    float2 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+};
+
+vs2gs VS(vsin input)
+{
+	//Passtrough in that case, since we will process in gs
+	
+	//We don't need normals we will calculate them on the fly
+	vs2gs output;
+	output.pos =input.pos;
+	output.ppos =input.ppos;
+	output.TexCd = mul(float4(input.pos.xyz,1),tTex).xy;
+	output.pTexCd = mul(float4(input.ppos.xyz,1),ptTex).xy;
+    return output;
+}
+
+vs2gs VSgv(vsinsv input)
+{
+	vs2gs output;
+	output.pos =input.pos;
+	output.ppos =float4(input.pos.xyz,1);
+	output.TexCd = mul(float4(input.pos.xyz,1),tTex).xy;
+	output.pTexCd = mul(float4(input.pos.xyz,1),ptTex).xy;
+    return output;
+}
+
+float eps : EPSILON = 0.000001f;
+
+[maxvertexcount(24)]
+void GSc(triangle vs2gs input[3], inout TriangleStream<gsOut> gsout)
+{
+	gsOut o;
+	
+	//Get triangle face direction
+	float3 f1 = input[1].pos.xyz - input[0].pos.xyz;
+    float3 f2 = input[2].pos.xyz - input[0].pos.xyz;
+    
+	//Compute flat normal
+	float3 norm = normalize(cross(f1, f2));
+	
+	//Get triangle face direction
+	float3 pf1 = input[1].ppos.xyz - input[0].ppos.xyz;
+    float3 pf2 = input[2].ppos.xyz - input[0].ppos.xyz;
+    
+	//Compute flat normal
+	float3 pnorm = normalize(cross(pf1, pf2));
+	
+	float2 avgtxcd = 0;
+	for(uint i=0; i<3; i++) avgtxcd += (input[i].TexCd)/3;
+	float inextr = InnerExtrusion*texture2d.SampleLevel(g_samLinear,avgtxcd,0).r;
+	float extr = Extrusion*texture2d.SampleLevel(g_samLinear,avgtxcd,0).r;
+	
+	float2 pavgtxcd = 0;
+	for(uint i=0; i<3; i++) pavgtxcd += (input[i].pTexCd)/3;
+	float pinextr = pInnerExtrusion*ptexture2d.SampleLevel(g_samLinear,pavgtxcd,0).r;
+	float pextr = pExtrusion*ptexture2d.SampleLevel(g_samLinear,pavgtxcd,0).r;
+	
+	for(uint i=0; i<3; i++)
+	{
+		// 1st triangle
+		input[i].pos.xyz = input[i].pos.xyz+norm*inextr;
+		input[i].ppos.xyz = input[i].ppos.xyz+pnorm*pinextr;
+	}
+	uint2 selector[3] = {float2(0,1),float2(0,2),float2(1,2)};
+	for(uint i=0; i<3; i++)
+	{
+		//// Edge 01 ////
+		float3 EdgeTri0[3] = {float3(0,0,0),float3(0,0,0),float3(0,0,0)};
+		float3 EdgeTri1[3] = {float3(0,0,0),float3(0,0,0),float3(0,0,0)};
+		EdgeTri0[0] = input[selector[i].x].pos.xyz+norm*extr;
+		EdgeTri0[1] = input[selector[i].y].pos.xyz;
+		EdgeTri0[2] = input[selector[i].x].pos.xyz;
+		EdgeTri1[0] = input[selector[i].x].pos.xyz+norm*extr;
+		EdgeTri1[1] = input[selector[i].y].pos.xyz;
+		EdgeTri1[2] = input[selector[i].y].pos.xyz+norm*extr;
+		
+		float3 pEdgeTri0[3] = {float3(0,0,0),float3(0,0,0),float3(0,0,0)};
+		float3 pEdgeTri1[3] = {float3(0,0,0),float3(0,0,0),float3(0,0,0)};
+		pEdgeTri0[0] = input[selector[i].x].ppos.xyz+pnorm*pextr;
+		pEdgeTri0[1] = input[selector[i].y].ppos.xyz;
+		pEdgeTri0[2] = input[selector[i].x].ppos.xyz;
+		pEdgeTri1[0] = input[selector[i].x].ppos.xyz+pnorm*pextr;
+		pEdgeTri1[1] = input[selector[i].y].ppos.xyz;
+		pEdgeTri1[2] = input[selector[i].y].ppos.xyz+pnorm*pextr;
+		
+		// calculate normals for edge quad
+		float3 ef1 = EdgeTri0[1] - EdgeTri0[0];
+	    float3 ef2 = EdgeTri0[2] - EdgeTri0[0];
+		float3 evnorm =normalize(cross(ef1, ef2));
+		// append
+		o.norm = evnorm;
+		for(uint j=0; j<3; j++)
+		{
+			// 1st triangle
+			o.pos = float4(EdgeTri0[j],1);
+			o.ppos = float4(pEdgeTri0[j],input[j].ppos.w);
+			o.TexCd = input[j].TexCd;
+			gsout.Append(o);
+		}
+		//gsout.RestartStrip();
+		for(uint j=0; j<3; j++)
+		{
+			// 2nd triangle
+			o.pos =float4(EdgeTri1[j],1);
+			o.ppos =float4(pEdgeTri1[j],input[j].ppos.w);
+			o.TexCd = input[j].TexCd;
+			gsout.Append(o);
+		}
+		//gsout.RestartStrip();
+	}
+	
+	
+	o.norm = normalize(norm);
+	//// top ////
+	for(uint i=0; i<3; i++)
+	{
+		float3 tpos = input[i].pos.xyz+norm*extr;
+		o.pos = float4(tpos,1);
+		float3 ptpos = input[i].ppos.xyz+pnorm*pextr;
+		o.ppos = float4(ptpos,input[i].ppos.w);
+		o.TexCd = input[i].TexCd;
+		gsout.Append(o);
+	}
+	gsout.RestartStrip();
+	//// bottom ////
+	for(uint i=0; i<3; i++)
+	{
+		o.pos = input[i].pos;
+		o.ppos = input[i].ppos;
+		o.TexCd = input[i].TexCd;
+		gsout.Append(o);
+	}
+	gsout.RestartStrip();
+}
+
+[maxvertexcount(24)]
+void GSfdir(triangle vs2gs input[3], inout TriangleStream<gsOut> gsout)
+{
+	gsOut o;
+	
+	//Get triangle face direction
+	float3 f1 = input[1].pos.xyz - input[0].pos.xyz;
+    float3 f2 = input[2].pos.xyz - input[0].pos.xyz;
+    
+	//Compute flat normal
+	float3 norm = normalize(ExtrDir);
+	
+	//Get triangle face direction
+	float3 pf1 = f1;
+    float3 pf2 = f2;
+    
+	//Compute flat normal
+	float3 pnorm = norm;
+	
+	float2 avgtxcd = 0;
+	for(uint i=0; i<3; i++) avgtxcd += (input[i].TexCd)/3;
+	float inextr = InnerExtrusion*texture2d.SampleLevel(g_samLinear,avgtxcd,0).r;
+	float extr = Extrusion*texture2d.SampleLevel(g_samLinear,avgtxcd,0).r;
+	
+	float2 pavgtxcd = 0;
+	for(uint i=0; i<3; i++) pavgtxcd += (input[i].pTexCd)/3;
+	float pinextr = pInnerExtrusion*ptexture2d.SampleLevel(g_samLinear,pavgtxcd,0).r;
+	float pextr = pExtrusion*ptexture2d.SampleLevel(g_samLinear,pavgtxcd,0).r;
+	
+	for(uint i=0; i<3; i++)
+	{
+		// 1st triangle
+		input[i].pos.xyz = input[i].pos.xyz+norm*inextr;
+		input[i].ppos.xyz = input[i].ppos.xyz+pnorm*pinextr;
+	}
+
+	uint2 selector[3] = {float2(0,1),float2(0,2),float2(1,2)};
+	for(uint i=0; i<3; i++)
+	{
+		//// Edge 01 ////
+		float3 EdgeTri0[3] = {float3(0,0,0),float3(0,0,0),float3(0,0,0)};
+		float3 EdgeTri1[3] = {float3(0,0,0),float3(0,0,0),float3(0,0,0)};
+		EdgeTri0[0] = input[selector[i].x].pos.xyz+norm*extr;
+		EdgeTri0[1] = input[selector[i].y].pos.xyz;
+		EdgeTri0[2] = input[selector[i].x].pos.xyz;
+		EdgeTri1[0] = input[selector[i].x].pos.xyz+norm*extr;
+		EdgeTri1[1] = input[selector[i].y].pos.xyz;
+		EdgeTri1[2] = input[selector[i].y].pos.xyz+norm*extr;
+		
+		float3 pEdgeTri0[3] = {float3(0,0,0),float3(0,0,0),float3(0,0,0)};
+		float3 pEdgeTri1[3] = {float3(0,0,0),float3(0,0,0),float3(0,0,0)};
+		pEdgeTri0[0] = input[selector[i].x].ppos.xyz+pnorm*pextr;
+		pEdgeTri0[1] = input[selector[i].y].ppos.xyz;
+		pEdgeTri0[2] = input[selector[i].x].ppos.xyz;
+		pEdgeTri1[0] = input[selector[i].x].ppos.xyz+pnorm*pextr;
+		pEdgeTri1[1] = input[selector[i].y].ppos.xyz;
+		pEdgeTri1[2] = input[selector[i].y].ppos.xyz+pnorm*pextr;
+		
+		// calculate normals for edge quad
+		float3 ef1 = EdgeTri0[1] - EdgeTri0[0];
+	    float3 ef2 = EdgeTri0[2] - EdgeTri0[0];
+		float3 evnorm =normalize(cross(ef1, ef2));
+		// append
+		o.norm = evnorm;
+		for(uint j=0; j<3; j++)
+		{
+			// 1st triangle
+			o.pos = float4(EdgeTri0[j],1);
+			o.ppos = float4(pEdgeTri0[j],1);
+			o.TexCd = input[j].TexCd;
+			gsout.Append(o);
+		}
+		gsout.RestartStrip();
+		for(uint j=0; j<3; j++)
+		{
+			// 2nd triangle
+			o.pos =float4(EdgeTri1[j],1);
+			o.ppos =float4(pEdgeTri1[j],1);
+			o.TexCd = input[j].TexCd;
+			gsout.Append(o);
+		}
+		gsout.RestartStrip();
+	}
+	
+	
+	o.norm = normalize(norm);
+	//// top ////
+	for(uint i=0; i<3; i++)
+	{
+		float3 tpos = input[i].pos.xyz+norm*extr;
+		o.pos = float4(tpos,1);
+		float3 ptpos = input[i].pos.xyz+pnorm*pextr;
+		o.ppos = float4(ptpos,1);
+		o.TexCd = input[i].TexCd;
+		gsout.Append(o);
+	}
+	gsout.RestartStrip();
+	//// bottom ////
+	for(uint i=0; i<3; i++)
+	{
+		o.pos = input[i].pos;
+		o.ppos = input[i].pos;
+		o.TexCd = input[i].TexCd;
+		gsout.Append(o);
+	}
+	gsout.RestartStrip();
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GSc() ), "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;COLOR0" );
+GeometryShader StreamOutGSfdir = ConstructGSWithSO( CompileShader( gs_5_0, GSfdir() ), "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;COLOR0" );
+
+technique11 HasVelocity
+{
+	pass P0
+	{
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GSc() ) );
+	    SetGeometryShader( StreamOutGS );
+	}
+}
+
+technique11 GenVelocity
+{
+	pass P0
+	{
+		SetVertexShader( CompileShader( vs_5_0, VSgv() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GSc() ) );
+	    SetGeometryShader( StreamOutGS );
+	}
+}
+
+technique11 FixedDir
+{
+	pass P0
+	{
+		SetVertexShader( CompileShader( vs_5_0, VSgv() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GSfdir() ) );
+	    SetGeometryShader( StreamOutGSfdir );
+	}
+}

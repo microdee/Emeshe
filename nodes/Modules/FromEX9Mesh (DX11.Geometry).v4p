@@ -1,0 +1,235 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
+   <PATCH nodename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\modules\FromEX9Mesh (DX11.Geometry).v4p" systemname="FromEX9Mesh (DX11.Geometry)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\FromEX9Mesh (DX11.Geometry).v4p">
+   <BOUNDS type="Window" left="12690" top="2400" width="9000" height="6000">
+   </BOUNDS>
+   <NODE systemname="VertexBuffer (EX9.Geometry Split)" nodename="VertexBuffer (EX9.Geometry Split)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1815" top="1860" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Enable Texture Coordinate 0" slicecount="1" values="|2D TexCoords|">
+   </PIN>
+   <PIN pinname="Enable Tangent" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Enable Binormal" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Enable Blend Weight" slicecount="1" values="|4 BlendingWeights|">
+   </PIN>
+   <PIN pinname="Enable Blend Index" slicecount="1" values="|4 BlendingIndices|">
+   </PIN>
+   <PIN pinname="Vertex Buffer" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Position XYZ" visible="1">
+   </PIN>
+   <PIN pinname="Normal XYZ" visible="1">
+   </PIN>
+   <PIN pinname="Texture Coordinate 0 XY" visible="1">
+   </PIN>
+   <PIN pinname="Blend Weight XYZW" visible="1">
+   </PIN>
+   <PIN pinname="Blend Index XYZW" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Mesh (EX9.Geometry Split)" nodename="Mesh (EX9.Geometry Split)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="1815" top="1230" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Vertex Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Indices" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Vertex Buffer" dstnodeid="0" dstpinname="Vertex Buffer">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="3" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1815" top="240" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1815" top="240" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Mesh">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="2" dstpinname="Mesh">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3900" top="2085" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3900" top="2085" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Y Input Value">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Position XYZ" dstnodeid="4" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="IndexedGeometryBuffer (DX11.Geometry Join)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="IndexedGeometryBuffer (DX11.Geometry Join)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="1830" top="3930" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Vertices" visible="1">
+   </PIN>
+   <PIN pinname="Vertices Count" visible="1">
+   </PIN>
+   <PIN pinname="Indices" visible="1">
+   </PIN>
+   <PIN pinname="Indices Count" visible="1">
+   </PIN>
+   <PIN pinname="Input Layout" visible="1">
+   </PIN>
+   <PIN pinname="Topology" slicecount="1" values="TriangleList">
+   </PIN>
+   </NODE>
+   <NODE systemname="Zip (Value Bin)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Zip (Value Bin)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="1830" top="2835" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Count" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="Input 1 Bin Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 2 Bin Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 3 Bin Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Input 4 Bin Size" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input 5 Bin Size" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
+   </PIN>
+   <PIN pinname="Input 4" visible="1">
+   </PIN>
+   <PIN pinname="Input 5" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Position XYZ" dstnodeid="6" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Normal XYZ" dstnodeid="6" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Texture Coordinate 0 XY" dstnodeid="6" dstpinname="Input 3">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Blend Weight XYZW" dstnodeid="6" dstpinname="Input 4">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Blend Index XYZW" dstnodeid="6" dstpinname="Input 5">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="5" dstpinname="Vertices">
+   </LINK>
+   <NODE systemname="Count (3d)" filename="%VVVV%\lib\nodes\modules\3D\Count (3D).v4p" nodename="Count (3d)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="2085" top="3315" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Position XYZ" dstnodeid="7" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Count" dstnodeid="5" dstpinname="Vertices Count">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Indices" dstnodeid="5" dstpinname="Indices">
+   </LINK>
+   <NODE systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="2925" top="3315" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Indices" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Count" dstnodeid="5" dstpinname="Indices Count">
+   </LINK>
+   <NODE systemname="InputElement (DX11.Geometry Join)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="InputElement (DX11.Geometry Join)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="5625" top="4245" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Format" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="9" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="6030" top="1305" width="1590" height="990">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6030" top="1305" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="5" values="Position,Normal,TextureCoord,BlendWeight,BlendIndices">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output Enum" dstnodeid="10" dstpinname="Element Type">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="11" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="7635" top="1350" width="1845" height="990">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7635" top="1350" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="5" values="R32G32B32_Float,R32G32B32_Float,R32G32_Float,R32G32B32A32_Float,R32G32B32A32_Float">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Output Enum" dstnodeid="10" dstpinname="Format">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Output" dstnodeid="5" dstpinname="Input Layout">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="12" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="3600" top="3510" width="1590" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3600" top="3510" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" values="TriangleList">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Output Enum" dstnodeid="5" dstpinname="Topology">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="13" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4740" top="795" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4740" top="795" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Apply">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Apply">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="14" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1830" top="4755" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1830" top="4755" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Geometry Out|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Geometry Out" dstnodeid="14" dstpinname="Input Node">
+   </LINK>
+   </PATCH>

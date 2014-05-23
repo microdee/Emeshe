@@ -1,0 +1,265 @@
+
+float4x4 tWV: WORLDVIEW ;
+float4x4 tWVP: WORLDVIEWPROJECTION ;
+float4x4 tVP: VIEWPROJECTION ;
+float4x4 tW;
+
+float4x4 tTex <string uiname="Texture Transform";>;
+
+//#include "barycentric.fxh"
+float3 edges=1.0f;
+float inside=1.0f;
+float SphereRadius = 1;
+float SphereLerp = 1;
+
+struct VS_IN
+{   
+	float3 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+};
+
+struct VS_OUTPUT
+{
+	float3 cpoint : CPOINT;
+	float3 norm : NORMAL;
+	float4 TexCd: TEXCOORD0;
+	
+};
+
+VS_OUTPUT VS(VS_IN input)
+{
+	//Here we simply passtrough the vertex data
+    VS_OUTPUT output;
+    output.cpoint = input.cpoint;
+	output.norm = input.norm;
+	output.TexCd = mul(input.TexCd,tTex);
+	//output.iv=input.iv;
+    return output;
+}
+
+struct HS_CONSTANT_OUTPUT
+{
+    float edges[3]        : SV_TessFactor;
+    float inside[1]       : SV_InsideTessFactor;
+};
+
+struct HS_OUTPUT
+{
+    float3 cpoint : CPOINT;
+	float3 norm : NORMAL;
+	float4 TexCd: TEXCOORD0;
+	
+};
+
+struct DS_OUTPUT
+{
+    float4 position : SV_Position;
+	float3 normV : TEXCOORD1;
+	float4 TexCd: TEXCOORD0;
+
+};
+
+HS_CONSTANT_OUTPUT HSConst(InputPatch<VS_OUTPUT, 3> patch)
+{
+	/*The hull constant function decides how much we want 
+	To tesselate the patch. In this case we use static values,
+	but it's also possible to compute this factor from other data*/
+	
+    HS_CONSTANT_OUTPUT output;
+
+	output.edges[0] = edges.x;
+    output.edges[1] = edges.y;
+	output.edges[2] = edges.z;
+	
+	output.inside[0] = inside;
+	
+		
+    return output;
+}
+//// HUll Shaders 
+[domain("tri")] //Indicates we tesselate triangles
+[partitioning("integer")]
+[outputtopology("triangle_cw")] 
+/*Triangles will be generated as clockwise, 
+and we use 3 control points */
+[outputcontrolpoints(3)]
+[patchconstantfunc("HSConst")] /*This is the name of the function 
+that will calculate tesselation factors*/
+HS_OUTPUT HS_I(InputPatch<VS_OUTPUT, 3> ip, uint id : SV_OutputControlPointID)
+{   //ip is InputPoints
+	//Here we just pass trough the input patch control points,
+	//We could modify it here, but it is not needed in our case
+    HS_OUTPUT output;
+    output.cpoint = ip[id].cpoint;
+	output.norm = ip[id].norm;
+    output.TexCd  = ip[id].TexCd ;
+	
+	
+    return output;
+}
+[domain("tri")] //Indicates we tesselate triangles
+[partitioning("fractional_even")]
+[outputtopology("triangle_cw")] 
+/*Triangles will be generated as clockwise, 
+and we use 3 control points */
+[outputcontrolpoints(3)]
+[patchconstantfunc("HSConst")] /*This is the name of the function 
+that will calculate tesselation factors*/
+HS_OUTPUT HS_Even(InputPatch<VS_OUTPUT, 3> ip, uint id : SV_OutputControlPointID)
+{   //ip is InputPoints
+	//Here we just pass trough the input patch control points,
+	//We could modify it here, but it is not needed in our case
+    HS_OUTPUT output;
+    output.cpoint = ip[id].cpoint;
+	output.norm = ip[id].norm;
+    output.TexCd  = ip[id].TexCd ;
+	
+	
+    return output;
+}
+[domain("tri")] //Indicates we tesselate triangles
+[partitioning("fractional_odd")]
+[outputtopology("triangle_cw")] 
+/*Triangles will be generated as clockwise, 
+and we use 3 control points */
+[outputcontrolpoints(3)]
+[patchconstantfunc("HSConst")] /*This is the name of the function 
+that will calculate tesselation factors*/
+HS_OUTPUT HS_Odd(InputPatch<VS_OUTPUT, 3> ip, uint id : SV_OutputControlPointID)
+{   //ip is InputPoints
+	//Here we just pass trough the input patch control points,
+	//We could modify it here, but it is not needed in our case
+    HS_OUTPUT output;
+    output.cpoint = ip[id].cpoint;
+	output.norm = ip[id].norm;
+    output.TexCd  = ip[id].TexCd ;
+	
+	
+    return output;
+}
+[domain("tri")] //Indicates we tesselate triangles
+[partitioning("pow2")]
+[outputtopology("triangle_cw")] 
+/*Triangles will be generated as clockwise, 
+and we use 3 control points */
+[outputcontrolpoints(3)]
+[patchconstantfunc("HSConst")] /*This is the name of the function 
+that will calculate tesselation factors*/
+HS_OUTPUT HS_Pow2(InputPatch<VS_OUTPUT, 3> ip, uint id : SV_OutputControlPointID)
+{   //ip is InputPoints
+	//Here we just pass trough the input patch control points,
+	//We could modify it here, but it is not needed in our case
+    HS_OUTPUT output;
+    output.cpoint = ip[id].cpoint;
+	output.norm = ip[id].norm;
+    output.TexCd  = ip[id].TexCd ;
+	
+	
+    return output;
+}
+
+/// Domain Shader 
+[domain("tri")]
+DS_OUTPUT DS(HS_CONSTANT_OUTPUT input, OutputPatch<HS_OUTPUT, 3> op, float3 uv : SV_DomainLocation)
+{
+	
+	//op is OutputPoints
+	
+	/*Here we receive tesselated vertices, we receive float3 uv : SV_DomainLocation ,
+	which are barycentric coordinates, and OutputPatch<HS_OUTPUT, 3> op, which is the original triangle*/
+	
+    DS_OUTPUT output;
+
+	//Compute position from barycentric coordinates
+	float3 p = uv.x * op[0].cpoint 
+        + uv.y * op[1].cpoint 
+        + uv.z * op[2].cpoint;
+	//Compute Normals from barycentric coordinates
+	float3 n= uv.x * op[0].norm
+        + uv.y * op[1].norm
+        + uv.z * op[2].norm;
+	
+	//Compute tex cords from barycentric coordinates
+	float3 Tc= uv.x * op[0].TexCd
+        + uv.y * op[1].TexCd
+        + uv.z * op[2].TexCd;
+	
+	//Transform normals in view space, and position in screen space
+	output.normV = mul(normalize(p.xyz),tWV).xyz;	
+	//OutputTexture Coordinates
+	output.TexCd = float4(Tc.xyz,1);
+    output.position =  mul(float4(lerp(mul(float4(p.xyz,1),tW).xyz,normalize(p.xyz)*SphereRadius,SphereLerp),1),tVP);
+
+    return output;
+}
+
+[maxvertexcount(3)]
+void GS(triangle DS_OUTPUT input[3], inout TriangleStream<DS_OUTPUT>GSOut)
+{
+	DS_OUTPUT v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GS() ), "SV_Position.xyz;TEXCOORD1.xyz;TEXCOORD0.xy" );
+
+technique11 Tessel_Integer
+{
+	pass P0
+	{
+		SetHullShader( CompileShader( hs_5_0, HS_I() ) );
+		SetDomainShader( CompileShader( ds_5_0, DS() ) );
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}
+
+technique11 Tessel_Even
+{
+	pass P0
+	{
+		SetHullShader( CompileShader( hs_5_0, HS_Even() ) );
+		SetDomainShader( CompileShader( ds_5_0, DS() ) );
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}
+
+technique11 Tessel_Odd
+{
+	pass P0
+	{
+		SetHullShader( CompileShader( hs_5_0, HS_Odd() ) );
+		SetDomainShader( CompileShader( ds_5_0, DS() ) );
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}
+
+technique11 Tessel_Pow2
+{
+	pass P0
+	{
+		SetHullShader( CompileShader( hs_5_0, HS_Pow2() ) );
+		SetDomainShader( CompileShader( ds_5_0, DS() ) );
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}
+

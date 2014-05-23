@@ -1,0 +1,67 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
+   <PATCH nodename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\modules\Split (DX11.Texture2DArray).v4p" systemname="Split (DX11.Texture2DArray)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45beta31_x86\packs\mre.mdmod.2\nodes\Modules\Split (DX11.Texture2DArray).v4p">
+   <BOUNDS type="Window" left="10230" top="5640" width="5700" height="4200">
+   </BOUNDS>
+   <NODE systemname="PreviewSlice (DX11.TextureFX)" filename="%VVVV%\packs\mre.mdmod.2\nodes\texture11\PreviewSlice.tfx" nodename="PreviewSlice (DX11.TextureFX)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="840" top="1845" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="arrtex" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Slice" visible="1">
+   </PIN>
+   <PIN pinname="VolumeDepth" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="840" top="270" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="840" top="270" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="arrtex">
+   </LINK>
+   <NODE systemname="I (Spreads)" nodename="I (Spreads)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="1185" top="1395" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname=".. To [" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="0" dstpinname="Slice">
+   </LINK>
+   <NODE systemname="Info (DX11.Texture 2d)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Info (DX11.Texture 2d)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="705" top="990" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Array Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="3" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Array Size" dstnodeid="2" dstpinname=".. To [">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="4" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="840" top="2550" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="840" top="2550" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="4" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Array Size" dstnodeid="0" dstpinname="VolumeDepth">
+   </LINK>
+   <INFO author="microdee" description="" tags="">
+   </INFO>
+   </PATCH>

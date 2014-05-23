@@ -1,0 +1,75 @@
+
+Texture2D RawTex;
+float2 res = 1;
+
+struct VS_IN
+{   
+	float3 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	uint vid : SV_VertexID;
+};
+
+struct VS_OUTPUT
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+};
+
+
+
+VS_OUTPUT VS(VS_IN input)
+{
+    VS_OUTPUT output;
+	uint3 uvi0 = 0;
+	uvi0.y = (input.vid*2)%res.y;
+	uvi0.x = floor((input.vid*2)/res.y);
+	uint3 uvi1 = 0;
+	uvi1.y = (input.vid*2+1)%res.y;
+	uvi1.x = floor((input.vid*2+1)/res.y);
+	float4 data0 = RawTex.Load(uvi0);
+	float4 data1 = RawTex.Load(uvi1);
+	float3 pos = data0.xyz;
+	float3 norm = float3(data0.w,data1.xy);
+	float2 txcd = data1.zw;
+	
+	// input.cpoint+
+    output.cpoint = float4(pos,1);
+	//output.cpoint = float4(input.cpoint,1);
+	output.norm = norm;
+	output.TexCd = float4(txcd,0,1);
+	
+    return output;
+}
+
+
+
+[maxvertexcount(3)]
+void GS(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT>GSOut)
+{
+	VS_OUTPUT v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GS() ), "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy" );
+
+technique11 MeshJoin
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}

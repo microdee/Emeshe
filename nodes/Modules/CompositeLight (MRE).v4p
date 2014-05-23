@@ -1,0 +1,131 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
+   <PATCH nodename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\CompositeLight (MRE).v4p" systemname="CompositeLight (MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\CompositeLight (MRE).v4p">
+   <BOUNDS type="Window" left="9855" top="645" width="9000" height="6000">
+   </BOUNDS>
+   <PACK Name="testPack" Version="0.1.0">
+   </PACK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="5145" top="1425" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5145" top="1425" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Light In|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="3" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="540" top="1620" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="540" top="1620" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1740" top="1575" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1740" top="1575" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Opacity">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="CompositeLight (DX11.Effect)" filename="%VVVV%\packs\mrre\nodes\dx11\CompositeLight.fx" nodename="CompositeLight (DX11.Effect)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="2070" top="5280" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="InTex" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Lights" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Opacity" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="13" dstpinname="InTex">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="13" dstpinname="Lights">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Opacity">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2790" top="1725" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2790" top="1725" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="AmbMul">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="13" dstpinname="AmbMul">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3210" top="2280" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3210" top="2280" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="SpecMul">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="13" dstpinname="SpecMul">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3450" top="2835" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3450" top="2835" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="SSSMul">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="13" dstpinname="SSSMul">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="17" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3690" top="3300" width="795" height="960">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3690" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="4" values="1,1,1,1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="ComponentAmount">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="13" dstpinname="ComponentAmountXYZW">
+   </LINK>
+   </PATCH>

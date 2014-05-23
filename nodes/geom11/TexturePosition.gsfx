@@ -1,0 +1,69 @@
+
+
+
+float4x4 tV: VIEW ;
+float4x4 tVP: VIEWPROJECTION ;
+
+Texture2D PosTex;
+Texture2D pPosTex;
+Texture2D NormTex;
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=MIRROR;AddressV=MIRROR;};
+
+struct VS_IN
+{   
+	float3 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+};
+
+struct VS_OUTPUT
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+};
+
+VS_OUTPUT VS(VS_IN input)
+{
+	//Here we simply passtrough the vertex data
+    VS_OUTPUT output;
+	
+    output.cpoint = mul(float4(PosTex.SampleLevel(s0,input.TexCd.xy,0).xyz,1),tV);
+	output.ppos = mul(float4(pPosTex.SampleLevel(s0,input.TexCd.xy,0).xyz,1),tV);
+	output.norm = NormTex.SampleLevel(s0,input.TexCd.xy,0).xyz;
+	output.TexCd = input.TexCd;
+	
+    return output;
+}
+
+
+
+[maxvertexcount(3)]
+void GS(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT>GSOut)
+{
+	VS_OUTPUT v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GS() ), "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;COLOR0" );
+
+technique11 TexPos
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}

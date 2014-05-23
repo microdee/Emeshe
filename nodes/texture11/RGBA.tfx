@@ -1,0 +1,56 @@
+Texture2D Rtex: PREVIOUS;
+Texture2D Gtex <string uiname="Green";>;
+Texture2D Btex <string uiname="Blue";>;
+Texture2D Atex <string uiname="Alpha";>;
+Texture2D TexArray[4] <string uiname="Spread";>;
+
+#include "ColorSpace.fxh"
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+float4 pJoin(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c = float4(0,0,0,1);
+	c.r = RGBtoHSL(Rtex.Sample(s0,x).rgb).z;
+	c.g = RGBtoHSL(Gtex.Sample(s0,x).rgb).z;
+	c.b = RGBtoHSL(Btex.Sample(s0,x).rgb).z;
+	c.a = RGBtoHSL(Atex.Sample(s0,x).rgb).z;
+    return c;
+}
+float4 pJoinL(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c = float4(0,0,0,1);
+	c.r = length(Rtex.Sample(s0,x).rgb);
+	c.g = length(Gtex.Sample(s0,x).rgb);
+	c.b = length(Btex.Sample(s0,x).rgb);
+	c.a = length(Atex.Sample(s0,x).rgb);
+    return c;
+}
+float4 pJoinSpread(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c = float4(0,0,0,1);
+	for(uint i = 0; i<4; i++)
+		c[i] = length(TexArray[i].Sample(s0,x).rgb);
+    return c;
+}
+float4 pJoinSpreadRaw(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c = float4(0,0,0,1);
+	for(uint i = 0; i<4; i++)
+		c[i] = TexArray[i].Sample(s0,x).r;
+    return c;
+}
+
+technique10 Join{
+	pass P1 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pJoin()));}
+}
+technique10 JoinLength{
+	pass P1 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pJoinL()));}
+}
+technique10 JoinSpread{
+	pass P1 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pJoinSpread()));}
+}
+technique10 JoinSpreadRaw{
+	pass P1 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pJoinSpreadRaw()));}
+}

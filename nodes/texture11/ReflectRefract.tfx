@@ -1,0 +1,96 @@
+
+struct MaterialProp
+{
+    float3 Atten;
+    float Power;
+    float4 AmbCol;
+    float4 SpecCol;
+    float SpecAmount;
+    float4 EmCol;
+    float EmAmount;
+    float SSSAmount;
+    float SSSPower;
+    float MatThick;
+    float RimLAmount;
+    float RimLPower;
+    float4 SSSExtCoeff;
+    float Reflection;
+    float Refraction;
+	uint ReflectRefractTexID;
+};
+
+Texture2D PrevTex: PREVIOUS;
+Texture2D ColorTex: INITIAL;
+StructuredBuffer<MaterialProp> matprop <string uiname="Material Buffer";>;
+StructuredBuffer<float3> RefractIndices;
+float4x4 ReflTransform;
+
+#define PI 3.14159265358979
+#include "MRE.fxh"
+
+TextureCube Environment;
+Texture2DArray FresnelTextures;
+
+
+float2 ScreenSize:TARGETSIZE;
+
+cbuffer controls:register(b0)
+{
+	float4x4 tViewInverse;
+	bool IsInitial = true;
+	float2 EnvStrength = 1;
+	//float3 RefractIndices = { 0.80, 0.82, 0.84 };
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_LINEAR;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
+	AddressW=WRAP;
+	//MipLODBias = -1;
+};
+
+float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+	float vPos = mre_getviewpos(s0,uv).z;
+	float4 col = float4(0,0,0,1);
+	if(vPos!=0)
+	{
+		float3 wPos = mre_getworldpos(s0,uv);
+		float matid = mre_getmatid(s0,uv);
+		float3 norm = mul(float4(mre_getworldnorm(s0,uv),0),ReflTransform).xyz;
+		if(!IsInitial) col = ColorTex.Sample(s0, uv);
+		if((matprop[matid].Reflection!=0) || (matprop[matid].Refraction!=0))
+		{
+			float3 rrV = normalize(tViewInverse[3].xyz - wPos);
+			float3 bn = normalize(norm);
+  			float3 rrR = reflect(-rrV, bn);
+    		float4 reflColor = Environment.SampleLevel(s0,rrR,0);
+			
+			float fresnel = FresnelTextures.SampleLevel(s0, float3(dot(norm, rrV), 0, matprop[matid].ReflectRefractTexID), 0);
+			const half4 colors[3] =
+		    {
+		    	{ 1, 0, 0, 1 },
+		    	{ 0, 1, 0, 1 },
+		    	{ 0, 0, 1, 1 },
+			};
+			float4 transColor = 0;
+		  	bool fail = false;
+		    for(int j=0; j<3; j++) {
+		    	float3 rrT = refract(-rrV, bn, RefractIndices[matprop[matid].ReflectRefractTexID][j]);
+		    	transColor += Environment.SampleLevel(s0,rrT,0)* colors[j];
+			}
+			float refmap = mre_getmaps(s0,uv).x;
+			col += reflColor * matprop[matid].Reflection * 2 * fresnel * refmap * EnvStrength.x;
+			col += transColor * matprop[matid].Refraction * (1-fresnel) * refmap * EnvStrength.y;
+		}
+	}
+	
+	return float4(col.xyz,ColorTex.Sample(s0,uv).a);
+}
+
+technique10 Point{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,pRefleract()));}
+}

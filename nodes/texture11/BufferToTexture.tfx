@@ -1,0 +1,28 @@
+Texture2D Input: PREVIOUS;
+StructuredBuffer<float4> Control;
+ByteAddressBuffer RawControl;
+
+float2 R:TARGETSIZE;
+
+float4 pStructured(float4 PosWVP:SV_POSITION,float2 TexCd:TEXCOORD0):SV_TARGET
+{
+	uint uvi = R.y*TexCd.y + R.x*TexCd.x*R.y;
+    return Control[uvi];
+}
+
+float4 pRaw(float4 PosWVP:SV_POSITION,float2 TexCd:TEXCOORD0):SV_TARGET
+{
+	uint uvi = R.y*TexCd.y + R.x*TexCd.x*R.y;
+    return asfloat(RawControl.Load4(uvi*16));
+}
+
+technique10 Structured
+{
+	pass P1 <string format="R32G32B32A32_Float"; >
+	{SetPixelShader(CompileShader(ps_4_0,pStructured()));}
+}
+technique10 Raw
+{
+	pass P1 <string format="R32G32B32A32_Float"; >
+	{SetPixelShader(CompileShader(ps_4_0,pRaw()));}
+}

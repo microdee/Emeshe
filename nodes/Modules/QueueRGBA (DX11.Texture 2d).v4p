@@ -1,0 +1,149 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
+   <PATCH nodename="D:\vvvv\unc&apos;s stuff\PostProc\PostProcess\TemporalReprojection\QueueRGBA\QueueRGBA (DX11.Texture 2d).v4p" systemname="QueueRGBA (DX11.Texture 2d)" filename="X:\QueueRGBA\QueueRGBA (DX11.Texture 2d).v4p">
+   <BOUNDS type="Window" left="480" top="2040" width="9000" height="6000">
+   </BOUNDS>
+   <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1785" top="2850" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Buffers" visible="1">
+   </PIN>
+   <PIN pinname="Texture Input Mode" slicecount="1" values="InheritSize">
+   </PIN>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="QueueRGBA (DX11.Effect)" filename="QueueRGBA.fx" nodename="QueueRGBA (DX11.Effect)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="2100" top="2310" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Feed Texture" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="_RG_X">
+   </PIN>
+   <PIN pinname="Color" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Layer" dstnodeid="0" dstpinname="Layer">
+   </LINK>
+   <NODE systemname="Quad (DX11.Geometry)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="2280" top="1950" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="SizeXY" slicecount="2" values="1,1">
+   </PIN>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Geometry Out" dstnodeid="1" dstpinname="Geometry">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="3" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="1830" top="885" width="1590" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1830" top="885" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" values="R32G32_Float">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Target Format|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="0" dstpinname="Target Format">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="6" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="795" top="630" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="795" top="630" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="7" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1140" top="4860" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1140" top="4860" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
+   </PIN>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Output Node" dstnodeid="1" dstpinname="Texture">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In">
+   </LINK>
+   <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="2505" top="3780" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Buffers" dstnodeid="8" dstpinname="Input 2">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5940" top="1785" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5940" top="1785" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output Node" dstnodeid="8" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="7" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="FrameDelay (DX11.Texture 2d)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="FrameDelay (DX11.Texture 2d)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="4005" top="3855" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Buffers" dstnodeid="10" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Texture Out" dstnodeid="1" dstpinname="Feed Texture">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="11" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="3960" top="1875" width="1590" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3960" top="1875" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" values="_RG_X">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Output Enum" dstnodeid="1" dstpinname="Technique">
+   </LINK>
+   </PATCH>

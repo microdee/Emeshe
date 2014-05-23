@@ -1,0 +1,111 @@
+float2 R:TARGETSIZE;
+Texture2D tex0 : PASSRESULT0;
+Texture2D tex1 : PASSRESULT1;
+Texture2D tex2 : PASSRESULT2;
+Texture2D tex3 : PASSRESULT3;
+Texture2D tex4 : PASSRESULT4;
+Texture2D tex5 : PASSRESULT5;
+Texture2D tex6 : PASSRESULT6;
+Texture2D tex7 : PASSRESULT7;
+Texture2D tex8 : PASSRESULT8;
+Texture2D tex9 : PASSRESULT9;
+Texture2D tex10 : PASSRESULT10;
+
+SamplerState s0  <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=WRAP;AddressV=WRAP;};
+
+cbuffer controls:register(b0){
+	float4 Color1 <bool color=true;> =float4(0,0,0,1);
+	float4 Color2 <bool color=true;> =1;
+	float4x4 OutTr;
+	float Amplitude=1;
+	float FrequencyBalance=0;
+	float RandomSeed=0;
+	float Z=0;
+	float MorphBalance=1;
+};
+float n1(float3 p){
+	return cos(length(sin(p*sqrt(3.3)+frac(sin(p.yzx*sqrt(5)+RandomSeed)*sqrt(8))*8))*288);
+}
+
+float octave(float2 x,float n=1){
+	float c=0;
+	float z=Z/pow(pow(2,MorphBalance),n-6);
+	float3 p=float3((x.xy+3)*sqrt(1111),floor(z));
+	c=lerp(n1(p),n1(p+float3(0,0,1)),frac(z));
+	return c/pow(pow(2,FrequencyBalance),n-4);
+}
+float4 pOCT1(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,1);
+}
+float4 pOCT2(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,2);
+}
+float4 pOCT3(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,3);
+}
+float4 pOCT4(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,4);
+}
+float4 pOCT5(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,5);
+}
+float4 pOCT6(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,6);
+}
+float4 pOCT7(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,7);
+}
+float4 pOCT8(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,8);
+}
+float4 pOCT9(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,9);
+}
+float4 pOCT10(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return octave(x,10);
+}
+float4 pBLEND(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float sum=0;
+	sum+=tex0.SampleLevel(s0,x,0).x;
+	sum+=tex1.SampleLevel(s0,x,0).x;
+	sum+=tex2.SampleLevel(s0,x,0).x;
+	sum+=tex3.SampleLevel(s0,x,0).x;
+	sum+=tex4.SampleLevel(s0,x,0).x;
+	sum+=tex5.SampleLevel(s0,x,0).x;
+	sum+=tex6.SampleLevel(s0,x,0).x;
+	sum+=tex7.SampleLevel(s0,x,0).x;
+	sum+=tex8.SampleLevel(s0,x,0).x;
+	sum/=8;
+	
+	sum=sum*Amplitude*4/pow(2,3.4*abs(FrequencyBalance));
+	float4 c=lerp(Color1,Color2,.5+.5*sum.xxxx);
+    return mul(c,OutTr);
+}
+technique10 Perlin{
+	
+	pass P1 <float scale=1.0;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT1()));}
+	pass P2 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT2()));}
+	pass P3 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT3()));}
+	pass P4 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT4()));}
+	pass P5 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT5()));}
+	pass P6 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT6()));}
+	pass P7 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT7()));}
+	pass P8 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT8()));}
+	pass P9 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT9()));}
+	pass P10 <float scale=0.5;string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pOCT10()));}
+	
+	pass PF <bool initial=true;float scale=1;string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pBLEND()));}
+}
+
+

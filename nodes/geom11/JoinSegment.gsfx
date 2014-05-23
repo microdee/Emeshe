@@ -1,0 +1,285 @@
+#define PI 3.1415926535897932
+#define GEOMVEL "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;COLOR0"
+
+StructuredBuffer<float> Linear;
+StructuredBuffer<float4> dzOffsetP;
+
+StructuredBuffer<float4> CurvaturePowP;
+StructuredBuffer<float4> RadiusThicknessDepth;
+StructuredBuffer<float4> prevRadiusThicknessDepth;
+StructuredBuffer<float4> CyclesPhaseP;
+
+struct VsOutGeomvel
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+	float4 bufferdata : TEXCOORD1;
+};
+float PowS(float a, float b)
+{
+	return pow(abs(a),b)*sign(a);
+}
+VsOutGeomvel VsGeomvel(uint vi: SV_VertexID, uint ii: SV_InstanceID)
+{
+    VsOutGeomvel output;
+	uint LinearCount, LinearStr;
+	Linear.GetDimensions(LinearCount, LinearStr);
+	uint dzOffsCount, dzOffsStr;
+	dzOffsetP.GetDimensions(dzOffsCount, dzOffsStr);
+	uint CurvCount, CurvStr;
+	CurvaturePowP.GetDimensions(CurvCount, CurvStr);
+	uint RTDCount, RTDStr;
+	RadiusThicknessDepth.GetDimensions(RTDCount, RTDStr);
+	uint CPCount, CPStr;
+	CyclesPhaseP.GetDimensions(CPCount, CPStr);
+	
+	uint si = (ii*LinearCount+vi)%dzOffsCount;
+	
+	//// current ////
+	
+	float3 circpos = 0;
+	float d = RadiusThicknessDepth[ii%RTDCount].x + dzOffsetP[si].x;
+	float phase = CyclesPhaseP[ii%CPCount].y;
+	float cycles = CyclesPhaseP[ii%CPCount].x;
+	float r = Linear[vi]*PI*cycles*2+phase*2*PI;
+	circpos.x = lerp(PowS(cos(r),CurvaturePowP[ii%CurvCount].y)*d, Linear[vi]-.5, CurvaturePowP[ii%CurvCount].x);
+	circpos.y = lerp(PowS(sin(r),CurvaturePowP[ii%CurvCount].y)*d, 0, CurvaturePowP[ii%CurvCount].x);
+	circpos.z = dzOffsetP[si].y;
+	float3 norm = 0;
+	norm.x = lerp(cos(r), 0, CurvaturePowP[ii%CurvCount].x);
+	norm.y = lerp(sin(r), -1, CurvaturePowP[ii%CurvCount].x);
+	
+	//// previous ////
+	float3 pcircpos = 0;
+	float pd = prevRadiusThicknessDepth[ii%RTDCount].x + dzOffsetP[si].z;
+	float pphase = CyclesPhaseP[ii%CPCount].w;
+	float pcycles = CyclesPhaseP[ii%CPCount].z;
+	float pr = Linear[vi]*PI*pcycles*2+pphase*2*PI;
+	pcircpos.x = lerp(PowS(cos(pr),CurvaturePowP[ii%CurvCount].w)*pd, Linear[vi]-.5, CurvaturePowP[ii%CurvCount].z);
+	pcircpos.y = lerp(PowS(sin(pr),CurvaturePowP[ii%CurvCount].w)*pd, 0, CurvaturePowP[ii%CurvCount].z);
+	pcircpos.z = dzOffsetP[si].w;
+	
+	//// out ////
+	
+    output.cpoint = float4(circpos,1);
+	output.norm = norm;
+	output.TexCd = Linear[vi];
+	output.ppos = float4(pcircpos,ii);
+	output.bufferdata = float4(RTDCount, CPCount, LinearCount, vi);
+	
+    return output;
+}
+
+struct GsOutGeomvel
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+};
+
+struct GStmp
+{
+	float3 pos;
+	float2 txcd;
+};
+
+[maxvertexcount(14)]
+void GsGeomvel(line VsOutGeomvel input[2], inout TriangleStream<GsOutGeomvel>GSOut)
+{
+	uint ii = input[0].ppos.w;
+	uint rtdii = ii%input[0].bufferdata.x;
+
+	//// current ////
+
+	GStmp evenring[4];
+	// pos
+	evenring[0].pos = input[0].cpoint.xyz;
+	evenring[1].pos = input[0].cpoint.xyz + input[0].norm * RadiusThicknessDepth[rtdii].z;
+	evenring[2].pos = input[0].cpoint.xyz * RadiusThicknessDepth[rtdii].y + input[0].norm * RadiusThicknessDepth[rtdii].z;
+	evenring[2].pos.z += RadiusThicknessDepth[rtdii].w;
+	evenring[3].pos = input[0].cpoint.xyz * RadiusThicknessDepth[rtdii].y;
+	evenring[3].pos.z += RadiusThicknessDepth[rtdii].w;
+	// txcd
+	evenring[0].txcd = float2(input[0].TexCd, 0);
+	evenring[1].txcd = float2(input[0].TexCd, 1);
+	evenring[2].txcd = float2(input[0].TexCd, 0);
+	evenring[3].txcd = float2(input[0].TexCd, 1);
+	
+	GStmp oddring[4];
+	// pos
+	oddring[0].pos = input[1].cpoint.xyz;
+	oddring[1].pos = input[1].cpoint.xyz + input[1].norm * RadiusThicknessDepth[rtdii].z;
+	oddring[2].pos = input[1].cpoint.xyz * RadiusThicknessDepth[rtdii].y + input[1].norm * RadiusThicknessDepth[rtdii].z;
+	oddring[2].pos.z += RadiusThicknessDepth[rtdii].w;
+	oddring[3].pos = input[1].cpoint.xyz * RadiusThicknessDepth[rtdii].y;
+	oddring[3].pos.z += RadiusThicknessDepth[rtdii].w;
+	// txcd
+	oddring[0].txcd = float2(input[1].TexCd, 0);
+	oddring[1].txcd = float2(input[1].TexCd, 1);
+	oddring[2].txcd = float2(input[1].TexCd, 0);
+	oddring[3].txcd = float2(input[1].TexCd, 1);
+
+	// norm
+	float3 eosnorm = 0;
+	float3 eosnorm0 = evenring[0].pos-evenring[3].pos;
+	float3 eosnorm1 = evenring[0].pos-oddring[3].pos;
+	eosnorm = normalize(cross(eosnorm0,eosnorm1));
+	float3 eisnorm = 0;
+	float3 eisnorm0 = evenring[1].pos-evenring[2].pos;
+	float3 eisnorm1 = evenring[1].pos-oddring[2].pos;
+	eisnorm = normalize(cross(eisnorm0,eisnorm1));
+	float3 efwnorm = 0;
+	float3 efwnorm0 = evenring[0].pos-evenring[1].pos;
+	float3 efwnorm1 = evenring[0].pos-oddring[1].pos;
+	efwnorm = normalize(cross(efwnorm0,efwnorm1));
+	float3 ebwnorm = 0;
+	float3 ebwnorm0 = evenring[2].pos-evenring[3].pos;
+	float3 ebwnorm1 = evenring[2].pos-oddring[3].pos;
+	ebwnorm = normalize(cross(ebwnorm0,ebwnorm1));
+
+	float3 oosnorm = 0;
+	float3 oosnorm0 = oddring[0].pos-oddring[3].pos;
+	float3 oosnorm1 = oddring[0].pos-evenring[3].pos;
+	oosnorm = normalize(cross(oosnorm0,oosnorm1));
+	float3 oisnorm = 0;
+	float3 oisnorm0 = oddring[1].pos-oddring[2].pos;
+	float3 oisnorm1 = oddring[1].pos-evenring[2].pos;
+	oisnorm = normalize(cross(oisnorm0,oisnorm1));
+	float3 ofwnorm = 0;
+	float3 ofwnorm0 = oddring[0].pos-oddring[1].pos;
+	float3 ofwnorm1 = oddring[0].pos-evenring[1].pos;
+	ofwnorm = normalize(cross(ofwnorm0,ofwnorm1));
+	float3 obwnorm = 0;
+	float3 obwnorm0 = oddring[2].pos-oddring[3].pos;
+	float3 obwnorm1 = oddring[2].pos-evenring[3].pos;
+	obwnorm = normalize(cross(obwnorm0,obwnorm1));
+
+	//// previous ////
+
+	float3 pevenring[4];
+	pevenring[0] = input[0].ppos.xyz;
+	pevenring[1] = input[0].ppos.xyz + input[0].norm * prevRadiusThicknessDepth[rtdii].z;
+	pevenring[2] = input[0].ppos.xyz * prevRadiusThicknessDepth[rtdii].y + input[0].norm * prevRadiusThicknessDepth[rtdii].z;
+	pevenring[2].z += prevRadiusThicknessDepth[rtdii].w;
+	pevenring[3] = input[0].ppos.xyz * prevRadiusThicknessDepth[rtdii].y;
+	pevenring[3].z += prevRadiusThicknessDepth[rtdii].w;
+	
+	float3 poddring[4];
+	poddring[0] = input[1].ppos.xyz;
+	poddring[1] = input[1].ppos.xyz + input[1].norm * prevRadiusThicknessDepth[rtdii].z;
+	poddring[2] = input[1].ppos.xyz * prevRadiusThicknessDepth[rtdii].y + input[1].norm * prevRadiusThicknessDepth[rtdii].z;
+	poddring[2].z += prevRadiusThicknessDepth[rtdii].w;
+	poddring[3] = input[1].ppos.xyz * prevRadiusThicknessDepth[rtdii].y;
+	poddring[3].z += prevRadiusThicknessDepth[rtdii].w;
+
+	//// transform ////
+	//// join ////
+
+	GsOutGeomvel v = (GsOutGeomvel)0;
+	GsOutGeomvel vle = (GsOutGeomvel)0;
+	GsOutGeomvel vlo = (GsOutGeomvel)0;
+	// ....
+	// o...
+	v.cpoint = float4(evenring[0].pos,1);
+	v.norm =   (eosnorm+efwnorm)/2;
+	v.TexCd =  float4(evenring[0].txcd,0,1);
+	v.ppos =   float4(pevenring[0],ii);
+	vle = v;
+	GSOut.Append(v);
+	// o...
+	// ....
+	v.cpoint = float4(oddring[0].pos,1);
+	v.norm =   (-oosnorm-ofwnorm)/2;
+	v.TexCd =  float4(oddring[0].txcd,0,1);
+	v.ppos =   float4(poddring[0],ii);
+	vlo = v;
+	GSOut.Append(v);
+	// ....
+	// .o..
+	v.cpoint = float4(evenring[1].pos,1);
+	v.norm =   (eisnorm+efwnorm)/2;
+	v.TexCd =  float4(evenring[1].txcd,0,1);
+	v.ppos =   float4(pevenring[1],ii);
+	GSOut.Append(v);
+	// .o..
+	// ....
+	v.cpoint = float4(oddring[1].pos,1);
+	v.norm =   (-oisnorm-ofwnorm)/2;
+	v.TexCd =  float4(oddring[1].txcd,0,1);
+	v.ppos =   float4(poddring[1],ii);
+	GSOut.Append(v);
+	// ....
+	// ..o.
+	v.cpoint = float4(evenring[2].pos,1);
+	v.norm =   (eisnorm+ebwnorm)/2;
+	v.TexCd =  float4(evenring[2].txcd,0,1);
+	v.ppos =   float4(pevenring[2],ii);
+	GSOut.Append(v);
+	// ..o.
+	// ....
+	v.cpoint = float4(oddring[2].pos,1);
+	v.norm =   (-oisnorm-obwnorm)/2;
+	v.TexCd =  float4(oddring[2].txcd,0,1);
+	v.ppos =   float4(poddring[2],ii);
+	GSOut.Append(v);
+	// ....
+	// ...o
+	v.cpoint = float4(evenring[3].pos,1);
+	v.norm =   (eosnorm+ebwnorm)/2;
+	v.TexCd =  float4(evenring[3].txcd,0,1);
+	v.ppos =   float4(pevenring[3],ii);
+	GSOut.Append(v);
+	// ...o
+	// ....
+	v.cpoint = float4(oddring[3].pos,1);
+	v.norm =   (-oosnorm-obwnorm)/2;
+	v.TexCd =  float4(oddring[3].txcd,0,1);
+	v.ppos =   float4(poddring[3],ii);
+	GSOut.Append(v);
+	GSOut.Append(vle);
+	GSOut.Append(vlo);
+	GSOut.RestartStrip();
+	if(input[0].bufferdata.w == 0)
+	{
+		float4 jump = float4(1,2,-1,-1);
+		uint wi = 0;
+		for(uint i=0; i<4; i++)
+		{
+			v.cpoint = float4(evenring[wi].pos,1);
+			v.norm =   float3(0,0,1);
+			v.TexCd =  float4(evenring[wi].txcd,0,1);
+			v.ppos =   float4(pevenring[wi],ii);
+			GSOut.Append(v);
+			wi += jump[i];
+		}
+	}
+	if(input[1].bufferdata.w == (input[1].bufferdata.z-1))
+	{
+		float4 jump = float4(1,2,-1,-1);
+		uint wi = 0;
+		for(uint i=0; i<4; i++)
+		{
+			v.cpoint = float4(oddring[wi].pos,1);
+			v.norm =   float3(0,0,1);
+			v.TexCd =  float4(oddring[wi].txcd,0,1);
+			v.ppos =   float4(poddring[wi],ii);
+			GSOut.Append(v);
+			wi += jump[i];
+		}
+	}
+}
+GeometryShader StreamGeomvel = ConstructGSWithSO( CompileShader( gs_5_0, GsGeomvel() ), GEOMVEL );
+technique11 GeomvelLayout
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VsGeomvel() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GsGeomvel() ) );
+	    SetGeometryShader( StreamGeomvel );
+
+	}
+}

@@ -1,0 +1,43 @@
+Texture2D tex0: PREVIOUS;
+Texture2D tex1 <string uiname="Texture In 2";>;
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+
+
+float4 pADD(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{float4 c0=tex0.Sample(s0,x);float4 c1=tex1.Sample(s0,x);
+    float4 c=c0+c1;
+    return c;
+}
+float4 pSUBTRACT(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{float4 c0=tex0.Sample(s0,x);float4 c1=tex1.Sample(s0,x);
+    float4 c=c0-c1;
+    return c;
+}
+float4 pMUL(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{float4 c0=tex0.Sample(s0,x);float4 c1=tex1.Sample(s0,x);
+    float4 c=c0*c1;
+    return c;
+}
+float4 pDARKEN(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{float4 c0=tex0.Sample(s0,x);float4 c1=tex1.Sample(s0,x);
+    float4 c=min(c0,c1);
+    return c;
+}
+float4 pLIGHTEN(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{float4 c0=tex0.Sample(s0,x);float4 c1=tex1.Sample(s0,x);
+    float4 c=max(c0,c1);
+    return c;
+}
+float4 pDIFFERENCE(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{float4 c0=tex0.Sample(s0,x);float4 c1=tex1.Sample(s0,x);
+    float4 c=abs(c0-c1);
+    return c;
+}
+float4 pDIVIDE(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{float4 c0=tex0.Sample(s0,x);float4 c1=tex1.Sample(s0,x);
+    float4 c=c0/c1;
+    return c;
+}
+
+technique10 Multiply{pass P1{SetPixelShader(CompileShader(ps_4_0,pMUL()));}}
+technique10 Add{pass P1{SetPixelShader(CompileShader(ps_4_0,pADD()));}}
+technique10 Subtract{pass P1{SetPixelShader(CompileShader(ps_4_0,pSUBTRACT()));}}
+technique10 Darken{pass P1 {SetPixelShader(CompileShader(ps_4_0,pDARKEN()));}}
+technique10 Lighten{pass P1{SetPixelShader(CompileShader(ps_4_0,pLIGHTEN()));}}
+technique10 Difference{pass P1{SetPixelShader(CompileShader(ps_4_0,pDIFFERENCE()));}}
+technique10 Divide{pass P1{SetPixelShader(CompileShader(ps_4_0,pDIVIDE()));}}

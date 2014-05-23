@@ -1,0 +1,29 @@
+Texture2D vpos : PREVIOUS;
+Texture2D svpos;
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float Focus = 0;
+	float width;
+	float2 AFpoint;
+	float MFtoAF;
+	bool foreground = false;
+};
+SamplerState s0:IMMUTABLE <string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float4 pADD(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float autofocus = svpos.Sample(s0,AFpoint/2+0.5).z;
+	float focus = lerp(Focus,autofocus,MFtoAF);
+	float depth=vpos.Sample(s0,x).z;
+	float bckg = max(depth-focus-width/2,0);
+	float frg = -min(depth-focus+width/2,0);
+	if(foreground) return float4(frg.xxx,1);
+	else return float4(bckg.xxx,1);
+}
+
+technique10 Scalar{
+	pass P1 <string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pADD()));}
+}
+
+
+

@@ -1,0 +1,94 @@
+Texture2D PrevTex: PREVIOUS;
+Texture2D ColorTex: INITIAL;
+
+#define PI 3.14159265358979
+#include "LightUtils.fxh"
+#include "MRE.fxh"
+
+
+float2 ScreenSize:TARGETSIZE;
+
+cbuffer controls:register(b0)
+{
+	float4x4 tView;
+	float LightCount = 1;
+	float DistanceMod = 1;
+	bool IsInitial = true;
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_LINEAR;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
+	AddressW=WRAP;
+	MipLODBias = 0;
+};
+
+float4 pPnt(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+	float4 col = float4(0,0,0,1);
+	float3 vel = mre_getvelocity(s0,uv);
+	if(!IsInitial) col = max(0,ColorTex.Sample(s0, uv));
+	float fe = 0.001;
+	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+	{
+		float3 wPos = mre_getworldpos(s0,uv);
+		float3 norm = mre_getworldnorm(s0,uv);
+		float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
+		col.rgb += PhongPointSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView, DistanceMod);
+	}
+	
+	return float4(col.xyz,ColorTex.Sample(s0,uv).a);
+}
+
+float4 pSpt(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+	float4 col = float4(0,0,0,1);
+	float3 vel = mre_getvelocity(s0,uv);
+	if(!IsInitial) col = max(0,ColorTex.Sample(s0, uv));
+	float fe = 0.001;
+	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+	{
+		float3 wPos = mre_getworldpos(s0,uv);
+		float3 norm = mre_getworldnorm(s0,uv);
+		float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
+		col.rgb += PhongSpotSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), DistanceMod, tView);
+	}
+	
+	return float4(col.xyz,ColorTex.Sample(s0,uv).a);
+}
+
+float4 pSun(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+	float4 col = float4(0,0,0,1);
+	float3 vel = mre_getvelocity(s0,uv);
+	if(!IsInitial) col = max(0,ColorTex.Sample(s0, uv));
+	float fe = 0.001;
+	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+	{
+		float3 wPos = mre_getworldpos(s0,uv);
+		float3 norm = mre_getworldnorm(s0,uv);
+		float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
+		//if(SSS) col.rgb += PhongPointSSS(wPos, norm, viewdirv, mprp.xy, LightCount, mprp.z, tView, DistanceMod);
+		//else
+		col.rgb += PhongSunSSS(norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView);
+	}
+	
+	return float4(col.xyz,ColorTex.Sample(s0,uv).a);
+}
+
+technique10 Point{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,pPnt()));}
+}
+
+technique10 Spot{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,pSpt()));}
+}
+
+technique10 Sun{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,pSun()));}
+}

@@ -1,0 +1,77 @@
+Texture2D PrevTex: PREVIOUS;
+Texture2D ColorTex: INITIAL;
+Texture2D ShadMap <string uiname="Shadow Cubemap";>;
+Texture2D SpotTexture <string uiname="Spot Texture";>;
+#include "MRE.fxh"
+
+#define PI 3.14159265358979
+
+float2 ScreenSize:TARGETSIZE;
+
+StructuredBuffer<float2> SampleOffset;
+int SampleOffsetCount = 1;
+
+cbuffer controls:register(b0)
+{
+	float3 Position;
+	float Softness = 1;
+	float SoftnessSampAmount = 1;
+	float SoftnessSampPower = 1;
+	//float SoftnessSampEpsilon = 1;
+	//float SoftnessSampCOffset = 0;
+	float4x4 SpotView;
+	float4x4 SpotProj;
+	float Bias = 0.009;
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_LINEAR;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
+};
+
+float4 pShad(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+	float resShad = 1;
+	float2 GprojTexCd = 0;
+	float3 Gcurrpos = mre_getworldpos(s0,uv);
+	//Gcurrpos.xz *=-1;
+	float4 Gprojpos = mul(float4(Gcurrpos,1), SpotView);
+	Gprojpos = mul(Gprojpos, SpotProj);
+	GprojTexCd.x =  Gprojpos.x / Gprojpos.w / 2.0f + 0.5f;
+	GprojTexCd.y = -Gprojpos.y / Gprojpos.w / 2.0f + 0.5f;
+	bool Gmask = (saturate(GprojTexCd.x) == GprojTexCd.x) && (saturate(GprojTexCd.y) == GprojTexCd.y);
+    bool Gdepthmask = saturate(Gprojpos.z/Gprojpos.w) == (Gprojpos.z/Gprojpos.w);
+	float GshadD = 0;
+	float4 sptex = 1;
+	if(Gmask && Gdepthmask)
+	{
+		GshadD = ShadMap.Sample(s0, GprojTexCd).r;
+		sptex = SpotTexture.Sample(s0, GprojTexCd);
+		float3 clpos = Position;
+		//clpos.xz *= -1;
+		float GcurrD = length(Gcurrpos-clpos);
+		float Gshad = GcurrD-GshadD;
+		float3 currpos = Gcurrpos;
+		uint ActiveSampleCount = SampleOffsetCount;
+		float shad = 0;
+		float shadD = 0;
+		for(uint i = 0; i<SampleOffsetCount; i++)
+		{
+			float shadD = 0;
+			shadD = ShadMap.SampleLevel(s0, GprojTexCd+SampleOffset[i]*GcurrD*(Softness*.001),0).r;
+			//float gcD = abs(shadD-GshadD)+SoftnessSampCOffset;
+			//float epsilon = Softness*SoftnessSampEpsilon;
+			shad += pow(max(saturate(GcurrD-shadD)*SoftnessSampAmount-Bias,0),SoftnessSampPower);
+		}
+		resShad = saturate((1-(shad/ActiveSampleCount)*pow(sptex,.25))*(1+abs(Softness/2)));
+	}
+	else resShad = 1;
+	return float4(resShad.xxx,1);
+}
+
+technique10 Point{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,pShad()));}
+}

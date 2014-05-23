@@ -1,0 +1,161 @@
+
+float minTwoPi : IMMUTABLE = -6.283185307179586476925286766559;
+float TwoPi : IMMUTABLE = 6.283185307179586476925286766559;
+
+Texture2D PosData;
+Texture2D PosDataDir;
+Texture2D CustomData;
+
+Texture2D pPosData;
+Texture2D pPosDataDir;
+Texture2D pCustomData;
+
+SamplerState samLinear
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+
+StructuredBuffer<float4x4> iPreTr;
+StructuredBuffer<float4x4> piPreTr;
+
+cbuffer cbPerDraw : register( b0 )
+{
+	float4x4 gPreTr;
+	float4x4 pgPreTr;
+	bool useTrBuf = false;
+	float curvecount = 1;
+	int currentcurve = 0;
+};
+
+float4x4 Vrotate(float rotX, 
+		 float rotY, 
+		 float rotZ)
+  {
+   rotX *= TwoPi;
+   rotY *= TwoPi;
+   rotZ *= TwoPi;
+   float sx = sin(rotX);
+   float cx = cos(rotX);
+   float sy = sin(rotY);
+   float cy = cos(rotY);
+   float sz = sin(rotZ);
+   float cz = cos(rotZ);
+
+   return float4x4( cz*cy+sz*sx*sy, sz*cx, cz*-sy+sz*sx*cy, 0,
+                   -sz*cy+cz*sx*sy, cz*cx, sz*sy+cz*sx*cy , 0,
+                    cx * sy       ,-sx   , cx * cy        , 0,
+                    0             , 0    , 0              , 1);
+  }
+
+struct VS_IN
+{   
+	float4 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float2 TexCd : TEXCOORD0;
+	uint vid : SV_VertexID;
+	uint iid : SV_InstanceID;
+};
+
+struct VS_OUTPUT
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float3 TexCd : TEXCOORD0;
+	float4 Velocity : COLOR0;
+};
+
+VS_OUTPUT VSDelayed(VS_IN input)
+{
+    VS_OUTPUT output;
+	float3 prePos = mul(input.cpoint,gPreTr).xyz;
+	if(useTrBuf) prePos = mul(float4(prePos,1),iPreTr[input.iid]).xyz;
+	float3 preNorm = mul(input.norm,gPreTr).xyz;
+	if(useTrBuf) preNorm = mul(preNorm,iPreTr[input.iid]).xyz;
+	
+	// Placement UV
+    float2 PlaceCoords = float2(input.iid/curvecount+0.5/curvecount, prePos.z+0.5);
+	// get position and direction data from textures
+    float4 particleData = PosData.SampleLevel(samLinear, PlaceCoords, 0);
+    float4 SplineDirection = PosDataDir.SampleLevel(samLinear, PlaceCoords, 0);
+	float twist = CustomData.SampleLevel(samLinear, PlaceCoords, 0).x;
+	// get pitch and yaw from direction vector
+    float pitch = asin(SplineDirection.y)/TwoPi;
+    float yaw = atan2(-SplineDirection.x, -SplineDirection.z)/ TwoPi;
+	// Evaluate rotation matrix
+    float4x4 rotMatrix = Vrotate(pitch, yaw,0);
+    float4x4 twistMatrix = Vrotate(0, 0, twist);
+	float4 cprepos = float4(0,0,0,1);
+	cprepos.yx = prePos.yx * particleData.a;
+	cprepos.z = 0;
+	cprepos = mul(cprepos,twistMatrix);
+	float4 splpos = mul(cprepos, rotMatrix) + float4(particleData.xyz,0);
+	float3 cprenorm = mul(preNorm, twistMatrix).xyz;
+	cprenorm = mul(cprenorm, rotMatrix).xyz;
+	
+	
+	float3 pprePos = mul(input.cpoint,pgPreTr).xyz;
+	if(useTrBuf) pprePos = mul(float4(pprePos,1),piPreTr[input.iid]).xyz;
+	
+	// Placement UV
+    float2 pPlaceCoords = float2(input.iid/curvecount+0.5/curvecount, pprePos.z+0.5);
+	// get position and direction data from textures
+    float4 pparticleData = pPosData.SampleLevel(samLinear, pPlaceCoords, 0);
+    float4 pSplineDirection = pPosDataDir.SampleLevel(samLinear, pPlaceCoords, 0);
+	float ptwist = pCustomData.SampleLevel(samLinear, pPlaceCoords, 0).x;
+	// get pitch and yaw from direction vector
+    float ppitch = asin(pSplineDirection.y)/TwoPi;
+    float pyaw = atan2(-pSplineDirection.x, -pSplineDirection.z)/ TwoPi;
+	// Evaluate rotation matrix
+    float4x4 protMatrix = Vrotate(ppitch, pyaw,0);
+    float4x4 ptwistMatrix = Vrotate(0, 0, ptwist);
+	float4 pcprepos = float4(0,0,0,1);
+	pcprepos.yx = pprePos.yx * pparticleData.a;
+	pcprepos.z = 0;
+	pcprepos = mul(pcprepos,ptwistMatrix);
+	float4 psplpos = mul(pcprepos, protMatrix) + float4(pparticleData.xyz,0);
+	
+	
+	// input.cpoint+
+    output.cpoint = splpos;
+	output.Velocity = float4(psplpos.xyz,input.iid);
+	//output.cpoint = float4(input.cpoint,1);
+	output.norm = cprenorm;
+	output.TexCd.xy = input.TexCd;
+	output.TexCd.z = prePos.z+0.5;
+	
+    return output;
+}
+
+
+[maxvertexcount(3)]
+void GS(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT>GSOut)
+{
+	VS_OUTPUT v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GS() ),
+	"SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xyz;COLOR0.xyzw"
+);
+
+technique11 CalculatePrevious
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VSDelayed() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}

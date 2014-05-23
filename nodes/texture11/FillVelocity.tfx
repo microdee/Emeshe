@@ -1,0 +1,36 @@
+Texture2D VelTex: PREVIOUS;
+//Texture2D CorrVelTex: PASSRESULT0;
+//Texture2D OffsVelTex1: PASSRESULT2;
+//Texture2D OffsVelTex2: PASSRESULT3;
+#define PI 3.14159265358979
+
+float2 ScreenSize:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float FillEpsilon = 0.01;
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_LINEAR;
+	AddressU=MIRROR;
+	AddressV=MIRROR;
+	MipLODBias = 0;
+};
+
+float4 FillVel(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+    float4 colin = VelTex.Sample(s0, uv);
+	float4 col = colin;
+	if((colin.r<=FillEpsilon) && (colin.g<=FillEpsilon) && (colin.b<=FillEpsilon))
+	{
+		col.rgb = 0.5;
+	}
+    return float4(col.rgb,1);
+}
+
+technique10 Fill
+{
+	pass P0 <string format="R32B32G32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,FillVel()));}
+}

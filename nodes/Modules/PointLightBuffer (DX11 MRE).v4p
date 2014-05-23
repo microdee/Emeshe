@@ -1,0 +1,267 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
+   <PATCH nodename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\modules\PointLightBuffer (DX11 MRE).v4p" systemname="PointLightBuffer (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\PointLightBuffer (DX11 MRE).v4p">
+   <BOUNDS type="Window" left="11685" top="9555" width="9000" height="6000">
+   </BOUNDS>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="2" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Node" left="1245" top="285" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1245" top="285" width="795" height="720">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" values="0,0,0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="PositionXYZ">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="3" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Node" left="2265" top="1005" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2265" top="1005" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Element Count|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="1245" top="4770" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="1995" top="4215" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output" dstnodeid="4" dstpinname="Count">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Y Output Value" dstnodeid="4" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Node" left="1440" top="1485" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1440" top="1485" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="20">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Range">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="1440" top="5280" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Count" linkstyle="VHV">
+   <LINKPOINT x="2300" y="5295">
+   </LINKPOINT>
+   <LINKPOINT x="2215" y="5295">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Input">
+   </LINK>
+   <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="1665" top="5715" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Count" linkstyle="VHV">
+   <LINKPOINT x="2295" y="5610">
+   </LINKPOINT>
+   <LINKPOINT x="2445" y="5610">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Node" left="1680" top="2010" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1680" top="2010" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Range Power|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Color)" componentmode="InABox" id="10" systemname="IOBox (Color)">
+   <BOUNDS type="Node" left="1890" top="2550" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1890" top="2550" width="2250" height="480">
+   </BOUNDS>
+   <PIN pinname="Color Input" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Color">
+   </PIN>
+   <PIN pinname="Color Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSpread (Color)" nodename="GetSpread (Color)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="1875" top="6150" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="11" dstpinname="Count" linkstyle="VHV">
+   <LINKPOINT x="2295" y="6075">
+   </LINKPOINT>
+   <LINKPOINT x="2655" y="6075">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Color Output" dstnodeid="11" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Node" left="2085" top="3120" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2085" top="3120" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Strength">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="2070" top="6765" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Count" linkstyle="VHV">
+   <LINKPOINT x="2295" y="6615">
+   </LINKPOINT>
+   <LINKPOINT x="2850" y="6615">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="14" systemname="IOBox (Node)">
+   <BOUNDS type="Node" left="1260" top="8160" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1260" top="8160" width="795" height="240">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Buffer">
+   </PIN>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2670" top="8085" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2670" top="8085" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3195" top="6810" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3195" top="6810" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   </NODE>
+   <NODE systemname="DynamicBuffer (DX11.Buffer PointLightProp)" filename="plugins\DX11.BufferDeferredBaseBuffer\DX11.BufferDeferredBaseBuffer.csproj" nodename="DynamicBuffer (DX11.Buffer PointLightProp)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="1260" top="7515" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="17" dstpinname="PositionXYZ">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Element Count">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output" dstnodeid="17" dstpinname="Range">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="17" dstpinname="Range Power">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Output" dstnodeid="17" dstpinname="Color">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="Output" dstnodeid="17" dstpinname="Strength">
+   </LINK>
+   <LINK srcnodeid="17" srcpinname="Buffer" dstnodeid="14" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="17" srcpinname="Is Valid" dstnodeid="15" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Apply">
+   </LINK>
+   <INFO author="microdee" description="packer module for pointlights" tags="">
+   </INFO>
+   </PATCH>

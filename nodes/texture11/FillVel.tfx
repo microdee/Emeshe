@@ -1,0 +1,34 @@
+Texture2D PrevTex: PREVIOUS;
+//Texture2D CorrVelTex: PASSRESULT0;
+//Texture2D OffsVelTex1: PASSRESULT2;
+//Texture2D OffsVelTex2: PASSRESULT3;
+
+float2 ScreenSize:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float FillEpsilon = 0.01;
+};
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_LINEAR;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
+	MipLODBias = 0;
+};
+
+float4 FillVel(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+    float4 colin = PrevTex.Sample(s0, uv);
+	float4 col = colin;
+	if((colin.r<=FillEpsilon) && (colin.g<=FillEpsilon) && (colin.b<=FillEpsilon))
+	{
+		col.rgb = 0.5;
+	}
+    return col;
+}
+
+technique10 FillVelocity{
+	pass P0
+	{SetPixelShader(CompileShader(ps_5_0,FillVel()));}
+}

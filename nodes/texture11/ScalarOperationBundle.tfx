@@ -1,0 +1,31 @@
+Texture2D tex0: PREVIOUS;
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float3 Add=0;
+	float3 Mult=1;
+	float3 Power=1;
+	bool ClampZero = false;
+	bool ClampOne = false;
+	float offset = 0;
+	float4x4 ColorTr;
+};
+SamplerState s0:IMMUTABLE <string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float4 pADD(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c=tex0.Sample(s0,x,0);
+	float3 c0 = pow(c.rgb+offset,Power);
+	c0 *= Mult;
+	c0 += Add;
+	float4 c1 = mul(float4(c0,tex0.Sample(s0,x,0).a),ColorTr);
+    if(ClampZero) c1 = max(0,c1);
+    if(ClampOne) c1 = min(1,c1);
+	return c1;
+}
+
+technique10 Scalar{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pADD()));}
+}
+
+
+

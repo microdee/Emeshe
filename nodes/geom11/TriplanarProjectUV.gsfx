@@ -1,0 +1,186 @@
+
+#define USUAL "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy"
+#define GEOMVEL "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;COLOR0"
+#define SKINNING "SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;BLENDINDICES;BLENDWEIGHT;COLOR0"
+
+float4x4 PosTransform;
+float4x4 PlaneTransform;
+float Power = 1;
+
+float2 TriPlanar(float3 pos, float3 norm, float4x4 tT, float4x4 tP, float tpow)
+{
+	float3 post = mul(float4(pos,1),tT).xyz;
+	float2 uvxy = post.xy;
+	float2 uvxz = post.xz;
+	float2 uvyz = post.yz;
+	float3 uxy = mul(float4(0,0,1,0),tP).xyz;
+	float3 uxz = mul(float4(0,1,0,0),tP).xyz;
+	float3 uyz = mul(float4(1,0,0,0),tP).xyz;
+	float3 d = 0;
+	d.x = abs(dot(norm, uxy));
+	d.y = abs(dot(norm, uxz));
+	d.z = abs(dot(norm, uyz));
+	d /= (d.x+d.y+d.z).xxx;
+	d = pow(d,tpow);
+	d /= (d.x+d.y+d.z).xxx;
+	float2 uv = uvxy*d.x + uvxz*d.y + uvyz*d.z;
+	return uv;
+}
+
+struct VsInUsual
+{
+	float4 cpoint : POSITION;
+	float3 norm : NORMAL;
+};
+struct VsOutUsual
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+};
+VsOutUsual VsUsual(VsInUsual input)
+{
+    VsOutUsual output;
+	
+    output.cpoint = input.cpoint;
+	output.norm = input.norm;
+	output.TexCd = float4(TriPlanar(input.cpoint.xyz, input.norm, PosTransform, PlaneTransform, Power),0,1);
+	
+    return output;
+}
+[maxvertexcount(3)]
+void GsUsual(triangle VsOutUsual input[3], inout TriangleStream<VsOutUsual>GSOut)
+{
+	VsOutUsual v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+GeometryShader StreamUsual = ConstructGSWithSO( CompileShader( gs_5_0, GsUsual() ), USUAL );
+technique11 UsualLayout
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VsUsual() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GsUsual() ) );
+	    SetGeometryShader( StreamUsual );
+
+	}
+}
+
+////////////////////////////////////////////
+
+struct VsInGeomvel
+{
+	float4 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 ppos : COLOR0;
+};
+struct VsOutGeomvel
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	float4 ppos : COLOR0;
+};
+VsOutGeomvel VsGeomvel(VsInGeomvel input)
+{
+    VsOutGeomvel output;
+    output.cpoint = input.cpoint;
+	output.norm = input.norm;
+	output.TexCd = float4(TriPlanar(input.cpoint.xyz, input.norm, PosTransform, PlaneTransform, Power),0,1);
+	output.ppos = input.ppos;
+	
+    return output;
+}
+[maxvertexcount(3)]
+void GsGeomvel(triangle VsOutGeomvel input[3], inout TriangleStream<VsOutGeomvel>GSOut)
+{
+	VsOutGeomvel v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+GeometryShader StreamGeomvel = ConstructGSWithSO( CompileShader( gs_5_0, GsGeomvel() ), GEOMVEL );
+technique11 GeomvelLayout
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VsGeomvel() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GsGeomvel() ) );
+	    SetGeometryShader( StreamGeomvel );
+
+	}
+}
+
+////////////////////////////////////////////
+
+struct VsInSkinning
+{
+	float4 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 blendid : BLENDINDICES;
+	float4 blendw : BLENDWEIGHT;
+	float4 ppos : COLOR0;
+};
+struct VsOutSkinning
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	float4 blendid : BLENDINDICES;
+	float4 blendw : BLENDWEIGHT;
+	float4 ppos : COLOR0;
+};
+VsOutSkinning VsSkinning(VsInSkinning input)
+{
+    VsOutSkinning output;
+    output.cpoint = input.cpoint;
+	output.norm = input.norm;
+	output.TexCd = float4(TriPlanar(input.cpoint.xyz, input.norm, PosTransform, PlaneTransform, Power),0,1);
+	output.blendid = input.blendid;
+	output.blendw = input.blendw;
+	output.ppos = input.ppos;
+	
+    return output;
+}
+[maxvertexcount(3)]
+void GsSkinning(triangle VsOutSkinning input[3], inout TriangleStream<VsOutSkinning>GSOut)
+{
+	VsOutSkinning v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+GeometryShader StreamSkinning = ConstructGSWithSO( CompileShader( gs_5_0, GsSkinning() ), SKINNING );
+technique11 SkinningLayout
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VsSkinning() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GsSkinning() ) );
+	    SetGeometryShader( StreamSkinning );
+
+	}
+}

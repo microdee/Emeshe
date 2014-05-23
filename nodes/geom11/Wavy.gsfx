@@ -1,0 +1,116 @@
+
+#define PI 3.14159265358979
+float minTwoPi : IMMUTABLE = -6.283185307179586476925286766559;
+float TwoPi : IMMUTABLE = 6.283185307179586476925286766559;
+
+StructuredBuffer<float4x4> WaveTransform;
+StructuredBuffer<float4x4> PrevWaveTransform;
+float4x4 DirTr;
+float4x4 InvDirTr;
+float RotateOffset = 0;
+float Amount = 1;
+float pAmount = 1;
+
+float4x4 Vrotate(float rotX, 
+		 float rotY, 
+		 float rotZ)
+  {
+   rotX *= TwoPi;
+   rotY *= TwoPi;
+   rotZ *= TwoPi;
+   float sx = sin(rotX);
+   float cx = cos(rotX);
+   float sy = sin(rotY);
+   float cy = cos(rotY);
+   float sz = sin(rotZ);
+   float cz = cos(rotZ);
+
+   return float4x4( cz*cy+sz*sx*sy, sz*cx, cz*-sy+sz*sx*cy, 0,
+                   -sz*cy+cz*sx*sy, cz*cx, sz*sy+cz*sx*cy , 0,
+                    cx * sy       ,-sx   , cx * cy        , 0,
+                    0             , 0    , 0              , 1);
+  }
+
+struct VS_IN
+{   
+	float3 cpoint : POSITION;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	uint ii : SV_InstanceID;
+};
+
+struct VS_OUTPUT
+{
+	float4 cpoint : SV_Position;
+	float3 norm : NORMAL;
+	float4 TexCd : TEXCOORD0;
+	float4 velocity : COLOR0;
+};
+
+
+
+VS_OUTPUT VS(VS_IN input)
+{
+    VS_OUTPUT output;
+	float3 wpos = mul(float4(input.cpoint,1),WaveTransform[input.ii]).xyz;
+	float3 wppos = mul(float4(input.cpoint,1),PrevWaveTransform[input.ii]).xyz;
+	float swave = sin(wpos.z*PI);
+	float pswave = sin(wppos.z*PI);
+	float cwave = cos(wpos.z*PI);
+	float pcwave = cos(wppos.z*PI);
+	
+	float3 pos = mul(float4(input.cpoint,1),DirTr);
+	pos = mul(float4(pos,1),Vrotate(0,cwave*PI/2*Amount+RotateOffset,0)).xyz;
+	pos.x += swave*Amount;
+	pos = mul(float4(pos,1),InvDirTr);
+	float3 ppos = mul(float4(input.cpoint,1),DirTr);
+	ppos = mul(float4(ppos,1),Vrotate(0,pcwave*PI/2*pAmount+RotateOffset,0)).xyz;
+	ppos.x += pswave*pAmount;
+	ppos = mul(float4(ppos,1),InvDirTr);
+	
+	float3 norm = mul(input.norm,DirTr);
+	norm = mul(norm,Vrotate(0,cwave*PI/2*Amount+RotateOffset,0)).xyz;
+	norm = mul(norm,InvDirTr);
+	
+    output.cpoint = float4(pos,1);
+	output.velocity.xyz = ppos;
+	output.velocity.w = input.ii;
+	//output.cpoint = float4(input.cpoint,1);
+	output.norm = normalize(norm);
+	output.TexCd = input.TexCd;
+	
+    return output;
+}
+
+
+
+[maxvertexcount(3)]
+void GS(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT>GSOut)
+{
+	VS_OUTPUT v;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		//v.position=v.position;
+        //v.TexCd=v.TexCd;
+		//v.normV=v.normV;
+		GSOut.Append(v);
+	}
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GS() ),
+	"SV_Position.xyz;NORMAL.xyz;TEXCOORD0.xy;COLOR0.xyzw"
+);
+
+technique11 MeshJoin
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}

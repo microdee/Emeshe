@@ -1,0 +1,64 @@
+Texture2D tex0: PREVIOUS;
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float4 Scalar=0;
+	bool ClampZero = false;
+	bool ClampOne = false;
+	float offset = 0;
+	float4x4 ColorTr;
+};
+float4 PowS(float4 a, float4 b)
+{
+	return pow(abs(a),b)*sign(a);
+}
+SamplerState s0:IMMUTABLE <string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float4 pADD(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c=tex0.Sample(s0,x,0)+Scalar;
+	float3 cout = c.rgb+offset;
+    if(ClampZero) cout = max(0,cout);
+    if(ClampOne) cout = min(1,cout);
+	return mul(float4(cout,tex0.Sample(s0,x,0).a),ColorTr);
+}
+float4 pMUL(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c=tex0.Sample(s0,x,0)*Scalar;
+	float3 cout = c.rgb+offset;
+    if(ClampZero) cout = max(0,cout);
+    if(ClampOne) cout = min(1,cout);
+	return mul(float4(cout,tex0.Sample(s0,x,0).a),ColorTr);
+}
+float4 pPOW(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c=PowS(tex0.Sample(s0,x,0),Scalar);
+	float3 cout = c.rgb+offset;
+    if(ClampZero) cout = max(0,cout);
+    if(ClampOne) cout = min(1,cout);
+	return mul(float4(cout,tex0.Sample(s0,x,0).a),ColorTr);
+}
+
+technique10 Add{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pADD()));}
+}
+technique10 Multiply{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pMUL()));}
+}
+technique10 Power{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pPOW()));}
+}
+
+technique10 AddF{
+	pass P1 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pADD()));}
+}
+technique10 MultiplyF{
+	pass P1 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pMUL()));}
+}
+technique10 PowerF{
+	pass P1 <string format="R32G32B32A32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pPOW()));}
+}
+
+

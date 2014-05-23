@@ -1,0 +1,31 @@
+Texture2D texOdjID: PREVIOUS;
+float2 R:TARGETSIZE;
+float4 color <bool color=true;> = 1;
+
+cbuffer controls:register(b0){
+	int ObjID=0;
+	bool Stencil = false;
+};
+SamplerState s0:IMMUTABLE <string uiname="Sampler";> {Filter=MIN_MAG_MIP_POINT;AddressU=CLAMP;AddressV=CLAMP;};
+float4 pSelect1(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c = ((texOdjID.Sample(s0,x).r)==ObjID) ? 1 : 0;
+	if(Stencil) c=1-c;
+    return c*color;
+}
+float4 pSelect2(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c = ((texOdjID.Sample(s0,x).g)==ObjID) ? 1 : 0;
+	if(Stencil) c=1-c;
+    return c*color;
+}
+
+technique10 Select1{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pSelect1()));}
+}
+technique10 Select2{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pSelect2()));}
+}
+
+
+

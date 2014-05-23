@@ -1,0 +1,27 @@
+Texture3D voltex;
+float VolumeDepth;
+Texture2DArray arrtex;
+
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float Slice=0;
+};
+SamplerState s0 <string uiname="Sampler";> {Filter=MIN_MAG_MIP_POINT;AddressU=CLAMP;AddressV=CLAMP;};
+float4 pArray(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c = arrtex.Sample(s0,float3(x,Slice));
+    return c;
+}
+float4 pVolume(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c = voltex.Sample(s0,float3(x,Slice/VolumeDepth));
+    return c;
+}
+technique10 Array{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pArray()));}
+}
+technique10 Volume{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pVolume()));}
+}
+
