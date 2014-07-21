@@ -8,3 +8,5 @@ WARNING:
 
 There's a lot of crap not working modules and plugins or whatever lying around and the girlpower is half finished or again flooded with lot of crap.
 That's why it's on github and not in VVVV contributions.
+
+REQUIRES: https://github.com/microdee/VVVV.Packs.mcro
