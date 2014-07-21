@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="D:\vvvv\app\vvvv_45alpha31.7_x86\packs\Emeshe\nodes\modules\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
+   <PATCH nodename="E:\vvvv\app\vvvv_45beta32.1_x86\packs\Emeshe\nodes\modules\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p">
    <BOUNDS type="Window" left="3465" top="1575" width="11880" height="9570">
    </BOUNDS>
    <NODE systemname="NullGeometry (DX11.Drawer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="NullGeometry (DX11.Drawer)" componentmode="Hidden" id="2">
@@ -117,9 +117,9 @@
    <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="9" dstpinname="FOV">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="17" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="6060" top="4080" width="480" height="480">
+   <BOUNDS type="Box" left="5520" top="3705" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="6060" top="4080" width="0" height="0">
+   <BOUNDS type="Node" left="5520" top="3705" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
@@ -407,7 +407,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7725" top="4155" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -417,7 +417,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Scalar">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Grey Background|">
    </PIN>
    </NODE>
    <LINK srcnodeid="47" srcpinname="Y Output Value" dstnodeid="46" dstpinname="Scalar">
@@ -586,4 +586,8 @@
    </LINK>
    <LINK srcnodeid="61" srcpinname="Output" dstnodeid="11" dstpinname="Input">
    </LINK>
+   <PACK Name="ImagePack" Version="0.1.0">
+   </PACK>
+   <PACK Name="addonpack" Version="31.9.0">
+   </PACK>
    </PATCH>

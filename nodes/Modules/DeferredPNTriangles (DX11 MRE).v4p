@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE).v4p" systemname="DeferredPNTriangles (DX11 MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mrre\nodes\Modules\DeferredPNTriangles (DX11 MRE).v4p" locked="0">
-   <BOUNDS type="Window" left="2505" top="3960" width="16695" height="9885">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
+   <PATCH nodename="E:\vvvv\app\vvvv_45beta32.1_x86\packs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE).v4p" systemname="DeferredPNTriangles (DX11 MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mrre\nodes\Modules\DeferredPNTriangles (DX11 MRE).v4p" locked="0">
+   <BOUNDS type="Window" left="35910" top="-480" width="16695" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="1170" top="1410" width="0" height="0">
@@ -384,7 +384,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="FrameDelay (Transform)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="217">
+   <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="217">
    <BOUNDS type="Node" left="2715" top="9570" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
@@ -491,9 +491,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="234" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="15990" top="6810" width="480" height="480">
+   <BOUNDS type="Box" left="15210" top="6825" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="15990" top="6810" width="0" height="0">
+   <BOUNDS type="Node" left="15210" top="6825" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -671,7 +671,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="18435" top="8775" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="-5.01">
+   <PIN pinname="Y Input Value" slicecount="1" values="-2">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -682,7 +682,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="FrameDelay (Animation)" nodename="FrameDelay (Animation)" componentmode="Hidden" id="250">
+   <NODE systemname="FrameDelay (Animation Legacy)" nodename="FrameDelay (Animation)" componentmode="Hidden" id="250">
    <BOUNDS type="Node" left="11940" top="11190" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
@@ -697,7 +697,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="18660" top="9465" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="15">
+   <PIN pinname="Y Input Value" slicecount="1" values="5.07">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -945,5 +945,29 @@
    <LINK srcnodeid="134" srcpinname="Y Output Value" dstnodeid="228" dstpinname="isTriPlanar" hiddenwhenlocked="1">
    </LINK>
    <PACK Name="testPack" Version="0.1.0">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="252" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="15435" top="7515" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="15435" top="7515" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use Instance ID|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="252" srcpinname="Y Output Value" dstnodeid="246" dstpinname="UseInstanceID">
+   </LINK>
+   <PACK Name="ImagePack" Version="0.1.0">
+   </PACK>
+   <PACK Name="addonpack" Version="31.9.0">
    </PACK>
    </PATCH>

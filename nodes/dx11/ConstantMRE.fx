@@ -34,8 +34,6 @@ SamplerState g_samLinear
 
 cbuffer cbPerDraw : register( b0 )
 {
-	float4x4 tW : WORLD;
-	float4x4 ptW; // previous frame world transform per draw call
 	float4x4 tV : VIEW;
 	float4x4 tVI : VIEWINVERSE;
 	float4x4 ptV : PREVIOUSVIEW;
@@ -44,20 +42,26 @@ cbuffer cbPerDraw : register( b0 )
 	float4x4 tVP : VIEWPROJECTION;
 	float4x4 tWV : WORLDVIEW;
 	float4x4 NormTr;
-	float4x4 tTex;
-	float FDiffAmount = 1;
-	float4 FDiffColor <bool color=true;> = 1;
 	float gVelocityGain = 1;
 	bool isTriPlanar = false;
 	float TriPlanarPow = 1;
-	float alphatest = 0.5;
 	float utilalpha = 0;
+	bool InstanceFromGeomFX = false;
+	bool Instancing = false;
+};
+
+cbuffer cbPerObject : register( b1 )
+{
+	float4x4 tW : WORLD;
+	float4x4 ptW; // previous frame world transform per draw call
+	float4x4 tTex;
+	float FDiffAmount = 1;
+	float4 FDiffColor <bool color=true;> = 1;
+	float alphatest = 0.5;
 	float FBumpAmount = 0;
 	float bumpOffset = 0;
 	int MatID = 0;
 	int3 ObjID = 0;
-	bool InstanceFromGeomFX = false;
-	bool Instancing = false;
 };
 
 struct VSgvin
@@ -76,15 +80,16 @@ struct VSin
 	float3 NormO : NORMAL;
 	float2 TexCd : TEXCOORD0;
 	uint vid : SV_VertexID;
+	uint iid : SV_InstanceID;
 };
 
 struct vs2gs
 {
     float4 PosWVP: SV_Position;
 	float4 TexCd: TEXCOORD0;
-	float3 NormO: TEXCOORD2;
     float4 PosW: TEXCOORD1;
     float3 NormW: NORMAL;
+    nointerpolation float ii: TEXCOORD2;
     float4 vel : COLOR0;
 };
 struct vs2gsi
@@ -167,12 +172,12 @@ vs2gsi VSgv(VSgvin In)
 	
 	float4 dispPos = In.PosO;
 	float3 dispNorm = In.NormO;
-    float3 fViewDirV = -normalize(mul(mul(float4(dispPos.xyz,1),w),tV));
+    float3 fViewDirV = -normalize(mul(mul(float4(dispPos.xyz,1),w),tV).xyz);
 	//float4 pdispPos = In.PosO;
 	
 	float4 pdispPos = float4(In.velocity.xyz,1);
 	
-    Out.NormW = normalize(mul(dispNorm, w).xyz);
+    Out.NormW = normalize(mul(float4(dispNorm,0), w).xyz);
 	
     Out.PosW = mul(dispPos, w);
 	
@@ -200,14 +205,19 @@ vs2gs VS(VSin In)
     //inititalize all fields of output struct with 0
     vs2gs Out = (vs2gs)0;
 	
+	float ii = In.iid;
+	Out.ii = ii;
+	
 	float4 dispPos = In.PosO;
 	float3 dispNorm = In.NormO;
 	float4 pdispPos = In.PosO;
-    float3 fViewDirV = -normalize(mul(mul(float4(dispPos.xyz,1),tW),tV));
+    float3 fViewDirV = -normalize(mul(mul(float4(dispPos.xyz,1),tW),tV).xyz);
 	
-	float4x4 w = tW;
-	Out.NormO = dispNorm;
-    Out.NormW = normalize(mul(dispNorm, w).xyz);
+	float4x4 tT = (Instancing) ? mul(InstancedParams[ii].tTex,tTex) : tTex;
+	
+	float4x4 w = (Instancing) ? mul(InstancedParams[ii].tW,tW) : tW;
+	
+    Out.NormW = normalize(mul(float4(dispNorm,0), w).xyz);
 	
     Out.PosW = mul(dispPos, w);
 	
@@ -220,7 +230,10 @@ vs2gs VS(VSin In)
 	//Out.PosW -= float4(Out.NormW*SmoothNormVal,0);
 	
 	float3 npos = PosWV.xyz;
-	float4x4 ptWV = ptW;
+	
+	float4x4 pw = (Instancing) ? mul(InstancedParams[ii].ptW,ptW) : ptW;
+	
+	float4x4 ptWV = pw;
 	ptWV = mul(ptWV, ptV);
 	//ptWVP = mul(ptWVP, ptP);
 	float3 pnpos = mul(pdispPos, ptWV).xyz;
@@ -231,35 +244,6 @@ vs2gs VS(VSin In)
 	
     return Out;
 }
-/*
-[maxvertexcount(3)]
-void GS(triangle vs2gs input[3], inout TriangleStream<gs2ps> gsout)
-{
-	gs2ps o;
-	
-	for(uint i = 0; i<3; i++)
-	{
-		o.PosWVP = input[i].PosWVP;
-		o.PosW = input[i].PosW;
-		o.NormW = input[i].NormW;
-		o.TexCd = input[i].TexCd;
-		o.vel = input[i].vel;
-		o.triPos0.xyz = input[0].PosW.xyz+input[0].NormW*SmoothNormVal;
-		o.triPos1.xyz = input[1].PosW.xyz+input[1].NormW*SmoothNormVal;
-		o.triPos2.xyz = input[2].PosW.xyz+input[2].NormW*SmoothNormVal;
-		o.triNorm0 = input[0].NormW;
-		o.triNorm1 = input[1].NormW;
-		o.triNorm2 = input[2].NormW;
-		float3 c1 = cross(input[0].PosW.xyz-input[1].PosW.xyz, input[0].PosW.xyz-input[2].PosW.xyz);
-		o.triPos0.w = c1.x;
-		o.triPos1.w = c1.y;
-		o.triPos2.w = c1.z;
-		
-		gsout.Append(o);
-	}
-	
-	gsout.RestartStrip();
-}*/
 
 struct PSOut
 {
@@ -280,8 +264,11 @@ struct PSOut
 PSOut PS_Tex(vs2gs In)
 {
 	
+	float ii = In.ii;
 	float3 posWb = In.PosW.xyz;
 
+	float4x4 tT = (Instancing) ? mul(InstancedParams[ii].tTex,tTex) : tTex;
+	
 	PSOut Out = (PSOut)0;
 	float3 normWb = In.NormW;
 	float2 uvb = float2(0,0);
@@ -290,21 +277,31 @@ PSOut PS_Tex(vs2gs In)
 	
 	//float combinedDist = dFromVerts.x * dFromVerts.y * dFromVerts.z;
 	
-	float depth = FBumpAmount;
+	float bmpam = (Instancing) ? InstancedParams[ii].BumpAmount*FBumpAmount : FBumpAmount;
+	float depth = bmpam;
 	float mdepth = BumpTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, g_samLinear, In.TexCd.xyz, In.NormO, tTex, TriPlanarPow).r;
+	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	
 	if(depth!=0) posWb += In.NormW * mdepth * -1*depth;
 	Out.normalW = float4(normWb,1);
 	
 	float alphat = 1;
 	float alphatt = DiffTex.Sample( g_samLinear, uvb).a * FDiffColor.a;
-	if(isTriPlanar) alphatt = TriPlanarSample(DiffTex, g_samLinear, In.TexCd.xyz, In.NormO, tTex, TriPlanarPow).a * FDiffColor.a;
+	if(isTriPlanar) alphatt = TriPlanarSample(DiffTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).a * FDiffColor.a;
 	alphat = alphatt;
 	if(alphat < (1-alphatest)) discard;
 	
-    float3 diffcol = DiffTex.Sample( g_samLinear, uvb).rgb * FDiffColor.rgb * FDiffAmount;
-	if(isTriPlanar) diffcol = TriPlanarSample(DiffTex, g_samLinear, In.TexCd.xyz, In.NormO, tTex, TriPlanarPow).rgb * FDiffColor.rgb * FDiffAmount;
+    
+    float3 diffcol = DiffTex.Sample( g_samLinear, uvb).rgb;
+	if(isTriPlanar) diffcol = TriPlanarSample(DiffTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).rgb;
+	if(Instancing)
+	{
+    	diffcol *= FDiffColor.rgb * FDiffAmount * InstancedParams[ii].DiffAmount * InstancedParams[ii].DiffCol.rgb;
+	}
+	else
+	{
+		diffcol *= FDiffColor.rgb * FDiffAmount;
+	}
     //float3 diffcol = combinedDist*10;
 	Out.color.rgb = diffcol;
 	Out.color.a = 1;
@@ -318,15 +315,24 @@ PSOut PS_Tex(vs2gs In)
 	Out.velocity.a = alphat + utilalpha;
 	
 	Out.maps.r = SpecTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) Out.maps.r = TriPlanarSample(SpecTex, g_samLinear, In.TexCd.xyz, In.NormO, tTex, TriPlanarPow).r;
+	if(isTriPlanar) Out.maps.r = TriPlanarSample(SpecTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	Out.maps.g = ThickTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) Out.maps.g = TriPlanarSample(ThickTex, g_samLinear, In.TexCd.xyz, In.NormO, tTex, TriPlanarPow).r;
+	if(isTriPlanar) Out.maps.g = TriPlanarSample(ThickTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	Out.maps.b = EmTex.Sample( g_samLinear, uvb).r;
-	if(isTriPlanar) Out.maps.b = TriPlanarSample(EmTex, g_samLinear, In.TexCd.xyz, In.NormO, tTex, TriPlanarPow).r;
+	if(isTriPlanar) Out.maps.b = TriPlanarSample(EmTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	Out.maps.a = 1;
 	
-	Out.matprop.rg = ObjID.xy;
-	Out.matprop.b = MatID;
+	
+	if(Instancing)
+	{
+		Out.matprop.rg = float2(InstancedParams[ii].ObjID0,InstancedParams[ii].ObjID1);
+		Out.matprop.b = InstancedParams[ii].MatID;
+	}
+	else
+	{
+		Out.matprop.rg = ObjID.xy;
+		Out.matprop.b = MatID;
+	}
 	Out.matprop.a = 1;
 	
     return Out;
@@ -368,7 +374,7 @@ PSOut PS_Inst(vs2gsi In)
 	if(isTriPlanar) diffcol = TriPlanarSample(DiffTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).rgb;
 	if(InstanceFromGeomFX|| Instancing)
 	{
-    	diffcol *= FDiffColor.rgb * FDiffAmount * InstancedParams[ii].DiffAmount * InstancedParams[ii].DiffCol;
+    	diffcol *= FDiffColor.rgb * FDiffAmount * InstancedParams[ii].DiffAmount * InstancedParams[ii].DiffCol.rgb;
 	}
 	else
 	{

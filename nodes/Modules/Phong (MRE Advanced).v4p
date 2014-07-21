@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\Emeshe\nodes\modules\Phong (MRE Advanced).v4p" systemname="Phong (MRE Advanced)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Phong (MRE Advanced).v4p">
-   <BOUNDS type="Window" left="-19860" top="2010" width="13830" height="10005">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
+   <PATCH nodename="E:\vvvv\app\vvvv_45beta32.1_x86\packs\Emeshe\nodes\modules\Phong (MRE Advanced).v4p" systemname="Phong (MRE Advanced)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Phong (MRE Advanced).v4p">
+   <BOUNDS type="Window" left="10635" top="2430" width="13830" height="10005">
    </BOUNDS>
    <NODE systemname="Renderer (DX11 MRT)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 MRT)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="4725" top="8805" width="100" height="100">
@@ -275,6 +275,10 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="34">
    <BOUNDS type="Node" left="2835" top="7815" width="100" height="100">
@@ -367,7 +371,7 @@
    </PIN>
    <PIN pinname="Lights" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="tView" visible="1">
+   <PIN pinname="tView" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="5" srcpinname="Geometry Out" dstnodeid="1" dstpinname="Geometry">
@@ -434,16 +438,10 @@
    </NODE>
    <LINK srcnodeid="16" srcpinname="Output Node" dstnodeid="73" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="Inverse (Transform)" nodename="Inverse (Transform)" componentmode="Hidden" id="74">
-   <BOUNDS type="Node" left="4890" top="4335" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1">
-   </PIN>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="74" dstpinname="Source">
-   </LINK>
+   <PACK Name="ImagePack" Version="0.1.0">
+   </PACK>
+   <PACK Name="addonpack" Version="31.9.0">
+   </PACK>
    <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="1" dstpinname="tView">
    </LINK>
    </PATCH>

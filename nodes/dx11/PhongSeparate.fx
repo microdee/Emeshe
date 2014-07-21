@@ -63,7 +63,8 @@ OutComps pPnt(vs2ps In)
 	{
 		float3 wPos = mre_getworldpos(s0,uv);
 		float3 norm = mre_getworldnorm(s0,uv);
-		float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
+		//float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
+		float3 viewdirv = normalize(wPos);
 		col = PhongPointSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView, DistanceMod);
 	}
 	OutComps outCol = (OutComps)1;
