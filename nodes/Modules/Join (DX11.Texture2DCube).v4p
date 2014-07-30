@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Join (DX11.Texture2DCube).v4p" systemname="Join (DX11.Texture2DCube)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mrre\nodes\Modules\Join (DX11.Texture2DCube).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
+   <PATCH nodename="E:\vvvv\Emeshe\Emeshe\nodes\modules\Join (DX11.Texture2DCube).v4p" systemname="Join (DX11.Texture2DCube)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mrre\nodes\Modules\Join (DX11.Texture2DCube).v4p">
    <BOUNDS type="Window" left="11220" top="2565" width="9000" height="9675">
    </BOUNDS>
    <INFO author="microdee" description="" tags="">
@@ -48,7 +48,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Renderer (DX11 CubeTexture)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 CubeTexture)" componentmode="Hidden" id="25">
+   <NODE systemname="Renderer (DX11 CubeTexture)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 CubeTexture)" componentmode="Hidden" id="25">
    <BOUNDS type="Node" left="2760" top="8010" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture Out" visible="1">
@@ -137,7 +137,7 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="62" systemname="IOBox (Value Advanced)">
@@ -195,7 +195,7 @@
    <LINK srcnodeid="46" srcpinname="Y Output Value" dstnodeid="52" dstpinname=".. To [">
    </LINK>
    <NODE id="59" nodename="IOBox (Node)" componentmode="InABox" systemname="IOBox (Node)" hiddenwhenlocked="0" managers="">
-   <PIN pinname="Input Node" pintype="Input" visible="1">
+   <PIN pinname="Input Node" pintype="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <BOUNDS type="Box" left="6195" top="6840" width="795" height="240">
    </BOUNDS>
@@ -268,43 +268,7 @@
    </NODE>
    <LINK srcnodeid="60" srcpinname="String Value" dstnodeid="61" dstpinname="String Value">
    </LINK>
-   <NODE id="41" systemname="SetSlice (DX11.Texture2D)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.Nodes.DX11SetSlice.dll" nodename="SetSlice (DX11.Texture2D)" componentmode="Hidden">
-   <PIN pinname="Reset" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Height" visible="1">
-   </PIN>
-   <PIN pinname="Width" visible="1">
-   </PIN>
-   <PIN pinname="Format" visible="1">
-   </PIN>
-   <PIN pinname="Texture In" visible="1">
-   </PIN>
-   <PIN pinname="Write" visible="1">
-   </PIN>
-   <BOUNDS type="Node" left="3705" top="5625" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Texture Array" visible="1">
-   </PIN>
-   <PIN pinname="Slice Index" visible="1">
-   </PIN>
-   <PIN pinname="Depth" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Height">
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Width">
-   </LINK>
-   <LINK srcnodeid="61" srcpinname="Enum" dstnodeid="41" dstpinname="Format">
-   </LINK>
-   <LINK srcnodeid="41" srcpinname="Texture Array" dstnodeid="59" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Output Node" dstnodeid="41" dstpinname="Texture In">
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Output" dstnodeid="41" dstpinname="Slice Index">
-   </LINK>
-   <LINK srcnodeid="46" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Depth">
-   </LINK>
-   <NODE systemname="Rasterizer (DX11.RenderState)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Rasterizer (DX11.RenderState)" componentmode="Hidden" id="69">
+   <NODE systemname="Rasterizer (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Rasterizer (DX11.RenderState)" componentmode="Hidden" id="69">
    <BOUNDS type="Node" left="750" top="6360" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
@@ -312,10 +276,10 @@
    <PIN pinname="Mode" slicecount="1" values="NoCullSimple">
    </PIN>
    </NODE>
-   <NODE systemname="CubeWriter (DX11.Effect)" filename="%VVVV%\packs\mrre\nodes\dx11\CubeWriter.fx" nodename="CubeWriter (DX11.Effect)" componentmode="Hidden" id="70">
+   <NODE systemname="CubeWriter (DX11.Effect)" filename="..\dx11\CubeWriter.fx" nodename="CubeWriter (DX11.Effect)" componentmode="Hidden" id="70">
    <BOUNDS type="Node" left="2910" top="7380" width="1050" height="270">
    </BOUNDS>
-   <PIN pinname="TexArr" visible="1">
+   <PIN pinname="TexArr" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Geometry" visible="1">
    </PIN>
@@ -330,9 +294,7 @@
    <PIN pinname="Enabled" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="41" srcpinname="Texture Array" dstnodeid="70" dstpinname="TexArr">
-   </LINK>
-   <NODE systemname="Quad (DX11.Geometry)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden" id="71">
+   <NODE systemname="Quad (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden" id="71">
    <BOUNDS type="Node" left="885" top="5385" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
@@ -340,7 +302,7 @@
    <PIN pinname="SizeXY" slicecount="2" values="2,2">
    </PIN>
    </NODE>
-   <NODE systemname="Instancer (DX11.Drawer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Instancer (DX11.Drawer)" componentmode="Hidden" id="72">
+   <NODE systemname="Instancer (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Instancer (DX11.Drawer)" componentmode="Hidden" id="72">
    <BOUNDS type="Node" left="885" top="5835" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Geometry In" visible="1">
@@ -358,7 +320,7 @@
    </LINK>
    <LINK srcnodeid="70" srcpinname="Layer" dstnodeid="25" dstpinname="Layer">
    </LINK>
-   <NODE systemname="DynamicBuffer (DX11.Buffer Transform)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Transform)" componentmode="Hidden" id="73">
+   <NODE systemname="DynamicBuffer (DX11.Buffer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Transform)" componentmode="Hidden" id="73">
    <BOUNDS type="Node" left="3555" top="6945" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
@@ -430,8 +392,6 @@
    </NODE>
    <LINK srcnodeid="53" srcpinname="Bang" dstnodeid="79" dstpinname="Input 1">
    </LINK>
-   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="41" dstpinname="Write">
-   </LINK>
    <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="79" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="58" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Input 1">
@@ -454,4 +414,48 @@
    </NODE>
    <LINK srcnodeid="80" srcpinname="Y Output Value" dstnodeid="72" dstpinname="Instance Count">
    </LINK>
+   <NODE id="41" systemname="SetSlice (DX11.Texture2D)" filename="..\..\..\..\mcropack\VVVV.Packs.mcro\nodes\plugins\VVVV.Nodes.DX11SetSlice.dll" nodename="SetSlice (DX11.Texture2D)" componentmode="Hidden">
+   <PIN pinname="Reset" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Height" visible="1">
+   </PIN>
+   <PIN pinname="Width" visible="1">
+   </PIN>
+   <PIN pinname="Format" visible="1">
+   </PIN>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Write" visible="1">
+   </PIN>
+   <BOUNDS type="Node" left="3705" top="5625" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture Array" visible="1">
+   </PIN>
+   <PIN pinname="Slice Index" visible="1">
+   </PIN>
+   <PIN pinname="Depth" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Height">
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Width">
+   </LINK>
+   <LINK srcnodeid="61" srcpinname="Enum" dstnodeid="41" dstpinname="Format">
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="Texture Array" dstnodeid="59" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output Node" dstnodeid="41" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Output" dstnodeid="41" dstpinname="Slice Index">
+   </LINK>
+   <LINK srcnodeid="46" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Depth">
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="Texture Array" dstnodeid="70" dstpinname="TexArr">
+   </LINK>
+   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="41" dstpinname="Write">
+   </LINK>
+   <PACK Name="ImagePack" Version="0.1.0">
+   </PACK>
+   <PACK Name="addonpack" Version="31.9.0">
+   </PACK>
    </PATCH>

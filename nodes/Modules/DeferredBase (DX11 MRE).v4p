@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
-   <PATCH nodename="E:\vvvv\app\vvvv_45beta32.1_x86\packs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0">
+   <PATCH nodename="E:\vvvv\Emeshe\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0">
    <BOUNDS type="Window" left="33795" top="-255" width="16695" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -382,7 +382,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="217">
+   <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform Legacy).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="217">
    <BOUNDS type="Node" left="2715" top="9570" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
@@ -522,7 +522,7 @@
    </NODE>
    <INFO author="microdee" description="Basic scene for MRE" tags="">
    </INFO>
-   <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="237">
+   <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="237">
    <BOUNDS type="Node" left="705" top="7020" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
@@ -533,7 +533,7 @@
    <LINK srcnodeid="4" srcpinname="Output Node" dstnodeid="237" dstpinname="Render State">
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="238" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="1980" top="6900" width="1590" height="240">
+   <BOUNDS type="Box" left="1980" top="6900" width="2175" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="1980" top="6900" width="0" height="0">
    </BOUNDS>
@@ -542,7 +542,7 @@
    </NODE>
    <LINK srcnodeid="238" srcpinname="Output Enum" dstnodeid="237" dstpinname="Mode">
    </LINK>
-   <NODE systemname="ConstantMRE (DX11.Effect)" filename="%VVVV%\packs\mrre\nodes\dx11\ConstantMRE.fx" nodename="ConstantMRE (DX11.Effect)" componentmode="Hidden" id="219">
+   <NODE systemname="ConstantMRE (DX11.Effect)" filename="..\dx11\ConstantMRE.fx" nodename="ConstantMRE (DX11.Effect)" componentmode="Hidden" id="219">
    <BOUNDS type="Node" left="855" top="12585" width="11475" height="270">
    </BOUNDS>
    <PIN pinname="Render State" visible="1">
@@ -782,7 +782,7 @@
    </NODE>
    <LINK srcnodeid="239" srcpinname="Ord Value" dstnodeid="240" dstpinname="Ord Value" hiddenwhenlocked="1">
    </LINK>
-   <NODE systemname="ConstantMREProp (DX11.Effect)" filename="%VVVV%\packs\mrre\nodes\dx11\ConstantMREProp.fx" nodename="ConstantMREProp (DX11.Effect)" componentmode="Hidden" id="228" hiddenwhenlocked="1">
+   <NODE systemname="ConstantMREProp (DX11.Effect)" filename="..\dx11\ConstantMREProp.fx" nodename="ConstantMREProp (DX11.Effect)" componentmode="Hidden" id="228" hiddenwhenlocked="1">
    <BOUNDS type="Node" left="12720" top="16290" width="2850" height="270">
    </BOUNDS>
    <PIN pinname="Technique" visible="1">
