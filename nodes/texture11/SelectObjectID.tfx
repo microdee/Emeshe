@@ -17,6 +17,11 @@ float4 pSelect2(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
 	if(Stencil) c=1-c;
     return c*color;
 }
+float4 pSelectMat(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
+	float4 c = ((texOdjID.Sample(s0,x).b)==ObjID) ? 1 : 0;
+	if(Stencil) c=1-c;
+    return c*color;
+}
 
 technique10 Select1{
 	pass P1
@@ -26,6 +31,9 @@ technique10 Select2{
 	pass P1
 	{SetPixelShader(CompileShader(ps_4_0,pSelect2()));}
 }
-
+technique10 SelectMaterial{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pSelectMat()));}
+}
 
 

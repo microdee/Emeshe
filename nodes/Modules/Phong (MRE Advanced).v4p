@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
-   <PATCH nodename="E:\vvvv\app\vvvv_45beta32.1_x86\packs\Emeshe\nodes\modules\Phong (MRE Advanced).v4p" systemname="Phong (MRE Advanced)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Phong (MRE Advanced).v4p">
+   <PATCH nodename="E:\vvvv\Emeshe\Emeshe\nodes\modules\Phong (MRE Advanced).v4p" systemname="Phong (MRE Advanced)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Phong (MRE Advanced).v4p">
    <BOUNDS type="Window" left="10635" top="2430" width="13830" height="10005">
    </BOUNDS>
    <NODE systemname="Renderer (DX11 MRT)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 MRT)" componentmode="Hidden" id="0">
@@ -229,9 +229,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="23" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8655" top="6765" width="480" height="480">
+   <BOUNDS type="Box" left="9630" top="6315" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="8655" top="6765" width="0" height="0">
+   <BOUNDS type="Node" left="9630" top="6315" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
@@ -281,7 +281,7 @@
    </PIN>
    </NODE>
    <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="34">
-   <BOUNDS type="Node" left="2835" top="7815" width="100" height="100">
+   <BOUNDS type="Node" left="3960" top="5880" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
@@ -289,9 +289,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="33" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3435" top="7320" width="795" height="240">
+   <BOUNDS type="Box" left="4560" top="5385" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3435" top="7320" width="0" height="0">
+   <BOUNDS type="Node" left="4560" top="5385" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
@@ -305,18 +305,6 @@
    <LINK srcnodeid="33" srcpinname="Y Output Value" dstnodeid="34" dstpinname="Index">
    </LINK>
    <LINK srcnodeid="34" srcpinname="Output Node" dstnodeid="18" dstpinname="Texture In">
-   </LINK>
-   <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="47">
-   <BOUNDS type="Node" left="7305" top="8790" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="47" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled">
    </LINK>
@@ -344,20 +332,8 @@
    </NODE>
    <LINK srcnodeid="16" srcpinname="Output Node" dstnodeid="34" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="NOT (Boolean)" nodename="NOT (Boolean)" componentmode="Hidden" id="70">
-   <BOUNDS type="Node" left="7305" top="8325" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="70" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="70" srcpinname="Output" dstnodeid="47" dstpinname="Input 1">
-   </LINK>
    <NODE systemname="PhongSeparate (DX11.Effect)" filename="..\dx11\PhongSeparate.fx" nodename="PhongSeparate (DX11.Effect)" componentmode="Hidden" id="1">
-   <BOUNDS type="Node" left="4995" top="7140" width="2850" height="270">
+   <BOUNDS type="Node" left="4995" top="7140" width="3000" height="270">
    </BOUNDS>
    <PIN pinname="Technique">
    </PIN>
@@ -423,7 +399,7 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Material Thru|">
    </PIN>
-   <PIN pinname="Input Node" visible="1">
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="11" srcpinname="Output Node" dstnodeid="72" dstpinname="Input Node">
@@ -443,5 +419,27 @@
    <PACK Name="addonpack" Version="31.9.0">
    </PACK>
    <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="1" dstpinname="tView">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="74" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="8535" top="5790" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8535" top="5790" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Mask">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="74" srcpinname="Output Node" dstnodeid="1" dstpinname="Mask">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="75" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="8460" top="8730" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8460" top="8730" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Mask Thru|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="74" srcpinname="Output Node" dstnodeid="75" dstpinname="Input Node">
    </LINK>
    </PATCH>

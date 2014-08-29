@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\modules\ReflectRefract (DX11 MRE).v4p" systemname="ReflectRefract" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\ReflectRefract.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
+   <PATCH nodename="E:\vvvv\Emeshe\Emeshe\nodes\modules\ReflectRefract (DX11 MRE).v4p" systemname="ReflectRefract" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\ReflectRefract.v4p">
    <BOUNDS type="Window" left="7440" top="4890" width="12885" height="8790">
    </BOUNDS>
    <NODE systemname="GradientPow (DX11.TextureFX)" filename="%VVVV%\packs\mre.mdmod.2\nodes\texture11\GradientPow.tfx" nodename="GradientPow (DX11.TextureFX)" componentmode="Hidden" id="0">
@@ -235,5 +235,9 @@
    <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Enabled">
    </LINK>
    <PACK Name="testPack" Version="0.1.0">
+   </PACK>
+   <PACK Name="ImagePack" Version="0.1.0">
+   </PACK>
+   <PACK Name="addonpack" Version="31.9.0">
    </PACK>
    </PATCH>

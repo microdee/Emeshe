@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="D:\vvvv\app\vvvv_45alpha31.7_x86\packs\Emeshe\nodes\modules\DOF (MRE Advanced).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p">
-   <BOUNDS type="Window" left="18570" top="9180" width="16230" height="11175">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
+   <PATCH nodename="E:\vvvv\Emeshe\Emeshe\nodes\modules\DOF (MRE Advanced).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p">
+   <BOUNDS type="Window" left="3525" top="1695" width="16230" height="11175">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="915" top="165" width="795" height="240">
@@ -820,7 +820,7 @@
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="FilterBokeh (DX11.TextureFX)" filename="%VVVV%\packs\mrre\girlpower\00-Basics\texture11\FilterBokeh.tfx" nodename="FilterBokeh (DX11.TextureFX)" componentmode="Hidden" id="106">
+   <NODE systemname="FilterBokeh (DX11.TextureFX)" filename="..\texture11\FilterBokeh.tfx" nodename="FilterBokeh (DX11.TextureFX)" componentmode="Hidden" id="106">
    <BOUNDS type="Node" left="4785" top="7215" width="1080" height="270">
    </BOUNDS>
    <PIN pinname="smooth" slicecount="1" values="2">
@@ -840,4 +840,8 @@
    </LINK>
    <LINK srcnodeid="93" srcpinname="Texture Out" dstnodeid="106" dstpinname="sizemap">
    </LINK>
+   <PACK Name="ImagePack" Version="0.1.0">
+   </PACK>
+   <PACK Name="addonpack" Version="31.9.0">
+   </PACK>
    </PATCH>

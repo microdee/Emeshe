@@ -6,6 +6,7 @@
 #include "MRE.fxh"
 
 Texture2D Lights[5];
+Texture2D Mask;
 
 SamplerState s0
 {
@@ -56,34 +57,42 @@ struct OutComps
 OutComps pPnt(vs2ps In)
 {
 	float2 uv = In.TexCd;
-	Components col = (Components)0;
-	float3 vel = mre_getvelocity(s0,uv);
-	float fe = 0.001;
-	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+	if(Mask.Sample(s0, uv).r>0.5)
 	{
-		float3 wPos = mre_getworldpos(s0,uv);
-		float3 norm = mre_getworldnorm(s0,uv);
-		//float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
-		float3 viewdirv = normalize(wPos);
-		col = PhongPointSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView, DistanceMod);
+		Components col = (Components)0;
+		float3 vel = mre_getvelocity(s0,uv);
+		float fe = 0.001;
+		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+		{
+			float3 wPos = mre_getworldpos(s0,uv);
+			float3 norm = mre_getworldnorm(s0,uv);
+			//float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
+			float3 viewdirv = normalize(wPos);
+			col = PhongPointSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView, DistanceMod);
+		}
+		OutComps outCol = (OutComps)1;
+		
+		outCol.Ambient.xyz = col.Ambient.xyz;
+		outCol.Diffuse.xyz = col.Diffuse.xyz;
+		outCol.Specular.xyz = col.Specular.xyz;
+		outCol.SSS.xyz = col.SSS.xyz;
+		outCol.Rim.xyz = col.Rim.xyz;
+		if(!IsInitial)
+		{
+			outCol.Ambient.xyz = max(outCol.Ambient.xyz,Lights[0].Sample(s0, In.TexCd));
+			outCol.Diffuse.xyz += Lights[1].Sample(s0, In.TexCd);
+			outCol.Specular.xyz += Lights[2].Sample(s0, In.TexCd);
+			outCol.SSS.xyz += Lights[3].Sample(s0, In.TexCd);
+			outCol.Rim.xyz += Lights[4].Sample(s0, In.TexCd);
+		}
+		
+		return outCol;
 	}
-	OutComps outCol = (OutComps)1;
-	
-	outCol.Ambient.xyz = col.Ambient.xyz;
-	outCol.Diffuse.xyz = col.Diffuse.xyz;
-	outCol.Specular.xyz = col.Specular.xyz;
-	outCol.SSS.xyz = col.SSS.xyz;
-	outCol.Rim.xyz = col.Rim.xyz;
-	if(!IsInitial)
+	else
 	{
-		outCol.Ambient.xyz = max(outCol.Ambient.xyz,Lights[0].Sample(s0, In.TexCd));
-		outCol.Diffuse.xyz += Lights[1].Sample(s0, In.TexCd);
-		outCol.Specular.xyz += Lights[2].Sample(s0, In.TexCd);
-		outCol.SSS.xyz += Lights[3].Sample(s0, In.TexCd);
-		outCol.Rim.xyz += Lights[4].Sample(s0, In.TexCd);
+		return (OutComps)1;
 	}
 	
-	return outCol;
 }
 
 technique10 Point
@@ -98,24 +107,31 @@ technique10 Point
 OutComps pSpt(vs2ps In)
 {
 	float2 uv = In.TexCd;
-	Components col = (Components)0;
-	float3 vel = mre_getvelocity(s0,uv);
-	float fe = 0.001;
-	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+	if(Mask.Sample(s0, uv).r>0.5)
 	{
-		float3 wPos = mre_getworldpos(s0,uv);
-		float3 norm = mre_getworldnorm(s0,uv);
-		float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
-		col = PhongSpotSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), DistanceMod, tView);
+		Components col = (Components)0;
+		float3 vel = mre_getvelocity(s0,uv);
+		float fe = 0.001;
+		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+		{
+			float3 wPos = mre_getworldpos(s0,uv);
+			float3 norm = mre_getworldnorm(s0,uv);
+			float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
+			col = PhongSpotSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), DistanceMod, tView);
+		}
+		OutComps outCol = (OutComps)1;
+		outCol.Ambient.xyz = col.Ambient.xyz;
+		outCol.Diffuse.xyz = col.Diffuse.xyz;
+		outCol.Specular.xyz = col.Specular.xyz;
+		outCol.SSS.xyz = col.SSS.xyz;
+		outCol.Rim.xyz = col.Rim.xyz;
+		
+		return outCol;
 	}
-	OutComps outCol = (OutComps)1;
-	outCol.Ambient.xyz = col.Ambient.xyz;
-	outCol.Diffuse.xyz = col.Diffuse.xyz;
-	outCol.Specular.xyz = col.Specular.xyz;
-	outCol.SSS.xyz = col.SSS.xyz;
-	outCol.Rim.xyz = col.Rim.xyz;
-	
-	return outCol;
+	else
+	{
+		return (OutComps)1;
+	}
 }
 
 technique10 Spot
@@ -130,24 +146,31 @@ technique10 Spot
 OutComps pSun(vs2ps In)
 {
 	float2 uv = In.TexCd;
-	Components col = (Components)0;
-	float3 vel = mre_getvelocity(s0,uv);
-	float fe = 0.001;
-	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+	if(Mask.Sample(s0, uv).r>0.5)
 	{
-		float3 wPos = mre_getworldpos(s0,uv);
-		float3 norm = mre_getworldnorm(s0,uv);
-		float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
-		col = PhongSunSSS(norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView);
+		Components col = (Components)0;
+		float3 vel = mre_getvelocity(s0,uv);
+		float fe = 0.001;
+		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+		{
+			float3 wPos = mre_getworldpos(s0,uv);
+			float3 norm = mre_getworldnorm(s0,uv);
+			float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
+			col = PhongSunSSS(norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView);
+		}
+		OutComps outCol = (OutComps)1;
+		outCol.Ambient.xyz = col.Ambient.xyz;
+		outCol.Diffuse.xyz = col.Diffuse.xyz;
+		outCol.Specular.xyz = col.Specular.xyz;
+		outCol.SSS.xyz = col.SSS.xyz;
+		outCol.Rim.xyz = col.Rim.xyz;
+		
+		return outCol;
 	}
-	OutComps outCol = (OutComps)1;
-	outCol.Ambient.xyz = col.Ambient.xyz;
-	outCol.Diffuse.xyz = col.Diffuse.xyz;
-	outCol.Specular.xyz = col.Specular.xyz;
-	outCol.SSS.xyz = col.SSS.xyz;
-	outCol.Rim.xyz = col.Rim.xyz;
-	
-	return outCol;
+	else
+	{
+		return (OutComps)1;
+	}
 }
 
 technique10 Sun
