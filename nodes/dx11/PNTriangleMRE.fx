@@ -412,7 +412,9 @@ ds2ps DS( hsconst HSConstantData, const OutputPatch<hs2ds, 3> I, float3 f3Baryce
     float3 oNormal =   I[0].NormW * fWW +
                         I[1].NormW * fUU +
                         I[2].NormW * fVV;
+	float3 pf3p = f3Position;
 	f3Position = lerp(oPosition,f3Position,CurveAmount);
+	float3 pf3Position = lerp(oPosition,pf3p,pCurveAmount);
 	f3Normal = lerp(oNormal,f3Normal,CurveAmount);
 	
     // Normalize the interpolated normal    
@@ -420,7 +422,7 @@ ds2ps DS( hsconst HSConstantData, const OutputPatch<hs2ds, 3> I, float3 f3Baryce
 	
 	float3 dispPos = f3Position;
 	float3 dispNorm = f3Normal;
-	float3 pdispPos = f3Position;
+	float3 pdispPos = pf3Position;
 
     O.PosW = mul(float4(dispPos,1), w);
     float4 PosWV = mul(O.PosW, tV);
@@ -505,8 +507,8 @@ ds2psi DSi( hsconst HSConstantData, const OutputPatch<hs2dsi, 3> I, float3 f3Bar
     float3 oNormal =   I[0].NormW * fWW +
                         I[1].NormW * fUU +
                         I[2].NormW * fVV;
-	f3Position = lerp(oPosition,f3Position,CurveAmount);
 	pf3Position = lerp(poPosition,pf3Position,pCurveAmount);
+	f3Position = lerp(oPosition,f3Position,CurveAmount);
 	f3Normal = lerp(oNormal,f3Normal,CurveAmount);
 	
     // Normalize the interpolated normal    
