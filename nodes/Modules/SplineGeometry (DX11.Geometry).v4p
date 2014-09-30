@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.0.dtd" >
-   <PATCH nodename="G:\vvvv\app\vvvv_45beta32_x64\packs\Emeshe\nodes\modules\SplineGeometry (DX11.Geometry).v4p" systemname="SplineGeometry" filename="D:\vvvv\md.bot\nodes\modules\mre.mdmod.dx11\splines\SplineGeometry.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.1.dtd" >
+   <PATCH nodename="C:\vvvv\github\emeshe\nodes\modules\SplineGeometry (DX11.Geometry).v4p" systemname="SplineGeometry" filename="D:\vvvv\md.bot\nodes\modules\mre.mdmod.dx11\splines\SplineGeometry.v4p">
    <BOUNDS type="Window" left="12885" top="7485" width="13320" height="15600">
    </BOUNDS>
    <NODE systemname="Instancer (DX11.Drawer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Instancer (DX11.Drawer)" componentmode="Hidden" id="9">
@@ -157,7 +157,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2310" top="645" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -187,7 +187,7 @@
    </PIN>
    </NODE>
    <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="23">
-   <BOUNDS type="Node" left="5025" top="3075" width="100" height="100">
+   <BOUNDS type="Node" left="5460" top="3285" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -271,6 +271,8 @@
    </PIN>
    <PIN pinname="Technique Valid" visible="1">
    </PIN>
+   <PIN pinname="PlaceCoordOffs" slicecount="1" values="0.5">
+   </PIN>
    </NODE>
    <LINK srcnodeid="9" srcpinname="Geometry Out" dstnodeid="0" dstpinname="Geometry In">
    </LINK>
@@ -330,76 +332,6 @@
    </LINK>
    <INFO author="microdee" description="" tags="">
    </INFO>
-   <NODE systemname="Cons (DX11.Texture 2d)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.Texture 2d)" componentmode="Hidden" id="38">
-   <BOUNDS type="Node" left="4470" top="1545" width="1920" height="270">
-   </BOUNDS>
-   <PIN pinname="Input Count" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   <PIN pinname="Input 3" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="14" srcpinname="Output Node" dstnodeid="38" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output Node" dstnodeid="38" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="16" srcpinname="Output Node" dstnodeid="38" dstpinname="Input 3">
-   </LINK>
-   <NODE systemname="Framedelay (DX11.Texture2D Ugly)" filename="%VVVV%\packs\mre.mdmod.2\nodes\modules\Framedelay (DX11.Texture2D Ugly).v4p" nodename="Framedelay (DX11.Texture2D Ugly)" componentmode="Hidden" id="39">
-   <BOUNDS type="Node" left="4515" top="2130" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Texture Out" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="38" srcpinname="Output" dstnodeid="39" dstpinname="Texture In">
-   </LINK>
-   <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="40">
-   <BOUNDS type="Node" left="4095" top="2580" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input Node" visible="1">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="39" srcpinname="Texture Out" dstnodeid="40" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="40" srcpinname="Output Node" dstnodeid="0" dstpinname="pPosData">
-   </LINK>
-   <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="41">
-   <BOUNDS type="Node" left="4815" top="2580" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input Node" visible="1">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   <PIN pinname="Index" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="39" srcpinname="Texture Out" dstnodeid="41" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="41" srcpinname="Output Node" dstnodeid="0" dstpinname="pPosDataDir">
-   </LINK>
-   <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="42">
-   <BOUNDS type="Node" left="5580" top="2640" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input Node" visible="1">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   <PIN pinname="Index" slicecount="1" values="2">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="39" srcpinname="Texture Out" dstnodeid="42" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="42" srcpinname="Output Node" dstnodeid="0" dstpinname="pCustomData">
-   </LINK>
    <NODE systemname="GetMaxElement (DX11.Geometry GeomFX)" filename="%VVVV%\packs\mre.mdmod.2\nodes\modules\GetMaxElement (DX11.Geometry GeomFX).v4p" nodename="GetMaxElement (DX11.Geometry GeomFX)" componentmode="Hidden" id="44">
    <BOUNDS type="Node" left="6030" top="4980" width="100" height="100">
    </BOUNDS>
@@ -428,6 +360,42 @@
    </NODE>
    <LINK srcnodeid="44" srcpinname="Output" dstnodeid="45" dstpinname="Y Input Value">
    </LINK>
-   <PACK Name="addonpack" Version="31.9.0">
+   <PACK Name="addonpack" Version="33.0.0">
    </PACK>
+   <NODE systemname="FrameDelay (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="FrameDelay (DX11.Texture 2d)" componentmode="Hidden" id="46">
+   <BOUNDS type="Node" left="3345" top="2835" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Output Node" dstnodeid="46" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="46" srcpinname="Texture Out" dstnodeid="0" dstpinname="pPosData">
+   </LINK>
+   <NODE systemname="FrameDelay (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="FrameDelay (DX11.Texture 2d)" componentmode="Hidden" id="47">
+   <BOUNDS type="Node" left="4350" top="2940" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output Node" dstnodeid="47" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="47" srcpinname="Texture Out" dstnodeid="0" dstpinname="pPosDataDir">
+   </LINK>
+   <NODE systemname="FrameDelay (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="FrameDelay (DX11.Texture 2d)" componentmode="Hidden" id="48">
+   <BOUNDS type="Node" left="6570" top="2580" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Output Node" dstnodeid="48" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Texture Out" dstnodeid="0" dstpinname="pCustomData">
+   </LINK>
    </PATCH>

@@ -27,6 +27,7 @@ cbuffer cbPerDraw : register( b0 )
 	bool useTrBuf = false;
 	float curvecount = 1;
 	int currentcurve = 0;
+	float PlaceCoordOffs = 0.5;
 };
 
 float4x4 Vrotate(float rotX, 
@@ -75,7 +76,7 @@ VS_OUTPUT VSDelayed(VS_IN input)
 	if(useTrBuf) preNorm = mul(preNorm,iPreTr[input.iid]).xyz;
 	
 	// Placement UV
-    float2 PlaceCoords = float2(input.iid/curvecount+0.5/curvecount, prePos.z+0.5);
+    float2 PlaceCoords = float2(input.iid/curvecount+PlaceCoordOffs/curvecount, prePos.z+0.5);
 	// get position and direction data from textures
     float4 particleData = PosData.SampleLevel(samLinear, PlaceCoords, 0);
     float4 SplineDirection = PosDataDir.SampleLevel(samLinear, PlaceCoords, 0);
@@ -99,7 +100,7 @@ VS_OUTPUT VSDelayed(VS_IN input)
 	if(useTrBuf) pprePos = mul(float4(pprePos,1),piPreTr[input.iid]).xyz;
 	
 	// Placement UV
-    float2 pPlaceCoords = float2(input.iid/curvecount+0.5/curvecount, pprePos.z+0.5);
+    float2 pPlaceCoords = float2(input.iid/curvecount+PlaceCoordOffs/curvecount, pprePos.z+0.5);
 	// get position and direction data from textures
     float4 pparticleData = pPosData.SampleLevel(samLinear, pPlaceCoords, 0);
     float4 pSplineDirection = pPosDataDir.SampleLevel(samLinear, pPlaceCoords, 0);
