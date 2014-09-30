@@ -1,0 +1,82 @@
+//@author: vux
+//@help: template for texture fx
+//@tags: texture
+//@credits: 
+#include "pows.fxh"
+ 
+float2 R:TARGETSIZE;
+float Width <float uimin=0.0; float uimax=1.0;> =0.3;
+float Gamma =5;
+float Seed <float uimin=0.0; float uimax=1.0;> =1;
+float MaxBlur =0.5;
+int Iterations <float uimin=1.0; float uimax=80.0;> =15;
+ 
+Texture2D tex0 : PREVIOUS;
+Texture2D tex1;
+ 
+SamplerState linearSampler : IMMUTABLE
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+ 
+struct psInput
+{
+    float4 p : SV_Position;
+    float2 uv : TEXCOORD0;
+};
+
+float4 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+    return tex0.SampleLevel(linearSampler,x,0);
+}
+float4 PSgamma(psInput input) : SV_Target
+{
+    //float2 vp = .xy *2;
+    //float2 x=(vp+.5)/R;
+    float4 c = tex0.Sample(linearSampler,input.uv);
+    c.rgb=saturate(pows(length(c.rgb),Gamma)*normalize(c.rgb))+0.0001;
+    return c;
+}
+ 
+float mx(float3 x){return max(x.x,max(x.y,x.z));}
+ 
+float4 PSblur(psInput input) : SV_Target
+{
+    float2 vp = input.p.xy *2;
+    float2 x=(vp+.5)/R;
+    float4 c=0;
+    float mask=tex1.Sample(linearSampler,input.uv).r;
+    float wd=min(pows(Width,2)*mask,MaxBlur);
+    float iter=12;
+    float4 satc = saturate(tex0.Sample(linearSampler,input.uv));
+    float2 def=length(sin(x*718+Seed*222+wd*888+1882*satc))*12.7+1*dot(input.uv%2,.03*float2(1,2));
+    //def=0;
+    for(float i=0;i<1;i+=1./max(0,min(Iterations,80))){
+        float2 off=pows(i*.9999,.4)*sin((i*iter*8*.315+def+float2(.25,0))*acos(-1)*2);
+        //off*=R.x/R;
+        float4 satci = 
+        c+=float4(saturate(tex0.SampleLevel(linearSampler,input.uv+off*wd*R.x/R,1+log2(min(R.x,R.y)*wd*.6*pows(1-length(off),.6)))).rgb,1)*pows(2,-3*pows(length(off),2));
+    }
+    c/=c.a;
+    //c=pows(c,1./Gamma);
+    c.rgb=pows(length(c.rgb),1./Gamma)*normalize(c.rgb);
+    return c;
+}
+ 
+ 
+technique10 Process
+{
+    pass P0 <bool mips=true; string format="R16G16B16A16_Float";>
+    {SetPixelShader(CompileShader(ps_4_0,pMIPS()));}
+    
+    pass P1 <bool mips=true; string format="R16G16B16A16_Float";>
+    {
+        SetPixelShader(CompileShader(ps_4_0,PSgamma()));
+    }
+	
+    pass P2 /*<string format="R16G16B16A16_Float";>*/
+    {
+        SetPixelShader(CompileShader(ps_4_0,PSblur()));
+    }
+}
