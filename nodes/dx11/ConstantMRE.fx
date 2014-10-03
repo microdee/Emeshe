@@ -182,7 +182,7 @@ vs2gsi VSgv(VSgvin In)
     Out.PosW = mul(dispPos, w);
 	
 	//if(isTriPlanar) Out.TexCd = float4(TriPlanar(dispPos.xyz, dispNorm, tT, TriPlanarPow),0,1);
-	if(isTriPlanar) Out.TexCd = dispPos;
+	if(isTriPlanar) Out.TexCd = mul(float4(dispPos),tT);
 	else Out.TexCd = mul(float4(In.TexCd,0,1), tT);
 	
     float4 PosWV = mul(Out.PosW, tV);
