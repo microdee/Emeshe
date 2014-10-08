@@ -40,7 +40,6 @@ cbuffer cbPerDraw : register( b0 )
 	float4x4 tP : PROJECTION;
 	float4x4 ptP : PREVIOUSPROJECTION;
 	float4x4 tVP : VIEWPROJECTION;
-	float4x4 tWV : WORLDVIEW;
 	float4x4 NormTr;
 	float gVelocityGain = 1;
 	bool isTriPlanar = false;
