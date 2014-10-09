@@ -1,0 +1,35 @@
+Texture2D Src0: PREVIOUS;
+Texture2D Src1;
+Texture2D Depth0;
+Texture2D Depth1;
+bool CompositeVelocity = true;
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+float4 MaxLength(float4 a, float4 b)
+{
+	float la = (length(a.xyz) == 0) ? 0 : length(a.xyz-.5);
+	float lb = (length(b.xyz) == 0) ? 0 : length(b.xyz-.5);
+	if(la>lb) return a;
+	else return b;
+}
+
+float4 pMIX(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c0=Src0.Sample(s0,x);
+	float4 c1=Src1.Sample(s0,x);
+	float d0=Depth0.Sample(s0,x).x;
+	float d1=Depth1.Sample(s0,x).x;
+	if(CompositeVelocity)
+	{
+		return MaxLength(c0,c1);
+	}
+	else
+	{
+	    if(d1<d0) return c1;
+		else return c0;
+	}
+}
+
+
+technique10 Mix{pass P1{SetPixelShader(CompileShader(ps_4_0,pMIX()));}}

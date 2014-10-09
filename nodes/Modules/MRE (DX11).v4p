@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p">
-   <BOUNDS type="Window" left="5010" top="1860" width="16935" height="10995">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.1.dtd" >
+   <PATCH nodename="C:\vvvv\github\emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="90">
+   <BOUNDS type="Window" left="-18660" top="3060" width="16920" height="10995">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="3240" width="100" height="100">
@@ -304,7 +304,7 @@
    </NODE>
    <LINK srcnodeid="96" srcpinname="Y Output Value" dstnodeid="97" dstpinname="Index">
    </LINK>
-   <NODE systemname="FrameDelay (Transform)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="112">
+   <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="112">
    <BOUNDS type="Node" left="7020" top="1290" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
@@ -314,7 +314,7 @@
    </NODE>
    <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="112" dstpinname="Transform In">
    </LINK>
-   <NODE id="113" systemname="FrameDelay (Transform)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden">
+   <NODE id="113" systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden">
    <PIN pinname="Transform In" visible="1">
    </PIN>
    <BOUNDS type="Node" left="6150" top="2190" width="100" height="100">
@@ -651,7 +651,7 @@
    <LINK srcnodeid="140" srcpinname="Texture Out" dstnodeid="156" dstpinname="Texture In">
    </LINK>
    <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="160">
-   <BOUNDS type="Node" left="645" top="5460" width="100" height="100">
+   <BOUNDS type="Node" left="330" top="7260" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input Node" visible="1">
    </PIN>
@@ -1012,76 +1012,6 @@
    </LINK>
    <LINK srcnodeid="190" srcpinname="Y Output Value" dstnodeid="184" dstpinname="Enabled">
    </LINK>
-   <NODE systemname="AspectRatio (Transform)" nodename="AspectRatio (Transform)" componentmode="Hidden" id="191">
-   <BOUNDS type="Node" left="3015" top="5010" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Aspect Width" visible="1">
-   </PIN>
-   <PIN pinname="Aspect Height" visible="1">
-   </PIN>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="Vector (2d Split)" nodename="Vector (2d Split)" componentmode="Hidden" id="193">
-   <BOUNDS type="Node" left="3180" top="4515" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="XY" visible="1">
-   </PIN>
-   <PIN pinname="X" visible="1">
-   </PIN>
-   <PIN pinname="Y" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="193" dstpinname="XY">
-   </LINK>
-   <LINK srcnodeid="193" srcpinname="X" dstnodeid="191" dstpinname="Aspect Width">
-   </LINK>
-   <LINK srcnodeid="193" srcpinname="Y" dstnodeid="191" dstpinname="Aspect Height">
-   </LINK>
-   <NODE systemname="Inverse (Transform)" nodename="Inverse (Transform)" componentmode="Hidden" id="194">
-   <BOUNDS type="Node" left="2835" top="5460" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1">
-   </PIN>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="191" srcpinname="Transform Out" dstnodeid="194" dstpinname="Source">
-   </LINK>
-   <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="192">
-   <BOUNDS type="Node" left="2505" top="5970" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Transform In 2" visible="1">
-   </PIN>
-   <PIN pinname="Transform In 1" visible="1">
-   </PIN>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="194" srcpinname="Transform Out" dstnodeid="192" dstpinname="Transform In 2">
-   </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="195" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="9855" top="2190" width="1065" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="9855" top="2190" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="FitIn">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="195" srcpinname="Output Enum" dstnodeid="191" dstpinname="Alignment">
-   </LINK>
-   <LINK srcnodeid="19" srcpinname="Transform Out" dstnodeid="192" dstpinname="Transform In 1">
-   </LINK>
-   <NODE systemname="Inverse (Transform)" nodename="Inverse (Transform)" componentmode="Hidden" id="196">
-   <BOUNDS type="Node" left="1980" top="6510" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1">
-   </PIN>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="192" srcpinname="Transform Out" dstnodeid="196" dstpinname="Source">
-   </LINK>
    <LINK srcnodeid="74" srcpinname="Transform Out" dstnodeid="166" dstpinname="ProjectionInverse">
    </LINK>
    <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="166" dstpinname="Projection">
@@ -1097,5 +1027,9 @@
    <LINK srcnodeid="160" srcpinname="Output Node" dstnodeid="197" dstpinname="Input Node">
    </LINK>
    <PACK Name="testPack" Version="0.1.0">
+   </PACK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="33.0.0">
    </PACK>
    </PATCH>
