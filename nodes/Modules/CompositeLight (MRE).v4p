@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
-   <PATCH nodename="E:\vvvv\Emeshe\Emeshe\nodes\modules\CompositeLight (MRE).v4p" systemname="CompositeLight (MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\CompositeLight (MRE).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.1.dtd" >
+   <PATCH nodename="C:\vvvv\github\emeshe\nodes\modules\CompositeLight (MRE).v4p" systemname="CompositeLight (MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\CompositeLight (MRE).v4p">
    <BOUNDS type="Window" left="9855" top="645" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="testPack" Version="0.1.0">
@@ -122,7 +122,7 @@
    </NODE>
    <PACK Name="ImagePack" Version="0.1.0">
    </PACK>
-   <PACK Name="addonpack" Version="31.9.0">
+   <PACK Name="addonpack" Version="33.0.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="21" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5610" top="3855" width="480" height="480">
@@ -163,7 +163,7 @@
    <NODE systemname="Blend (DX11.TextureFX)" filename="%VVVV%\packs\dx11\nodes\texture11\Mixer\Blend.tfx" nodename="Blend (DX11.TextureFX)" componentmode="Hidden" id="24">
    <BOUNDS type="Node" left="1935" top="6795" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
@@ -181,7 +181,7 @@
    </BOUNDS>
    <PIN pinname="Texture In" visible="1">
    </PIN>
-   <PIN pinname="Control" visible="1">
+   <PIN pinname="Control" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
@@ -192,4 +192,20 @@
    </LINK>
    <LINK srcnodeid="25" srcpinname="Texture Out" dstnodeid="24" dstpinname="Texture In 2">
    </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="26" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="6330" top="2055" width="2655" height="1110">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6330" top="2055" width="990" height="1185">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 Ambient;&cr;&lf;1 Diffuse;&cr;&lf;2 Specular;&cr;&lf;3 SSS;&cr;&lf;4 Rim;|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
    </PATCH>

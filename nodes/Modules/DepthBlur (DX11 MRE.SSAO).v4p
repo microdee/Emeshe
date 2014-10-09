@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
-   <PATCH nodename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\modules\DepthBlur (DX11 MRE.SSAO).v4p" systemname="DepthBlur" filename="D:\projects\techf\current\PostProcess\DepthBlur.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.1.dtd" >
+   <PATCH nodename="C:\vvvv\github\emeshe\nodes\modules\DepthBlur (DX11 MRE.SSAO).v4p" systemname="DepthBlur" filename="D:\projects\techf\current\PostProcess\DepthBlur.v4p" scrollx="0" scrolly="1080">
    <NODE id="0" nodename="IOBox (Node)" componentmode="InABox" systemname="IOBox (Node)">
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
@@ -116,7 +116,7 @@
    </NODE>
    <LINK srcnodeid="10" srcpinname="Output Node" dstnodeid="1" dstpinname="Projection">
    </LINK>
-   <BOUNDS type="Window" left="39135" top="3495" width="14715" height="7305">
+   <BOUNDS type="Window" left="1050" top="6255" width="14715" height="7305">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="11" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="2550" top="8865" width="0" height="0">
@@ -400,4 +400,8 @@
    </LINK>
    <LINK srcnodeid="44" srcpinname="Output" dstnodeid="41" dstpinname="Switch">
    </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="33.0.0">
+   </PACK>
    </PATCH>

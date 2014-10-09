@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
-   <PATCH nodename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\modules\TemporalReprojection (DX11 MRE.SSAO).v4p" systemname="TemporalReprojection" filename="X:\PostProcess\TemporalReprojection\TemporalReprojection.v4p">
-   <BOUNDS type="Window" left="11295" top="2940" width="14430" height="8700">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.1.dtd" >
+   <PATCH nodename="C:\vvvv\github\emeshe\nodes\modules\TemporalReprojection (DX11 MRE.SSAO).v4p" systemname="TemporalReprojection" filename="X:\PostProcess\TemporalReprojection\TemporalReprojection.v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="11295" top="2940" width="14430" height="11145">
    </BOUNDS>
    <NODE id="0" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
@@ -132,13 +132,13 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="FrameDelay (Transform)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="9">
+   <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="9">
    <BOUNDS type="Node" left="2985" top="1455" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="FrameDelay (Transform)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="10">
+   <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="10">
    <BOUNDS type="Node" left="4245" top="1440" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
@@ -416,4 +416,8 @@
    </LINK>
    <LINK srcnodeid="2" srcpinname="Buffers" dstnodeid="8" dstpinname="Texture In">
    </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="33.0.0">
+   </PACK>
    </PATCH>
