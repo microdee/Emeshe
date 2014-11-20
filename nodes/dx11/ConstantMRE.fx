@@ -278,7 +278,7 @@ PSOut PS_Tex(vs2gs In)
 	
 	float bmpam = (Instancing) ? InstancedParams[ii].BumpAmount*FBumpAmount : FBumpAmount;
 	float depth = bmpam;
-	float mdepth = BumpTex.Sample(g_samLinear, uvb).r;
+	float mdepth = BumpTex.Sample(g_samLinear, uvb).r + bumpOffset;
 	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	
 	if(depth!=0) posWb += In.NormW * mdepth * -1*depth;
@@ -354,7 +354,7 @@ PSOut PS_Inst(vs2gsi In)
 	//float combinedDist = dFromVerts.x * dFromVerts.y * dFromVerts.z;
 	float bmpam = (InstanceFromGeomFX|| Instancing) ? InstancedParams[ii].BumpAmount*FBumpAmount : FBumpAmount;
 	float depth = bmpam;
-	float mdepth = BumpTex.Sample(g_samLinear, uvb).r;
+	float mdepth = BumpTex.Sample(g_samLinear, uvb).r + bumpOffset;
 	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	
 	if(depth!=0) posWb += In.NormW * mdepth * -1*depth;

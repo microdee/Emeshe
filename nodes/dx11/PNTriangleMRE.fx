@@ -579,6 +579,7 @@ PSOut PS_Tex(ds2ps In)
 	float mdepth = 0;
 	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	else mdepth = BumpTex.Sample(g_samLinear, uvb).r;
+	mdepth += bumpOffset;
 	
 	if(depth!=0) posWb += In.NormW * mdepth * (-1*pows(depth,.5));
 	Out.normalW = float4(normWb,1);
@@ -660,6 +661,7 @@ PSOut PS_Inst(ds2psi In)
 	float mdepth = 0;
 	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	else mdepth = BumpTex.Sample(g_samLinear, uvb).r;
+	mdepth += bumpOffset;
 	
 	if(depth!=0) posWb += In.NormW * mdepth * (-1*pows(depth,.5));
 	Out.normalW = float4(normWb,1);

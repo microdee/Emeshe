@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.1.dtd" >
-   <PATCH nodename="C:\vvvv\github\emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="0" scrolly="6840">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="1785" scrolly="210">
    <BOUNDS type="Window" left="7740" top="3030" width="16695" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -169,7 +169,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="12330" top="3840" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -236,18 +236,6 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="115" systemname="IOBox (Node)">
-   <BOUNDS type="Node" left="11955" top="4680" width="0" height="0">
-   </BOUNDS>
-   <BOUNDS type="Box" left="11955" top="4680" width="795" height="240">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Bump Normal Transfrom|">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="123" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="3930" top="315" width="0" height="0">
    </BOUNDS>
@@ -265,7 +253,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3885" top="4455" width="480" height="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -278,6 +266,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Triplanar TexCD|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="135" systemname="IOBox (Value Advanced)">
@@ -367,7 +357,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="19335" top="7440" width="480" height="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -632,6 +622,8 @@
    <PIN pinname="Technique" visible="1">
    </PIN>
    <PIN pinname="TriPlanarPow" slicecount="1" values="3.16">
+   </PIN>
+   <PIN pinname="bumpOffset" slicecount="1" visible="1" values="-0.5">
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Output Node" dstnodeid="219" dstpinname="Geometry">
@@ -938,8 +930,24 @@
    </LINK>
    <PACK Name="ImagePack" Version="0.1.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.0.0">
+   <PACK Name="addonpack" Version="33.3.0">
    </PACK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="248" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="12420" top="5205" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12420" top="5205" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-0.5">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Bump Offset|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="248" srcpinname="Y Output Value" dstnodeid="219" dstpinname="bumpOffset">
+   </LINK>
    </PATCH>

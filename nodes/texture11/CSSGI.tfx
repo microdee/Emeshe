@@ -1,0 +1,129 @@
+#define NUM_SAMPLES 16
+#include "ColorSpace.fxh"
+
+Texture2D ViewMap;
+Texture2D normal;
+Texture2D color : PREVIOUS;
+
+float ratemulx = 1;
+float ratemuly = 1;
+float seed = 0;
+float Bleeding = 1;
+float Occlusion = 1;
+
+float2 R : TARGETSIZE;
+
+SamplerState s0 <string uiname="Sampler";>
+{
+  Filter=MIN_MAG_MIP_LINEAR;
+  AddressU=WRAP;
+  AddressV=WRAP;
+};
+
+//noise producing function to eliminate banding (got it from someone else´s shader):
+float rand(float2 co)
+{
+  return 0.5+(frac(sin(dot(co.xy ,float2(12.9898,78.233))+seed) * 43758.5453))*0.5;
+}
+
+float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+  //calculate sampling rates:
+  float ratex = (ratemulx/R.x);
+  float ratey = (ratemulx/R.y);
+
+  //initialize occlusion sum and gi color:
+  float sum = 0.0;
+  float3 fcolor = float3(0,0,0);
+
+  //far and near clip planes:
+
+  //get depth at current pixel:
+  float prof = ViewMap.Sample(s0, uv).z;
+  //scale sample number with depth:
+  float samples = round(NUM_SAMPLES/(0.5+prof));
+  //prof = zFar * zNear / (prof * (zFar - zNear) - zFar);  //linearize z sample
+
+  //obtain normal and color at current pixel:
+  float3 norm = normalize(normal.SampleLevel(s0,uv,0).xyz);
+  float3 dcolor1 = color.Sample(s0, uv).rgb;
+
+  float hf = samples/2;
+
+  //calculate kernel steps:
+  float incx = ratex*30;//gi radius
+  float incy = ratey*30;
+
+  float incx2 = ratex*8;//ao radius
+  float incy2 = ratey*8;
+
+  //do the actual calculations:
+  for(float i=-hf; i < hf; i++)
+  {
+    for(float j=-hf; j < hf; j++)
+    {
+
+      if (i != 0 || j!= 0)
+      {
+        float2 coords = float2(i*incx,j*incy)/prof;
+        float2 coords2 = float2(i*incx2,j*incy2)/prof;
+
+        float prof2 = ViewMap.SampleLevel(s0,uv+coords*rand(uv),0).z;
+        //prof2 = zFar * zNear / (prof2 * (zFar - zNear) - zFar);  //linearize z sample
+
+        float prof2g = ViewMap.SampleLevel(s0,uv+coords2*rand(uv),0).z;
+        //prof2g = zFar * zNear / (prof2g * (zFar - zNear) - zFar);  //linearize z sample
+
+        float3 norm2g = normalize(normal.SampleLevel(s0,uv+coords2*rand(uv),0).xyz); 
+
+        float3 dcolor2 = color.SampleLevel(s0, uv+coords*rand(uv),0).rgb;
+
+        //OCCLUSION:
+
+        //calculate approximate pixel distance:
+        float3 dist2 = float3(coords2,prof-prof2g);
+
+        //calculate normal and sampling direction coherence:
+        float coherence2 = dot(normalize(-coords2),normalize(float2(norm2g.xy)));
+
+        //if there is coherence, calculate occlusion:
+        if (coherence2 > 0)
+        {
+          float pformfactor2 = 0.5*((1.0-dot(norm,norm2g)))/(3.1416*pow(abs(length(dist2*2)),2.0)+0.5);//el 4: depthscale
+          sum += clamp(pformfactor2*0.2,0.0,1.0);//ao intensity; 
+        }
+
+        //COLOR BLEEDING:
+
+        if (length(dcolor2)<0.3)
+        {//color threshold
+          float3 norm2 = normalize(normal.SampleLevel(s0,uv+coords*rand(uv),0).xyz); 
+
+          //calculate approximate pixel distance:
+          float3 dist = float3(coords,abs(prof-prof2));
+
+          //calculate normal and sampling direction coherence:
+          float coherence = dot(normalize(-coords),normalize(float2(norm2.xy)));
+
+          //if there is coherence, calculate bleeding:
+          if (coherence > 0)
+          {
+            float pformfactor = ((1.0-dot(norm,norm2)))/(3.1416*pow(abs(length(dist*2)),2.0)+0.5);//el 4: depthscale
+            fcolor += dcolor2*(clamp(pformfactor,0.0,1.0));
+          }
+        }
+      }
+    }
+  }
+
+  float3 bleeding = (fcolor/samples)*Bleeding;
+  float occlusion = (sum/samples)*Occlusion;
+	float3 colout = bleeding-occlusion;
+	float3 hsvout = RGBtoHSV(saturate(colout));
+  return max(float4(colout * hsvout.y,1.0),0);
+}
+
+technique11 cssgi{
+	pass P0
+	{SetPixelShader(CompileShader(ps_5_0,CSSGI()));}
+}

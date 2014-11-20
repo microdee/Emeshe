@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.1.dtd" >
-   <PATCH nodename="C:\vvvv\github\emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE).v4p" systemname="DeferredPNTriangles (DX11 MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mrre\nodes\Modules\DeferredPNTriangles (DX11 MRE).v4p" locked="0" scrollx="0" scrolly="9105">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE).v4p" systemname="DeferredPNTriangles (DX11 MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mrre\nodes\Modules\DeferredPNTriangles (DX11 MRE).v4p" locked="0" scrollx="0" scrolly="8310">
    <BOUNDS type="Window" left="3510" top="5085" width="16815" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -169,7 +169,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="12330" top="3840" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.2">
+   <PIN pinname="Y Input Value" slicecount="1" values="3">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -232,18 +232,6 @@
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Normal Transform|">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="115" systemname="IOBox (Node)">
-   <BOUNDS type="Node" left="11955" top="4680" width="0" height="0">
-   </BOUNDS>
-   <BOUNDS type="Box" left="11955" top="4680" width="795" height="240">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Bump Normal Transfrom|">
    </PIN>
    <PIN pinname="Output Node" visible="1">
    </PIN>
@@ -671,7 +659,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="18435" top="8775" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="-2">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -697,7 +685,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="18660" top="9465" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="5.07">
+   <PIN pinname="Y Input Value" slicecount="1" values="3">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -776,6 +764,8 @@
    <PIN pinname="Query" visible="1">
    </PIN>
    <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="bumpOffset" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="243" srcpinname="Output" dstnodeid="246" dstpinname="Transform In">
@@ -968,6 +958,22 @@
    </LINK>
    <PACK Name="ImagePack" Version="0.1.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.0.0">
+   <PACK Name="addonpack" Version="33.3.0">
    </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="253" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="12435" top="5550" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12435" top="5550" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="-0.5">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="bumpOffset">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="253" srcpinname="Y Output Value" dstnodeid="246" dstpinname="bumpOffset">
+   </LINK>
    </PATCH>

@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.1.dtd" >
-   <PATCH nodename="C:\vvvv\github\emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="90">
-   <BOUNDS type="Window" left="-18660" top="3060" width="16920" height="10995">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="1740">
+   <BOUNDS type="Window" left="10155" top="3285" width="16920" height="10995">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="3240" width="100" height="100">
@@ -443,7 +443,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="13860" top="975" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1030,6 +1030,6 @@
    </PACK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.0.0">
+   <PACK Name="addonpack" Version="33.3.0">
    </PACK>
    </PATCH>
