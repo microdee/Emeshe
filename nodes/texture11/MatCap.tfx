@@ -1,0 +1,34 @@
+Texture2D PrevTex: PREVIOUS;
+Texture2D ColorTex: INITIAL;
+Texture2D LitSphere;
+
+#define PI 3.14159265358979
+#include "MRE.fxh"
+
+float2 ScreenSize:TARGETSIZE;
+float Perspective = 0;
+float4x4 Transform;
+bool View = false;
+SamplerState s0 <bool visible=false;string uiname="Sampler";>
+{
+	Filter=MIN_MAG_MIP_LINEAR;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
+};
+
+float4 MatCap(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+	float3 worldNorm = 0;
+	if(View) worldNorm = mre_getviewnorm(s0, uv);
+	else worldNorm = mre_getworldnorm(s0, uv);
+	worldNorm = mul(float4(worldNorm,0), Transform).xyz;
+	// Swap it around a bit... 
+	worldNorm.y = - worldNorm.y;
+	
+	return float4(LitSphere.Sample(s0, worldNorm.xy *.5+.5 + (uv-.5)*Perspective).rgb,1);
+}
+
+technique10 MatCapt{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,MatCap()));}
+}

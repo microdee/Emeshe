@@ -56,7 +56,7 @@ struct OutComps
 
 OutComps pPnt(vs2ps In)
 {
-	float2 uv = In.TexCd;
+	float2 uv = In.TexCd.xy;
 	if(Mask.Sample(s0, uv).r>0.5)
 	{
 		Components col = (Components)0;
@@ -66,8 +66,8 @@ OutComps pPnt(vs2ps In)
 		{
 			float3 wPos = mre_getworldpos(s0,uv);
 			float3 norm = mre_getworldnorm(s0,uv);
-			//float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
-			float3 viewdirv = normalize(wPos);
+			float3 viewdirv = normalize(mul(float4(wPos,0),tView).xyz);
+			//float3 viewdirv = normalize(wPos);
 			col = PhongPointSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView, DistanceMod);
 		}
 		OutComps outCol = (OutComps)1;

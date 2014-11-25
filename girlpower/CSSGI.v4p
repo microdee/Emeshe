@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\CSSGI.v4p" systemname="CSSGI" filename="C:\vvvv\libs\Emeshe\girlpower\CSSGI.v4p" scrollx="345" scrolly="4890">
-   <BOUNDS type="Window" left="10590" top="1320" width="12555" height="10305">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\CSSGI.v4p" systemname="CSSGI" filename="C:\vvvv\libs\Emeshe\girlpower\CSSGI.v4p" scrollx="0" scrolly="3480">
+   <BOUNDS type="Window" left="3210" top="4245" width="12555" height="10305">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.3.0">
    </PACK>
@@ -154,7 +154,7 @@
    </LINK>
    <LINK srcnodeid="11" srcpinname="Projection" dstnodeid="7" dstpinname="Projection">
    </LINK>
-   <NODE systemname="Phong (MRE Advanced)" filename="..\nodes\modules\Phong (MRE Advanced).v4p" nodename="Phong (MRE Advanced)" componentmode="Hidden" id="12">
+   <NODE systemname="Phong (MRE Advanced)" filename="..\nodes\modules\Phong (MRE Advanced).v4p" nodename="Phong (MRE Advanced)" componentmode="InAWindow" id="12">
    <BOUNDS type="Node" left="3960" top="14760" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Channels" visible="1">
@@ -490,38 +490,6 @@
    </LINK>
    <LINK srcnodeid="66" srcpinname="Output Node" dstnodeid="69" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="DeferredPNTriangles (DX11 MRE)" filename="..\nodes\modules\DeferredPNTriangles (DX11 MRE).v4p" nodename="DeferredPNTriangles (DX11 MRE)" componentmode="Hidden" id="9">
-   <BOUNDS type="Node" left="2595" top="8655" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Base Layer" visible="1">
-   </PIN>
-   <PIN pinname="Geometry In" visible="1">
-   </PIN>
-   <PIN pinname="Global World Transform" visible="1">
-   </PIN>
-   <PIN pinname="Object ID 012" visible="1">
-   </PIN>
-   <PIN pinname="Diffuse Texture" visible="1">
-   </PIN>
-   <PIN pinname="Bump Map" visible="1">
-   </PIN>
-   <PIN pinname="Bump Amount" slicecount="1" values="-0.1">
-   </PIN>
-   <PIN pinname="CurveAmount" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Factor" slicecount="1" values="3">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="21" srcpinname="Transform Out" dstnodeid="9" dstpinname="Global World Transform">
-   </LINK>
-   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="9" dstpinname="Object ID 012">
-   </LINK>
-   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="9" dstpinname="Geometry In">
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Output Node" dstnodeid="9" dstpinname="Diffuse Texture">
-   </LINK>
-   <LINK srcnodeid="69" srcpinname="Output Node" dstnodeid="9" dstpinname="Bump Map">
-   </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="70">
    <BOUNDS type="Node" left="4155" top="26130" width="100" height="100">
    </BOUNDS>
@@ -650,8 +618,6 @@
    <PIN pinname="SampleRadius" slicecount="1" values="0.1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="13" srcpinname="Texture Out" dstnodeid="95" dstpinname="Texture In">
-   </LINK>
    <LINK srcnodeid="11" srcpinname="FOV" dstnodeid="95" dstpinname="FOV">
    </LINK>
    <NODE systemname="DepthBlur (DX11.Effect)" filename="..\nodes\dx11\DepthBlur.fx" nodename="DepthBlur (DX11.Effect)" componentmode="Hidden" id="96">
@@ -759,15 +725,13 @@
    <NODE systemname="Group (DX11.Layer)" nodename="Group (DX11.Layer)" componentmode="Hidden" id="111" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll">
    <BOUNDS type="Node" left="2835" top="10620" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Layer 1" visible="1">
+   <PIN pinname="Layer 1" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
    <PIN pinname="Layer 2" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="9" srcpinname="Base Layer" dstnodeid="111" dstpinname="Layer 1">
-   </LINK>
    <LINK srcnodeid="111" srcpinname="Layer Out" dstnodeid="22" dstpinname="Layer In">
    </LINK>
    <NODE systemname="Box (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Box (DX11.Geometry)" componentmode="Hidden" id="112">
@@ -839,9 +803,9 @@
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Saturation" slicecount="10" values="0,0,0,1,1,0,0,1,0,1" visible="1">
+   <PIN pinname="Saturation" slicecount="10" visible="1" values="0,0,0,1,1,0,0,1,0,1">
    </PIN>
-   <PIN pinname="Hue" slicecount="1" values="0.75" visible="1">
+   <PIN pinname="Hue" slicecount="1" visible="1" values="0.75">
    </PIN>
    </NODE>
    <LINK srcnodeid="117" srcpinname="Output" dstnodeid="113" dstpinname="Diffuse Color">
@@ -893,7 +857,7 @@
    <NODE systemname="MotionBlur (DX11.TextureFX)" filename="..\nodes\texture11\MotionBlur.tfx" nodename="MotionBlur (DX11.TextureFX)" componentmode="Hidden" id="123">
    <BOUNDS type="Node" left="4950" top="22500" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Channels" visible="1">
    </PIN>
@@ -904,10 +868,8 @@
    <PIN pinname="Texture Out" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="107" srcpinname="Texture Out" dstnodeid="123" dstpinname="Texture In">
-   </LINK>
    <NODE systemname="VelMapExtender (DX11.MRE)" filename="..\nodes\modules\VelMapExtender (DX11.MRE).v4p" nodename="VelMapExtender (DX11.MRE)" componentmode="Hidden" id="124">
-   <BOUNDS type="Node" left="5265" top="21090" width="100" height="100">
+   <BOUNDS type="Node" left="6315" top="21015" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Channels" visible="1">
    </PIN>
@@ -923,9 +885,9 @@
    <LINK srcnodeid="124" srcpinname="Channels Out" dstnodeid="123" dstpinname="Channels">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="125" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5610" top="20595" width="795" height="240">
+   <BOUNDS type="Box" left="6660" top="20520" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5610" top="20595" width="0" height="0">
+   <BOUNDS type="Node" left="6660" top="20520" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.25">
    </PIN>
@@ -981,7 +943,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="9075" top="13305" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="-3.24,1.11,0.54">
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="2.62,1.29,0.54">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1009,5 +971,51 @@
    <LINK srcnodeid="128" srcpinname="Y Output Value" dstnodeid="129" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="129" srcpinname="Output" dstnodeid="80" dstpinname="PositionXYZ">
+   </LINK>
+   <LINK srcnodeid="107" srcpinname="Texture Out" dstnodeid="123" dstpinname="Texture In">
+   </LINK>
+   <NODE systemname="DistanceField (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\modules\DistanceField\DistanceField (DX11.Texture 2d).v4p" nodename="DistanceField (DX11.Texture 2d)" componentmode="Hidden" id="130">
+   <BOUNDS type="Node" left="1260" top="19965" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Realtime" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Texture Out" dstnodeid="95" dstpinname="Texture In">
+   </LINK>
+   <NODE systemname="DeferredBase (DX11 MRE)" filename="..\nodes\modules\DeferredBase (DX11 MRE).v4p" nodename="DeferredBase (DX11 MRE)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="2595" top="8655" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Base Layer" visible="1">
+   </PIN>
+   <PIN pinname="Geometry In" visible="1">
+   </PIN>
+   <PIN pinname="Global World Transform" visible="1">
+   </PIN>
+   <PIN pinname="Object ID 012" visible="1">
+   </PIN>
+   <PIN pinname="Diffuse Texture" visible="1">
+   </PIN>
+   <PIN pinname="Bump Map" visible="1">
+   </PIN>
+   <PIN pinname="Bump Amount" slicecount="1" values="-0.1">
+   </PIN>
+   <PIN pinname="CurveAmount">
+   </PIN>
+   <PIN pinname="Factor">
+   </PIN>
+   <PIN pinname="alphatest" slicecount="1" values="0.4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Transform Out" dstnodeid="9" dstpinname="Global World Transform">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="9" dstpinname="Object ID 012">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="9" dstpinname="Geometry In">
+   </LINK>
+   <LINK srcnodeid="53" srcpinname="Output Node" dstnodeid="9" dstpinname="Diffuse Texture">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Output Node" dstnodeid="9" dstpinname="Bump Map">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Base Layer" dstnodeid="111" dstpinname="Layer 1">
    </LINK>
    </PATCH>
