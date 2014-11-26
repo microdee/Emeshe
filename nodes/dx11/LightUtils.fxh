@@ -1,23 +1,5 @@
 #include "pows.fxh"
-struct MaterialProp
-{
-    float3 Atten;
-    float Power;
-    float4 AmbCol;
-    float4 SpecCol;
-    float SpecAmount;
-    float4 EmCol;
-    float EmAmount;
-    float SSSAmount;
-    float SSSPower;
-    float MatThick;
-    float RimLAmount;
-    float RimLPower;
-    float4 SSSExtCoeff;
-    float Reflection;
-    float Refraction;
-	uint ReflectRefractTexID;
-};
+#include "Materials.fxh"
 
 struct PointLightProp
 {
@@ -56,7 +38,6 @@ struct Components
 	float3 Rim;
 };
 
-StructuredBuffer<MaterialProp> matprop <string uiname="Material Buffer";>;
 StructuredBuffer<PointLightProp> pointlightprop <string uiname="Pointlight Buffer";>;
 StructuredBuffer<SpotLightProp> spotlightprop <string uiname="Spotlight Buffer";>;
 Texture2DArray SpotTexArray;
@@ -90,14 +71,15 @@ Components PhongPointSSS(
 	float dmod
 	)
 {
-    float lAtt0 = matprop[matid].Atten.x;
-    float lAtt1 = matprop[matid].Atten.y;
-    float lAtt2 = matprop[matid].Atten.z;
-    float lPower = matprop[matid].Power;
+    float3 lAtt = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_ATTENUATION)
+    float lPower = GetFloat(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARPOWER);
     
-    float4 lAmb = matprop[matid].AmbCol;
-    float4 lSpec = matprop[matid].SpecCol * SpecSSSMap.x;
-    float materialThickness = matprop[matid].MatThick;
+    float3 lAmb = 0;
+    if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
+    	lAmb = GetFloat(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_AMBIENTCOLOR);
+
+    float3 lSpec = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARCOLOR) * SpecSSSMap.x;
+
     
     Components outc = (Components)0;
 
@@ -113,14 +95,13 @@ Components PhongPointSSS(
 	        float lRange = pointlightprop[i].Range;
 	        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
 	    	
-	    	float3 indirectLightComponent = 0;
 	    	float3 rim = 0;
 	
 	        float d = distance(PosW, lPos);
 	        
-	        atten = 1/(saturate(lAtt0) + saturate(lAtt1) * d + saturate(lAtt2) * pow(d, 2));
+	        atten = 1/(saturate(lAtt.x) + saturate(lAtt.y) * d + saturate(lAtt.z) * pow(d, 2));
 	            
-	        amb = lAmb.rgb * atten * pointlightprop[i].LightStrength;
+	        amb = lAmb * atten * pointlightprop[i].LightStrength;
 	    	float rangeF = pow(saturate((lRange-d)/lRange),dmod*pointlightprop[i].RangePow);
 	        float3 LightDirW = normalize(lPos - PosW);
 	        float3 V = normalize(ViewDirV);
@@ -138,28 +119,70 @@ Components PhongPointSSS(
 	            float3 R = normalize(2 * dot(NormV, LightDirW) * NormV - LightDirW);
 	            //normalized view direction (view space)
 	            //calculate specular light
-	            spec = pows(max(dot(R, V),0), lPower*.2) * lSpec.rgb * lCol;
-	        	
-	        	
+	            spec = pows(max(dot(R, V),0), lPower*.2) * lSpec * lCol;
 	        }
 	    	
-	    	// SSS
-			indirectLightComponent = (float3)(materialThickness * max(0, dot(-NormV, LightDirW)));
-			indirectLightComponent += materialThickness * halfLambert(-V, LightDirW);
-			indirectLightComponent.rgb *= atten *  matprop[matid].SSSExtCoeff.rgb * SpecSSSMap.y;
-			rim = saturate(1-abs(dot(mul(NormV,tV).xyz, V)));
-			rim = pows(rim, matprop[matid].RimLPower) * matprop[matid].RimLAmount * lCol;
-			float rangeFSSS = pow(saturate((lRange*matprop[matid].SSSPower-d)/(lRange*matprop[matid].SSSPower)),dmod*.9*pointlightprop[i].RangePow);
 	    	
 	    	outc.Diffuse += diff * rangeF;
 	    	outc.Specular += spec * rangeF;
 	    	outc.Ambient = max(outc.Ambient, amb/lightcount);
-
-	    	float sssa = pointlightprop[i].LightStrength * matprop[matid].SSSAmount * rangeFSSS;
-	    	outc.SSS += indirectLightComponent * sssa;
-	    	outc.Rim += rim * sssa;
     	}
     }
+
+    if(KnowFeature(matid, MF_LIGHTING_FAKESSS))
+    {
+    	float materialThickness = GetFloat(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_THICKNESS);
+		float power = GetFloat(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_POWER);
+		float amount = GetFloat(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_STRENGTH);
+		float3 coeff = GetFloat3(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_COEFFICIENT);
+
+	    for(float i = 0; i<lightcount; i++)
+	    {
+	    	if(pointlightprop[i].LightStrength > lEpsilon)
+	    	{
+
+		        float3 lPos = pointlightprop[i].Position;
+		        float lRange = pointlightprop[i].Range;
+		        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
+
+	        	atten = 1/(saturate(lAtt.x) + saturate(lAtt.y) * d + saturate(lAtt.z) * pow(d, 2));
+	        	float3 LightDirW = normalize(lPos - PosW);
+		    	// SSS
+				float3 indirectLightComponent = (float3)(materialThickness * max(0, dot(-NormV, LightDirW)));
+				indirectLightComponent += materialThickness * halfLambert(-V, LightDirW);
+				indirectLightComponent *= atten * SpecSSSMap.y * coeff * lCol;
+				float rangeFSSS = pow(saturate((lRange * power - d)/(lRange * power)), dmod * 0.9 * pointlightprop[i].RangePow);
+		    	float sssa = pointlightprop[i].LightStrength * amount * rangeFSSS;
+		    	outc.SSS += indirectLightComponent * sssa;
+	    	}
+	    }
+	}
+
+    if(KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT))
+    {
+    	float materialThickness = GetFloat(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_THICKNESS);
+		float power = GetFloat(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_POWER);
+		float amount = GetFloat(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_STRENGTH);
+		float3 coeff = GetFloat3(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_COEFFICIENT);
+
+	    for(float i = 0; i<lightcount; i++)
+	    {
+	    	if(pointlightprop[i].LightStrength > lEpsilon)
+	    	{
+
+		        float3 lPos = pointlightprop[i].Position;
+		        float lRange = pointlightprop[i].Range;
+		        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
+
+				float rangeFSSS = pow(saturate((lRange * power - d)/(lRange * power)), dmod * 0.9 * pointlightprop[i].RangePow);
+		    	float sssa = pointlightprop[i].LightStrength * amount * rangeFSSS;
+
+				rim = saturate(1-abs(dot(mul(NormV,tV).xyz, V)));
+				rim = pows(rim, matprop[matid].RimLPower) * matprop[matid].RimLAmount * lCol;
+		    	outc.Rim += rim * sssa;
+	    	}
+	    }
+	}
     //out *= tex2D(diffSamp, TexCd).rgb;
     return outc;
 }
@@ -167,9 +190,7 @@ Components PhongPointSSS(
 Components PhongSpotSSS(float3 PosW, float3 NormW, float3 ViewDirV, float2 SpecSSSMap, float lightcount, float matid, float dmod, float4x4 tV)
 {
 	float3 V = normalize(ViewDirV);
-    float lAtt0 = matprop[matid].Atten.x;
-    float lAtt1 = matprop[matid].Atten.y;
-    float lAtt2 = matprop[matid].Atten.z;
+    float3 lAtt = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_ATTENUATION_OFFSET)
     float lPower = matprop[matid].Power;
     
     float4 lAmb = matprop[matid].AmbCol;
@@ -188,7 +209,7 @@ Components PhongSpotSSS(float3 PosW, float3 NormW, float3 ViewDirV, float2 SpecS
 		float3 spec = 0;
     	float d = distance(spotlightprop[i].Position,PosW);
     	float3 lDir = normalize(spotlightprop[i].Position-PosW);
-	    float atten = 1/(saturate(lAtt0) + saturate(lAtt1) * d + saturate(lAtt2) * pow(d, 2));
+	    float atten = 1/(saturate(lAtt.x) + saturate(lAtt.y) * d + saturate(lAtt.z) * pow(d, 2));
 	    float3 indirectLightComponent = 0;
 	    float3 rim = 0;
 	    float3 amb = matprop[matid].AmbCol.rgb * atten * spotlightprop[i].LightStrength;

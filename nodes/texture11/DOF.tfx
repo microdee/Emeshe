@@ -84,7 +84,7 @@ float4 PS_BackgroundCtrl(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Targ
 {
 	float AF = AutoFocus[0];
 	float realfocus = lerp(FocusDistance, AF, lerpAF);
-	float3 ppos = mre_getviewposLevel(sL,uv,0);
+	float3 ppos = mre_getviewpos(sL,uv,0);
     float bckg0 = abs(ppos.z-realfocus);
 	bckg0 *= ((ppos.z-realfocus)<0) ? FrgBkgMul.y : FrgBkgMul.x;
 	bckg0 += -FrgBkgOffs.y;

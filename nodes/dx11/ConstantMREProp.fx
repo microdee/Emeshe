@@ -1,21 +1,6 @@
 //@author: microdee
 
-struct sDeferredBase
-{
-	float4x4 tW;
-	float4x4 ptW;
-	float4x4 tTex;
-	float DiffAmount;
-	float4 DiffCol;
-	float VelocityGain;
-	float BumpAmount;
-	float DispAmount;
-	float pDispAmount;
-	uint MatID;
-	int ObjID0;
-	int ObjID1;
-	int ObjID2;
-};
+#import "MREForward.fxh"
 
 //
 Texture2D DiffTex;
@@ -23,13 +8,6 @@ Texture2D BumpTex;
 StructuredBuffer<sDeferredBase> InstancedParams;
 bool DistanceToPoint = false;
 float3 CamPos : CAMPOS;
-
-SamplerState g_samLinear
-{
-    Filter = MIN_MAG_MIP_LINEAR;
-    AddressU = Mirror;
-    AddressV = Mirror;
-};
 
 cbuffer cbPerDraw : register( b0 )
 {
@@ -81,48 +59,6 @@ struct vs2psinst
     nointerpolation float ii: TEXCOORD2;
 };
 
-float2 TriPlanar(float3 pos, float3 norm, float4x4 tT, float tpow)
-{
-	float3 post = mul(float4(pos,1),tT).xyz;
-	float2 uvxy = post.xy;
-	float2 uvxz = post.xz;
-	float2 uvyz = post.yz;
-	float3 uxy = {0,0,1};
-	float3 uxz = {0,1,0};
-	float3 uyz = {1,0,0};
-	float3 d = 0;
-	d.x = abs(dot(norm, uxy));
-	d.y = abs(dot(norm, uxz));
-	d.z = abs(dot(norm, uyz));
-	d /= (d.x+d.y+d.z).xxx;
-	d = pow(d,tpow);
-	d /= (d.x+d.y+d.z).xxx;
-	float2 uv = uvxy*d.x + uvxz*d.y + uvyz*d.z;
-	return uv;
-}
-float4 TriPlanarSample(Texture2D tex, SamplerState s0, float3 pos, float3 norm, float4x4 tT, float tpow)
-{
-	float3 post = mul(float4(pos,1),tT).xyz;
-	float2 uvxy = post.xy;
-	float2 uvxz = post.xz;
-	float2 uvyz = post.yz;
-	float4 colxy = tex.Sample(s0, uvxy);
-	float4 colxz = tex.Sample(s0, uvxz);
-	float4 colyz = tex.Sample(s0, uvyz);
-	float3 uxy = {0,0,1};
-	float3 uxz = {0,1,0};
-	float3 uyz = {1,0,0};
-	float3 d = 0;
-	d.x = abs(dot(norm, uxy));
-	d.y = abs(dot(norm, uxz));
-	d.z = abs(dot(norm, uyz));
-	d /= (d.x+d.y+d.z).xxx;
-	d = pow(d,tpow);
-	d /= (d.x+d.y+d.z).xxx;
-	float4 col = colxy*d.xxxx + colxz*d.yyyy + colyz*d.zzzz;
-	return col;
-}
-
 vs2ps VS(VSin In)
 {
     //inititalize all fields of output struct with 0
@@ -167,20 +103,11 @@ vs2psinst VSInst(VSinst In)
     return Out;
 }
 
-struct PSOut
-{
-	float4 positionW : SV_Target;
-	//XYZ(1)
-	float CamDistance : SV_Depth;
-	//XYZ(1)
-};
-
-
-PSOut PS_Tex(vs2ps In)
+PSProp PS_Tex(vs2ps In)
 {	
 	float3 posWb = In.PosW.xyz;
 
-	PSOut Out = (PSOut)0;
+	PSProp Out = (PSProp)0;
 	float3 normWb = In.NormW;
 	float2 itexcd = In.TexCd.xy;
 	itexcd.x *= -1;
@@ -190,14 +117,14 @@ PSOut PS_Tex(vs2ps In)
 	//float combinedDist = dFromVerts.x * dFromVerts.y * dFromVerts.z;
 	
 	float depth = FBumpAmount;
-	float mdepth = BumpTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, g_samLinear, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow).r;
+	float mdepth = BumpTex.Sample(Sampler, uvb).r;
+	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow).r;
 	
 	if(depth!=0) posWb += In.NormW * mdepth * (-1*pow(depth,.5));
 	
 	float alphat = 1;
-	float alphatt = DiffTex.Sample( g_samLinear, uvb).a * FDiffColor.a;
-	if(isTriPlanar) alphatt = TriPlanarSample(DiffTex, g_samLinear, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow) * FDiffColor.a;
+	float alphatt = DiffTex.Sample( Sampler, uvb).a * FDiffColor.a;
+	if(isTriPlanar) alphatt = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow) * FDiffColor.a;
 	alphat = alphatt;
 	if(alphatest!=0)
 	{
@@ -216,12 +143,12 @@ PSOut PS_Tex(vs2ps In)
     return Out;
 }
 
-PSOut PS_Inst(vs2psinst In)
+PSProp PS_Inst(vs2psinst In)
 {	
 	float ii = In.ii;
 	float3 posWb = In.PosW.xyz;
 
-	PSOut Out = (PSOut)0;
+	PSProp Out = (PSProp)0;
 	float3 normWb = In.NormW;
 	float2 itexcd = In.TexCd.xy;
 	itexcd.x *= -1;
@@ -233,13 +160,13 @@ PSOut PS_Inst(vs2psinst In)
 	
 	float bmpam = (InstanceFromGeomFX) ? InstancedParams[ii].BumpAmount*FBumpAmount : FBumpAmount;
 	float depth = bmpam;
-	float mdepth = BumpTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
+	float mdepth = BumpTex.Sample(Sampler, uvb).r;
+	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
 	if(depth!=0) posWb += In.NormW * mdepth * (-1*pow(depth,.5));
 	
 	float alphat = 1;
-	float alphatt = DiffTex.Sample( g_samLinear, uvb).a * FDiffColor.a;
-	if(isTriPlanar) alphatt = TriPlanarSample(DiffTex, g_samLinear, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow) * FDiffColor.a;
+	float alphatt = DiffTex.Sample( Sampler, uvb).a * FDiffColor.a;
+	if(isTriPlanar) alphatt = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow) * FDiffColor.a;
 	alphat = alphatt;
 	if(alphatest!=0)
 	{

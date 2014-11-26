@@ -61,8 +61,7 @@ OutComps pPnt(vs2ps In)
 	{
 		Components col = (Components)0;
 		float3 vel = mre_getvelocity(s0,uv);
-		float fe = 0.001;
-		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+		if(mre_getdepthstencil(Sampler, uv).y > 0)
 		{
 			float3 wPos = mre_getworldpos(s0,uv);
 			float3 norm = mre_getworldnorm(s0,uv);
@@ -111,8 +110,7 @@ OutComps pSpt(vs2ps In)
 	{
 		Components col = (Components)0;
 		float3 vel = mre_getvelocity(s0,uv);
-		float fe = 0.001;
-		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+		if(mre_getdepthstencil(Sampler, uv).y > 0)
 		{
 			float3 wPos = mre_getworldpos(s0,uv);
 			float3 norm = mre_getworldnorm(s0,uv);
@@ -150,8 +148,7 @@ OutComps pSun(vs2ps In)
 	{
 		Components col = (Components)0;
 		float3 vel = mre_getvelocity(s0,uv);
-		float fe = 0.001;
-		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+		if(mre_getdepthstencil(Sampler, uv).y > 0)
 		{
 			float3 wPos = mre_getworldpos(s0,uv);
 			float3 norm = mre_getworldnorm(s0,uv);

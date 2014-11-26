@@ -1,28 +1,9 @@
 //@author: microdee
 
-struct sDeferredBase
-{
-	float4x4 tW;
-	float4x4 ptW;
-	float4x4 tTex;
-	float DiffAmount;
-	float4 DiffCol;
-	float VelocityGain;
-	float BumpAmount;
-	float DispAmount;
-	float pDispAmount;
-	uint MatID;
-	int ObjID0;
-	int ObjID1;
-	int ObjID2;
-};
+#import "MREForward.fxh"
 
-Texture2D EmTex;
 Texture2D DiffTex;
-Texture2D SpecTex;
-Texture2D ThickTex;
 Texture2D BumpTex;
-Texture2D RefTex;
 StructuredBuffer<sDeferredBase> InstancedParams;
 
 SamplerState g_samLinear
@@ -70,11 +51,6 @@ cbuffer cbPerObject : register( b1 )
 /////////////////////////
 //////// Structs ////////
 /////////////////////////
-
-float pows(float a, float b)
-{
-	return pow(abs(a),b)*sign(a);
-}
 
 struct VSgvin
 {
@@ -158,48 +134,6 @@ struct ds2psi
     float3 NormW: NORMAL;
     float4 vel : COLOR0;
 };
-
-float2 TriPlanar(float3 pos, float3 norm, float4x4 tT, float tpow)
-{
-	float3 post = mul(float4(pos,1),tT).xyz;
-	float2 uvxy = post.xy;
-	float2 uvxz = post.xz;
-	float2 uvyz = post.yz;
-	float3 uxy = {0,0,1};
-	float3 uxz = {0,1,0};
-	float3 uyz = {1,0,0};
-	float3 d = 0;
-	d.x = abs(dot(norm, uxy));
-	d.y = abs(dot(norm, uxz));
-	d.z = abs(dot(norm, uyz));
-	d /= (d.x+d.y+d.z).xxx;
-	d = pow(d,tpow);
-	d /= (d.x+d.y+d.z).xxx;
-	float2 uv = uvxy*d.x + uvxz*d.y + uvyz*d.z;
-	return uv;
-}
-float4 TriPlanarSample(Texture2D tex, SamplerState s0, float3 pos, float3 norm, float4x4 tT, float tpow)
-{
-	float3 post = mul(float4(pos,1),tT).xyz;
-	float2 uvxy = post.xy;
-	float2 uvxz = post.xz;
-	float2 uvyz = post.yz;
-	float4 colxy = tex.Sample(s0, uvxy);
-	float4 colxz = tex.Sample(s0, uvxz);
-	float4 colyz = tex.Sample(s0, uvyz);
-	float3 uxy = {0,0,1};
-	float3 uxz = {0,1,0};
-	float3 uyz = {1,0,0};
-	float3 d = 0;
-	d.x = abs(dot(norm, uxy));
-	d.y = abs(dot(norm, uxz));
-	d.z = abs(dot(norm, uyz));
-	d /= (d.x+d.y+d.z).xxx;
-	d = pow(d,tpow);
-	d /= (d.x+d.y+d.z).xxx;
-	float4 col = colxy*d.xxxx + colxz*d.yyyy + colyz*d.zzzz;
-	return col;
-}
 
 ////////////////////
 //////// VS ////////
@@ -541,21 +475,6 @@ ds2psi DSi( hsconst HSConstantData, const OutputPatch<hs2dsi, 3> I, float3 f3Bar
 //////// PS ////////
 ////////////////////
 
-struct PSOut
-{
-	float4 color : SV_Target0;
-	// RGBA
-	float4 normalW : SV_Target1;
-	//XYZ(1)
-	float4 velocity : SV_Target2;
-	// XYZ(A)
-	float4 maps : SV_Target3;
-	//SpecMap ThickMap EmissionMap (1)
-	float4 matprop : SV_Target4;
-	// OID0 OID2 MatID (1)
-	float position : SV_Depth;
-};
-
 
 PSOut PS_Tex(ds2ps In)
 {
@@ -618,25 +537,17 @@ PSOut PS_Tex(ds2ps In)
 	Out.velocity.rgb +=.5;
 	Out.velocity.a = alphat + utilalpha;
 	
-	if(isTriPlanar) Out.maps.r = TriPlanarSample(SpecTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
-	else Out.maps.r = SpecTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) Out.maps.g = TriPlanarSample(ThickTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
-	else Out.maps.g = ThickTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) Out.maps.b = TriPlanarSample(EmTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
-	else Out.maps.b = EmTex.Sample( g_samLinear, uvb).r;
-	Out.maps.a = 1;
-	
 	if(UseInstanceID)
 	{
-		Out.matprop.rg = float2(InstancedParams[ii].ObjID0,InstancedParams[ii].ObjID1);
 		Out.matprop.b = InstancedParams[ii].MatID;
+		Out.matprop.a = InstancedParams[ii].ObjID0;
 	}
 	else
 	{
-		Out.matprop.rg = ObjID.xy;
 		Out.matprop.b = MatID;
+		Out.matprop.a = ObjID;
 	}
-	Out.matprop.a = 1;
+	Out.matprop.rg = uvb;
 	
     return Out;
 }
@@ -698,27 +609,17 @@ PSOut PS_Inst(ds2psi In)
 	Out.velocity.rgb +=.5;
 	Out.velocity.a = alphat + utilalpha;
 	
-	if(isTriPlanar) Out.maps.r = TriPlanarSample(SpecTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
-	else Out.maps.r = SpecTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) Out.maps.g = TriPlanarSample(ThickTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
-	else Out.maps.g = ThickTex.Sample(g_samLinear, uvb).r;
-	if(isTriPlanar) Out.maps.b = TriPlanarSample(EmTex, g_samLinear, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
-	else Out.maps.b = EmTex.Sample( g_samLinear, uvb).r;
-	Out.maps.a = 1;
-	
-	Out.maps.a = 1;
-	
 	if(InstanceFromGeomFX || UseInstanceID)
 	{
-		Out.matprop.rg = float2(InstancedParams[ii].ObjID0,InstancedParams[ii].ObjID1);
 		Out.matprop.b = InstancedParams[ii].MatID;
+		Out.matprop.a = InstancedParams[ii].ObjID0;
 	}
 	else
 	{
-		Out.matprop.rg = ObjID.xy;
 		Out.matprop.b = MatID;
+		Out.matprop.a = ObjID;
 	}
-	Out.matprop.a = 1;
+	Out.matprop.rg = uvb;
 	
     return Out;
 }
