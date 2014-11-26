@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ColorBleeding (DX11 MRE).v4p" systemname="ColorBleeding (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ColorBleeding (DX11 MRE).v4p" scrollx="600" scrolly="3885">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ColorBleeding (DX11 MRE).v4p" systemname="ColorBleeding (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ColorBleeding (DX11 MRE).v4p" scrollx="255" scrolly="1665">
    <BOUNDS type="Window" left="18510" top="6375" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.3.0">
@@ -17,7 +17,7 @@
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="1" visible="1">
+   <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="zNear">
    </PIN>
@@ -187,7 +187,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3870" top="855" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="2">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="4">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -269,7 +269,7 @@
    <LINK srcnodeid="25" srcpinname="Output" dstnodeid="12" dstpinname="ratemuly">
    </LINK>
    <NODE id="1" systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
-   <PIN pinname="Input Node" visible="1" pintype="Input">
+   <PIN pinname="Input Node" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
    <BOUNDS type="Node" left="4800" top="5310" width="100" height="100">
    </BOUNDS>
@@ -287,7 +287,7 @@
    </PIN>
    </NODE>
    <NODE id="3" systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
-   <PIN pinname="Input Node" visible="1" pintype="Input">
+   <PIN pinname="Input Node" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
    <BOUNDS type="Node" left="4155" top="4515" width="100" height="100">
    </BOUNDS>
@@ -305,7 +305,7 @@
    </PIN>
    </NODE>
    <NODE id="2" systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
-   <PIN pinname="Input Node" visible="1" pintype="Input">
+   <PIN pinname="Input Node" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
    <BOUNDS type="Node" left="4500" top="5010" width="100" height="100">
    </BOUNDS>
@@ -421,15 +421,15 @@
    </PIN>
    <PIN pinname="Texture Out" visible="1" pintype="Output">
    </PIN>
-   <PIN pinname="Depth" visible="1" pintype="Input">
+   <PIN pinname="Depth" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
    <BOUNDS type="Node" left="3255" top="5970" width="2100" height="270">
    </BOUNDS>
-   <PIN pinname="WorldPos Buffer" visible="1" pintype="Input">
+   <PIN pinname="WorldPos Buffer" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="WorldNorm Buffer" visible="1" pintype="Input">
+   <PIN pinname="WorldNorm Buffer" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="ViewNorm Buffer" visible="1" pintype="Input">
+   <PIN pinname="ViewNorm Buffer" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Shape" slicecount="1" pintype="Input" visible="1" values="0">
    </PIN>
@@ -501,15 +501,15 @@
    </PIN>
    <PIN pinname="Texture Out" visible="1" pintype="Output">
    </PIN>
-   <PIN pinname="Depth" visible="1" pintype="Input">
+   <PIN pinname="Depth" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
    <BOUNDS type="Node" left="3300" top="6660" width="2100" height="270">
    </BOUNDS>
-   <PIN pinname="WorldPos Buffer" visible="1" pintype="Input">
+   <PIN pinname="WorldPos Buffer" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="WorldNorm Buffer" visible="1" pintype="Input">
+   <PIN pinname="WorldNorm Buffer" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="ViewNorm Buffer" visible="1" pintype="Input">
+   <PIN pinname="ViewNorm Buffer" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Shape" slicecount="1" pintype="Input" visible="1" values="0">
    </PIN>
@@ -661,6 +661,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
    </NODE>
    <LINK srcnodeid="38" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Enabled">
    </LINK>
@@ -718,6 +720,20 @@
    </LINK>
    <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="30" dstpinname="Radius">
    </LINK>
-   <LINK srcnodeid="12" srcpinname="Texture Out" dstnodeid="4" dstpinname="Texture In">
+   <NODE systemname="Resize (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\modules\Resize (DX11.Texture 2d).v4p" nodename="Resize (DX11.Texture 2d)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="2925" top="4875" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Texture SizeXY" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="XY" dstnodeid="42" dstpinname="Texture SizeXY">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Texture Out" dstnodeid="42" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="Texture Out" dstnodeid="4" dstpinname="Texture In">
    </LINK>
    </PATCH>

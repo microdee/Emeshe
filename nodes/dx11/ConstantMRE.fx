@@ -1,4 +1,5 @@
 //@author: microdee
+#include "pows.fxh"
 
 struct sDeferredBase
 {
@@ -129,7 +130,7 @@ float2 TriPlanar(float3 pos, float3 norm, float4x4 tT, float tpow)
 	d.y = abs(dot(norm, uxz));
 	d.z = abs(dot(norm, uyz));
 	d /= (d.x+d.y+d.z).xxx;
-	d = pow(d,tpow);
+	d = pows(d,tpow);
 	d /= (d.x+d.y+d.z).xxx;
 	float2 uv = uvxy*d.x + uvxz*d.y + uvyz*d.z;
 	return uv;
@@ -151,7 +152,7 @@ float4 TriPlanarSample(Texture2D tex, SamplerState s0, float3 pos, float3 norm, 
 	d.y = abs(dot(norm, uxz));
 	d.z = abs(dot(norm, uyz));
 	d /= (d.x+d.y+d.z).xxx;
-	d = pow(d,tpow);
+	d = pows(d,tpow);
 	d /= (d.x+d.y+d.z).xxx;
 	float4 col = colxy*d.xxxx + colxz*d.yyyy + colyz*d.zzzz;
 	return col;
