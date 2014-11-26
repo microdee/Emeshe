@@ -147,7 +147,7 @@ Components PhongPointSSS(
 			indirectLightComponent = (float3)(materialThickness * max(0, dot(-NormV, LightDirW)));
 			indirectLightComponent += materialThickness * halfLambert(-V, LightDirW);
 			indirectLightComponent.rgb *= atten *  matprop[matid].SSSExtCoeff.rgb * SpecSSSMap.y;
-			rim = saturate(1-abs(dot(mul(NormV,tV).xyz, V)));
+			rim = saturate(1-abs(dot(NormV, LightDirW)))*saturate(dot(NormV,V));
 			rim = pows(rim, matprop[matid].RimLPower) * matprop[matid].RimLAmount * lCol;
 			float rangeFSSS = pow(saturate((lRange*matprop[matid].SSSPower-d)/(lRange*matprop[matid].SSSPower)),dmod*.9*pointlightprop[i].RangePow);
 	    	
