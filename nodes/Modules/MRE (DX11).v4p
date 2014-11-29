@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="915" scrolly="0">
-   <BOUNDS type="Window" left="10155" top="3285" width="16920" height="10995">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="1995" scrolly="2160">
+   <BOUNDS type="Window" left="4950" top="3525" width="16920" height="10995">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="3240" width="100" height="100">
@@ -307,7 +307,7 @@
    </PIN>
    <PIN pinname="Projection" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Aspect Ratio" slicecount="1" values="||" visible="1">
+   <PIN pinname="Aspect Ratio" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Target Format">
    </PIN>
@@ -501,9 +501,9 @@
    <LINK srcnodeid="2" srcpinname="Buffers" dstnodeid="160" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="163" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="12885" top="4245" width="240" height="270">
+   <BOUNDS type="Node" left="14715" top="2730" width="240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="12885" top="4245" width="3945" height="1845">
+   <BOUNDS type="Box" left="14715" top="2730" width="3945" height="1845">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|0 Color&tab;&tab;R&tab;G&tab;B&cr;&lf;1 ViewPosition&tab;X&tab;Y&tab;Z&cr;&lf;2 WorldPosition&tab;X&tab;Y&tab;Z&cr;&lf;3 ViewNormals&tab;X&tab;Y&tab;Z&cr;&lf;4 WorldNormals&tab;X&tab;Y&tab;Z&cr;&lf;5 Velocity&tab;&tab;X &tab;Y&tab;Z&cr;&lf;6 Maps&tab;&tab;Specmap&tab;Thickmap&tab;EmissionMap&cr;&lf;7 Material&tab;&tab;OID0&tab;OID1&tab;MatID|">
    </PIN>
@@ -515,9 +515,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="164" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="12870" top="3930" width="765" height="270">
+   <BOUNDS type="Node" left="14700" top="2415" width="765" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="12870" top="3930" width="1200" height="360">
+   <BOUNDS type="Box" left="14700" top="2415" width="1200" height="360">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="channels">
    </PIN>
@@ -575,9 +575,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="172" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="12945" top="6570" width="240" height="270">
+   <BOUNDS type="Node" left="14775" top="5055" width="240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="12945" top="6570" width="3915" height="1185">
+   <BOUNDS type="Box" left="14775" top="5055" width="3915" height="1185">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|0 Color&tab;&tab;R&tab;G&tab;B&cr;&lf;1 WorldNormals&tab;X&tab;Y&tab;Z&cr;&lf;2 Velocity&tab;&tab;X &tab;Y&tab;Z&cr;&lf;3 Maps&tab;&tab;Specmap&tab;Thickmap&tab;EmissionMap&cr;&lf;4 Material&tab;&tab;OID0&tab;OID1&tab;MatID|">
    </PIN>
@@ -589,9 +589,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="171" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="12930" top="6255" width="765" height="270">
+   <BOUNDS type="Node" left="14760" top="4740" width="765" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="12930" top="6255" width="1200" height="360">
+   <BOUNDS type="Box" left="14760" top="4740" width="1200" height="360">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="Targets">
    </PIN>
@@ -679,7 +679,7 @@
    </BOUNDS>
    <PIN pinname="Texture In" visible="1">
    </PIN>
-   <PIN pinname="Target Format" slicecount="1" values="R32G32B32A32_Float" visible="1">
+   <PIN pinname="Target Format" slicecount="1" visible="1" values="R32G32B32A32_Float">
    </PIN>
    <PIN pinname="View" visible="1">
    </PIN>
@@ -687,7 +687,7 @@
    </PIN>
    <PIN pinname="Aspect Ratio" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Technique" slicecount="1" values="PositionWorld" visible="1">
+   <PIN pinname="Technique" slicecount="1" visible="1" values="PositionWorld">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
@@ -977,5 +977,15 @@
    </LINKPOINT>
    <LINKPOINT x="7935" y="5678">
    </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="233" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="11250" top="5775" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11250" top="5775" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Projection Transform|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="211" srcpinname="Output" dstnodeid="233" dstpinname="Input Node">
    </LINK>
    </PATCH>
