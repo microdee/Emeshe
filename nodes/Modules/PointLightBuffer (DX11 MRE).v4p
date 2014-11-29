@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
-   <PATCH nodename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\modules\PointLightBuffer (DX11 MRE).v4p" systemname="PointLightBuffer (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\PointLightBuffer (DX11 MRE).v4p">
-   <BOUNDS type="Window" left="11685" top="9555" width="9000" height="6000">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\PointLightBuffer (DX11 MRE).v4p" systemname="PointLightBuffer (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\PointLightBuffer (DX11 MRE).v4p" scrollx="0" scrolly="4650">
+   <BOUNDS type="Window" left="12570" top="5700" width="9000" height="6000">
    </BOUNDS>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="2" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Node" left="1245" top="285" width="0" height="0">
@@ -71,7 +71,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1440" top="1485" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="20">
+   <PIN pinname="Y Input Value" slicecount="1" values="3.22">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -121,7 +121,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1680" top="2010" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="1.31">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -165,11 +165,11 @@
    <LINK srcnodeid="10" srcpinname="Color Output" dstnodeid="11" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Node" left="2085" top="3120" width="0" height="0">
+   <BOUNDS type="Node" left="2085" top="3270" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="2085" top="3120" width="795" height="240">
+   <BOUNDS type="Box" left="2085" top="3270" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.99">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -264,4 +264,6 @@
    </LINK>
    <INFO author="microdee" description="packer module for pointlights" tags="">
    </INFO>
+   <PACK Name="addonpack" Version="33.3.0">
+   </PACK>
    </PATCH>

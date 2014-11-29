@@ -57,41 +57,44 @@ struct OutComps
 OutComps pPnt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
-	if(Mask.Sample(s0, uv).r>0.5)
+	Components col = (Components)0;
+	float3 vel = mre_getvelocity(s0,uv);
+	float fe = 0.001;
+	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
 	{
-		Components col = (Components)0;
-		float3 vel = mre_getvelocity(s0,uv);
-		float fe = 0.001;
-		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
-		{
-			float3 wPos = mre_getworldpos(s0,uv);
-			float3 norm = mre_getworldnorm(s0,uv);
-			float3 viewdirv = normalize(mul(float4(wPos,0),tView).xyz);
-			//float3 viewdirv = normalize(wPos);
-			col = PhongPointSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView, DistanceMod);
-		}
-		OutComps outCol = (OutComps)1;
-		
-		outCol.Ambient.xyz = col.Ambient.xyz;
-		outCol.Diffuse.xyz = col.Diffuse.xyz;
-		outCol.Specular.xyz = col.Specular.xyz;
-		outCol.SSS.xyz = col.SSS.xyz;
-		outCol.Rim.xyz = col.Rim.xyz;
-		if(!IsInitial)
-		{
-			outCol.Ambient.xyz = max(outCol.Ambient.xyz,Lights[0].Sample(s0, In.TexCd));
-			outCol.Diffuse.xyz += Lights[1].Sample(s0, In.TexCd);
-			outCol.Specular.xyz += Lights[2].Sample(s0, In.TexCd);
-			outCol.SSS.xyz += Lights[3].Sample(s0, In.TexCd);
-			outCol.Rim.xyz += Lights[4].Sample(s0, In.TexCd);
-		}
-		
-		return outCol;
+		float3 wPos = mre_getworldpos(s0,uv);
+		float3 norm = mre_getworldnorm(s0,uv);
+		float3 viewdirv = normalize(mul(float4(wPos,0),tView).xyz);
+		//float3 viewdirv = normalize(wPos);
+		col = PhongPointSSS(
+			wPos,
+			norm,
+			viewdirv,
+			mre_getmaps(s0,uv).xy,
+			LightCount,
+			mre_getmatid(s0,uv),
+			tView,
+			DistanceMod,
+			Mask.Sample(s0, uv).r
+		);
 	}
-	else
+	OutComps outCol = (OutComps)1;
+	
+	outCol.Ambient.xyz = col.Ambient.xyz;
+	outCol.Diffuse.xyz = col.Diffuse.xyz;
+	outCol.Specular.xyz = col.Specular.xyz;
+	outCol.SSS.xyz = col.SSS.xyz;
+	outCol.Rim.xyz = col.Rim.xyz;
+	if(!IsInitial)
 	{
-		return (OutComps)1;
+		outCol.Ambient.xyz = max(outCol.Ambient.xyz,Lights[0].Sample(s0, In.TexCd));
+		outCol.Diffuse.xyz += Lights[1].Sample(s0, In.TexCd);
+		outCol.Specular.xyz += Lights[2].Sample(s0, In.TexCd);
+		outCol.SSS.xyz += Lights[3].Sample(s0, In.TexCd);
+		outCol.Rim.xyz += Lights[4].Sample(s0, In.TexCd);
 	}
+	
+	return outCol;
 	
 }
 

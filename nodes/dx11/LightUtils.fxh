@@ -59,6 +59,9 @@ struct Components
 StructuredBuffer<MaterialProp> matprop <string uiname="Material Buffer";>;
 StructuredBuffer<PointLightProp> pointlightprop <string uiname="Pointlight Buffer";>;
 StructuredBuffer<SpotLightProp> spotlightprop <string uiname="Spotlight Buffer";>;
+StructuredBuffer<float> MaskID;
+bool UseMask = false;
+bool ZeroBypass = false;
 Texture2DArray SpotTexArray;
 StructuredBuffer<SunLightProp> sunlightprop <string uiname="Sunlight Buffer";>;
 
@@ -87,7 +90,8 @@ Components PhongPointSSS(
     float lightcount,
     float matid,
 	float4x4 tV,
-	float dmod
+	float dmod,
+	float mask
 	)
 {
     float lAtt0 = matprop[matid].Atten.x;
@@ -103,7 +107,8 @@ Components PhongPointSSS(
 
     for(float i = 0; i<lightcount; i++)
     {
-    	if(pointlightprop[i].LightStrength > lEpsilon)
+    	bool valid = (mask == MaskID[i]) || (!UseMask) || ((mask == 0) && ZeroBypass);
+    	if((pointlightprop[i].LightStrength > lEpsilon) && valid)
     	{
 		   	float atten = 0;
 		    float3 amb=0;
