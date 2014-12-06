@@ -21,6 +21,7 @@ cbuffer cbPerObj : register( b1 )
 	float LightCount = 1;
 	float DistanceMod = 1;
 	bool IsInitial = true;
+	float ComponentAmount[5] = {1,1,1,1,1};
 };
 
 struct VS_IN
@@ -80,18 +81,18 @@ OutComps pPnt(vs2ps In)
 	}
 	OutComps outCol = (OutComps)1;
 	
-	outCol.Ambient.xyz = col.Ambient.xyz;
-	outCol.Diffuse.xyz = col.Diffuse.xyz;
-	outCol.Specular.xyz = col.Specular.xyz;
-	outCol.SSS.xyz = col.SSS.xyz;
-	outCol.Rim.xyz = col.Rim.xyz;
+	outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
+	outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
+	outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
+	outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
+	outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
 	if(!IsInitial)
 	{
-		outCol.Ambient.xyz = max(outCol.Ambient.xyz,Lights[0].Sample(s0, In.TexCd));
-		outCol.Diffuse.xyz += Lights[1].Sample(s0, In.TexCd);
-		outCol.Specular.xyz += Lights[2].Sample(s0, In.TexCd);
-		outCol.SSS.xyz += Lights[3].Sample(s0, In.TexCd);
-		outCol.Rim.xyz += Lights[4].Sample(s0, In.TexCd);
+		outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
+		outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
+		outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
+		outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
+		outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
 	}
 	
 	return outCol;
@@ -123,11 +124,19 @@ OutComps pSpt(vs2ps In)
 			col = PhongSpotSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), DistanceMod, tView);
 		}
 		OutComps outCol = (OutComps)1;
-		outCol.Ambient.xyz = col.Ambient.xyz;
-		outCol.Diffuse.xyz = col.Diffuse.xyz;
-		outCol.Specular.xyz = col.Specular.xyz;
-		outCol.SSS.xyz = col.SSS.xyz;
-		outCol.Rim.xyz = col.Rim.xyz;
+		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
+		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
+		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
+		outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
+		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+		if(!IsInitial)
+		{
+			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, In.TexCd).rgb);
+			outCol.Diffuse.rgb += Lights[1].Sample(s0, In.TexCd).rgb;
+			outCol.Specular.rgb += Lights[2].Sample(s0, In.TexCd).rgb;
+			outCol.SSS.rgb += Lights[3].Sample(s0, In.TexCd).rgb;
+			outCol.Rim.rgb += Lights[4].Sample(s0, In.TexCd).rgb;
+		}
 		
 		return outCol;
 	}
@@ -162,11 +171,19 @@ OutComps pSun(vs2ps In)
 			col = PhongSunSSS(norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView);
 		}
 		OutComps outCol = (OutComps)1;
-		outCol.Ambient.xyz = col.Ambient.xyz;
-		outCol.Diffuse.xyz = col.Diffuse.xyz;
-		outCol.Specular.xyz = col.Specular.xyz;
-		outCol.SSS.xyz = col.SSS.xyz;
-		outCol.Rim.xyz = col.Rim.xyz;
+		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
+		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
+		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
+		outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
+		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+		if(!IsInitial)
+		{
+			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, In.TexCd).rgb);
+			outCol.Diffuse.rgb += Lights[1].Sample(s0, In.TexCd).rgb;
+			outCol.Specular.rgb += Lights[2].Sample(s0, In.TexCd).rgb;
+			outCol.SSS.rgb += Lights[3].Sample(s0, In.TexCd).rgb;
+			outCol.Rim.rgb += Lights[4].Sample(s0, In.TexCd).rgb;
+		}
 		
 		return outCol;
 	}

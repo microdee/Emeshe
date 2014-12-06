@@ -9,6 +9,7 @@ Texture2D color : PREVIOUS;
 float ratemulx = 1;
 float ratemuly = 1;
 float seed = 0;
+float colorThreshold = 0.5;
 float Bleeding = 1;
 float Occlusion = 1;
 
@@ -99,7 +100,7 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 
         //COLOR BLEEDING:
 
-        if (length(dcolor2)<0.3)
+        if (length(dcolor2)<colorThreshold)
         {//color threshold
           float3 norm2 = normalize(normal.SampleLevel(s0,uv+coords*rand(uv),0).xyz); 
 

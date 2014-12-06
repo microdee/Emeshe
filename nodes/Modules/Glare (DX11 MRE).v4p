@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="D:\vvvv\app\vvvv_45alpha31.7_x86\packs\Emeshe\nodes\modules\Glare (DX11 MRE).v4p" systemname="Glare (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\Glare (DX11 MRE).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Glare (DX11 MRE).v4p" systemname="Glare (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\Glare (DX11 MRE).v4p" scrollx="4635" scrolly="0">
    <BOUNDS type="Window" left="2355" top="3480" width="14610" height="6000">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
@@ -57,7 +57,9 @@
    </PIN>
    <PIN pinname="Enabled" visible="1">
    </PIN>
-   <PIN pinname="offset" slicecount="1" values="0.4">
+   <PIN pinname="offset" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="ClampOne" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="3" srcpinname="Texture Out" dstnodeid="2" dstpinname="Input Node">
@@ -93,7 +95,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2400" top="465" width="795" height="960">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="4" values="1,1,1,1">
+   <PIN pinname="Y Input Value" slicecount="4" values="0.6,0.6,0.6,0.6">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -223,7 +225,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="9540" top="555" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.49">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -271,7 +273,7 @@
    </PIN>
    <PIN pinname="SampleCenter" slicecount="1" values="0.28">
    </PIN>
-   <PIN pinname="Enabled" visible="1" slicecount="1" values="0">
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Control" visible="1">
    </PIN>
@@ -448,12 +450,14 @@
    </NODE>
    <LINK srcnodeid="23" srcpinname="Texture Out" dstnodeid="37" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="36" srcpinname="Output" dstnodeid="23" dstpinname="Enabled">
-   </LINK>
    <INFO author="microdee" description="" tags="">
    </INFO>
    <PACK Name="testPack" Version="0.1.0">
    </PACK>
    <LINK srcnodeid="33" srcpinname="Texture Out" dstnodeid="23" dstpinname="Control">
    </LINK>
+   <LINK srcnodeid="36" srcpinname="Output" dstnodeid="23" dstpinname="Enabled">
+   </LINK>
+   <PACK Name="addonpack" Version="33.3.0">
+   </PACK>
    </PATCH>
