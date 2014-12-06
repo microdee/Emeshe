@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="60" scrolly="885">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="60" scrolly="120">
    <BOUNDS type="Window" left="13635" top="2010" width="13350" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.3.0">
@@ -197,7 +197,7 @@
    <LINK srcnodeid="62" srcpinname="Output String" dstnodeid="63" dstpinname="Input 2">
    </LINK>
    <NODE systemname="FormatValue (String)" nodename="FormatValue (String)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="5715" top="10020" width="100" height="100">
+   <BOUNDS type="Node" left="5835" top="9900" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -273,7 +273,7 @@
    </BOUNDS>
    <PIN pinname="Table" visible="1" slicecount="1" values="||">
    </PIN>
-   <BOUNDS type="Window" left="0" top="0" width="8085" height="15225">
+   <BOUNDS type="Window" left="0" top="0" width="10005" height="15225">
    </BOUNDS>
    </NODE>
    <NODE systemname="CreateTable (DataTable)" filename="plugins\Table.dll" nodename="CreateTable (DataTable)" componentmode="Hidden" id="75">
@@ -600,4 +600,30 @@
    </NODE>
    <LINK srcnodeid="86" srcpinname="Has Changed" dstnodeid="128" dstpinname="Y Input Value">
    </LINK>
+   <NODE systemname="MRE (DX11)" filename="..\nodes\modules\MRE (DX11).v4p" nodename="MRE (DX11)" componentmode="InAWindow" id="129">
+   <BOUNDS type="Node" left="8670" top="5220" width="1350" height="270">
+   </BOUNDS>
+   <BOUNDS type="Window" left="4950" top="3525" width="21960" height="10995">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CreateEnum (Enumerations)" nodename="CreateEnum (Enumerations)" componentmode="Hidden" id="130">
+   <BOUNDS type="Node" left="5985" top="6480" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Strings" visible="1">
+   </PIN>
+   <PIN pinname="Enum Name" slicecount="1" values="MaterialFeatureFlags">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="MaterialFeatureFlags">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="118" srcpinname="Unique" dstnodeid="130" dstpinname="Strings">
+   </LINK>
+   <NODE systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" id="131">
+   <BOUNDS type="Node" left="8640" top="9735" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Enum" slicecount="1" values="MaterialFeatureFlags">
+   </PIN>
+   <PIN pinname="Receive" slicecount="1" values="Lighting_Phong_SpecularMap">
+   </PIN>
+   </NODE>
    </PATCH>

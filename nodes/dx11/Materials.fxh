@@ -12,16 +12,17 @@
 #define MF_LIGHTING_MATCAP 0x200
 #define MF_LIGHTING_EMISSION 0x400
 #define MF_LIGHTING_EMISSION_MAP 0x800
-#define MF_GI_SSAO 0x1000
-#define MF_GI_CSSGI 0x2000
-#define MF_GI_SSSSS 0x4000
-#define MF_GI_SSSSS_MAP 0x8000
-#define MF_REFLECTION_SPHEREMAP 0x10000
-#define MF_REFLECTION_SSR 0x20000
-#define MF_REFLECTION_MAP 0x40000
-#define MF_REFRACTION_SPHEREMAP 0x80000
-#define MF_REFRACTION_SSR 0x100000
-#define MF_REFRACTION_MAP 0x200000
+#define MF_LIGHTING_SHADOWS 0x1000
+#define MF_GI_SSAO 0x2000
+#define MF_GI_CSSGI 0x4000
+#define MF_GI_SSSSS 0x8000
+#define MF_GI_SSSSS_MAP 0x10000
+#define MF_REFLECTION_SPHEREMAP 0x20000
+#define MF_REFLECTION_SSLR 0x40000
+#define MF_REFLECTION_MAP 0x80000
+#define MF_REFRACTION_SPHEREMAP 0x100000
+#define MF_REFRACTION_SSLR 0x200000
+#define MF_REFRACTION_MAP 0x400000
 
 // Feature Parameters
 #define MF_LIGHTING_AMBIENT_AMBIENTCOLOR_SIZE 3
@@ -72,6 +73,8 @@
 #define MF_LIGHTING_EMISSION_STRENGTH 3
 #define MF_LIGHTING_EMISSION_MAP_MAPID_SIZE 1
 #define MF_LIGHTING_EMISSION_MAP_MAPID 0
+#define MF_LIGHTING_SHADOWS_BLEND_SIZE 1
+#define MF_LIGHTING_SHADOWS_BLEND 0
 #define MF_GI_SSAO_AMOUNTMUL_SIZE 1
 #define MF_GI_SSAO_AMOUNTMUL 0
 #define MF_GI_CSSGI_AMOUNTMUL_SIZE 1
@@ -90,12 +93,14 @@
 #define MF_REFLECTION_SPHEREMAP_FRESNEL 1
 #define MF_REFLECTION_SPHEREMAP_ENVID_SIZE 1
 #define MF_REFLECTION_SPHEREMAP_ENVID 2
-#define MF_REFLECTION_SSR_STRENGTH_SIZE 1
-#define MF_REFLECTION_SSR_STRENGTH 0
-#define MF_REFLECTION_SSR_FRESNEL_SIZE 1
-#define MF_REFLECTION_SSR_FRESNEL 1
-#define MF_REFLECTION_SSR_BLUR_SIZE 1
-#define MF_REFLECTION_SSR_BLUR 2
+#define MF_REFLECTION_SSLR_STRENGTH_SIZE 1
+#define MF_REFLECTION_SSLR_STRENGTH 0
+#define MF_REFLECTION_SSLR_FRESNEL_SIZE 1
+#define MF_REFLECTION_SSLR_FRESNEL 1
+#define MF_REFLECTION_SSLR_BLUR_SIZE 1
+#define MF_REFLECTION_SSLR_BLUR 2
+#define MF_REFLECTION_SSLR_DISTANCE_SIZE 1
+#define MF_REFLECTION_SSLR_DISTANCE 3
 #define MF_REFLECTION_MAP_MAPID_SIZE 1
 #define MF_REFLECTION_MAP_MAPID 0
 #define MF_REFRACTION_SPHEREMAP_STRENGTH_SIZE 1
@@ -104,26 +109,35 @@
 #define MF_REFRACTION_SPHEREMAP_FRESNEL 1
 #define MF_REFRACTION_SPHEREMAP_ENVID_SIZE 1
 #define MF_REFRACTION_SPHEREMAP_ENVID 2
-#define MF_REFRACTION_SSR_STRENGTH_SIZE 1
-#define MF_REFRACTION_SSR_STRENGTH 0
-#define MF_REFRACTION_SSR_FRESNEL_SIZE 1
-#define MF_REFRACTION_SSR_FRESNEL 1
-#define MF_REFRACTION_SSR_BLUR_SIZE 1
-#define MF_REFRACTION_SSR_BLUR 2
+#define MF_REFRACTION_SSLR_STRENGTH_SIZE 1
+#define MF_REFRACTION_SSLR_STRENGTH 0
+#define MF_REFRACTION_SSLR_FRESNEL_SIZE 1
+#define MF_REFRACTION_SSLR_FRESNEL 1
+#define MF_REFRACTION_SSLR_BLUR_SIZE 1
+#define MF_REFRACTION_SSLR_BLUR 2
 #define MF_REFRACTION_MAP_MAPID_SIZE 1
 #define MF_REFRACTION_MAP_MAPID 0
 
-struct MaterialProp
+// Resources:
+#define MF_FLAGSIZE 32
+
+struct MaterialMeta
 {
-	uint Flags;
-	uint Address;
-	uint FeatureStart[32];
-	uint Size;
-};
+	uint Flags; // Features (uint2 if feature count will exceed 32)
+	uint Address; // Where data starts in MaterialData buffer
+	uint Size; // Actual size
+}
+StructuredBuffer<MaterialMeta> MatMeta : MF_MATERIALMETA
 
-StructuredBuffer<MaterialProp> matprop <string uiname="Material MetaData";>;
-StructuredBuffer<float> values <string uiname="Material Values";>;
+// Count = MF_FLAGSIZE * MaterialCount
+// Per-Material Feature offset in MaterialData buffer in bitwise order
+StructuredBuffer<uint> FeatureOffset : MF_FEATUREOFFSET
 
+// Get parameter by
+// MaterialMeta[MatID].Address + FeatureOffset[MatID * MF_FLAGSIZE + FeatureID] + ParamOffset
+StructuredBuffer<float> MaterialData : MF_MATERIALDATA
+
+// Feature methods
 bool CheckFeature(uint Features, uint Filter)
 {
 	return (Features & Filter) == Filter;
@@ -147,11 +161,12 @@ uint FeatureID(uint FeatureFlag)
 	return log(FeatureFlag, 2);
 }
 
+// Get Parameters
 float GetFloat(uint MatID, uint Feature, uint ParamOffset)
 {
-	MaterialProp mp = matprop[MatID]
-	uint pi = mp.Address + mp.FeatureStart[FeatureID(Feature)];
-	return values[pi + ParamOffset];
+	MaterialMeta mp = MatMeta[MatID]
+	uint pi = mp.Address + FeatureOffset[MatID * MF_FLAGSIZE + FeatureID(Feature)];
+	return MaterialData[pi + ParamOffset];
 }
 float2 GetFloat2(uint MatID, uint Feature, uint ParamOffset)
 {

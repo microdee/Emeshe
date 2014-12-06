@@ -17,17 +17,21 @@ struct sDeferredBase
 	int ObjID2;
 };
 
+struct PSOutDepth
+{
+	float4 color : SV_Target0;
+	float4 normalV : SV_Target1;
+	float4 velocity : SV_Target2;
+	float4 matprop : SV_Target3; // UV MatID OID
+	float depth : SV_Depth;
+};
+
 struct PSOut
 {
 	float4 color : SV_Target0;
-	// RGBA
-	float4 normalW : SV_Target1;
-	//XYZ(1)
+	float4 normalV : SV_Target1;
 	float4 velocity : SV_Target2;
-	// XYZ(A)
-	float4 matprop : SV_Target4;
-	// UV MatID OID
-	float position : SV_Depth;
+	float4 matprop : SV_Target3; // UV MatID OID
 };
 
 struct PSProp

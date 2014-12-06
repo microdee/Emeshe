@@ -1,0 +1,243 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Materials.v4p" systemname="Materials" filename="C:\vvvv\libs\Emeshe\girlpower\Materials.v4p" scrollx="1335" scrolly="240">
+   <BOUNDS type="Window" left="4245" top="1350" width="12255" height="8880">
+   </BOUNDS>
+   <PACK Name="addonpack" Version="33.3.0">
+   </PACK>
+   <NODE systemname="MaterialBuffer (DX11 MRE)" filename="..\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" componentmode="Hidden" id="0" nodename="..\nodes\Modules\MaterialBuffer (DX11 MRE).v4p">
+   <BOUNDS type="Node" left="3105" top="900" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3105" top="900" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="7965" top="1995" width="13050" height="11325">
+   </BOUNDS>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Global Update" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Material Buffers" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\Modules\MaterialManager (MRE).v4p" componentmode="Hidden" id="1" nodename="..\nodes\Modules\MaterialManager (MRE).v4p">
+   <BOUNDS type="Node" left="4305" top="2895" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4305" top="2895" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="9225" top="3765" width="13875" height="9825">
+   </BOUNDS>
+   <PIN pinname="Existing Material" slicecount="1" values="Extend">
+   </PIN>
+   <PIN pinname="Material Out" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Construct" slicecount="1" values="0" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="MRE (DX11)" filename="MRE (DX11).v4p" nodename="MRE (DX11)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="1875" top="1590" width="1350" height="270">
+   </BOUNDS>
+   <BOUNDS type="Window" left="4950" top="3525" width="21960" height="10995">
+   </BOUNDS>
+   <PIN pinname="Material Buffers" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" componentmode="Hidden" id="3" nodename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" stayontop="0">
+   <BOUNDS type="Node" left="2895" top="4050" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2895" top="4050" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12210" top="3795" width="13680" height="11805">
+   </BOUNDS>
+   <PIN pinname="Add" slicecount="1" values="0" visible="1">
+   </PIN>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Material Dictionary Thru" visible="1">
+   </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
+   <PIN pinname="Standard Features" slicecount="1" values="Lighting_MatCap">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Material Out" dstnodeid="3" dstpinname="Material">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Material Dictionary" dstnodeid="1" dstpinname="Material Dictionary">
+   </LINK>
+   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\Modules\MaterialManager (MRE).v4p" componentmode="Hidden" id="9" nodename="..\nodes\Modules\MaterialManager (MRE).v4p">
+   <BOUNDS type="Node" left="6465" top="2775" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6465" top="2775" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="2475" top="4845" width="12540" height="8790">
+   </BOUNDS>
+   <PIN pinname="Existing Material">
+   </PIN>
+   <PIN pinname="Material Out" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Construct" slicecount="1" values="0" visible="1">
+   </PIN>
+   <PIN pinname="Material ID" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" componentmode="Hidden" id="8" nodename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" stayontop="0">
+   <BOUNDS type="Node" left="6390" top="4035" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6390" top="4035" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12210" top="3795" width="13680" height="11805">
+   </BOUNDS>
+   <PIN pinname="Add" slicecount="1" values="0" visible="1">
+   </PIN>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary Thru" visible="1">
+   </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
+   <PIN pinname="Standard Features" slicecount="1" values="GI_SSSSS">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Material Out" dstnodeid="8" dstpinname="Material">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Material Dictionary" dstnodeid="9" dstpinname="Material Dictionary">
+   </LINK>
+   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\Modules\MaterialManager (MRE).v4p" componentmode="Hidden" id="11" nodename="..\nodes\Modules\MaterialManager (MRE).v4p">
+   <BOUNDS type="Node" left="8355" top="2715" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8355" top="2715" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="2475" top="4845" width="12540" height="8790">
+   </BOUNDS>
+   <PIN pinname="Existing Material">
+   </PIN>
+   <PIN pinname="Material Out" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Construct" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Material ID" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" componentmode="Hidden" id="10" nodename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" stayontop="0">
+   <BOUNDS type="Node" left="8160" top="3615" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8160" top="3615" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12210" top="3795" width="13680" height="11805">
+   </BOUNDS>
+   <PIN pinname="Add" slicecount="1" values="0" visible="1">
+   </PIN>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary Thru" visible="1">
+   </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
+   <PIN pinname="Standard Features" slicecount="1" values="Lighting_Phong">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Material Out" dstnodeid="10" dstpinname="Material">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Material Dictionary" dstnodeid="11" dstpinname="Material Dictionary">
+   </LINK>
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" componentmode="Hidden" id="12" nodename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" stayontop="0">
+   <BOUNDS type="Node" left="4680" top="4095" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4680" top="4095" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12210" top="3795" width="13680" height="11805">
+   </BOUNDS>
+   <PIN pinname="Add" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary Thru" visible="1">
+   </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
+   <PIN pinname="Standard Features" slicecount="1" values="Lighting_FakeSSS">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Material Out" dstnodeid="12" dstpinname="Material">
+   </LINK>
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" componentmode="Hidden" id="13" nodename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" stayontop="0">
+   <BOUNDS type="Node" left="9105" top="4095" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9105" top="4095" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12210" top="3795" width="13680" height="11805">
+   </BOUNDS>
+   <PIN pinname="Add" slicecount="1" values="0" visible="1">
+   </PIN>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary Thru" visible="1">
+   </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
+   <PIN pinname="Standard Features" slicecount="1" values="Lighting_Phong_SpecularMap">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Material Out" dstnodeid="13" dstpinname="Material">
+   </LINK>
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" componentmode="Hidden" id="14" nodename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" stayontop="0">
+   <BOUNDS type="Node" left="9705" top="4440" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9705" top="4440" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12210" top="3795" width="13680" height="11805">
+   </BOUNDS>
+   <PIN pinname="Add" slicecount="1" values="0" visible="1">
+   </PIN>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary Thru" visible="1">
+   </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
+   <PIN pinname="Standard Features" slicecount="1" values="Lighting_Emission">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Material Out" dstnodeid="14" dstpinname="Material">
+   </LINK>
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" componentmode="Hidden" id="16" nodename="..\nodes\Modules\FeatureManager (MRE.Materials).v4p" stayontop="0">
+   <BOUNDS type="Node" left="10890" top="4950" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10890" top="4950" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12210" top="3795" width="13680" height="11805">
+   </BOUNDS>
+   <PIN pinname="Add" slicecount="1" values="0" visible="1">
+   </PIN>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Material Dictionary Thru" visible="1">
+   </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
+   <PIN pinname="Standard Features" slicecount="1" values="Lighting_Emission_Map">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Material Out" dstnodeid="16" dstpinname="Material">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Material Buffers" dstnodeid="2" dstpinname="Material Buffers">
+   </LINK>
+   </PATCH>
