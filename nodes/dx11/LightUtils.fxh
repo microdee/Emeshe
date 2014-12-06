@@ -40,6 +40,9 @@ struct Components
 
 StructuredBuffer<PointLightProp> pointlightprop <string uiname="Pointlight Buffer";>;
 StructuredBuffer<SpotLightProp> spotlightprop <string uiname="Spotlight Buffer";>;
+StructuredBuffer<float> MaskID;
+bool UseMask = false;
+bool ZeroBypass = false;
 Texture2DArray SpotTexArray;
 StructuredBuffer<SunLightProp> sunlightprop <string uiname="Sunlight Buffer";>;
 
@@ -68,7 +71,8 @@ Components PhongPointSSS(
     float lightcount,
     float matid,
 	float4x4 tV,
-	float dmod
+	float dmod,
+	float mask
 	)
 {
     float3 lAtt = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_ATTENUATION)
@@ -85,7 +89,8 @@ Components PhongPointSSS(
 
     for(float i = 0; i<lightcount; i++)
     {
-    	if(pointlightprop[i].LightStrength > lEpsilon)
+    	bool valid = (mask == MaskID[i]) || (!UseMask) || ((mask == 0) && ZeroBypass);
+    	if((pointlightprop[i].LightStrength > lEpsilon) && valid)
     	{
 		   	float atten = 0;
 		    float3 amb=0;
@@ -122,6 +127,16 @@ Components PhongPointSSS(
 	            spec = pows(max(dot(R, V),0), lPower*.2) * lSpec * lCol;
 	        }
 	    	
+<<<<<<< HEAD
+=======
+	    	// SSS
+			indirectLightComponent = (float3)(materialThickness * max(0, dot(-NormV, LightDirW)));
+			indirectLightComponent += materialThickness * halfLambert(-V, LightDirW);
+			indirectLightComponent.rgb *= atten *  matprop[matid].SSSExtCoeff.rgb * SpecSSSMap.y;
+			rim = saturate(1-abs(dot(NormV, LightDirW)))*saturate(dot(NormV,V));
+			rim = pows(rim, matprop[matid].RimLPower) * matprop[matid].RimLAmount * lCol;
+			float rangeFSSS = pow(saturate((lRange*matprop[matid].SSSPower-d)/(lRange*matprop[matid].SSSPower)),dmod*.9*pointlightprop[i].RangePow);
+>>>>>>> master
 	    	
 	    	outc.Diffuse += diff * rangeF;
 	    	outc.Specular += spec * rangeF;

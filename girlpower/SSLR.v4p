@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\CSSGI.v4p" systemname="CSSGI" filename="C:\vvvv\libs\Emeshe\girlpower\CSSGI.v4p" scrollx="0" scrolly="11280">
-   <BOUNDS type="Window" left="2850" top="4875" width="12555" height="10305">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SSLR.v4p" systemname="SSRR" filename="C:\vvvv\libs\Emeshe\girlpower\SSRR.v4p" scrollx="0" scrolly="13635">
+   <BOUNDS type="Window" left="14670" top="2835" width="12555" height="10305">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.3.0">
    </PACK>
@@ -91,9 +91,9 @@
    </PIN>
    <PIN pinname="Color" visible="1">
    </PIN>
-   <PIN pinname="View" visible="1" slicecount="1" values="||">
+   <PIN pinname="View" visible="1">
    </PIN>
-   <PIN pinname="Projection" visible="1" slicecount="1" values="||">
+   <PIN pinname="Projection" visible="1">
    </PIN>
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -124,6 +124,38 @@
    </NODE>
    <LINK srcnodeid="8" srcpinname="Input Value" dstnodeid="7" dstpinname="Texture SizeXY">
    </LINK>
+   <NODE systemname="Camera (Transform microdee)" filename="..\..\mcropack\nodes\modules\Camera (Transform microdee).v4p" nodename="Camera (Transform microdee)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="3315" top="12465" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   <PIN pinname="Mouse" visible="1">
+   </PIN>
+   <PIN pinname="Keyboard" visible="1">
+   </PIN>
+   <PIN pinname="Initial Distance" visible="1">
+   </PIN>
+   <PIN pinname="Initial Interest" visible="1">
+   </PIN>
+   <PIN pinname="Initial Rotation" visible="1">
+   </PIN>
+   <PIN pinname="Transition Speed" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Near Plane" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Far Plane" slicecount="1" values="50">
+   </PIN>
+   <PIN pinname="FOV" visible="1">
+   </PIN>
+   <PIN pinname="InvertY" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="View" dstnodeid="7" dstpinname="View">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Projection" dstnodeid="7" dstpinname="Projection">
+   </LINK>
    <NODE systemname="Phong (MRE Advanced)" filename="..\nodes\modules\Phong (MRE Advanced).v4p" nodename="Phong (MRE Advanced)" componentmode="Hidden" id="12">
    <BOUNDS type="Node" left="5955" top="16095" width="100" height="100">
    </BOUNDS>
@@ -137,7 +169,7 @@
    </PIN>
    <PIN pinname="Technique" slicecount="1" values="Point">
    </PIN>
-   <PIN pinname="View" visible="1" slicecount="1" values="||">
+   <PIN pinname="View" visible="1">
    </PIN>
    <PIN pinname="Pointlight Buffer" visible="1">
    </PIN>
@@ -145,6 +177,8 @@
    </PIN>
    <BOUNDS type="Window" left="10635" top="2430" width="13830" height="10005">
    </BOUNDS>
+   <PIN pinname="UseMask" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <NODE systemname="CompositeLight (MRE)" filename="..\nodes\modules\CompositeLight (MRE).v4p" nodename="CompositeLight (MRE)" componentmode="Hidden" id="13">
    <BOUNDS type="Node" left="3075" top="15180" width="100" height="100">
@@ -250,6 +284,10 @@
    <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
+   <LINK srcnodeid="19" srcpinname="Input Value" dstnodeid="11" dstpinname="Mouse">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Input Value" dstnodeid="11" dstpinname="Keyboard">
+   </LINK>
    <NODE systemname="Scale (Transform Vector)" nodename="Scale (Transform Vector)" componentmode="Hidden" id="21">
    <BOUNDS type="Node" left="3210" top="8115" width="100" height="100">
    </BOUNDS>
@@ -258,6 +296,8 @@
    <PIN pinname="XYZ" slicecount="3" values="0.01,0.01,0.01">
    </PIN>
    </NODE>
+   <LINK srcnodeid="11" srcpinname="View" dstnodeid="12" dstpinname="View">
+   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="23" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5985" top="7590" width="795" height="720">
    </BOUNDS>
@@ -299,14 +339,14 @@
    </PIN>
    <PIN pinname="Shadows" visible="1">
    </PIN>
-   <PIN pinname="Temporal Reprojection" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Blur" slicecount="1" values="1">
+   <PIN pinname="Temporal Reprojection" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="7" srcpinname="Depth Buffer" dstnodeid="24" dstpinname="Depth Buffer">
    </LINK>
    <LINK srcnodeid="7" srcpinname="Channels" dstnodeid="24" dstpinname="Channels">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Projection" dstnodeid="24" dstpinname="Projection">
    </LINK>
    <NODE systemname="FileName (File Split)" nodename="FileName (File Split)" componentmode="Hidden" id="51">
    <BOUNDS type="Node" left="2310" top="765" width="100" height="100">
@@ -342,6 +382,8 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    </NODE>
+   <LINK srcnodeid="54" srcpinname="Y Output Value" dstnodeid="11" dstpinname="Initial Distance">
+   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="55" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7035" top="11775" width="795" height="720">
    </BOUNDS>
@@ -358,6 +400,8 @@
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
    </NODE>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="11" dstpinname="Initial Interest">
+   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="56" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7995" top="11775" width="795" height="720">
    </BOUNDS>
@@ -374,6 +418,8 @@
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
    </NODE>
+   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="11" dstpinname="Initial Rotation">
+   </LINK>
    <NODE systemname="TextureRouter (Assimp)" filename="..\..\mcropack\nodes\modules\TextureRouter (Assimp).v4p" componentmode="Hidden" id="62" nodename="..\..\mcropack\nodes\Modules\TextureRouter (Assimp).v4p">
    <BOUNDS type="Node" left="2175" top="2325" width="100" height="100">
    </BOUNDS>
@@ -551,7 +597,7 @@
    </BOUNDS>
    <PIN pinname="Texture In" visible="1">
    </PIN>
-   <PIN pinname="FOV" visible="1" slicecount="1" values="0.14">
+   <PIN pinname="FOV" visible="1">
    </PIN>
    <PIN pinname="Channels" visible="1">
    </PIN>
@@ -562,6 +608,8 @@
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
+   <LINK srcnodeid="11" srcpinname="FOV" dstnodeid="95" dstpinname="FOV">
+   </LINK>
    <NODE systemname="PerfMeter (DX11.Debug)" filename="%VVVV%\packs\dx11\nodes\modules\PerfMeter (DX11.Debug).v4p" nodename="PerfMeter (DX11.Debug)" componentmode="Hidden" id="109">
    <BOUNDS type="Node" left="5040" top="26265" width="100" height="100">
    </BOUNDS>
@@ -673,7 +721,7 @@
    </PIN>
    <PIN pinname="Amount" visible="1">
    </PIN>
-   <PIN pinname="FOV" visible="1" slicecount="1" values="0.14">
+   <PIN pinname="FOV" visible="1">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
@@ -687,7 +735,7 @@
    </PIN>
    <PIN pinname="Amount" visible="1">
    </PIN>
-   <PIN pinname="FOV" visible="1" slicecount="1" values="0.14">
+   <PIN pinname="FOV" visible="1">
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="0">
    </PIN>
@@ -699,9 +747,9 @@
    <LINK srcnodeid="124" srcpinname="Channels Out" dstnodeid="123" dstpinname="Channels">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="125" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="7170" top="20700" width="795" height="240">
+   <BOUNDS type="Box" left="7185" top="20835" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7170" top="20700" width="0" height="0">
+   <BOUNDS type="Node" left="7185" top="20835" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.25">
    </PIN>
@@ -715,6 +763,10 @@
    <LINK srcnodeid="125" srcpinname="Y Output Value" dstnodeid="123" dstpinname="Amount">
    </LINK>
    <LINK srcnodeid="125" srcpinname="Y Output Value" dstnodeid="124" dstpinname="Amount">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="FOV" dstnodeid="124" dstpinname="FOV">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="FOV" dstnodeid="123" dstpinname="FOV">
    </LINK>
    <LINK srcnodeid="123" srcpinname="Texture Out" dstnodeid="93" dstpinname="Texture In">
    </LINK>
@@ -834,6 +886,8 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
+   <LINK srcnodeid="131" srcpinname="Y Output Value" dstnodeid="11" dstpinname="InvertY">
+   </LINK>
    <NODE systemname="Quad (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Layer)" componentmode="Hidden" id="10">
    <BOUNDS type="Node" left="4140" top="25890" width="100" height="100">
    </BOUNDS>
@@ -1198,23 +1252,65 @@
    </NODE>
    <LINK srcnodeid="185" srcpinname="Y Output Value" dstnodeid="183" dstpinname="Force Update">
    </LINK>
-   <NODE systemname="PackCamera (Transform)" filename="..\..\mcropack\nodes\modules\PackCamera (Transform).v4p" componentmode="Hidden" id="186" nodename="..\..\mcropack\nodes\Modules\PackCamera (Transform).v4p">
+   <NODE systemname="PackCamera (Transform)" filename="..\..\mcropack\nodes\Modules\PackCamera (Transform).v4p" componentmode="Hidden" id="186" nodename="..\..\mcropack\nodes\Modules\PackCamera (Transform).v4p">
    <BOUNDS type="Node" left="1095" top="13215" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="1095" top="13215" width="4800" height="3600">
    </BOUNDS>
    <BOUNDS type="Window" left="16005" top="5895" width="9000" height="6000">
    </BOUNDS>
-   <PIN pinname="View" visible="1" slicecount="1" values="||">
+   <PIN pinname="View" visible="1">
    </PIN>
    <PIN pinname="Projection" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
+   <LINK srcnodeid="11" srcpinname="View" dstnodeid="186" dstpinname="View">
+   </LINK>
    <LINK srcnodeid="7" srcpinname="Projection Transform" dstnodeid="186" dstpinname="Projection">
    </LINK>
    <LINK srcnodeid="186" srcpinname="Output" dstnodeid="24" dstpinname="Camera">
+   </LINK>
+   <NODE systemname="SSLR (DX11.TextureFX)" filename="..\nodes\texture11\SSLR.tfx" nodename="SSLR (DX11.TextureFX)" componentmode="Hidden" id="187">
+   <BOUNDS type="Node" left="3510" top="20175" width="2400" height="270">
+   </BOUNDS>
+   <PIN pinname="Technique" slicecount="1" values="sslr">
+   </PIN>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="tP" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="texpad_albedoXYZW" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="ViewMap" visible="1">
+   </PIN>
+   <PIN pinname="Normal" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="zFar" slicecount="1" values="10">
+   </PIN>
+   <PIN pinname="zNear" slicecount="1" values="0.1">
+   </PIN>
+   <PIN pinname="maxDelta" slicecount="1" values="0.14">
+   </PIN>
+   <PIN pinname="fade" slicecount="1" values="0.96">
+   </PIN>
+   <PIN pinname="Depth" visible="1">
+   </PIN>
+   <PIN pinname="StepsCount" visible="1" slicecount="1" values="35">
+   </PIN>
+   <PIN pinname="Threshold" slicecount="1" visible="1" values="2.73">
+   </PIN>
+   <PIN pinname="StepSize" slicecount="1" values="0.01">
+   </PIN>
+   <PIN pinname="UvScaleXY" visible="1">
+   </PIN>
+   <PIN pinname="tV" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="24" srcpinname="Texture Out" dstnodeid="187" dstpinname="Texture In">
    </LINK>
    <NODE systemname="Unzip (Transform)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (Transform)" componentmode="Hidden" id="188">
    <BOUNDS type="Node" left="795" top="18150" width="100" height="100">
@@ -1258,10 +1354,26 @@
    </NODE>
    <LINK srcnodeid="7" srcpinname="Channels" dstnodeid="191" dstpinname="Input Node">
    </LINK>
+   <LINK srcnodeid="190" srcpinname="Output Node" dstnodeid="187" dstpinname="ViewMap">
+   </LINK>
+   <NODE systemname="Preview (DX11.Texture)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Preview (DX11.Texture)" componentmode="InAWindow" id="192">
+   <BOUNDS type="Node" left="1860" top="20970" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1860" top="20970" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="17985" top="6195" width="6240" height="5085">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Show Alpha" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Background Color" slicecount="1" values="|0.49815,0.49815,0.49815,1.00000|">
+   </PIN>
+   </NODE>
    <NODE systemname="Blend (DX11.TextureFX)" filename="%VVVV%\packs\dx11\nodes\texture11\Mixer\Blend.tfx" nodename="Blend (DX11.TextureFX)" componentmode="Hidden" id="193">
    <BOUNDS type="Node" left="3060" top="21240" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Texture In 2" visible="1" slicecount="1" values="||">
+   <PIN pinname="Texture In 2" visible="1">
    </PIN>
    <PIN pinname="Texture In" visible="1">
    </PIN>
@@ -1274,6 +1386,8 @@
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
+   <LINK srcnodeid="187" srcpinname="Texture Out" dstnodeid="193" dstpinname="Texture In 2">
+   </LINK>
    <LINK srcnodeid="24" srcpinname="Texture Out" dstnodeid="193" dstpinname="Texture In">
    </LINK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="195">
@@ -1293,6 +1407,8 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="193" srcpinname="Texture Out" dstnodeid="123" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Depth Buffer" dstnodeid="187" dstpinname="Depth">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="196" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5985" top="18510" width="795" height="240">
@@ -1326,74 +1442,94 @@
    </NODE>
    <LINK srcnodeid="197" srcpinname="Y Output Value" dstnodeid="191" dstpinname="Index">
    </LINK>
-   <NODE systemname="ColorBleeding (DX11 MRE)" filename="..\nodes\modules\ColorBleeding (DX11 MRE).v4p" nodename="ColorBleeding (DX11 MRE)" componentmode="Hidden" id="205">
-   <BOUNDS type="Node" left="3525" top="20055" width="100" height="100">
+   <NODE systemname="Inverse (Transform)" nodename="Inverse (Transform)" componentmode="Hidden" id="198">
+   <BOUNDS type="Node" left="2130" top="18465" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="199" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4725" top="19620" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4725" top="19620" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="128">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="199" srcpinname="Y Output Value" dstnodeid="187" dstpinname="StepsCount">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="200" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5535" top="20805" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5535" top="20805" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1,1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="200" srcpinname="Y Output Value" dstnodeid="187" dstpinname="UvScaleXY">
+   </LINK>
+   <NODE systemname="ScalarOperation (DX11.TextureFX)" filename="..\..\mcropack\nodes\texture11\ScalarOperation.tfx" nodename="ScalarOperation (DX11.TextureFX)" componentmode="Hidden" id="201">
+   <BOUNDS type="Node" left="1305" top="20085" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1">
    </PIN>
-   <PIN pinname="UnLit" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Channels" visible="1">
-   </PIN>
-   <PIN pinname="Depth" visible="1">
-   </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="13695" top="1065" width="13815" height="11310">
-   </BOUNDS>
+   <PIN pinname="ScalarXYZW" slicecount="4" values="0,0,0,0">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="24" srcpinname="Texture Out" dstnodeid="205" dstpinname="Texture In">
+   <LINK srcnodeid="191" srcpinname="Output Node" dstnodeid="201" dstpinname="Texture In">
    </LINK>
-   <LINK srcnodeid="7" srcpinname="Channels" dstnodeid="205" dstpinname="Channels">
+   <LINK srcnodeid="201" srcpinname="Texture Out" dstnodeid="192" dstpinname="Texture In">
    </LINK>
-   <LINK srcnodeid="7" srcpinname="Depth Buffer" dstnodeid="205" dstpinname="Depth">
-   </LINK>
-   <LINK srcnodeid="205" srcpinname="Texture Out" dstnodeid="193" dstpinname="Texture In 2">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="206" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4605" top="11190" width="795" height="240">
+   <NODE systemname="Perspective (Transform)" nodename="Perspective (Transform)" componentmode="Hidden" id="202">
+   <BOUNDS type="Node" left="1995" top="17850" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Node" left="4605" top="11190" width="0" height="0">
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="FOV" slicecount="1" values="0.18">
+   </PIN>
+   </NODE>
+   <NODE systemname="Transpose (Transform)" nodename="Transpose (Transform)" componentmode="Hidden" id="203">
+   <BOUNDS type="Node" left="450" top="19575" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.14">
+   <PIN pinname="Source" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="188" srcpinname="Output 3" dstnodeid="203" dstpinname="Source">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="204" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7650" top="19770" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7650" top="19770" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    </NODE>
-   <NODE systemname="Camera (Transform microdee)" filename="..\..\mcropack\nodes\modules\Camera (Transform microdee).v4p" nodename="Camera (Transform microdee)" componentmode="Hidden" id="207">
-   <BOUNDS type="Node" left="3315" top="12465" width="100" height="100">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="207" srcpinname="View" dstnodeid="7" dstpinname="View">
+   <LINK srcnodeid="204" srcpinname="Y Output Value" dstnodeid="187" dstpinname="Threshold">
    </LINK>
-   <LINK srcnodeid="207" srcpinname="Projection" dstnodeid="7" dstpinname="Projection">
+   <LINK srcnodeid="188" srcpinname="Output 4" dstnodeid="187" dstpinname="tP">
    </LINK>
-   <LINK srcnodeid="19" srcpinname="Input Value" dstnodeid="207" dstpinname="Mouse">
+   <LINK srcnodeid="188" srcpinname="Output 2" dstnodeid="187" dstpinname="tV">
    </LINK>
-   <LINK srcnodeid="20" srcpinname="Input Value" dstnodeid="207" dstpinname="Keyboard">
-   </LINK>
-   <LINK srcnodeid="207" srcpinname="View" dstnodeid="12" dstpinname="View">
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Y Output Value" dstnodeid="207" dstpinname="Initial Distance">
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="207" dstpinname="Initial Interest">
-   </LINK>
-   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="207" dstpinname="Initial Rotation">
-   </LINK>
-   <LINK srcnodeid="207" srcpinname="FOV" dstnodeid="95" dstpinname="FOV">
-   </LINK>
-   <LINK srcnodeid="207" srcpinname="FOV" dstnodeid="124" dstpinname="FOV">
-   </LINK>
-   <LINK srcnodeid="207" srcpinname="FOV" dstnodeid="123" dstpinname="FOV">
-   </LINK>
-   <LINK srcnodeid="131" srcpinname="Y Output Value" dstnodeid="207" dstpinname="InvertY">
-   </LINK>
-   <LINK srcnodeid="207" srcpinname="View" dstnodeid="186" dstpinname="View">
-   </LINK>
-   <LINK srcnodeid="206" srcpinname="Y Output Value" dstnodeid="207" dstpinname="Initial FOV">
-   </LINK>
-   <LINK srcnodeid="7" srcpinname="Color" dstnodeid="205" dstpinname="UnLit">
+   <LINK srcnodeid="191" srcpinname="Output Node" dstnodeid="187" dstpinname="Normal">
    </LINK>
    </PATCH>

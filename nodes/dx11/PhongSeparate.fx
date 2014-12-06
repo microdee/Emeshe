@@ -21,6 +21,7 @@ cbuffer cbPerObj : register( b1 )
 	float LightCount = 1;
 	float DistanceMod = 1;
 	bool IsInitial = true;
+	float ComponentAmount[5] = {1,1,1,1,1};
 };
 
 struct VS_IN
@@ -57,8 +58,12 @@ struct OutComps
 OutComps pPnt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
-	if(Mask.Sample(s0, uv).r>0.5)
+	Components col = (Components)0;
+	float3 vel = mre_getvelocity(s0,uv);
+	float fe = 0.001;
+	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
 	{
+<<<<<<< HEAD
 		Components col = (Components)0;
 		float3 vel = mre_getvelocity(s0,uv);
 		if(mre_getdepthstencil(Sampler, uv).y > 0)
@@ -86,11 +91,41 @@ OutComps pPnt(vs2ps In)
 		}
 		
 		return outCol;
+=======
+		float3 wPos = mre_getworldpos(s0,uv);
+		float3 norm = mre_getworldnorm(s0,uv);
+		float3 viewdirv = normalize(mul(float4(wPos,0),tView).xyz);
+		//float3 viewdirv = normalize(wPos);
+		col = PhongPointSSS(
+			wPos,
+			norm,
+			viewdirv,
+			mre_getmaps(s0,uv).xy,
+			LightCount,
+			mre_getmatid(s0,uv),
+			tView,
+			DistanceMod,
+			Mask.Sample(s0, uv).r
+		);
+>>>>>>> master
 	}
-	else
+	OutComps outCol = (OutComps)1;
+	
+	outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
+	outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
+	outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
+	outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
+	outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+	if(!IsInitial)
 	{
-		return (OutComps)1;
+		outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
+		outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
+		outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
+		outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
+		outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
 	}
+	
+	return outCol;
 	
 }
 
@@ -118,11 +153,19 @@ OutComps pSpt(vs2ps In)
 			col = PhongSpotSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), DistanceMod, tView);
 		}
 		OutComps outCol = (OutComps)1;
-		outCol.Ambient.xyz = col.Ambient.xyz;
-		outCol.Diffuse.xyz = col.Diffuse.xyz;
-		outCol.Specular.xyz = col.Specular.xyz;
-		outCol.SSS.xyz = col.SSS.xyz;
-		outCol.Rim.xyz = col.Rim.xyz;
+		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
+		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
+		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
+		outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
+		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+		if(!IsInitial)
+		{
+			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, In.TexCd).rgb);
+			outCol.Diffuse.rgb += Lights[1].Sample(s0, In.TexCd).rgb;
+			outCol.Specular.rgb += Lights[2].Sample(s0, In.TexCd).rgb;
+			outCol.SSS.rgb += Lights[3].Sample(s0, In.TexCd).rgb;
+			outCol.Rim.rgb += Lights[4].Sample(s0, In.TexCd).rgb;
+		}
 		
 		return outCol;
 	}
@@ -156,11 +199,19 @@ OutComps pSun(vs2ps In)
 			col = PhongSunSSS(norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView);
 		}
 		OutComps outCol = (OutComps)1;
-		outCol.Ambient.xyz = col.Ambient.xyz;
-		outCol.Diffuse.xyz = col.Diffuse.xyz;
-		outCol.Specular.xyz = col.Specular.xyz;
-		outCol.SSS.xyz = col.SSS.xyz;
-		outCol.Rim.xyz = col.Rim.xyz;
+		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
+		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
+		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
+		outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
+		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+		if(!IsInitial)
+		{
+			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, In.TexCd).rgb);
+			outCol.Diffuse.rgb += Lights[1].Sample(s0, In.TexCd).rgb;
+			outCol.Specular.rgb += Lights[2].Sample(s0, In.TexCd).rgb;
+			outCol.SSS.rgb += Lights[3].Sample(s0, In.TexCd).rgb;
+			outCol.Rim.rgb += Lights[4].Sample(s0, In.TexCd).rgb;
+		}
 		
 		return outCol;
 	}

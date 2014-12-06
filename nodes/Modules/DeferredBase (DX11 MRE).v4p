@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="1785" scrolly="210">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="1785" scrolly="6330">
    <BOUNDS type="Window" left="7740" top="3030" width="16695" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -875,7 +875,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4020" top="5265" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="3.16">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.1.dtd" >
-   <PATCH nodename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\modules\PointLightBuffer (MRE Server).v4p" systemname="PointLightBuffer (MRE Server)" filename="C:\DM\DigitalMirror\Nodes\Modules\mre.mdmod.dx11\PointLightBuffer (MRE Server).v4p">
-   <BOUNDS type="Window" left="4425" top="8745" width="9000" height="6000">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\PointLightBuffer (MRE Server).v4p" systemname="PointLightBuffer (MRE Server)" filename="C:\DM\DigitalMirror\Nodes\Modules\mre.mdmod.dx11\PointLightBuffer (MRE Server).v4p" scrollx="1200" scrolly="675">
+   <BOUNDS type="Window" left="10200" top="2295" width="9000" height="6000">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="14" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="1275" top="3765" width="0" height="0">
@@ -12,26 +12,10 @@
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5040" top="4125" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="5040" top="4125" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="7260" top="3105" width="480" height="480">
+   <BOUNDS type="Box" left="7560" top="3105" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="7260" top="3105" width="0" height="0">
+   <BOUNDS type="Node" left="7560" top="3105" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
@@ -45,7 +29,7 @@
    </PIN>
    </NODE>
    <NODE systemname="DynamicBuffer (DX11.Buffer PointLightProp)" filename="plugins\DX11.BufferDeferredBaseBuffer\DX11.BufferDeferredBaseBuffer.csproj" nodename="DynamicBuffer (DX11.Buffer PointLightProp)" componentmode="Hidden" id="17">
-   <BOUNDS type="Node" left="3720" top="3555" width="1395" height="270">
+   <BOUNDS type="Node" left="5430" top="3555" width="1395" height="270">
    </BOUNDS>
    <PIN pinname="PositionXYZ" visible="1">
    </PIN>
@@ -62,28 +46,8 @@
    </NODE>
    <LINK srcnodeid="17" srcpinname="Buffer" dstnodeid="14" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="17" srcpinname="Is Valid" dstnodeid="15" dstpinname="Y Input Value">
-   </LINK>
    <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Apply">
    </LINK>
-   <NODE systemname="PointLightServer (PointLightManager)" filename="plugins\DX11.BufferDeferredBaseBuffer\DX11.BufferDeferredBaseBuffer.csproj" nodename="PointLightServer (PointLightManager)" componentmode="Hidden" id="18">
-   <BOUNDS type="Node" left="3270" top="2955" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="PositionXYZ" visible="1">
-   </PIN>
-   <PIN pinname="Range" visible="1">
-   </PIN>
-   <PIN pinname="Range Power" visible="1">
-   </PIN>
-   <PIN pinname="Light Color" visible="1">
-   </PIN>
-   <PIN pinname="Light Strength" visible="1">
-   </PIN>
-   <PIN pinname="Custom" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3270" top="690" width="480" height="480">
    </BOUNDS>
@@ -101,29 +65,17 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Clear">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="18" dstpinname="Clear">
-   </LINK>
-   <LINK srcnodeid="18" srcpinname="PositionXYZ" dstnodeid="17" dstpinname="PositionXYZ">
-   </LINK>
-   <LINK srcnodeid="18" srcpinname="Range" dstnodeid="17" dstpinname="Range">
-   </LINK>
-   <LINK srcnodeid="18" srcpinname="Range Power" dstnodeid="17" dstpinname="Range Power">
-   </LINK>
-   <LINK srcnodeid="18" srcpinname="Light Color" dstnodeid="17" dstpinname="Color" linkstyle="PolyLine">
-   </LINK>
-   <LINK srcnodeid="18" srcpinname="Light Strength" dstnodeid="17" dstpinname="Strength">
-   </LINK>
    <NODE systemname="Count (String)" nodename="Count (String)" componentmode="Hidden" id="20">
-   <BOUNDS type="Node" left="5280" top="3195" width="100" height="100">
+   <BOUNDS type="Node" left="4350" top="2220" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Count" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="18" srcpinname="Custom" dstnodeid="20" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="20" srcpinname="Count" dstnodeid="17" dstpinname="Element Count">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="21" systemname="IOBox (Node)">
@@ -133,9 +85,9 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Output">
    </PIN>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="18" srcpinname="Output" dstnodeid="21" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="2160" top="3420" width="795" height="240">
    </BOUNDS>
@@ -154,4 +106,216 @@
    </LINK>
    <INFO author="microdee" description="packer module for pointlight server" tags="">
    </INFO>
+   <PACK Name="addonpack" Version="33.3.0">
+   </PACK>
+   <NODE systemname="Construct (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Construct (VObjectCollection)" componentmode="Hidden" id="31">
+   <BOUNDS type="Node" left="5265" top="1575" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Construct" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="33">
+   <BOUNDS type="Node" left="5265" top="1065" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Bang" visible="1">
+   </PIN>
+   <PIN pinname="Simulate" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="33" srcpinname="Bang" dstnodeid="31" dstpinname="Construct">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5280" top="285" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5280" top="285" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="34" srcpinname="Y Output Value" dstnodeid="33" dstpinname="Simulate">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="35" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="6225" top="1155" width="1275" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6225" top="1155" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="PointLights">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="31" dstpinname="Name">
+   </LINK>
+   <NODE systemname="PrimitiveObject (Split)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="36">
+   <BOUNDS type="Node" left="5250" top="2520" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" slicecount="1" values="|Vector3D Position, float Range, float RangePow, Color LightCol, float Strength, int MaskID|">
+   </PIN>
+   <PIN pinname="Primitive Template" visible="1">
+   </PIN>
+   <PIN pinname="Primitive Object" visible="1">
+   </PIN>
+   <PIN pinname="PositionXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Range" visible="1">
+   </PIN>
+   <PIN pinname="RangePow" visible="1">
+   </PIN>
+   <PIN pinname="LightCol" visible="1">
+   </PIN>
+   <PIN pinname="Strength" visible="1">
+   </PIN>
+   <PIN pinname="MaskID" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="PrimitiveTemplate (PrimitiveObject)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveTemplate (PrimitiveObject)" componentmode="Hidden" id="37">
+   <BOUNDS type="Node" left="7530" top="2055" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Configuration" visible="1">
+   </PIN>
+   <PIN pinname="Template Name" visible="1">
+   </PIN>
+   <PIN pinname="Update" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="38" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="8160" top="1080" width="6150" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8160" top="1080" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|Vector3D Position, float Range, float RangePow, Color LightCol, float Strength, int MaskID|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|string Foo|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="38" srcpinname="Output String" dstnodeid="37" dstpinname="Configuration">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="39" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="7515" top="1650" width="1095" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7515" top="1650" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="PointLight">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="Template">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="39" srcpinname="Output String" dstnodeid="37" dstpinname="Template Name">
+   </LINK>
+   <LINK srcnodeid="39" srcpinname="Output String" dstnodeid="36" dstpinname="Primitive Template">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="40" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8985" top="1590" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8985" top="1590" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="40" srcpinname="Y Output Value" dstnodeid="37" dstpinname="Update">
+   </LINK>
+   <NODE systemname="ToSpread (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="ToSpread (VObjectCollection)" componentmode="Hidden" id="41">
+   <BOUNDS type="Node" left="5250" top="1965" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Output" dstnodeid="41" dstpinname="Source">
+   </LINK>
+   <NODE systemname="Info (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (VObjectCollection)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="3840" top="1785" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Name" visible="1">
+   </PIN>
+   <PIN pinname="Children" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Output" dstnodeid="42" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="Output" dstnodeid="36" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="PositionXYZ" dstnodeid="17" dstpinname="PositionXYZ">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Range" dstnodeid="17" dstpinname="Range">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="RangePow" dstnodeid="17" dstpinname="Range Power">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="LightCol" dstnodeid="17" dstpinname="Color">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Strength" dstnodeid="17" dstpinname="Strength">
+   </LINK>
+   <NODE systemname="Remove (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Remove (VObjectCollection)" componentmode="Hidden" id="43">
+   <BOUNDS type="Node" left="4920" top="5175" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Parent" visible="1">
+   </PIN>
+   <PIN pinname="Remove" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Output" dstnodeid="43" dstpinname="Parent">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="43" dstpinname="Remove">
+   </LINK>
+   <LINK srcnodeid="31" srcpinname="Output" dstnodeid="21" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="Children" dstnodeid="20" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="45" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8310" top="3735" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8310" top="3735" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="MaskID">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="36" srcpinname="MaskID" dstnodeid="45" dstpinname="Y Input Value">
+   </LINK>
    </PATCH>

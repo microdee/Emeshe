@@ -1,0 +1,95 @@
+
+#include "ColorSpace.fxh"
+
+Texture2D ViewMap;
+Texture2D<float> Depth;
+Texture2D Normal;
+Texture2D ColorTex : PREVIOUS;
+
+float4x4 tP;
+float4x4 tV;
+float zFar = 100.0;
+float2 UvScale = 1;   
+float zNear = 0.1;
+float StepSize = 0.02;
+float Threshold = 0.001;
+float StepsCount = 35;    // Quality. With too match value may 
+                        // be problem on non-nvidia cards
+                                
+float fade = 1.1;       // Fade out reflection
+
+float2 R : TARGETSIZE;
+
+SamplerState s0 <string uiname="Sampler";>
+{
+    Filter=MIN_MAG_MIP_LINEAR;
+    AddressU=Border;
+    AddressV=Border;
+	BorderColor=float4(0,0,0,0);
+};
+
+float Join(float a, float b)
+{
+	uint ab = f32tof16(a);
+	uint bb = f32tof16(b);
+	bb = bb << 16;
+	uint ret = ab | bb;
+	return asfloat(ret);
+}
+float2 Split(float a)
+{
+	uint2 ret = 0;
+	ret.x = f16tof32(asuint(a));
+	ret.y = f16tof32(asuint(a) >> 16);
+	return asfloat(ret);
+}
+float3 GetUV (float3 position)
+{
+     float4 pvp = mul(float4(position, 1.0), tP) ; 
+     //pvp .xy = float2 ( 0.5, 0.5) + float2 ( 0.5, - 0.5) * pvp.xy / pvp.w ; 
+     pvp .xy = float2 ( 0.5, 0.5) + float2 ( 0.25, -0.25) * (pvp.xy/pvp.w) * UvScale; 
+     return float3 ( pvp.xy , pvp.z / pvp.w ) ; 
+}
+float4 RayCast(float3 StartPos, float3 Direction)
+{
+	float3 raypos = 0;
+	float2 nuv = -1;
+	float sL = zFar/StepsCount;
+	float L = 0;
+	bool Found = false;
+	float4 outcol = 0;
+	
+	for(float i = 0; i < StepsCount; i++)
+	{
+		L += sL;
+		raypos = StartPos + Direction * L;
+		float2 uv = GetUV(raypos).xy;
+		float3 vPos = ViewMap.SampleLevel(s0,uv,0).xyz;
+		float vDepth = Depth.SampleLevel(s0,uv,0);
+		float d = raypos.z - vPos.z;
+		//float d = distance(raypos, vPos.z);
+		if(d <= 0)
+		{
+			nuv = float2(uv.x,uv.y);
+			break;
+		}
+	}
+	float3 cnuv = ColorTex.SampleLevel(s0,nuv,0).rgb;
+	return float4(cnuv, L);
+}
+
+float4 SSLR(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+{
+    float3 N = normalize(Normal.SampleLevel(s0, uv, 0).xyz);
+    float3 P = ViewMap.SampleLevel(s0, uv, 0).xyz;
+    float3 V = normalize(P);
+    float3 R = normalize(reflect(V, N));
+    float4 ocolor = RayCast(P, R);
+	ocolor.a = 1;
+    return ocolor;
+}
+
+technique11 sslr{
+    pass P0
+    {SetPixelShader(CompileShader(ps_5_0,SSLR()));}
+}
