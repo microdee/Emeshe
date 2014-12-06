@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ColorBleeding (DX11 MRE).v4p" systemname="ColorBleeding (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ColorBleeding (DX11 MRE).v4p" scrollx="30" scrolly="0">
+   <PATCH nodename="C:\Users\Intel\Desktop\MG-3-PUMA-CES\Libraries\vvvv_45beta33.3_x64\packs\Emeshe\nodes\modules\ColorBleeding (DX11 MRE).v4p" systemname="ColorBleeding (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ColorBleeding (DX11 MRE).v4p" scrollx="0" scrolly="555">
    <BOUNDS type="Window" left="945" top="3510" width="13815" height="11310">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.3.0">
@@ -628,8 +628,6 @@
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="16" srcpinname="XY" dstnodeid="42" dstpinname="Texture SizeXY">
-   </LINK>
    <LINK srcnodeid="42" srcpinname="Texture Out" dstnodeid="4" dstpinname="Texture In">
    </LINK>
    <NODE systemname="Integrate (Differential)" nodename="Integrate (Differential)" componentmode="Hidden" id="43">
@@ -679,7 +677,7 @@
    </PIN>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Smooth" slicecount="1" values="0.06" visible="1">
+   <PIN pinname="Smooth" slicecount="1" visible="1" values="0.06">
    </PIN>
    <PIN pinname="DiffThreshold" slicecount="1" visible="1" values="0.06">
    </PIN>
@@ -1059,5 +1057,19 @@
    <LINK srcnodeid="71" srcpinname="Y Output Value" dstnodeid="12" dstpinname="colorThreshold">
    </LINK>
    <LINK srcnodeid="71" srcpinname="Y Output Value" dstnodeid="56" dstpinname="colorThreshold">
+   </LINK>
+   <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="72">
+   <BOUNDS type="Node" left="3675" top="8160" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="XY" dstnodeid="72" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="72" srcpinname="Output" dstnodeid="42" dstpinname="Texture SizeXY">
    </LINK>
    </PATCH>
