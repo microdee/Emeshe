@@ -1,0 +1,12 @@
+#include "MRE.fxh"
+Texture2D tex0: PREVIOUS;
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+float4 pMIX(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return float4(GetUV(x, R), 0, 1);
+}
+
+
+technique10 Mix{pass P1{SetPixelShader(CompileShader(ps_4_0,pMIX()));}}

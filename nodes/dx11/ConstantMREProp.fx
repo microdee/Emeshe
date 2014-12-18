@@ -1,202 +1,139 @@
 //@author: microdee
+#include "MREForward.fxh"
 
-#import "MREForward.fxh"
-
-//
 Texture2D DiffTex;
 Texture2D BumpTex;
 StructuredBuffer<sDeferredBase> InstancedParams;
-bool DistanceToPoint = false;
-float3 CamPos : CAMPOS;
 
 cbuffer cbPerDraw : register( b0 )
 {
-	float4x4 tW : WORLD;
 	float4x4 tV : VIEW;
-	float4x4 tVI : VIEWINVERSE;
 	float4x4 tP : PROJECTION;
 	float4x4 tVP : VIEWPROJECTION;
-	float4x4 NormTr;
+	float3 CamPos : CAM_POSITION;
+	float3 NearFarPow : NEARFARDEPTHPOW;
+};
+
+cbuffer cbPerObject : register( b1 )
+{
+	float4x4 tW : WORLD;
 	float4x4 tTex;
 	float4 FDiffColor <bool color=true;> = 1;
-	bool isTriPlanar = false;
-	float TriPlanarPow = 1;
 	float alphatest = 0.5;
 	float FBumpAmount = 0;
 	float bumpOffset = 0;
-	bool InstanceFromGeomFX = false;
-};
-
-struct VSin
-{
-	float4 PosO : POSITION;
-	float3 NormO : NORMAL;
-	float2 TexCd : TEXCOORD0;
-	uint vid : SV_VertexID;
-};
-struct VSinst
-{
-	float4 PosO : POSITION;
-	float3 NormO : NORMAL;
-	float2 TexCd : TEXCOORD0;
-	float4 velocity : COLOR0;
-	uint vid : SV_VertexID;
-};
-
-struct vs2ps
-{
-    float4 PosWVP: SV_POSITION;
-	float4 TexCd: TEXCOORD0;
-    float4 PosW: TEXCOORD1;
-    float3 NormW: NORMAL;
-};
-struct vs2psinst
-{
-    float4 PosWVP: SV_POSITION;
-	float4 TexCd: TEXCOORD0;
-    float4 PosW: TEXCOORD1;
-    float3 NormW: NORMAL;
-    nointerpolation float ii: TEXCOORD2;
+	float TriPlanarPow = 1;
 };
 
 vs2ps VS(VSin In)
 {
-    //inititalize all fields of output struct with 0
+    // inititalize
     vs2ps Out = (vs2ps)0;
-	
-	float4 dispPos = In.PosO;
-	float3 dispNorm = In.NormO;
-	
-	float4x4 w = tW;
-    Out.NormW = normalize(mul(dispNorm, w).xyz);
-    Out.PosW = mul(dispPos, w);
-	
-	if(isTriPlanar) Out.TexCd = dispPos;
-	else Out.TexCd = mul(float4(In.TexCd,0,1), tTex);
-	
-    float4 PosWV = mul(Out.PosW, tV);
-    Out.PosWVP = mul(PosWV, tP);
-	
-    return Out;
-}
-vs2psinst VSInst(VSinst In)
-{
-    //inititalize all fields of output struct with 0
-    vs2psinst Out = (vs2psinst)0;
-	float ii = In.velocity.w;
+	// get Instance ID from GeomFX
+	#if defined(IID_FROM_GEOM) && defined(HAS_GEOMVELOCITY)
+		float ii = In.velocity.w;
+	#else
+		float ii = In.iid;
+	#endif
 	Out.ii = ii;
 	
-	float4x4 tT = (InstanceFromGeomFX) ? mul(InstancedParams[ii].tTex,tTex) : tTex;
+	// TexCoords
+	#if defined(INSTANCING)
+		float4x4 tT = mul(InstancedParams[ii].tTex,tTex);
+		float4x4 w = mul(InstancedParams[ii].tW,tW);
+	#else
+		float4x4 tT = tTex;
+		float4x4 w = tW;
+	#endif
+	
+    Out.NormW = normalize(mul(float4(In.NormO,0), w).xyz);
+    #if defined(HAS_NORMALMAP)
+    	Out.Tangent = normalize(mul(float4(In.Tangent,0), w).xyz);
+    	Out.Binormal = normalize(mul(float4(In.Binormal,0), w).xyz);
+    #endif
 	
 	float4 dispPos = In.PosO;
-	float3 dispNorm = In.NormO;
 	
-	if(isTriPlanar) Out.TexCd = dispPos;
-	else Out.TexCd = mul(float4(In.TexCd,0,1), tT);
+    float4 PosW = mul(dispPos, w);
 	
-	float4x4 w = (InstanceFromGeomFX) ? mul(InstancedParams[ii].tW,tW) : tW;
-    Out.NormW = normalize(mul(dispNorm, w).xyz);
-    Out.PosW = mul(dispPos, w);
-    float4 PosWV = mul(Out.PosW, tV);
+	#if defined(TRIPLANAR)
+		Out.TexCd = mul(float4(dispPos),tT);
+	#elif defined(HAS_TEXCOORD)
+		Out.TexCd = mul(float4(In.TexCd.xy,0,1), tT);
+	#else
+		Out.TexCd = 0;
+	#endif
+	
+    float4 PosWV = mul(PosW, tV);
+    Out.PosV = PosWV;
     Out.PosWVP = mul(PosWV, tP);
+
+	Out.velocity = 0;
 	
     return Out;
 }
 
-PSProp PS_Tex(vs2ps In)
-{	
-	float3 posWb = In.PosW.xyz;
-
-	PSProp Out = (PSProp)0;
-	float3 normWb = In.NormW;
-	float2 itexcd = In.TexCd.xy;
-	itexcd.x *= -1;
-	float2 uvb = float2(0,0);
-	uvb = In.TexCd.xy;
-	
-	//float combinedDist = dFromVerts.x * dFromVerts.y * dFromVerts.z;
-	
-	float depth = FBumpAmount;
-	float mdepth = BumpTex.Sample(Sampler, uvb).r;
-	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow).r;
-	
-	if(depth!=0) posWb += In.NormW * mdepth * (-1*pow(depth,.5));
-	
-	float alphat = 1;
-	float alphatt = DiffTex.Sample( Sampler, uvb).a * FDiffColor.a;
-	if(isTriPlanar) alphatt = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow) * FDiffColor.a;
-	alphat = alphatt;
-	if(alphatest!=0)
-	{
-		alphat = lerp(alphatt, (alphatt>=alphatest), min(alphatest*10,1));
-		if(alphat < (1-alphatest)) discard;
-	}
-	
-	Out.positionW.xyz = posWb;
-	Out.positionW.a = alphat;
-	
-	float4 posout = mul(float4(posWb,1),tVP);
-	
-	if(DistanceToPoint) Out.CamDistance = length(posWb-CamPos)/posout.w;
-	else Out.CamDistance = posout.z/posout.w;
-	
-    return Out;
-}
-
-PSProp PS_Inst(vs2psinst In)
-{	
+PSProp PS(vs2ps In)
+{
 	float ii = In.ii;
-	float3 posWb = In.PosW.xyz;
+	float3 PosV = In.PosV.xyz;
 
 	PSProp Out = (PSProp)0;
-	float3 normWb = In.NormW;
-	float2 itexcd = In.TexCd.xy;
-	itexcd.x *= -1;
-	float2 uvb = float2(0,0);
-	uvb = In.TexCd.xy;
-	float4x4 tT = (InstanceFromGeomFX) ? mul(InstancedParams[ii].tTex,tTex) : tTex;
+	float3 NormW = In.NormW;
 	
-	//float combinedDist = dFromVerts.x * dFromVerts.y * dFromVerts.z;
+	float2 uvb = In.TexCd.xy;
 	
-	float bmpam = (InstanceFromGeomFX) ? InstancedParams[ii].BumpAmount*FBumpAmount : FBumpAmount;
+	#if defined(INSTANCING)
+		float bmpam = InstancedParams[ii].BumpAmount * FBumpAmount;
+	#else
+		float bmpam = FBumpAmount;
+	#endif
+
 	float depth = bmpam;
-	float mdepth = BumpTex.Sample(Sampler, uvb).r;
-	if(isTriPlanar) mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, tT, TriPlanarPow).r;
-	if(depth!=0) posWb += In.NormW * mdepth * (-1*pow(depth,.5));
+	#if defined(TRIPLANAR)
+		float mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow).r + bumpOffset;
+	#else
+		float mdepth = BumpTex.Sample(Sampler, uvb).r + bumpOffset;
+	#endif
 	
-	float alphat = 1;
-	float alphatt = DiffTex.Sample( Sampler, uvb).a * FDiffColor.a;
-	if(isTriPlanar) alphatt = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, tTex, TriPlanarPow) * FDiffColor.a;
-	alphat = alphatt;
-	if(alphatest!=0)
-	{
-		alphat = lerp(alphatt, (alphatt>=alphatest), min(alphatest*10,1));
-		if(alphat < (1-alphatest)) discard;
-	}
+	if(depth!=0) PosV += In.NormW * mdepth * -1*depth;
+
+    #if defined(HAS_NORMALMAP)
+    	float3 normmap = NormalTex.Sample(Sampler, uvb).xyz*2-1;
+		float3 outnorm = normalize(normmap.x * In.Tangent + normmap.y * In.Binormal + normmap.z * In.NormW);
+		Out.normalW = float4(outnorm,1);
+	#else
+		Out.normalW = float4(NormW,1);
+	#endif
+
+	#if defined(ALPHATEST)
+		if(alphatest!=0)
+		{
+			#if defined(TRIPLANAR)
+				float4 diffcol = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow);
+			#else
+		    	float4 diffcol = DiffTex.Sample( Sampler, uvb);
+			#endif
+			float alphat = diffcol.a * FDiffColor.a;
+			alphat = lerp(alphat, (alphat>=alphatest), min(alphatest*10,1));
+			clip(alphat - (1-alphatest));
+		}
+	#endif
 	
-	Out.positionW.xyz = posWb;
-	Out.positionW.a = alphat;
-	
-	float4 posout = mul(float4(posWb,1),tVP);
-	
-	Out.CamDistance = posout.z/posout.w;
+	float d = distance(PosV.xyz, CamPos);
+	d -= NearFarPow.x;
+	d /= abs(NearFarPow.y - NearFarPow.x);
+	d = pows(d, NearFarPow.z);
+	Out.depth = saturate(d);
 	
     return Out;
 }
+
 technique10 DeferredProp
 {
 	pass P0
 	{
 		SetVertexShader( CompileShader( vs_4_0, VS() ) );
-		SetPixelShader( CompileShader( ps_4_0, PS_Tex() ) );
-	}
-}
-
-technique10 DeferredPropInstanced
-{
-	pass P0
-	{
-		SetVertexShader( CompileShader( vs_4_0, VSInst() ) );
-		SetPixelShader( CompileShader( ps_4_0, PS_Inst() ) );
+		SetPixelShader( CompileShader( ps_4_0, PS() ) );
 	}
 }

@@ -1,8 +1,8 @@
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
-Texture2D NoiseTex <string uiname="Noise";>;
 
 #define PI 3.14159265358979
+//#include "Materials.fxh"
 #include "MRE.fxh"
 
 float2 ScreenSize:TARGETSIZE;
@@ -14,11 +14,7 @@ cbuffer controls:register(b0){
 	float Bias = 0;
 	float SelfOcclusion = 0;
 	float Blur = 1;
-	float BlurPerfectorRadius = 0.23;
-	float BlurPerfectorThreshold = 0.42;
 	float FOV = 0;
-	float NoiseAmount = 0;
-	float farval = 100;
 };
 
 SamplerState s0 <bool visible=false;string uiname="Sampler";>
@@ -26,7 +22,7 @@ SamplerState s0 <bool visible=false;string uiname="Sampler";>
 	Filter=MIN_MAG_MIP_POINT;
 	AddressU=WRAP;
 	AddressV=WRAP;
-	MipLODBias = -1;
+	MipLODBias = 0;
 };
 
 float CorrectRad()
@@ -38,19 +34,20 @@ float CorrectRad()
 
 float3 getPosition(in float2 uv)
 {
-	float3 poso = Chns[MRE_VIEWPOS].SampleLevel(s0,uv,0).xyz;
-	if((poso.x == 0) && (poso.y == 0) && (poso.z == 0)) poso = float3(uv,farval);
-	return poso + (NoiseTex.Sample(s0, uv).xyz - .5) * NoiseAmount;
+	float3 poso = GetViewPos(s0, uv);
+	return poso;
 }
 
 float3 getNormal(in float2 uv)
 {
-	float3 normo = Chns[MRE_VIEWNORM].Sample(s0, uv).xyz;
-	return normalize(normo + (NoiseTex.Sample(s0, uv).xyz - .5) * NoiseAmount);
+	float3 normo = Normals.Sample(s0, uv).xyz;
+	return normo;
 }
 
 float getRandom(in float2 uv)
-{	return ((frac(uv.x * (ScreenSize.x/2.0))*0.25)+(frac(uv.y*(ScreenSize.y/2.0))*0.5));	}
+{
+	return ((frac(uv.x * (ScreenSize.x/2.0))*0.25)+(frac(uv.y*(ScreenSize.y/2.0))*0.5));
+}
 
 float doAmbientOcclusion(in float2 tcoord,in float2 uv, in float3 p, in float3 cnorm)
 {
@@ -80,21 +77,21 @@ float4 SSAO(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
   float3 n = getNormal(uv);
   float rand = getRandom(uv);
 
-  float ao = 0.0;
+  float ao = 0;
   float rad = (SampleRadius * CorrectRad())/p.z;
   //**SSAO Calculation**//
 
-  for (int j = 0; j < 14; ++j)
+  for (float j = 0; j < 14; ++j)
   {
-    float3 coord = vec[j]*rad*rand;
+    float3 coord = vec[j]*rad /**rand*/;
     coord.y = ScreenSize.y-coord.y;
-    ao += doAmbientOcclusion(uv,coord*InvScreenSize*2000.0, p, n )/2;
+    ao += doAmbientOcclusion(uv,coord*InvScreenSize*10, p, n )/2;
   }
-  for (int j = 0; j < 14; ++j)
+  for (float j = 0; j < 14; ++j)
   {
-    float3 coord = vec[j]*rad*.5*rand;
+    float3 coord = vec[j]*rad*.5/**rand*/;
     coord.y = ScreenSize.y-coord.y;
-    ao += doAmbientOcclusion(uv,coord*InvScreenSize*2000.0, p, n )/2;
+    ao += doAmbientOcclusion(uv,coord*InvScreenSize*10, p, n )/2;
   }
   ao/=8;
   ao+=SelfOcclusion;
@@ -116,8 +113,8 @@ float4 SSAOBlur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
   float4 n = float4(getNormal(uv),1);
 
   float3 ao = PrevTex.Sample(s0,uv).xyz;
-  int samples = 1;
-  for (int k=0;k<3;k++){
+  float samples = 1;
+  for (float k=0;k<3;k++){
      float2 tcoord = uv+float2(vec[k].x*InvScreenSize.x*Blur,vec[k].y*InvScreenSize.y*Blur);
      ao+=PrevTex.Sample(s0,tcoord).xyz;
      samples++;
@@ -132,58 +129,19 @@ float4 SSAOBlur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 float4 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
 	return PrevTex.SampleLevel(s0,x,0);
 }
-
-float4 pBLURPERF(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
-	float lod=log2(max(ScreenSize.x,ScreenSize.y));
-    float kk=1;
-    float4 cc=PrevTex.SampleLevel(s0,x,1);
-	float4 c=cc;
-	float2 w=BlurPerfectorRadius/28*ScreenSize/max(ScreenSize.x,ScreenSize.y);
-	//w*=pow(.002,pow(length(tex0.SampleLevel(s0,x,3).xyz-tex0.SampleLevel(s0,x,2).xyz),.5));
-    for (float i=0;i<1;i+=1./16){
-    	float2 off=sqrt(i+.05)*sin((i*3.5+float2(0,.25))*acos(-1)*2);
-        float4 nc=PrevTex.SampleLevel(s0,x+off*w,0);
-    	float k=pow(smoothstep(BlurPerfectorThreshold,0,distance(nc.rgb,cc.rgb)),.5);
-    	c+=nc*k;
-        kk+=k;
-    }
-    c=c/kk;
-	if(kk<2)c=cc;
-	c.a=cc.a;
-    return c;
-}
-
 float4 pMUL(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
 	return float4(PrevTex.Sample(s0,x).rgb * ColorTex.Sample(s0,x).rgb,ColorTex.Sample(s0,x).a);
 }
-
+/*
+float4 pMUL(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	return float4(getNormal(x),1);
+}
+*/
 technique10 SSAOt{
 	pass P0
 	{SetPixelShader(CompileShader(ps_4_0,SSAO()));}
 	pass P1
 	{SetPixelShader(CompileShader(ps_4_0,SSAOBlur()));}
 	pass P2
-	{SetPixelShader(CompileShader(ps_4_0,pMUL()));}
-}
-technique10 SSAOx1BlurPerf{
-	pass P0
-	{SetPixelShader(CompileShader(ps_4_0,SSAO()));}
-	pass P1
-	{SetPixelShader(CompileShader(ps_4_0,SSAOBlur()));}
-	pass P2<bool mips=true;>
-	{SetPixelShader(CompileShader(ps_4_0,pBLURPERF()));}
-	pass P3
-	{SetPixelShader(CompileShader(ps_4_0,pMUL()));}
-}
-technique10 SSAOx2BlurPerf{
-	pass P0
-	{SetPixelShader(CompileShader(ps_4_0,SSAO()));}
-	pass P1
-	{SetPixelShader(CompileShader(ps_4_0,SSAOBlur()));}
-	pass P2<bool mips=true;>
-	{SetPixelShader(CompileShader(ps_4_0,pBLURPERF()));}
-	pass P3
-	{SetPixelShader(CompileShader(ps_4_0,pBLURPERF()));}
-	pass P4
 	{SetPixelShader(CompileShader(ps_4_0,pMUL()));}
 }

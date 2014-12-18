@@ -1,5 +1,23 @@
+#if !defined(POWS_FXH)
+	#include "pows.fxh"
+#endif
+#if !defined(BITWISE_FXH)
+	#include "bitwise.fxh"
+#endif
 
-#import "pows.fxh"
+#define MREFORWARD_FXH 1
+/*
+	optional defines:
+	HAS_TEXCOORD
+	HAS_GEOMVELOCITY
+	HAS_NORMALMAP
+	WRITEDEPTH
+	TRIPLANAR
+	IID_FROM_GEOM
+	INSTANCING
+	ALPHATEST
+*/
+
 struct sDeferredBase
 {
 	float4x4 tW;
@@ -17,13 +35,37 @@ struct sDeferredBase
 	int ObjID2;
 };
 
-struct PSOutDepth
+struct VSin
 {
-	float4 color : SV_Target0;
-	float4 normalV : SV_Target1;
-	float4 velocity : SV_Target2;
-	float4 matprop : SV_Target3; // UV MatID OID
-	float depth : SV_Depth;
+	float4 PosO : POSITION;
+	float3 NormO : NORMAL;
+	#if defined(HAS_TEXCOORD)
+		float4 TexCd: TEXCOORD0;
+	#endif
+	#if defined(HAS_GEOMVELOCITY)
+		float4 velocity : COLOR0;
+	#endif
+	#if defined(HAS_NORMALMAP)
+		float3 Tangent : TANGENT;
+		float3 Binormal : BINORMAL;
+	#endif
+	uint vid : SV_VertexID;
+	uint iid : SV_InstanceID;
+};
+
+struct vs2ps
+{
+    float4 PosWVP: SV_Position;
+    float4 PosV: VIEWPOS;
+	float4 TexCd: TEXCOORD0;
+    float3 NormV: NORMAL;
+    float3 NormW: WORLDNORMAL;
+    nointerpolation float ii: INSTANCEID;
+	float4 velocity : COLOR0;
+	#if defined(HAS_NORMALMAP)
+		float3 Tangent : TANGENT;
+		float3 Binormal : BINORMAL;
+	#endif
 };
 
 struct PSOut
@@ -31,15 +73,16 @@ struct PSOut
 	float4 color : SV_Target0;
 	float4 normalV : SV_Target1;
 	float4 velocity : SV_Target2;
-	float4 matprop : SV_Target3; // UV MatID OID
+	uint4 matprop : SV_Target3; // UV MatID OID
+	#if defined(WRITEDEPTH)
+		float depth : SV_Depth;
+	#endif
 };
 
 struct PSProp
 {
-	float4 positionW : SV_Target;
-	//XYZ(1)
-	float CamDistance : SV_Depth;
-	//XYZ(1)
+	float4 normalW : SV_Target;
+	float depth : SV_Depth;
 };
 
 SamplerState Sampler
@@ -49,12 +92,11 @@ SamplerState Sampler
     AddressV = MIRROR;
 };
 
-float2 TriPlanar(float3 pos, float3 norm, float4x4 tT, float tpow)
+float2 TriPlanar(float3 pos, float3 norm, float tpow)
 {
-	float3 post = mul(float4(pos,1),tT).xyz;
-	float2 uvxy = post.xy;
-	float2 uvxz = post.xz;
-	float2 uvyz = post.yz;
+	float2 uvxy = pos.xy;
+	float2 uvxz = pos.xz;
+	float2 uvyz = pos.yz;
 	float3 uxy = {0,0,1};
 	float3 uxz = {0,1,0};
 	float3 uyz = {1,0,0};
@@ -68,12 +110,11 @@ float2 TriPlanar(float3 pos, float3 norm, float4x4 tT, float tpow)
 	float2 uv = uvxy*d.x + uvxz*d.y + uvyz*d.z;
 	return uv;
 }
-float4 TriPlanarSample(Texture2D tex, SamplerState s0, float3 pos, float3 norm, float4x4 tT, float tpow)
+float4 TriPlanarSample(Texture2D tex, SamplerState s0, float3 pos, float3 norm, float tpow)
 {
-	float3 post = mul(float4(pos,1),tT).xyz;
-	float2 uvxy = post.xy;
-	float2 uvxz = post.xz;
-	float2 uvyz = post.yz;
+	float2 uvxy = pos.xy;
+	float2 uvxz = pos.xz;
+	float2 uvyz = pos.yz;
 	float4 colxy = tex.Sample(s0, uvxy);
 	float4 colxz = tex.Sample(s0, uvxz);
 	float4 colyz = tex.Sample(s0, uvyz);

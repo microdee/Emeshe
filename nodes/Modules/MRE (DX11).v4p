@@ -1,9 +1,9 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="300" scrolly="720">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="3720">
    <BOUNDS type="Window" left="4950" top="3525" width="21960" height="10995">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="2520" top="3240" width="100" height="100">
+   <BOUNDS type="Node" left="2520" top="5490" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
@@ -27,9 +27,9 @@
    <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Layer In">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="3" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Node" left="1635" top="1590" width="0" height="0">
+   <BOUNDS type="Node" left="1635" top="4590" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="1635" top="1590" width="285" height="240">
+   <BOUNDS type="Box" left="1635" top="4590" width="285" height="240">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="4">
    </PIN>
@@ -115,9 +115,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="11" systemname="IOBox (Node)">
-   <BOUNDS type="Node" left="12675" top="3990" width="0" height="0">
+   <BOUNDS type="Node" left="13275" top="3990" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="12675" top="3990" width="795" height="240">
+   <BOUNDS type="Box" left="13275" top="3990" width="795" height="240">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|RenderTarget Query|">
    </PIN>
@@ -125,7 +125,7 @@
    </PIN>
    </NODE>
    <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="12">
-   <BOUNDS type="Node" left="2760" top="1515" width="100" height="100">
+   <BOUNDS type="Node" left="2760" top="2265" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -135,7 +135,7 @@
    </PIN>
    </NODE>
    <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="15">
-   <BOUNDS type="Node" left="3345" top="2400" width="100" height="100">
+   <BOUNDS type="Node" left="3345" top="3450" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -145,9 +145,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="17" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="3315" top="1095" width="0" height="0">
+   <BOUNDS type="Node" left="3315" top="1845" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="3315" top="1095" width="1095" height="240">
+   <BOUNDS type="Box" left="3315" top="1845" width="1095" height="240">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" values="PREVIOUSVIEW">
    </PIN>
@@ -161,9 +161,9 @@
    <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="12" dstpinname="Semantic">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="18" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="3090" top="1905" width="0" height="0">
+   <BOUNDS type="Node" left="3090" top="2955" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="3090" top="1905" width="1605" height="240">
+   <BOUNDS type="Box" left="3090" top="2955" width="1605" height="240">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" values="PREVIOUSPROJECTION">
    </PIN>
@@ -177,7 +177,7 @@
    <LINK srcnodeid="18" srcpinname="Output String" dstnodeid="15" dstpinname="Semantic">
    </LINK>
    <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="19">
-   <BOUNDS type="Node" left="6150" top="1785" width="100" height="100">
+   <BOUNDS type="Node" left="7395" top="2535" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In 2" visible="1" slicecount="1" values="||">
    </PIN>
@@ -197,13 +197,23 @@
    <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="19" dstpinname="Transform In 1">
    </LINK>
    <NODE systemname="Cons (DX11.RenderSemantic)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.RenderSemantic)" componentmode="Hidden" id="51">
-   <BOUNDS type="Node" left="2760" top="2685" width="100" height="100">
+   <BOUNDS type="Node" left="2760" top="4335" width="1890" height="270">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="6">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
+   </PIN>
+   <PIN pinname="Input 4" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Input 5" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Input 6" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="12" srcpinname="Output" dstnodeid="51" dstpinname="Input 1">
@@ -213,7 +223,7 @@
    <LINK srcnodeid="51" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics">
    </LINK>
    <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="112">
-   <BOUNDS type="Node" left="7020" top="1290" width="100" height="100">
+   <BOUNDS type="Node" left="2760" top="1440" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -225,7 +235,7 @@
    <NODE id="113" systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden">
    <PIN pinname="Transform In" visible="1">
    </PIN>
-   <BOUNDS type="Node" left="6150" top="2190" width="100" height="100">
+   <BOUNDS type="Node" left="7395" top="2940" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
@@ -255,7 +265,7 @@
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <BOUNDS type="Node" left="1635" top="3750" width="6990" height="270">
+   <BOUNDS type="Node" left="1635" top="6300" width="6990" height="270">
    </BOUNDS>
    <PIN pinname="Buffers" visible="1">
    </PIN>
@@ -304,40 +314,6 @@
    </LINK>
    <INFO author="microdee" description="main mre rendertarget" tags="">
    </INFO>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="172" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14865" top="2370" width="240" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="14865" top="2370" width="4260" height="975">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 Color&tab;&tab;R&tab;G&tab;B&tab;A&cr;&lf;1 ViewNormals&tab;X&tab;Y&tab;Z&cr;&lf;2 Velocity&tab;&tab;X &tab;Y&tab;Z&cr;&lf;3 Material&tab;&tab;U&tab;V&tab;MatID&tab;ObjID|">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   <PIN pinname="Font" slicecount="1" values="|Lucida Sans Unicode|">
-   </PIN>
-   <PIN pinname="Size" slicecount="1" values="7">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="171" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14850" top="2025" width="765" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="14850" top="2025" width="1200" height="360">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="Targets">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   <PIN pinname="Size" slicecount="1" values="12">
-   </PIN>
-   </NODE>
    <PACK Name="testPack" Version="0.1.0">
    </PACK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -347,9 +323,9 @@
    <LINK srcnodeid="20" srcpinname="Transform Out" dstnodeid="19" dstpinname="Transform In 2">
    </LINK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="210">
-   <BOUNDS type="Node" left="10935" top="1395" width="100" height="100">
+   <BOUNDS type="Node" left="10845" top="555" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="10935" top="1395" width="480" height="480">
+   <BOUNDS type="Box" left="10845" top="555" width="480" height="480">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Boolean">
    </PIN>
@@ -411,9 +387,9 @@
    <LINK srcnodeid="214" srcpinname="Transform Out" dstnodeid="211" dstpinname="Input 2">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="233" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="9480" top="4875" width="795" height="240">
+   <BOUNDS type="Box" left="9480" top="8025" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9480" top="4875" width="0" height="0">
+   <BOUNDS type="Node" left="9480" top="8025" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Camera">
    </PIN>
@@ -421,11 +397,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="235" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14850" top="4170" width="240" height="270">
+   <BOUNDS type="Node" left="14850" top="3270" width="240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14850" top="4170" width="4740" height="1185">
+   <BOUNDS type="Box" left="14850" top="3270" width="5130" height="1380">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 MRE_COLOR&tab;R&tab;G&tab;B&tab;A&cr;&lf;1 MRE_NORMALS&tab;X&tab;Y&tab;Z&cr;&lf;2 MRE_VELOCITY&tab;X &tab;Y&tab;Z&cr;&lf;3 MRE_MATERIAL&tab;U&tab;V&tab;MatID&tab;ObjID&cr;&lf;4 MRE_DEPTH&tab;D24_UNorm_S8_Uint|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 MRE_COLOR&tab;R&tab;G&tab;B&tab;A&tab;Type&cr;&lf;1 MRE_NORMALS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;2 MRE_VELOCITY&tab;X &tab;Y&tab;Z&tab;&tab;float16&cr;&lf;3 MRE_MATERIAL&tab;U (f16)&tab;V (f16)&tab;MatID&tab;ObjID&tab;Uint16&cr;&lf;4 MRE_DEPTH&tab;D24_UNorm_S8_Uint&cr;&lf;5 MRE_STENCIL&tab;uint4|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -435,11 +411,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="234" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14835" top="3825" width="765" height="270">
+   <BOUNDS type="Node" left="14835" top="2925" width="765" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14835" top="3825" width="1200" height="360">
+   <BOUNDS type="Box" left="14835" top="2925" width="2175" height="330">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="GBuffer">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="GBuffer/Targets">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -451,17 +427,21 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="237" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="1230" top="2340" width="1755" height="240">
+   <BOUNDS type="Box" left="420" top="4905" width="1860" height="990">
    </BOUNDS>
-   <BOUNDS type="Node" left="1230" top="2340" width="0" height="0">
+   <BOUNDS type="Node" left="420" top="4905" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="R16G16B16A16_Float">
+   <PIN pinname="Input Enum" slicecount="4" visible="1" values="R16G16B16A16_Float,R16G16B16A16_Float,R16G16B16A16_Float,R16G16B16A16_UInt">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Maximum">
    </PIN>
    </NODE>
    <LINK srcnodeid="237" srcpinname="Output Enum" dstnodeid="2" dstpinname="Target Format">
    </LINK>
    <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="238">
-   <BOUNDS type="Node" left="1725" top="5220" width="100" height="100">
+   <BOUNDS type="Node" left="1725" top="8370" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input Node" visible="1">
    </PIN>
@@ -471,9 +451,9 @@
    <LINK srcnodeid="2" srcpinname="Buffers" dstnodeid="238" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="239" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="1725" top="5970" width="795" height="240">
+   <BOUNDS type="Box" left="1725" top="9120" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1725" top="5970" width="0" height="0">
+   <BOUNDS type="Node" left="1725" top="9120" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Color">
    </PIN>
@@ -481,7 +461,7 @@
    <LINK srcnodeid="238" srcpinname="Output Node" dstnodeid="239" dstpinname="Input Node">
    </LINK>
    <NODE systemname="Cons (DX11.ResourceSemantic)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.ResourceSemantic)" componentmode="Hidden" id="240">
-   <BOUNDS type="Node" left="5220" top="6990" width="100" height="100">
+   <BOUNDS type="Node" left="5220" top="10140" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -491,7 +471,7 @@
    </PIN>
    </NODE>
    <NODE systemname="RenderSemantic (DX11.Layer Texture2D)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Texture2D)" componentmode="Hidden" id="241">
-   <BOUNDS type="Node" left="5220" top="6240" width="100" height="100">
+   <BOUNDS type="Node" left="5220" top="9390" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
@@ -501,13 +481,17 @@
    </PIN>
    </NODE>
    <NODE systemname="Cons (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.Texture 2d)" componentmode="Hidden" id="243">
-   <BOUNDS type="Node" left="5205" top="4845" width="100" height="100">
+   <BOUNDS type="Node" left="5205" top="7995" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Buffers" dstnodeid="243" dstpinname="Input 1">
@@ -517,11 +501,11 @@
    <LINK srcnodeid="243" srcpinname="Output" dstnodeid="241" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="244" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5775" top="4755" width="1170" height="1110">
+   <BOUNDS type="Box" left="5955" top="7785" width="1155" height="1245">
    </BOUNDS>
-   <BOUNDS type="Node" left="5775" top="4755" width="0" height="0">
+   <BOUNDS type="Node" left="5955" top="7785" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="5" visible="1" values="MRE_COLOR,MRE_NORMALS,MRE_VELOCITY,MRE_MATERIAL,MRE_DEPTH">
+   <PIN pinname="Input String" slicecount="6" visible="1" values="MRE_COLOR,MRE_NORMALS,MRE_VELOCITY,MRE_MATERIAL,MRE_DEPTH,MRE_STENCIL">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="SEMANTIC">
    </PIN>
@@ -531,7 +515,7 @@
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="5">
+   <PIN pinname="Rows" slicecount="1" values="6">
    </PIN>
    </NODE>
    <LINK srcnodeid="244" srcpinname="Output String" dstnodeid="241" dstpinname="Semantic">
@@ -539,11 +523,11 @@
    <LINK srcnodeid="241" srcpinname="Output" dstnodeid="240" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="246" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14850" top="6150" width="240" height="270">
+   <BOUNDS type="Node" left="14850" top="5100" width="240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14850" top="6150" width="6855" height="3480">
+   <BOUNDS type="Box" left="14850" top="5100" width="6855" height="3480">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|#define MF_FLAGSIZE 32&cr;&lf;StructuredBuffer&lt;MaterialMeta&gt; MatMeta : MF_MATERIALMETA&cr;&lf;struct MaterialMeta&cr;&lf;{&cr;&lf;&tab;uint Flags; // Features (uint2 if feature count will exceed 32)&cr;&lf;&tab;uint Address; // Where data starts in MaterialData buffer&cr;&lf;&tab;uint Size; // Actual size&cr;&lf;}&cr;&lf;&cr;&lf;// Count = MF_FLAGSIZE * MaterialCount&cr;&lf;// Per-Material Feature offset in MaterialData buffer in bitwise order&cr;&lf;StructuredBuffer&lt;uint&gt; FeatureOffset : MF_FEATUREOFFSET&cr;&lf;&cr;&lf;// Get parameter by&cr;&lf;// MaterialMeta[MatID].Address + FeatureOffset[MatID * MF_FLAGSIZE + FeatureID] + ParamOffset&cr;&lf;StructuredBuffer&lt;float&gt; MaterialData : MF_MATERIALDATA|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|#define MF_FLAGSIZE 32&cr;&lf;StructuredBuffer&lt;MaterialMeta&gt; MatMeta : MF_MATERIALMETA&cr;&lf;struct MaterialMeta&cr;&lf;{&cr;&lf;&tab;uint Flags; // Features (more components if feature count will exceed 32)&cr;&lf;&tab;uint Address; // Where data starts in MaterialData buffer&cr;&lf;&tab;uint Size; // Actual size&cr;&lf;}&cr;&lf;&cr;&lf;// Count = MF_FLAGSIZE * MaterialCount&cr;&lf;// Per-Material Feature offset in MaterialData buffer in bitwise order&cr;&lf;StructuredBuffer&lt;uint&gt; FeatureOffset : MF_FEATUREOFFSET&cr;&lf;&cr;&lf;// Get parameter by&cr;&lf;// MaterialMeta[MatID].Address + FeatureOffset[MatID * MF_FLAGSIZE + FeatureID] + ParamOffset&cr;&lf;StructuredBuffer&lt;float&gt; MaterialData : MF_MATERIALDATA|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -553,9 +537,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="245" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14835" top="5805" width="765" height="270">
+   <BOUNDS type="Node" left="14835" top="4755" width="765" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14835" top="5805" width="1305" height="345">
+   <BOUNDS type="Box" left="14835" top="4755" width="1305" height="345">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="Material">
    </PIN>
@@ -569,7 +553,7 @@
    </PIN>
    </NODE>
    <NODE systemname="RenderSemantic (DX11 StructuredBuffer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11 StructuredBuffer)" componentmode="Hidden" id="249">
-   <BOUNDS type="Node" left="10845" top="5925" width="100" height="100">
+   <BOUNDS type="Node" left="11175" top="8055" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Semantic" visible="1">
    </PIN>
@@ -579,9 +563,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="250" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="11700" top="4710" width="1560" height="690">
+   <BOUNDS type="Box" left="11745" top="7125" width="1560" height="690">
    </BOUNDS>
-   <BOUNDS type="Node" left="11700" top="4710" width="0" height="0">
+   <BOUNDS type="Node" left="11745" top="7125" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="3" visible="1" values="MF_MATERIALMETA,MF_FEATUREOFFSET,MF_MATERIALDATA">
    </PIN>
@@ -601,9 +585,9 @@
    <LINK srcnodeid="249" srcpinname="Output" dstnodeid="240" dstpinname="Input 2">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="252" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="12210" top="2625" width="795" height="240">
+   <BOUNDS type="Box" left="13455" top="3405" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="12210" top="2625" width="0" height="0">
+   <BOUNDS type="Node" left="13455" top="3405" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -613,9 +597,9 @@
    <LINK srcnodeid="252" srcpinname="Output Node" dstnodeid="249" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="253" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="5220" top="7815" width="795" height="240">
+   <BOUNDS type="Box" left="7275" top="13050" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5220" top="7815" width="0" height="0">
+   <BOUNDS type="Node" left="7275" top="13050" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Resource Semantics|">
    </PIN>
@@ -623,7 +607,7 @@
    <LINK srcnodeid="240" srcpinname="Output" dstnodeid="253" dstpinname="Input Node">
    </LINK>
    <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="255">
-   <BOUNDS type="Node" left="7185" top="7830" width="100" height="100">
+   <BOUNDS type="Node" left="7185" top="10980" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Semantic" visible="1">
    </PIN>
@@ -633,9 +617,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="256" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="7740" top="6630" width="1380" height="990">
+   <BOUNDS type="Box" left="7740" top="9780" width="1380" height="990">
    </BOUNDS>
-   <BOUNDS type="Node" left="7740" top="6630" width="0" height="0">
+   <BOUNDS type="Node" left="7740" top="9780" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="4" visible="1" values="CAM_VIEW,CAM_VIEWINV,CAM_PROJ,CAM_PROJINV">
    </PIN>
@@ -653,7 +637,7 @@
    <LINK srcnodeid="256" srcpinname="Output String" dstnodeid="255" dstpinname="Semantic">
    </LINK>
    <NODE systemname="PackCamera (Transform)" filename="..\..\..\mcropack\nodes\modules\PackCamera (Transform).v4p" nodename="PackCamera (Transform)" componentmode="Hidden" id="257">
-   <BOUNDS type="Node" left="7800" top="4650" width="100" height="100">
+   <BOUNDS type="Node" left="7800" top="7800" width="100" height="100">
    </BOUNDS>
    <PIN pinname="View" visible="1" slicecount="1" values="||">
    </PIN>
@@ -671,7 +655,7 @@
    <LINK srcnodeid="257" srcpinname="Output" dstnodeid="255" dstpinname="Input">
    </LINK>
    <NODE systemname="RenderSemantic (DX11.Layer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer 3d)" componentmode="Hidden" id="259">
-   <BOUNDS type="Node" left="9465" top="7800" width="100" height="100">
+   <BOUNDS type="Node" left="9465" top="10950" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Semantic" visible="1" slicecount="1" values="SEMANTIC">
    </PIN>
@@ -681,11 +665,13 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
+   <PIN pinname="Mandatory" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="260" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="10035" top="7050" width="1860" height="240">
+   <BOUNDS type="Box" left="10035" top="10200" width="1185" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="10035" top="7050" width="0" height="0">
+   <BOUNDS type="Node" left="10035" top="10200" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="CAM_POSITION">
    </PIN>
@@ -699,7 +685,7 @@
    <LINK srcnodeid="260" srcpinname="Output String" dstnodeid="259" dstpinname="Semantic">
    </LINK>
    <NODE systemname="Decompose (Transform Vector)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Decompose (Transform Vector)" componentmode="Hidden" id="261">
-   <BOUNDS type="Node" left="9465" top="6645" width="100" height="100">
+   <BOUNDS type="Node" left="9465" top="9795" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -707,7 +693,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Unzip (Transform)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (Transform)" componentmode="Hidden" id="262">
-   <BOUNDS type="Node" left="9270" top="6195" width="100" height="100">
+   <BOUNDS type="Node" left="9270" top="9345" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output Count" slicecount="1" values="4">
    </PIN>
@@ -715,15 +701,15 @@
    </PIN>
    <PIN pinname="Output 2" visible="1">
    </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="257" srcpinname="Output" dstnodeid="262" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="262" srcpinname="Output 2" dstnodeid="261" dstpinname="Transform In">
    </LINK>
    <LINK srcnodeid="261" srcpinname="TranslateXYZ" dstnodeid="259" dstpinname="InputXYZ">
    </LINK>
    <NODE systemname="Cons (DX11.RenderSemantic)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.RenderSemantic)" componentmode="Hidden" id="263">
-   <BOUNDS type="Node" left="7605" top="8925" width="100" height="100">
+   <BOUNDS type="Node" left="7605" top="12075" width="3690" height="270">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
    </PIN>
@@ -731,9 +717,13 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Input Count" slicecount="1" values="2">
+   <PIN pinname="Input Count" slicecount="1" values="5">
    </PIN>
    <PIN pinname="Input 3" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Input 4" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Input 5" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="255" srcpinname="Output" dstnodeid="263" dstpinname="Input 1">
@@ -741,9 +731,9 @@
    <LINK srcnodeid="259" srcpinname="Output" dstnodeid="263" dstpinname="Input 2">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="264" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="7590" top="9660" width="795" height="240">
+   <BOUNDS type="Box" left="5685" top="13095" width="870" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7590" top="9660" width="0" height="0">
+   <BOUNDS type="Node" left="5685" top="13095" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Custom Semantics|">
    </PIN>
@@ -751,13 +741,191 @@
    <LINK srcnodeid="263" srcpinname="Output" dstnodeid="264" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="266" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="3555" top="6135" width="795" height="240">
+   <BOUNDS type="Box" left="3555" top="9285" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3555" top="6135" width="0" height="0">
+   <BOUNDS type="Node" left="3555" top="9285" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="GBuffer">
    </PIN>
    </NODE>
    <LINK srcnodeid="243" srcpinname="Output" dstnodeid="266" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="RenderSemantic (DX11.Layer Int)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Int)" componentmode="Hidden" id="267">
+   <BOUNDS type="Node" left="9225" top="3045" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Semantic" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="268" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="9795" top="2385" width="1395" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9795" top="2385" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MRE_DEPTHMODE">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="SEMANTIC">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="268" srcpinname="Output String" dstnodeid="267" dstpinname="Semantic">
+   </LINK>
+   <LINK srcnodeid="267" srcpinname="Output" dstnodeid="263" dstpinname="Input 3">
+   </LINK>
+   <LINK srcnodeid="267" srcpinname="Output" dstnodeid="51" dstpinname="Input 3">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="269" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="11565" top="1080" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11565" top="1080" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Depth From Camera Position|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="269" srcpinname="Y Output Value" dstnodeid="267" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="270" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="10980" top="3495" width="1395" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10980" top="3495" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MRE_OBJIDMODE">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="SEMANTIC">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="272" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="12900" top="2610" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12900" top="2610" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Joined ObjID|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="275" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="11250" top="2370" width="1470" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11250" top="2370" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="NEARFARDEPTHPOW">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="SEMANTIC">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="RenderSemantic (DX11.Layer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer 3d)" componentmode="Hidden" id="273">
+   <BOUNDS type="Node" left="11145" top="2970" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="InputXY" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Semantic" visible="1">
+   </PIN>
+   <PIN pinname="InputXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="273" srcpinname="Output" dstnodeid="51" dstpinname="Input 5">
+   </LINK>
+   <LINK srcnodeid="275" srcpinname="Output String" dstnodeid="273" dstpinname="Semantic">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="276" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="12270" top="1455" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12270" top="1455" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.1,100,2">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Near Far Depthpower|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="276" srcpinname="Y Output Value" dstnodeid="273" dstpinname="InputXYZ">
+   </LINK>
+   <LINK srcnodeid="259" srcpinname="Output" dstnodeid="51" dstpinname="Input 6">
+   </LINK>
+   <LINK srcnodeid="273" srcpinname="Output" dstnodeid="263" dstpinname="Input 5">
+   </LINK>
+   <LINK srcnodeid="262" srcpinname="Output 2" dstnodeid="261" dstpinname="Transform In">
+   </LINK>
+   <NODE systemname="StencilView (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="StencilView (DX11.Texture 2d)" componentmode="Hidden" id="278">
+   <BOUNDS type="Node" left="6030" top="7110" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Depth Stencil In" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Depth Buffer" dstnodeid="278" dstpinname="Depth Stencil In">
+   </LINK>
+   <LINK srcnodeid="278" srcpinname="Texture Out" dstnodeid="243" dstpinname="Input 3">
+   </LINK>
+   <NODE systemname="RenderSemantic (DX11.Layer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Value)" componentmode="Hidden" id="271">
+   <BOUNDS type="Node" left="10410" top="4155" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Semantic" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="270" srcpinname="Output String" dstnodeid="271" dstpinname="Semantic">
+   </LINK>
+   <LINK srcnodeid="271" srcpinname="Output" dstnodeid="263" dstpinname="Input 4">
+   </LINK>
+   <LINK srcnodeid="272" srcpinname="Y Output Value" dstnodeid="271" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="271" srcpinname="Output" dstnodeid="51" dstpinname="Input 4">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="279" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="4815" top="11040" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4815" top="11040" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Depth Buffer|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Depth Buffer" dstnodeid="279" dstpinname="Input Node">
    </LINK>
    </PATCH>

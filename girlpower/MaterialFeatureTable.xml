@@ -91,6 +91,54 @@
     <Offset>0</Offset>
   </Features>
   <Features>
+    <Feature>Lighting_Composite</Feature>
+    <Parameter>Ambient</Parameter>
+    <Size>1</Size>
+    <Offset>0</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_Composite</Feature>
+    <Parameter>Diffuse</Parameter>
+    <Size>1</Size>
+    <Offset>1</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_Composite</Feature>
+    <Parameter>Specular</Parameter>
+    <Size>1</Size>
+    <Offset>2</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_Composite</Feature>
+    <Parameter>SpecMul</Parameter>
+    <Size>1</Size>
+    <Offset>3</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_Composite</Feature>
+    <Parameter>SSS</Parameter>
+    <Size>1</Size>
+    <Offset>4</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_Composite</Feature>
+    <Parameter>SSSMul</Parameter>
+    <Size>1</Size>
+    <Offset>5</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_Composite</Feature>
+    <Parameter>Rim</Parameter>
+    <Size>1</Size>
+    <Offset>6</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_Composite</Feature>
+    <Parameter>RimMul</Parameter>
+    <Size>1</Size>
+    <Offset>7</Offset>
+  </Features>
+  <Features>
     <Feature>Lighting_FakeSSS</Feature>
     <Parameter>Strength</Parameter>
     <Size>1</Size>
@@ -131,6 +179,12 @@
     <Parameter>Power</Parameter>
     <Size>1</Size>
     <Offset>1</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_FakeRimLight_Map</Feature>
+    <Parameter>MapID</Parameter>
+    <Size>1</Size>
+    <Offset>0</Offset>
   </Features>
   <Features>
     <Feature>Lighting_MatCap</Feature>

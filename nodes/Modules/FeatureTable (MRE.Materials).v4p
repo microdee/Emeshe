@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureTable (MRE.Materials).v4p" systemname="FeatureTable (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureTable (MRE.Materials).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\FeatureTable (MRE.Materials).v4p" systemname="FeatureTable (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureTable (MRE.Materials).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="14010" top="1920" width="13350" height="11520">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.3.0">
