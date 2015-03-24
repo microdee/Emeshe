@@ -2,7 +2,7 @@
 //@help: template for texture fx
 //@tags: texture
 //@credits: 
-#include "pows.fxh"
+#include "../fxh/pows.fxh"
  
 float2 R:TARGETSIZE;
 float Width <float uimin=0.0; float uimax=1.0;> =0.3;

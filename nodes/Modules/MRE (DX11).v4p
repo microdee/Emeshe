@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="3720">
-   <BOUNDS type="Window" left="4950" top="3525" width="21960" height="10995">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="1215" top="1890" width="21960" height="10995">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="5490" width="100" height="100">
@@ -300,25 +300,13 @@
    </LINK>
    <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="2" dstpinname="Target Count">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="116" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="4065" top="435" width="1590" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4065" top="435" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|AA Samples per Pixel|">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="116" srcpinname="Output Enum" dstnodeid="2" dstpinname="AA Samples per Pixel">
-   </LINK>
    <INFO author="microdee" description="main mre rendertarget" tags="">
    </INFO>
    <PACK Name="testPack" Version="0.1.0">
    </PACK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="33.7.0">
    </PACK>
    <LINK srcnodeid="20" srcpinname="Transform Out" dstnodeid="19" dstpinname="Transform In 2">
    </LINK>
@@ -399,9 +387,9 @@
    <NODE nodename="IOBox (String)" componentmode="InABox" id="235" systemname="IOBox (String)">
    <BOUNDS type="Node" left="14850" top="3270" width="240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14850" top="3270" width="5130" height="1380">
+   <BOUNDS type="Box" left="14850" top="3270" width="4950" height="1575">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 MRE_COLOR&tab;R&tab;G&tab;B&tab;A&tab;Type&cr;&lf;1 MRE_NORMALS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;2 MRE_VELOCITY&tab;X &tab;Y&tab;Z&tab;&tab;float16&cr;&lf;3 MRE_MATERIAL&tab;U (f16)&tab;V (f16)&tab;MatID&tab;ObjID&tab;Uint16&cr;&lf;4 MRE_DEPTH&tab;D24_UNorm_S8_Uint&cr;&lf;5 MRE_STENCIL&tab;uint4|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 MRE_COLOR&tab;R&tab;G&tab;B&tab;A&tab;Type&cr;&lf;1 MRE_NORMALS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;2 MRE_VELOCITY&tab;X &tab;Y&tab;Z&tab;&tab;float16&cr;&lf;3 MRE_MATERIAL&tab;U (f16)&tab;V (f16)&tab;MatID&tab;ObjID&tab;Uint16&cr;&lf;4 MRE_VIEWPOS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;5 MRE_DEPTH&tab;D24_UNorm_S8_Uint&cr;&lf;6 MRE_STENCIL&tab;uint4|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -461,7 +449,7 @@
    <LINK srcnodeid="238" srcpinname="Output Node" dstnodeid="239" dstpinname="Input Node">
    </LINK>
    <NODE systemname="Cons (DX11.ResourceSemantic)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.ResourceSemantic)" componentmode="Hidden" id="240">
-   <BOUNDS type="Node" left="5220" top="10140" width="100" height="100">
+   <BOUNDS type="Node" left="5220" top="10440" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -471,7 +459,7 @@
    </PIN>
    </NODE>
    <NODE systemname="RenderSemantic (DX11.Layer Texture2D)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Texture2D)" componentmode="Hidden" id="241">
-   <BOUNDS type="Node" left="5220" top="9390" width="100" height="100">
+   <BOUNDS type="Node" left="5220" top="9690" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
@@ -485,27 +473,27 @@
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
-   <PIN pinname="Input 2" visible="1">
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Input Count" slicecount="1" values="3">
+   <PIN pinname="Input Count" slicecount="1" values="4">
    </PIN>
-   <PIN pinname="Input 3" visible="1">
+   <PIN pinname="Input 3" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Input 4" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Buffers" dstnodeid="243" dstpinname="Input 1">
    </LINK>
-   <LINK srcnodeid="2" srcpinname="Depth Buffer" dstnodeid="243" dstpinname="Input 2">
-   </LINK>
    <LINK srcnodeid="243" srcpinname="Output" dstnodeid="241" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="244" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5955" top="7785" width="1155" height="1245">
+   <BOUNDS type="Box" left="6360" top="7935" width="1155" height="1245">
    </BOUNDS>
-   <BOUNDS type="Node" left="5955" top="7785" width="0" height="0">
+   <BOUNDS type="Node" left="6360" top="7935" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="6" visible="1" values="MRE_COLOR,MRE_NORMALS,MRE_VELOCITY,MRE_MATERIAL,MRE_DEPTH,MRE_STENCIL">
+   <PIN pinname="Input String" slicecount="7" visible="1" values="MRE_COLOR,MRE_NORMALS,MRE_VELOCITY,MRE_MATERIAL,MRE_VIEWPOS,MRE_DEPTH,MRE_STENCIL">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="SEMANTIC">
    </PIN>
@@ -515,7 +503,7 @@
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="6">
+   <PIN pinname="Rows" slicecount="1" values="7">
    </PIN>
    </NODE>
    <LINK srcnodeid="244" srcpinname="Output String" dstnodeid="241" dstpinname="Semantic">
@@ -523,9 +511,9 @@
    <LINK srcnodeid="241" srcpinname="Output" dstnodeid="240" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="246" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14850" top="5100" width="240" height="270">
+   <BOUNDS type="Node" left="15300" top="5220" width="240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14850" top="5100" width="6855" height="3480">
+   <BOUNDS type="Box" left="15300" top="5220" width="6855" height="3480">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|#define MF_FLAGSIZE 32&cr;&lf;StructuredBuffer&lt;MaterialMeta&gt; MatMeta : MF_MATERIALMETA&cr;&lf;struct MaterialMeta&cr;&lf;{&cr;&lf;&tab;uint Flags; // Features (more components if feature count will exceed 32)&cr;&lf;&tab;uint Address; // Where data starts in MaterialData buffer&cr;&lf;&tab;uint Size; // Actual size&cr;&lf;}&cr;&lf;&cr;&lf;// Count = MF_FLAGSIZE * MaterialCount&cr;&lf;// Per-Material Feature offset in MaterialData buffer in bitwise order&cr;&lf;StructuredBuffer&lt;uint&gt; FeatureOffset : MF_FEATUREOFFSET&cr;&lf;&cr;&lf;// Get parameter by&cr;&lf;// MaterialMeta[MatID].Address + FeatureOffset[MatID * MF_FLAGSIZE + FeatureID] + ParamOffset&cr;&lf;StructuredBuffer&lt;float&gt; MaterialData : MF_MATERIALDATA|">
    </PIN>
@@ -537,9 +525,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="245" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14835" top="4755" width="765" height="270">
+   <BOUNDS type="Node" left="14835" top="4905" width="765" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14835" top="4755" width="1305" height="345">
+   <BOUNDS type="Box" left="14835" top="4905" width="1305" height="345">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="Material">
    </PIN>
@@ -889,7 +877,7 @@
    <LINK srcnodeid="262" srcpinname="Output 2" dstnodeid="261" dstpinname="Transform In">
    </LINK>
    <NODE systemname="StencilView (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="StencilView (DX11.Texture 2d)" componentmode="Hidden" id="278">
-   <BOUNDS type="Node" left="6030" top="7110" width="100" height="100">
+   <BOUNDS type="Node" left="6360" top="7095" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Depth Stencil In" visible="1">
    </PIN>
@@ -897,8 +885,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Depth Buffer" dstnodeid="278" dstpinname="Depth Stencil In">
-   </LINK>
-   <LINK srcnodeid="278" srcpinname="Texture Out" dstnodeid="243" dstpinname="Input 3">
    </LINK>
    <NODE systemname="RenderSemantic (DX11.Layer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Value)" componentmode="Hidden" id="271">
    <BOUNDS type="Node" left="10410" top="4155" width="100" height="100">
@@ -927,5 +913,45 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Depth Buffer" dstnodeid="279" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="278" srcpinname="Texture Out" dstnodeid="243" dstpinname="Input 4">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Depth Buffer" dstnodeid="243" dstpinname="Input 3">
+   </LINK>
+   <NODE systemname="DepthReconstruction (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\modules\DepthReconstruction\DepthReconstruction (DX11.Texture 2d).v4p" nodename="DepthReconstruction (DX11.Texture 2d)" componentmode="Hidden" id="281">
+   <BOUNDS type="Node" left="3945" top="7410" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   <PIN pinname="Aspect Ratio" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Technique" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Depth Buffer" dstnodeid="281" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="281" dstpinname="View">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="281" dstpinname="Projection">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="283" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="5325" top="6705" width="1230" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5325" top="6705" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="PositionView">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="283" srcpinname="Output Enum" dstnodeid="281" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="281" srcpinname="Texture Out" dstnodeid="243" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="211" srcpinname="Output" dstnodeid="281" dstpinname="Aspect Ratio">
    </LINK>
    </PATCH>

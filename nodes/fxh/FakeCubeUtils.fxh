@@ -12,6 +12,8 @@
 	
 	usage:
 	texture3D.Sample(sampler, FakeCubeCoord(direction));
+
+	also provide 
 */
 
 
@@ -19,7 +21,7 @@ float minTwoPi : IMMUTABLE = -6.283185307179586476925286766559;
 float TwoPi : IMMUTABLE = 6.283185307179586476925286766559;
 float CubeCorrect : IMMUTABLE = 0.9999;
 
-float4x4 RotateRays[6];
+float4x4 FaceTransforms[6];
 
 bool IntersectRayPlane(float3 rayOrigin, float3 rayDirection, float3 posOnPlane, float3 planeNormal, out float3 intersectionPoint)
 {
@@ -44,7 +46,7 @@ float3 FakeCubeCoord(float3 dir)
 	for(int i = 0; i<6; i++)
 	{
 		float3 ndir = normalize(dir);
-		ndir = mul(ndir, RotateRays[i]);
+		ndir = mul(ndir, FaceTransforms[i]);
 		float quadw = 1/sqrt(3);
 		float3 quadp = float3(0,0,quadw/2);
 		float3 quadn = float3(0,0,-1);

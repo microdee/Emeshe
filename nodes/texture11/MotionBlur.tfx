@@ -4,7 +4,7 @@ Texture2D ColorTex: INITIAL;
 //Texture2D OffsVelTex1: PASSRESULT2;
 //Texture2D OffsVelTex2: PASSRESULT3;
 #define PI 3.14159265358979
-#include "MRE.fxh"
+#include "../fxh/MRE.fxh"
 
 float2 ScreenSize:TARGETSIZE;
 

@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Glare (DX11 MRE).v4p" systemname="Glare (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\Glare (DX11 MRE).v4p" scrollx="4635" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Glare (DX11 MRE).v4p" systemname="Glare (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\Glare (DX11 MRE).v4p" scrollx="0" scrolly="765">
    <BOUNDS type="Window" left="2355" top="3480" width="14610" height="6000">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
@@ -95,7 +95,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2400" top="465" width="795" height="960">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="4" values="0.6,0.6,0.6,0.6">
+   <PIN pinname="Y Input Value" slicecount="4" values="0.7,0.7,0.7,0.7">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -304,8 +304,6 @@
    <LINKPOINT x="6105" y="3330">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="23" dstpinname="Texture In">
-   </LINK>
    <LINK srcnodeid="23" srcpinname="Texture Out" dstnodeid="3" dstpinname="Texture In 2">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="26" systemname="IOBox (Value Advanced)">
@@ -458,6 +456,24 @@
    </LINK>
    <LINK srcnodeid="36" srcpinname="Output" dstnodeid="23" dstpinname="Enabled">
    </LINK>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="33.7.0">
+   </PACK>
+   <NODE systemname="ScalarOperationBundle (DX11.TextureFX)" filename="..\..\..\mcropack\nodes\texture11\ScalarOperationBundle.tfx" nodename="ScalarOperationBundle (DX11.TextureFX)" componentmode="Hidden" id="38">
+   <BOUNDS type="Node" left="8520" top="3270" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="ClampZero" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="ClampOne" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="38" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="38" srcpinname="Texture Out" dstnodeid="23" dstpinname="Texture In">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
    </PATCH>

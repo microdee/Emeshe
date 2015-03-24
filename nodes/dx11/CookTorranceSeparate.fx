@@ -2,7 +2,7 @@
 //@help: lighting components
 
 #define PI 3.14159265358979
-#include "../fxh/Phong.fxh"
+#include "../fxh/CookTorrance.fxh"
 
 Texture2D Lights[5];
 Texture2D MaskTex;
@@ -58,9 +58,9 @@ OutComps pPnt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_PHONG))
+	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_COOKTORRANCE))
 	{
-		Components col = PhongPointSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
+		Components col = CookTorrancePointSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)0;
 		
 		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
@@ -99,9 +99,9 @@ OutComps pSpt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_PHONG))
+	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_COOKTORRANCE))
 	{
-		Components col = PhongSpotSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
+		Components col = CookTorranceSpotSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
 		
 		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
@@ -139,9 +139,9 @@ OutComps pSun(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_PHONG))
+	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_COOKTORRANCE))
 	{
-		Components col = PhongSunSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
+		Components col = CookTorranceSunSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
 		
 		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];

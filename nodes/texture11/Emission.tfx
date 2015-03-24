@@ -2,8 +2,8 @@ Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
 
 #define PI 3.14159265358979
-#include "LightUtils.fxh"
-#include "MRE.fxh"
+#include "../fxh/LightUtils.fxh"
+#include "../fxh/MRE.fxh"
 
 float2 ScreenSize:TARGETSIZE;
 

@@ -1,70 +1,29 @@
 #if !defined(POWS_FXH)
-	#include "pows.fxh"
+	#include "../fxh/pows.fxh"
+#endif
+#if !defined(SAFEDIVIDE_FXH)
+	#include "../fxh/safedivide.fxh"
 #endif
 #if !defined(MATERIALS_FXH)
-#include "Materials.fxh"
+	#include "../fxh/Materials.fxh"
 #endif
 #if !defined(MRE_FXH)
-#include "MRE.fxh"
-#endif	
+	#include "../fxh/MRE.fxh"
+#endif
+#if !defined(LIGHTUTILS_FXH)
+	#include "../fxh/LightUtils.fxh"
+#endif
 
-struct PointLightProp
-{
-    float3 Position;
-    float Range;
-    float RangePow;
-    float4 LightCol;
-    float LightStrength;
-};
+#define ROUGHNESS_LOOK_UP 0
+#define ROUGHNESS_BECKMANN 1
+#define ROUGHNESS_GAUSSIAN 2
 
-struct SpotLightProp
-{
-    float3 Position; // Source
-    float Range; // Distance
-    float RangePow; // Fade
-    float4 LightCol;
-    float LightStrength;
-    float4x4 lProjection;
-    float4x4 lView;
-    uint TexID;
-};
+#define ROUGHNESS_MODE 0
 
-struct SunLightProp
-{
-    float3 Direction; // Source
-    float4 LightCol;
-    float LightStrength;
-};
-
-struct Components
-{
-	float3 Ambient;
-	float3 Diffuse;
-	float3 Specular;
-	float3 SSS;
-	float3 Rim;
-};
-
-Texture2DArray SpecMaps;
+Texture2D<float> TexRoughness;
+Texture2DArray RoughMaps;
 Texture2DArray SSSMaps;
 Texture2DArray RimMaps;
-
-StructuredBuffer<PointLightProp> pointlightprop <string uiname="Pointlight Buffer";>;
-StructuredBuffer<SpotLightProp> spotlightprop <string uiname="Spotlight Buffer";>;
-StructuredBuffer<float> MaskID;
-bool UseMask = false;
-bool ZeroBypass = false;
-Texture2DArray SpotTexArray;
-StructuredBuffer<SunLightProp> sunlightprop <string uiname="Sunlight Buffer";>;
-
-SamplerState SpotSampler <bool visible=false;string uiname="Spotlight Sampler";>
-{
-	Filter=MIN_MAG_MIP_LINEAR;
-	AddressU=CLAMP;
-	AddressV=CLAMP;
-};
-
-float lEpsilon : IMMUTABLE = 0.001;
 
 float halfLambert(float3 vec1, float3 vec2)
 {
@@ -74,38 +33,133 @@ float halfLambert(float3 vec1, float3 vec2)
 	return product;
 }
 
-Components PhongPointSSS(SamplerState s0, float2 uv, float2 sR, float lightcount, float dmod, float mask)
+
+void cook_torrance
+        (
+            in float3 normal,
+            in float3 viewer,
+            in float3 light,
+            in float roughness_value,
+            inout float3 diff,
+            inout float3 spec
+        )
+{    
+    // Compute any aliases and intermediary values
+    // -------------------------------------------
+    float3 half_vector = normalize( light + -viewer );
+    float NdotL        = saturate( dot( normal, light ) );
+    float NdotH        = saturate( dot( normal, half_vector ) );
+    float NdotV        = saturate( dot( normal, -viewer ) );
+    float VdotH        = saturate( dot( -viewer, half_vector ) );
+    float r_sq         = roughness_value * roughness_value;
+    
+    // Evaluate the geometric term
+    // --------------------------------
+    float geo_numerator   = 2.0f * NdotH;
+    float geo_denominator = VdotH;
+ 
+    float geo_b = (geo_numerator * NdotV ) / geo_denominator;
+    float geo_c = (geo_numerator * NdotL ) / geo_denominator;
+    float geo   = min( 1.0f, min( geo_b, geo_c ) );
+
+    // Now evaluate the roughness term
+    // -------------------------------
+    float roughness;
+ 
+    #if ROUGHNESS_MODE == ROUGHNESS_LOOK_UP
+        // texture coordinate is:
+        float2 tc = { NdotH, roughness_value };
+ 
+        // Remap the NdotH value to be 0.0-1.0
+        // instead of -1.0..+1.0
+        tc.x += 1.0f;
+        tc.x /= 2.0f;
+ 
+        // look up the coefficient from the texture:
+        roughness = TexRoughness.SampleLevel( MapSampler, tc, 0 );
+    #endif
+    #if ROUGHNESS_MODE == ROUGHNESS_BECKMANN
+        float roughness_a = 1.0f / ( 4.0f * r_sq * pow( NdotH, 4 ) );
+        float roughness_b = NdotH * NdotH - 1.0f;
+        float roughness_c = r_sq * NdotH * NdotH;
+ 
+        roughness = roughness_a * exp( roughness_b / roughness_c );
+    #endif
+    #if ROUGHNESS_MODE == ROUGHNESS_GAUSSIAN
+        // This variable could be exposed as a variable
+        // for the application to control:
+        float c = 1.0f;
+        float alpha = acos( dot( normal, half_vector ) );
+        roughness = c * exp( -( alpha / r_sq ) );
+    #endif
+
+    // Next evaluate the Fresnel value
+    // -------------------------------
+    float fresnel = pows( 1.0f - VdotH, 5.0f );
+	
+	float ref_at_norm_incidence = 0.2;
+    fresnel *= ( 1.0f - ref_at_norm_incidence );
+    fresnel += ref_at_norm_incidence;
+
+    // Put all the terms together to compute
+    // the specular term in the equation
+    // -------------------------------------
+    float3 Rs_numerator   = ( fresnel * geo * roughness );
+    float Rs_denominator  = NdotV * NdotL;
+    float3 Rs             = sdiv(Rs_numerator,Rs_denominator);
+
+    // Put all the parts together to generate
+    // the final colour
+    // --------------------------------------
+    diff *= max(0.0f, NdotL);
+    spec *= max(0.0f, NdotL) * Rs;
+	//spec = fresnel;
+}
+
+Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lightcount, float dmod, float mask)
 {
 	float3 PosV = GetViewPos(s0, uv);
 	float3 ViewDirV = normalize(PosV);
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
 	uint matid = GetMatID(uv, sR);
 	float2 ouv = GetUV(uv, sR);
-	float3 SpecMap = 1;
+	float RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;
-	if( KnowFeature(matid, MF_LIGHTING_PHONG_SPECULARMAP) ||
-		KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP) ||
-		KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT_MAP))
+	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP))
 	{
-		float SpecMapId = GetFloat(matid, MF_LIGHTING_PHONG_SPECULARMAP, 0);
+		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP, 0);
+		RoughMap = RoughMaps.SampleLevel(MapSampler, float3(ouv, RoughMapId), 0).r;
+	}
+	if(KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP))
+	{
 		float SSSMapId = GetFloat(matid, MF_LIGHTING_FAKESSS_MAP, 0);
-		float RimMapId = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT_MAP, 0);
-
-		SpecMap = SpecMaps.SampleLevel(s0, float3(ouv, SpecMapId), 0).rgb;
-		SSSMap = SSSMaps.SampleLevel(s0, float3(ouv, SSSMapId), 0).rgb;
-		RimMap = RimMaps.SampleLevel(s0, float3(ouv, RimMapId), 0).rgb;
+		SSSMap = SSSMaps.SampleLevel(MapSampler, float3(ouv, SSSMapId), 0).rgb;
 	}
 
-    float3 lAtt = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_ATTENUATION);
-    float lPower = GetFloat(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARPOWER);
-    float SStrength = GetFloat(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARSTRENGTH);
+	if(KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT_MAP))
+	{
+		float RimMapId = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT_MAP, 0);
+		RimMap = RimMaps.SampleLevel(MapSampler, float3(ouv, RimMapId), 0).rgb;
+	}
+
+    float SStrength = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARSTRENGTH);
     
     float3 lAmb = 0;
+    float3 lAttAmb = 1;
     if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
+    {
     	lAmb = GetFloat(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_AMBIENTCOLOR);
+    	lAttAmb = GetFloat3(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_ATTENUATION);
+    }
+    float3 lAttSSS = 1;
+    if(KnowFeature(matid, MF_LIGHTING_FAKESSS))
+    {
+    	lAttSSS = GetFloat3(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_ATTENUATION);
+    }
 
-    float3 lSpec = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARCOLOR) * SpecMap * SStrength;
+    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength;
+    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap;
 
     Components outc = (Components)0;
 
@@ -116,33 +170,29 @@ Components PhongPointSSS(SamplerState s0, float2 uv, float2 sR, float lightcount
     	{
 		   	float atten = 0;
 		    float3 amb = 0;
-		    float3 diff = 0;
-		    float3 spec = 0;
-	        float3 lPos = mul(float4(pointlightprop[i].Position, 1), CamView).xyz;
+	        float3 lPos = pointlightprop[i].Position;
 	        float lRange = pointlightprop[i].Range;
 	        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
 	
 	        float d = distance(PosV, lPos);
-	        
-	        atten = 1/(saturate(lAtt.x) + saturate(lAtt.y) * d + saturate(lAtt.z) * pow(d, 2));
 	            
-	        amb = lAmb * atten * pointlightprop[i].LightStrength;
+	    	if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
+	    	{
+	        	float attenamb = 1/(saturate(lAttAmb.x) + saturate(lAttAmb.y) * d + saturate(lAttAmb.z) * pow(d, 2));
+		    	amb = lAmb * attenamb * spotlightprop[i].LightStrength;
+	    	}
+
 	    	float rangeF = pow(saturate((lRange-d)/lRange),dmod*pointlightprop[i].RangePow);
 	        float3 LightDirV = normalize(lPos-PosV);
 	        float3 V = ViewDirV;
+	        float3 diff = 0;
+	        float3 spec = 0;
 	    	
 	        if(d<lRange)
 	        {
-	            //halfvector
-	            float3 H = normalize(ViewDirV + LightDirV);
-	            //compute blinn lighting
-	            float3 shades = lit(dot(NormV, LightDirV), dot(NormV, H), lPower).xyz;
-	            diff = lCol * shades.y * atten;
-	            //reflection vector (view space)
-	            float3 R = normalize(2 * dot(NormV, LightDirV) * NormV - LightDirV);
-	            //normalized view direction (view space)
-	            //calculate specular light
-	            spec = pows(max(dot(-R, V),0), lPower*.2) * lSpec * lCol;
+		        diff = lCol;
+		        spec = lSpec * lCol;
+	        	cook_torrance(NormV, V, LightDirV, rough, diff, spec);
 	        }
 	    	
 	    	outc.Diffuse += diff * rangeF;
@@ -163,13 +213,13 @@ Components PhongPointSSS(SamplerState s0, float2 uv, float2 sR, float lightcount
     		bool valid = (mask == MaskID[i]) || (!UseMask) || ((mask == 0) && ZeroBypass);
 	    	if(pointlightprop[i].LightStrength > lEpsilon && valid)
 	    	{
-		        float3 lPos = mul(float4(pointlightprop[i].Position, 1), CamView).xyz;
+		        float3 lPos = pointlightprop[i].Position;
 		   		float atten = 0;
 	        	float d = distance(PosV, lPos);
 		        float lRange = pointlightprop[i].Range;
 		        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
 
-	        	atten = 1/(saturate(lAtt.x) + saturate(lAtt.y) * d + saturate(lAtt.z) * pow(d, 2));
+	        	atten = 1/(saturate(lAttSSS.x) + saturate(lAttSSS.y) * d + saturate(lAttSSS.z) * pow(d, 2));
 	        	float3 LightDirV = normalize(lPos - PosV);
 		    	// SSS
 				float3 indirectLightComponent = (float3)(materialThickness * max(0, dot(-NormV, LightDirV)));
@@ -193,15 +243,15 @@ Components PhongPointSSS(SamplerState s0, float2 uv, float2 sR, float lightcount
 	    	if(pointlightprop[i].LightStrength > lEpsilon && valid)
 	    	{
 
-		        float3 lPos = mul(float4(pointlightprop[i].Position, 1), CamView).xyz;
+		        float3 lPos = pointlightprop[i].Position;
 	        	float d = distance(PosV, lPos);
 		        float lRange = pointlightprop[i].Range;
 		        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
 
-				float rangeFSSS = pow(saturate((lRange * power - d)/(lRange * power)), dmod * 0.9 * pointlightprop[i].RangePow);
+				float rangeFSSS = pow(saturate((lRange * power - d * power)/(lRange * power)), dmod * 0.9 * pointlightprop[i].RangePow);
 		    	float sssa = pointlightprop[i].LightStrength * amount * rangeFSSS;
 
-				float rim = saturate(1-abs(dot(NormV, ViewDirV)));
+				float3 rim = saturate(1-abs(dot(NormV, ViewDirV)));
 				rim = pows(rim, power) * amount * lCol;
 		    	outc.Rim += rim * sssa * RimMap;
 	    	}
@@ -210,37 +260,50 @@ Components PhongPointSSS(SamplerState s0, float2 uv, float2 sR, float lightcount
     return outc;
 }
 
-Components PhongSpotSSS(SamplerState s0, float2 uv, float2 sR, float lightcount, float dmod, float mask)
+Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float lightcount, float dmod, float mask)
 {
 	float3 PosV = GetViewPos(s0, uv);
 	float3 ViewDirV = normalize(PosV);
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
 	uint matid = GetMatID(uv, sR);
 	float2 ouv = GetUV(uv, sR);
-	float3 SpecMap = 1;
+	float RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;
-	if( KnowFeature(matid, MF_LIGHTING_PHONG_SPECULARMAP) ||
-		KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP) ||
-		KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT_MAP))
+	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP))
 	{
-		float SpecMapId = GetFloat(matid, MF_LIGHTING_PHONG_SPECULARMAP, 0);
+		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP, 0);
+		RoughMap = RoughMaps.SampleLevel(s0, float3(ouv, RoughMapId), 0).r;
+	}
+	if(KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP))
+	{
 		float SSSMapId = GetFloat(matid, MF_LIGHTING_FAKESSS_MAP, 0);
-		float RimMapId = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT_MAP, 0);
-
-		SpecMap = SpecMaps.SampleLevel(s0, float3(ouv, SpecMapId), 0).rgb;
 		SSSMap = SSSMaps.SampleLevel(s0, float3(ouv, SSSMapId), 0).rgb;
+	}
+
+	if(KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT_MAP))
+	{
+		float RimMapId = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT_MAP, 0);
 		RimMap = RimMaps.SampleLevel(s0, float3(ouv, RimMapId), 0).rgb;
 	}
 
-    float3 lAtt = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_ATTENUATION);
-    float lPower = GetFloat(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARPOWER);
+    float SStrength = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARSTRENGTH);
     
     float3 lAmb = 0;
+    float3 lAttAmb = 1;
     if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
+    {
     	lAmb = GetFloat(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_AMBIENTCOLOR);
+    	lAttAmb = GetFloat3(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_ATTENUATION);
+    }
+    float3 lAttSSS = 1;
+    if(KnowFeature(matid, MF_LIGHTING_FAKESSS))
+    {
+    	lAttSSS = GetFloat3(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_ATTENUATION);
+    }
 
-    float3 lSpec = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARCOLOR) * SpecMap;
+    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength;
+    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap;
 
     Components outc = (Components)0;
 
@@ -257,28 +320,32 @@ Components PhongSpotSSS(SamplerState s0, float2 uv, float2 sR, float lightcount,
 			Components tlCol = (Components)0;
 		    float3 color = spotlightprop[i].LightCol.xyz * spotlightprop[i].LightStrength;
 			float3 spec = 0;
-			float3 lPos = mul(float4(spotlightprop[i].Position, 1), CamView).xyz;
+			float3 lPos = spotlightprop[i].Position;
 	    	float d = distance(lPos, PosV);
 	    	float3 lDir = normalize(lPos-PosV);
-		    float atten = 1/(saturate(lAtt.x) + saturate(lAtt.y) * d + saturate(lAtt.z) * pow(d, 2));
 		    float3 indirectLightComponent = 0;
 		    float3 rim = 0;
 		    float3 amb = 0;
-	    	if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
-		    	amb = lAmb * atten * spotlightprop[i].LightStrength;
+
 
 	    	if(spotlightprop[i].LightStrength > lEpsilon)
     		{
 				lightIntensity = saturate(dot(NormV, lDir));
 		        float lRange = spotlightprop[i].Range;
 	    		
-				projpos = mul(float4(PosV,1), mul(spotlightprop[i].lView, CamView));
+				projpos = mul(float4(PosV,1), spotlightprop[i].lView);
 				projpos = mul(projpos, spotlightprop[i].lProjection);
 			    projTexCd.x =  projpos.x / projpos.w / 2.0f + 0.5f;
 			    projTexCd.y = -projpos.y / projpos.w / 2.0f + 0.5f;
 	    		float dfc = length(projpos.xy/projpos.w)*.4;
-	    		float indirectMul = dfc * pow(saturate(projpos.z*atten*.3),1) * (1-saturate(pows(dfc,2)));
-	    		amb *= indirectMul;
+    			float indirectMul = 1;
+		    	if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
+		    	{
+		        	float attenamb = 1/(saturate(lAttAmb.x) + saturate(lAttAmb.y) * d + saturate(lAttAmb.z) * pow(d, 2));
+			    	amb = lAmb * attenamb * spotlightprop[i].LightStrength;
+		    		indirectMul = dfc * pow(saturate(projpos.z*attenamb*.3),1) * (1-saturate(pows(dfc,2)));
+		    		amb *= indirectMul;
+		    	}
 	    		
 				bool Mask = (saturate(projTexCd.x) == projTexCd.x) && (saturate(projTexCd.y) == projTexCd.y);
 	    		bool depthmask = saturate(projpos.z/projpos.w) == (projpos.z/projpos.w);
@@ -286,9 +353,12 @@ Components PhongSpotSSS(SamplerState s0, float2 uv, float2 sR, float lightcount,
 				if(Mask && depthmask)
 				{
 			    	projcol = SpotTexArray.SampleLevel(SpotSampler, float3(projTexCd,(float)spotlightprop[i].TexID), 0) * spotlightprop[i].LightStrength;
-					tlCol.Diffuse = lightIntensity * color;
-		            float3 R = normalize(2 * dot(NormV, lDir) * NormV - lDir);
-		            spec = pows(max(dot(R, ViewDirV),0), lPower*.2) * lSpec;
+
+			        float3 diff = color;
+			        float3 spec = lSpec * color;
+		        	cook_torrance(NormV, ViewDirV, lDir, rough, diff, spec);
+
+					tlCol.Diffuse = diff;
 			    	tlCol.Diffuse *= projcol.rgb*projcol.a;
 			    	tlCol.Ambient = amb;
 			    	tlCol.Specular = spec * pows(projcol.rgb*projcol.a,.5);
@@ -306,6 +376,9 @@ Components PhongSpotSSS(SamplerState s0, float2 uv, float2 sR, float lightcount,
 					float power = GetFloat(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_POWER);
 					float amount = GetFloat(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_STRENGTH);
 					float3 coeff = GetFloat3(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_COEFFICIENT);
+			    	
+		    		float atten = 1/(saturate(lAttSSS.x) + saturate(lAttSSS.y) * d + saturate(lAttSSS.z) * pow(d, 2));
+		    		indirectMul = dfc * pow(saturate(projpos.z*atten*.3),1) * (1-saturate(pows(dfc,2)));
 
 					indirectLightComponent = (float3)(materialThickness * max(0, dot(-NormV, lDir)));
 					indirectLightComponent += materialThickness * halfLambert(-ViewDirV, lDir);
@@ -325,12 +398,11 @@ Components PhongSpotSSS(SamplerState s0, float2 uv, float2 sR, float lightcount,
 					rim = (float3)(max(0,0.5+dot(NormV, ViewDirV)));
 					rim = pows(rim, power) * amount * pows(projcol.rgb,.5);
 			    	
-					float rangeFSSS = pows(saturate((spotlightprop[i].Range*power-d)/(spotlightprop[i].Range*power)),dmod*.9*pointlightprop[i].RangePow);
+					float rangeFSSS = pows(saturate((spotlightprop[i].Range*power-d * power)/(spotlightprop[i].Range*power)),dmod*.9*pointlightprop[i].RangePow);
 			    	float sssa = spotlightprop[i].LightStrength * amount * rangeFSSS * indirectMul;
 			    	tlCol.Rim = rim * sssa;
 					outc.Rim += max(tlCol.Rim * la,0);
 			    }
-
 	    		
 				outc.Diffuse += tlCol.Diffuse * la;
 				outc.Specular += tlCol.Specular * la;
@@ -341,37 +413,44 @@ Components PhongSpotSSS(SamplerState s0, float2 uv, float2 sR, float lightcount,
 	return outc;
 }
 
-Components PhongSunSSS(SamplerState s0, float2 uv, float2 sR, float lightcount, float dmod, float mask)
+Components CookTorranceSunSSS(SamplerState s0, float2 uv, float2 sR, float lightcount, float dmod, float mask)
 {
 	float3 PosV = GetViewPos(s0, uv);
 	float3 ViewDirV = normalize(PosV);
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
 	uint matid = GetMatID(uv, sR);
 	float2 ouv = GetUV(uv, sR);
-	float3 SpecMap = 1;
+	float RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;
-	if( KnowFeature(matid, MF_LIGHTING_PHONG_SPECULARMAP) ||
-		KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP) ||
-		KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT_MAP))
-	{
-		float SpecMapId = GetFloat(matid, MF_LIGHTING_PHONG_SPECULARMAP, 0);
-		float SSSMapId = GetFloat(matid, MF_LIGHTING_FAKESSS_MAP, 0);
-		float RimMapId = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT_MAP, 0);
 
-		SpecMap = SpecMaps.SampleLevel(s0, float3(ouv, SpecMapId), 0).rgb;
-		SSSMap = SSSMaps.SampleLevel(s0, float3(ouv, SSSMapId), 0).rgb;
-		RimMap = RimMaps.SampleLevel(s0, float3(ouv, RimMapId), 0).rgb;
+	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP))
+	{
+		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP, 0);
+		RoughMap = RoughMaps.SampleLevel(MapSampler, float3(ouv, RoughMapId), 0).r;
+	}
+	if(KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP))
+	{
+		float SSSMapId = GetFloat(matid, MF_LIGHTING_FAKESSS_MAP, 0);
+		SSSMap = SSSMaps.SampleLevel(MapSampler, float3(ouv, SSSMapId), 0).rgb;
 	}
 
-    float3 lAtt = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_ATTENUATION);
-    float lPower = GetFloat(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARPOWER);
+	if(KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT_MAP))
+	{
+		float RimMapId = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT_MAP, 0);
+		RimMap = RimMaps.SampleLevel(MapSampler, float3(ouv, RimMapId), 0).rgb;
+	}
     
     float3 lAmb = 0;
     if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
-    	lAmb = GetFloat(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_AMBIENTCOLOR);
+    {
+    	lAmb = GetFloat3(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_AMBIENTCOLOR);
+    }
 
-    float3 lSpec = GetFloat3(matid, MF_LIGHTING_PHONG, MF_LIGHTING_PHONG_SPECULARCOLOR) * SpecMap;
+    float SStrength = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARSTRENGTH);
+
+    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength;
+    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap;
     
     Components outc = (Components)0;
 
@@ -381,30 +460,23 @@ Components PhongSunSSS(SamplerState s0, float2 uv, float2 sR, float lightcount, 
     	if((sunlightprop[i].LightStrength > lEpsilon) && valid)
     	{
 		    float3 amb=0;
-		    float3 diff = 0;
-		    float3 spec = 0;
-	        float3 lDir = mul(float4(sunlightprop[i].Direction,0), CamView);
+	        float3 lDir = sunlightprop[i].Direction;
 	        float3 lCol = sunlightprop[i].LightCol.xyz * sunlightprop[i].LightStrength;
 	    	
 	    	float3 indirectLightComponent = 0;
 	    	float3 rim = 0;
 
 	        if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
+	        {
 	        	amb = lAmb.rgb * sunlightprop[i].LightStrength;
+	        }
 
 	        float3 LightDirV = normalize(lDir);
 	        float3 V = ViewDirV;
 	    	
-            //halfvector
-            float3 H = normalize(ViewDirV + LightDirV);
-            //compute blinn lighting
-            float3 shades = lit(dot(NormV, LightDirV), dot(NormV, H), lPower).xyz;
-            diff = lCol * shades.y;
-            //reflection vector (view space)
-            float3 R = normalize(2 * dot(NormV, LightDirV) * NormV - LightDirV);
-            //normalized view direction (view space)
-            //calculate specular light
-            spec = pows(max(dot(-R, V),0), lPower*.2) * lSpec * lCol;
+	        float3 diff = lCol;
+	        float3 spec = lSpec * lCol;
+        	cook_torrance(NormV, V, LightDirV, rough, diff, spec);
 	        	
 		    if(KnowFeature(matid, MF_LIGHTING_FAKESSS))
 		    {
@@ -438,6 +510,5 @@ Components PhongSunSSS(SamplerState s0, float2 uv, float2 sR, float lightcount, 
 	    	outc.Ambient = max(outc.Ambient, amb);
     	}
     }
-    //outCol *= tex2D(diffSamp, TexCd).rgb;
     return outc;
 }

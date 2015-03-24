@@ -1,5 +1,5 @@
 #define NUM_SAMPLES 3
-#include "ColorSpace.fxh"
+#include "../fxh/ColorSpace.fxh"
 
 Texture2D UnLit;
 Texture2D ViewMap;

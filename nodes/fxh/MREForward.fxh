@@ -1,8 +1,8 @@
 #if !defined(POWS_FXH)
-	#include "pows.fxh"
+	#include "../fxh/pows.fxh"
 #endif
 #if !defined(BITWISE_FXH)
-	#include "bitwise.fxh"
+	#include "../fxh/bitwise.fxh"
 #endif
 
 #define MREFORWARD_FXH 1
@@ -81,7 +81,7 @@ struct PSOut
 
 struct PSProp
 {
-	float4 normalW : SV_Target;
+	float4 WorldPos : SV_Target;
 	float depth : SV_Depth;
 };
 

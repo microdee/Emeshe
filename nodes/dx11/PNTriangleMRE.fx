@@ -1,6 +1,6 @@
 //@author: microdee
 
-#import "MREForward.fxh"
+#import "../fxh/MREForward.fxh"
 
 Texture2D DiffTex;
 Texture2D BumpTex;

@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
    <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\FeatureTable (MRE.Materials).v4p" systemname="FeatureTable (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureTable (MRE.Materials).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="14010" top="1920" width="13350" height="11520">
    </BOUNDS>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="33.7.0">
    </PACK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="73" systemname="IOBox (String)">
    <BOUNDS type="Box" left="5355" top="3915" width="3615" height="240">
@@ -380,4 +380,6 @@
    </NODE>
    <LINK srcnodeid="117" srcpinname="Size" dstnodeid="137" dstpinname="Y Input Value">
    </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
    </PATCH>

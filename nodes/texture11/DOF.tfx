@@ -3,7 +3,7 @@ Texture2D texPrev: PREVIOUS;
 Texture2D texColor: INITIAL;
 float2 R:TARGETSIZE;
 
-#include "MRE.fxh"
+#include "../fxh/MRE.fxh"
 
 float BlurAmount = 0;
 float FocusDistance = 1;

@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Phong (MRE Advanced).v4p" systemname="Phong (MRE Advanced)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Phong (MRE Advanced).v4p" scrollx="60" scrolly="870">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Phong (MRE Advanced).v4p" systemname="Phong (MRE Advanced)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Phong (MRE Advanced).v4p" scrollx="945" scrolly="4020">
    <BOUNDS type="Window" left="10635" top="2430" width="13830" height="10005">
    </BOUNDS>
    <NODE systemname="Renderer (DX11 MRT)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 MRT)" componentmode="Hidden" id="0">
@@ -304,7 +304,7 @@
    </PACK>
    <PACK Name="ImagePack" Version="0.1.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="33.7.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="74" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="9135" top="5010" width="750" height="240">
@@ -546,4 +546,6 @@
    </NODE>
    <LINK srcnodeid="90" srcpinname="Output Node" dstnodeid="95" dstpinname="Input Node">
    </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
    </PATCH>

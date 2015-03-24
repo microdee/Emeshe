@@ -1,16 +1,17 @@
 #define MRE_FXH 1
 
 #if !defined(POWS_FXH)
-	#include "pows.fxh"
+	#include "../fxh/pows.fxh"
 #endif
 #if !defined(BITWISE_FXH)
-	#include "bitwise.fxh"
+	#include "../fxh/bitwise.fxh"
 #endif
 #if !defined(DEPTHRECONSTRUCT_FXH)
-	#include "depthreconstruct.fxh"
+	#include "../fxh/depthreconstruct.fxh"
 #endif
 
 Texture2D Color : MRE_COLOR;
+Texture2D ViewPos : MRE_VIEWPOS;
 Texture2D Normals : MRE_NORMALS;
 Texture2D Velocity : MRE_VELOCITY;
 Texture2D<uint4> MatProp : MRE_MATERIAL;
@@ -50,6 +51,11 @@ float GetStencil(float2 uv, float2 R)
 
 float3 GetViewPos(SamplerState s0, float2 uv)
 {
+	float3 d = ViewPos.SampleLevel(s0, uv, 0).rgb;
+	return d;
+}
+float3 CalculateViewPos(SamplerState s0, float2 uv)
+{
 	float d = Depth.SampleLevel(s0, uv, 0).r;
 	if(DepthMode == 1)
 		return UVDtoVIEW(uv, d, NearFarPow, CamProj, CamProjInv);
@@ -57,6 +63,10 @@ float3 GetViewPos(SamplerState s0, float2 uv)
 		return UVZtoVIEW(uv, d, CamProj, CamProjInv);
 }
 float3 GetWorldPos(SamplerState s0, float2 uv)
+{
+	return mul(float4(GetViewPos(s0, uv), 1), CamViewInv).xyz;
+}
+float3 CalculateWorldPos(SamplerState s0, float2 uv)
 {
 	float d = Depth.SampleLevel(s0, uv, 0).r;
 	if(DepthMode == 1)

@@ -1,4 +1,4 @@
-#include "MRE.fxh"
+#include "../fxh/MRE.fxh"
 Texture2D tex0: PREVIOUS;
 
 SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};

@@ -1,5 +1,5 @@
 //@author: microdee
-#include "MREForward.fxh"
+#include "../fxh/MREForward.fxh"
 
 Texture2D DiffTex;
 Texture2D BumpTex;
@@ -129,12 +129,12 @@ PSOut PS(vs2ps In)
     	float4 diffcol = DiffTex.Sample( Sampler, uvb);
 	#endif
 	
-	if(depth!=0) PosV += In.NormV * mdepth * -1*depth;
+	if(depth!=0) PosV += In.NormV * mdepth * (depth/100);
 
     #if defined(HAS_NORMALMAP)
     	float3 normmap = NormalTex.Sample(Sampler, uvb).xyz*2-1;
 		float3 outnorm = normalize(normmap.x * In.Tangent + normmap.y * In.Binormal + normmap.z * In.NormV);
-		Out.normalV = float4(outnorm,1);
+		Out.normalV = float4(lerp(NormV, outnorm, depth),1);
 	#else
 		Out.normalV = float4(NormV,1);
 	#endif

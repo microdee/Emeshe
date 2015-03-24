@@ -1,5 +1,5 @@
 //@author: microdee
-#include "MREForward.fxh"
+#include "../fxh/MREForward.fxh"
 
 Texture2D DiffTex;
 Texture2D BumpTex;

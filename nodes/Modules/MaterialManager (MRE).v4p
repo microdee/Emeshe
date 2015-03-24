@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialManager (MRE).v4p" systemname="MaterialManager (MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialManager (MRE).v4p" scrollx="0" scrolly="30">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MaterialManager (MRE).v4p" systemname="MaterialManager (MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialManager (MRE).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="9225" top="3765" width="13875" height="9825">
    </BOUNDS>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="33.7.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="930" top="540" width="810" height="240">
@@ -259,7 +259,7 @@
    </PIN>
    <PIN pinname="Filter" visible="1">
    </PIN>
-   <PIN pinname="Exclude" slicecount="1" values="1" visible="1">
+   <PIN pinname="Exclude" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Enabled" visible="1">
    </PIN>
@@ -378,26 +378,6 @@
    </LINK>
    <LINK srcnodeid="2" srcpinname="Output" dstnodeid="35" dstpinname="Parent">
    </LINK>
-   <NODE systemname="PrimitiveObject (Split)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (Split)" componentmode="Hidden" id="39">
-   <BOUNDS type="Node" left="765" top="2310" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Primitive Template" slicecount="1" visible="1" values="None">
-   </PIN>
-   <PIN pinname="Configuration" slicecount="1" values="|bool GlobalAdd|">
-   </PIN>
-   <PIN pinname="Parameters" visible="1">
-   </PIN>
-   <PIN pinname="Parameters Bin Size" visible="1">
-   </PIN>
-   <PIN pinname="Set" visible="1">
-   </PIN>
-   <PIN pinname="GlobalAdd" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="36" srcpinname="Output" dstnodeid="39" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="40">
    <BOUNDS type="Node" left="3255" top="3225" width="100" height="100">
    </BOUNDS>
@@ -419,13 +399,39 @@
    <NODE systemname="TogEdge (Animation)" nodename="TogEdge (Animation)" componentmode="Hidden" id="41">
    <BOUNDS type="Node" left="1275" top="2865" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Up Edge" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="39" srcpinname="GlobalAdd" dstnodeid="41" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="41" srcpinname="Up Edge" dstnodeid="40" dstpinname="Input 1">
    </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="39">
+   <BOUNDS type="Node" left="765" top="2310" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Primitive Template" slicecount="1" visible="1" values="None">
+   </PIN>
+   <PIN pinname="Configuration" slicecount="1" values="|bool GlobalAdd|">
+   </PIN>
+   <PIN pinname="Parameters" visible="1">
+   </PIN>
+   <PIN pinname="Parameters Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Set" visible="1">
+   </PIN>
+   <PIN pinname="GlobalAdd" visible="1">
+   </PIN>
+   <PIN pinname="Formular" slicecount="1" values="Emeshe.MaterialGlobals.GlobalAdd">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|bool GlobalAdd|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="36" srcpinname="Output" dstnodeid="39" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="39" srcpinname="GlobalAdd" dstnodeid="41" dstpinname="Input">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
    </PATCH>

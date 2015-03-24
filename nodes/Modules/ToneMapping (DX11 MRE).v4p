@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.3.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ToneMapping (DX11 MRE).v4p" systemname="ToneMapping (DX11 MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\ToneMapping (DX11 MRE).v4p" scrollx="150" scrolly="480">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ToneMapping (DX11 MRE).v4p" systemname="ToneMapping (DX11 MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\ToneMapping (DX11 MRE).v4p" scrollx="0" scrolly="1530">
    <BOUNDS type="Window" left="4740" top="840" width="18345" height="12720">
    </BOUNDS>
    <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="0">
@@ -243,7 +243,7 @@
    </BOUNDS>
    <PIN pinname="AvgLuminance" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
@@ -914,6 +914,8 @@
    </LINK>
    <LINK srcnodeid="76" srcpinname="Output" dstnodeid="72" dstpinname="Color">
    </LINK>
-   <PACK Name="addonpack" Version="33.3.0">
+   <PACK Name="addonpack" Version="33.7.0">
+   </PACK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
    </PATCH>

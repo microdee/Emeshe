@@ -1,76 +1,141 @@
-
-struct MaterialProp
-{
-    float3 Atten;
-    float Power;
-    float4 AmbCol;
-    float4 SpecCol;
-    float SpecAmount;
-    float4 EmCol;
-    float EmAmount;
-    float SSSAmount;
-    float SSSPower;
-    float MatThick;
-    float RimLAmount;
-    float RimLPower;
-    float4 SSSExtCoeff;
-    float Reflection;
-    float Refraction;
-	uint ReflectRefractTexID;
-};
+#if !defined(POWS_FXH)
+	#include "../fxh/pows.fxh"
+#endif
+#if !defined(MATERIALS_FXH)
+	#include "../fxh/Materials.fxh"
+#endif
+#if !defined(MRE_FXH)
+	#include "../fxh/MRE.fxh"
+#endif
+#if !defined(POISSONDISC_FXH)
+	#include "../fxh/PoissonDisc.fxh"
+#endif
+#if !defined(PANOTOOLS_FXH)
+	#include "../fxh/PanoTools.fxh"
+#endif
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
-StructuredBuffer<MaterialProp> matprop <string uiname="Material Buffer";>;
 StructuredBuffer<float3> RefractIndices;
 float4x4 ReflTransform;
 
-#define PI 3.14159265358979
-#include "MRE.fxh"
-
-TextureCube Environment;
+Texture2DArray Environments;
+Texture2DArray ReflectionMaps;
+Texture2DArray RefractionMaps;
 Texture2DArray FresnelTextures;
 
+float2 ScreenSize : TARGETSIZE;
 
-float2 ScreenSize:TARGETSIZE;
-
-cbuffer controls:register(b0)
+cbuffer controls : register(b0)
 {
 	bool IsInitial = true;
 	float2 EnvStrength = 1;
-	float Perspective = 10;
+	float Blur = 0;
 	//float3 RefractIndices = { 0.80, 0.82, 0.84 };
 };
 
-SamplerState s0 <bool visible=false;string uiname="Sampler";>
+SamplerState s0 <string uiname="Sampler";>
 {
 	Filter=MIN_MAG_MIP_LINEAR;
-	AddressU=CLAMP;
-	AddressV=CLAMP;
+	AddressU=WRAP;
+	AddressV=WRAP;
 	AddressW=WRAP;
 	//MipLODBias = -1;
 };
 
+#if !defined(PI)
+	#define PI 3.14159265358979
+#endif
+
+#if !defined(DISCSAMPLES)
+	#define DISCSAMPLES 16
+#endif
+
+float4 DiscSample(Texture2DArray envtex, SamplerState ss, float3 dir, float blur, float slice)
+{
+	float4 col = envtex.SampleLevel(ss, float3(DirToUV(dir), slice), 0);
+	if(blur < 0.0001)
+		return col;
+	else
+	{
+		float sampcount = DISCSAMPLES + 1;
+		col /= sampcount;
+		for(float i=0; i<DISCSAMPLES; i++)
+		{
+			float tt = (i/sampcount) * PI * 2;
+			float3 discray = PoissonDiscDir(dir, tt, blur);
+			col += envtex.SampleLevel(ss, float3(DirToUV(discray), slice), 0) / sampcount;
+		}
+		return col;
+	}
+}
+
 float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
-	float vPos = mre_getviewpos(s0,uv).z;
+	float stencil = GetStencil(s0, uv);
 	float4 col = float4(0,0,0,1);
-	if(vPos!=0)
+
+	bool KnowReflect = KnowFeature(matid, MF_REFLECTION_SPHEREMAP);
+	bool KnowRefract = KnowFeature(matid, MF_REFRACTION_SPHEREMAP);
+
+	if((stencil > 0) && (KnowReflect || KnowRefract))
 	{
-		float matid = mre_getmatid(s0,uv);
-		float3 norm = mul(float4(mre_getviewnorm(s0,uv),0),ReflTransform).xyz;
-		if(!IsInitial) col = ColorTex.Sample(s0, uv);
-		if((matprop[matid].Reflection!=0) || (matprop[matid].Refraction!=0))
+		float2 SceneUV = 0;
+		uint matid = GetMatID(s0,uv);
+		bool KnowRlMap = KnowFeature(matid, MF_REFLECTION_MAP);
+		bool KnowRrMap = KnowFeature(matid, MF_REFRACTION_MAP);
+
+		if(KnowRlMap || KnowRrMap)
 		{
-			float3 addrays = float3(uv*2-1, 0);
-			addrays.x *= ScreenSize.x/ScreenSize.y;
-			
-			float3 rrV = normalize(addrays/Perspective - vPos);
-			float3 bn = normalize(norm);
-  			float3 rrR = reflect(-rrV, bn);
-    		float4 reflColor = Environment.SampleLevel(s0,rrR,0);
-			
-			float fresnel = FresnelTextures.SampleLevel(s0, float3(dot(norm, rrV), 0, matprop[matid].ReflectRefractTexID), 0);
+			SceneUV = GetUV(uv, ScreenSize)
+		}
+
+		float3 vPos = GetViewPos(s0, uv);
+		float3 norm = mul(float4(GetWorldNormal(s0,uv),0),ReflTransform).xyz;
+		if(!IsInitial) col = ColorTex.Sample(s0, uv);
+
+		float3 rrV = normalize(vPos);
+		float3 bn = normalize(norm);
+
+		if(KnowReflect)
+		{
+			float3 rrR = reflect(rrV, bn);
+			float rlBlur = GetFloat(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_BLUR) * Blur;
+			float rlSlice = GetFloat(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_ENVID);
+			float rlStrength = GetFloat(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_STRENGTH) * EnvStrength.x;
+
+			float rlFresnelID = GetFloat(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_FRESNELID);
+			float rlFresnel = FresnelTextures.SampleLevel(s0, float3(dot(norm, rrV), 0, rlFresnelID, 0);
+
+			float4 reflColor = DiscSample(Environments, s0, rrR, rlBlur, rlSlice);
+
+			float rlmap = 1;
+			if(KnowRlMap || KnowRrMap)
+			{
+				float mapslice = 0;
+				if(KnowRlMap)
+				{
+					mapslice = GetFloat(matid, MF_REFLECTION_MAP, MF_REFLECTION_MAP_MAPID);
+					rlmap = ReflectionMaps.Sample(s0, float3(SceneUV, mapslice), 0);
+				}
+				else 
+				{
+					mapslice = GetFloat(matid, MF_REFRACTION_MAP, MF_REFRACTION_MAP_MAPID);
+					rlmap = RefractionMaps.Sample(s0, float3(SceneUV, mapslice), 0);
+				}
+			}
+			col += reflColor * rlStrength * 2 * rlFresnel * rlmap;
+		}
+
+		if(KnowRefract)
+		{
+			float rrBlur = GetFloat(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_BLUR) * Blur;
+			float rrSlice = GetFloat(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_ENVID);
+			float rrStrength = GetFloat(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_STRENGTH) * EnvStrength.y;
+
+			float rrFresnelID = GetFloat(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_FRESNELID);
+			float rrFresnel = FresnelTextures.SampleLevel(s0, float3(dot(norm, rrV), 0, rrFresnelID, 0);
+
 			const half4 colors[3] =
 		    {
 		    	{ 1, 0, 0, 1 },
@@ -81,18 +146,35 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 		  	bool fail = false;
 		    for(int j=0; j<3; j++) {
 		    	float3 rrT = refract(-rrV, bn, RefractIndices[matprop[matid].ReflectRefractTexID][j]);
-		    	transColor += Environment.SampleLevel(s0,rrT,0)* colors[j];
+		    	transColor += DiscSample(Environments, s0, rrT, rrBlur, rrSlice) * colors[j];
 			}
-			float refmap = mre_getmaps(s0,uv).x;
-			col += reflColor * matprop[matid].Reflection * 2 * fresnel * refmap * EnvStrength.x;
-			col += transColor * matprop[matid].Refraction * (1-fresnel) * refmap * EnvStrength.y;
+
+			float rrmap = 1;
+			if(KnowRlMap || KnowRrMap)
+			{
+				float mapslice = 0;
+				if(KnowRrMap)
+				{
+					mapslice = GetFloat(matid, MF_REFLECTION_MAP, MF_REFLECTION_MAP_MAPID);
+					rrmap = RefractionMaps.Sample(s0, float3(SceneUV, mapslice), 0);
+				}
+				else 
+				{
+					mapslice = GetFloat(matid, MF_REFRACTION_MAP, MF_REFRACTION_MAP_MAPID);
+					rrmap = ReflectionMaps.Sample(s0, float3(SceneUV, mapslice), 0);
+				}
+			}
+
+			col += transColor * rrStrength * (1-fresnel) * rrmap;
 		}
+
+		return float4(col.xyz,ColorTex.Sample(s0,uv).a);
 	}
+	else return ColorTex.Sample(s0, uv);
 	
-	return float4(col.xyz,ColorTex.Sample(s0,uv).a);
 }
 
-technique10 Point{
+technique10 Main{
 	pass P0
-	{SetPixelShader(CompileShader(ps_4_0,pRefleract()));}
+	{SetPixelShader(CompileShader(ps_5_0, pRefleract()));}
 }
