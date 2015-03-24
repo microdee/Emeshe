@@ -1,0 +1,2134 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"lP",
+				"lProjection"
+			],
+			[
+				"Li",
+				"LightCol"
+			],
+			[
+				"float",
+				"float"
+			],
+			[
+				"Poin",
+				"PointLightProp"
+			],
+			[
+				"defi",
+				"define"
+			],
+			[
+				"Kno",
+				"KnowReflect"
+			],
+			[
+				"Sam",
+				"Sample"
+			],
+			[
+				"Refl",
+				"ReflectionMaps"
+			],
+			[
+				"rl",
+				"rlmap"
+			],
+			[
+				"get",
+				"GetFloat"
+			],
+			[
+				"Kn",
+				"KnowRrMap"
+			],
+			[
+				"Know",
+				"KnowMap"
+			],
+			[
+				"MF_",
+				"MF_REFLECTION_MAP"
+			],
+			[
+				"rlS",
+				"rlStrength"
+			],
+			[
+				"rlFR",
+				"rlFresnelID"
+			],
+			[
+				"MF_REFL",
+				"MF_REFLECTION_SPHEREMAP_FRESNELID"
+			],
+			[
+				"Get",
+				"GetFloat"
+			],
+			[
+				"En",
+				"Environments"
+			],
+			[
+				"Dis",
+				"DiscSample"
+			],
+			[
+				"Poi",
+				"PoissonDiscDir"
+			],
+			[
+				"D",
+				"DISCSAMPLES"
+			],
+			[
+				"Dir",
+				"DirToUV"
+			],
+			[
+				"Sa",
+				"Sampler"
+			],
+			[
+				"mat",
+				"matid"
+			],
+			[
+				"MF_REFR",
+				"MF_REFRACTION_SPHEREMAP"
+			],
+			[
+				"GetW",
+				"GetWorldNormal"
+			],
+			[
+				"MF_R",
+				"MF_REFLECTION_SPHEREMAP"
+			],
+			[
+				"nor",
+				"normalize"
+			],
+			[
+				"Min",
+				"MinAbsN"
+			],
+			[
+				"norm",
+				"normalize"
+			],
+			[
+				"def",
+				"define"
+			],
+			[
+				"MF_LIGHTING_COOK",
+				"MF_LIGHTING_COOKTORRANCE"
+			],
+			[
+				"Te",
+				"Texture2D"
+			],
+			[
+				"SS",
+				"SStrength"
+			],
+			[
+				"View",
+				"ViewDirV"
+			],
+			[
+				"MF_LIGHTING_COOKTORRANCE_",
+				"MF_LIGHTING_COOKTORRANCE_ROUGHNESS"
+			],
+			[
+				"out",
+				"outc"
+			],
+			[
+				"no",
+				"NormV"
+			],
+			[
+				"Spe",
+				"specular"
+			],
+			[
+				"com",
+				"Components"
+			],
+			[
+				"floa",
+				"float3"
+			],
+			[
+				"RO",
+				"ROUGHNESS_LOOK_UP"
+			],
+			[
+				"ROU",
+				"ROUGHNESS_LOOK_UP"
+			],
+			[
+				"rou",
+				"roughness_value"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"rgb",
+				"rgba()"
+			],
+			[
+				"Ba",
+				"background-color"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"attr",
+				"attr	.attr() - single"
+			],
+			[
+				"rea",
+				"ready	$(document).ready"
+			],
+			[
+				"res",
+				"resizable"
+			],
+			[
+				"Mask",
+				"MaskTex"
+			],
+			[
+				"Ligh",
+				"LightCount"
+			],
+			[
+				"MF_LIGHTING_FAK",
+				"MF_LIGHTING_FAKERIMLIGHT_MAP"
+			],
+			[
+				"MF",
+				"MF_LIGHTING_FAKESSS_POWER"
+			],
+			[
+				"SSS",
+				"SSSMap"
+			],
+			[
+				"Sample",
+				"SampleLevel"
+			],
+			[
+				"Norma",
+				"Normals"
+			],
+			[
+				"Norm",
+				"NormV"
+			],
+			[
+				"Specm",
+				"SpecMapId"
+			],
+			[
+				"MF_LIGHTING_FA",
+				"MF_LIGHTING_FAKERIMLIGHT_MAP"
+			],
+			[
+				"MF_LIGHTING_Fake",
+				"MF_LIGHTING_FAKESSS_MAP"
+			],
+			[
+				"MF_LIGHTING_PH",
+				"MF_LIGHTING_PHONG_SPECULARMAP"
+			],
+			[
+				"Cam",
+				"CamViewInv"
+			],
+			[
+				"Ca",
+				"CamViewInv"
+			],
+			[
+				"UV",
+				"UVZtoVIEW"
+			],
+			[
+				"UVD",
+				"UVDtoVIEW"
+			],
+			[
+				"Samp",
+				"SamplerState"
+			],
+			[
+				"De",
+				"Depth"
+			],
+			[
+				"Spl",
+				"SplitHalf"
+			],
+			[
+				"HAS",
+				"HAS_NORMALMAP"
+			],
+			[
+				"UVto",
+				"UVtoEYEV"
+			],
+			[
+				"Dept",
+				"DepthMode"
+			],
+			[
+				"Obj",
+				"ObjIDMode"
+			],
+			[
+				"Jo",
+				"JoinHalf"
+			],
+			[
+				"Pos",
+				"PosO"
+			],
+			[
+				"HA",
+				"HAS_GEOMVELOCITY"
+			],
+			[
+				"e",
+				"endif"
+			],
+			[
+				"VS",
+				"VSin"
+			],
+			[
+				"Feature",
+				"FeatureFlag"
+			],
+			[
+				"re",
+				"ret"
+			],
+			[
+				"FE",
+				"FeatureID"
+			],
+			[
+				"Ma",
+				"MaterialData"
+			],
+			[
+				"FLA",
+				"MF_FLAGSIZE"
+			],
+			[
+				"Fea",
+				"FeatureOffset"
+			],
+			[
+				"ray",
+				"raytraceFar"
+			],
+			[
+				"Colo",
+				"ColorTex"
+			],
+			[
+				"MF_LIGHTING_FAKESSS",
+				"MF_LIGHTING_FAKESSS_STRENGTH"
+			],
+			[
+				"MF_LIGHTING_FAKESSS_",
+				"MF_LIGHTING_FAKESSS_COEFFICIENT"
+			],
+			[
+				"MF_L",
+				"MF_LIGHTING_FAKESSS_MAP_MAPID_SIZE"
+			],
+			[
+				"MF_LIGHTING_PHONG",
+				"MF_LIGHTING_PHONG_SPECULARCOLOR_OFFSET"
+			],
+			[
+				"M",
+				"MF_LIGHTING_PHONG"
+			],
+			[
+				"lA",
+				"lAmb"
+			],
+			[
+				"MF_LIGHTING_AMBIENT",
+				"MF_LIGHTING_AMBIENT_AMBIENTCOLOR_OFFSET"
+			],
+			[
+				"la",
+				"lAmb"
+			],
+			[
+				"MF_LI",
+				"MF_LIGHTING_AMBIENT"
+			],
+			[
+				"ma",
+				"matid"
+			],
+			[
+				"Mater",
+				"Material"
+			],
+			[
+				"FeatureS",
+				"featurestart"
+			],
+			[
+				"Mat",
+				"MatID"
+			],
+			[
+				"Fe",
+				"Features"
+			],
+			[
+				"Ch",
+				"CheckFeature"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"Param",
+				"ParamOffset"
+			],
+			[
+				"MRE",
+				"MRE_MAT_UV"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "nodes/dx11/LightDataFill.fx",
+			"settings":
+			{
+				"buffer_size": 3447,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/bitwise.fxh",
+			"settings":
+			{
+				"buffer_size": 521,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/ColorSpace.fxh",
+			"settings":
+			{
+				"buffer_size": 1403,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/LightStructs.fxh",
+			"settings":
+			{
+				"buffer_size": 800,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/LightUtils.fxh",
+			"settings":
+			{
+				"buffer_size": 930,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/MaterialFeatures.fxh",
+			"settings":
+			{
+				"buffer_size": 6526,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/Materials.fxh",
+			"settings":
+			{
+				"buffer_size": 8745,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/MRE.fxh",
+			"settings":
+			{
+				"buffer_size": 2024,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/MREForward.fxh",
+			"settings":
+			{
+				"buffer_size": 2587,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/PanoTools.fxh",
+			"settings":
+			{
+				"buffer_size": 374,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/PoissonDisc.fxh",
+			"settings":
+			{
+				"buffer_size": 552,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/pows.fxh",
+			"settings":
+			{
+				"buffer_size": 652,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/safedivide.fxh",
+			"settings":
+			{
+				"buffer_size": 598,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"selected_items":
+		[
+			[
+				"king",
+				"King: Number: Transform Numbers"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"kin",
+				"King: Number: Number Sequence"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 536.0
+	},
+	"console":
+	{
+		"height": 51.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/vvvv/libs/Emeshe/nodes",
+		"/C/vvvv/libs/Emeshe/nodes/dx11"
+	],
+	"file_history":
+	[
+		"/C/vvvv/libs/Emeshe/nodes/fxh/CookTorrance.fxh",
+		"/C/Users/Jon Snow/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/barycentric.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/MRE.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/PanoTools.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/PoissonDisc.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/LightStructs.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/MaterialFeatures.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/PhongSeparate.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/ConstantMRE.fx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/Materials.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/MREForward.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ReflectRefract.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/Phong.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/LightDataFill.fx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/LightUtils.fxh",
+		"/C/Users/Jon Snow/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/CookTorranceSeparate.fx",
+		"/C/Users/Jon Snow/AppData/Roaming/Sublime Text 3/Packages/Number King/HELP.md",
+		"/C/vvvv/libs/mups/nodes/dx11/ForceAttractor.fx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/safedivide.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/SSAO.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/FakeCubeUtils.fxh",
+		"/C/Program Files/Allegorithmic/Substance Designer/5/documentation/shortcuts_windows.html",
+		"/C/vvvv/libs/Emeshe/CookTorranceMultiTexFresnel.fx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/pows.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/mups.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/MaterialLightStruct.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/depthreconstruct.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/ColorSpace.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/bitwise.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/Bicubic2.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ViewUV.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ViewToWorld.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ViewPos.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ToneMappingVisualizer.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ToneMapping.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/SSAOTemporal.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/SelectHighlight.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/PointShadows.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Place.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Phong.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/NormalTr.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/NormalMapTransformable.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Noise.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/MotionBlur.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/MinMaxDepth.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/MergeTargets.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/MatCap.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/LensBlur.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/JoinFromVolume.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/HBAO.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Glare.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/FogBase.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/FilterBokeh.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/FillVelocity.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/FillVel.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Emission.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DOF.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DepthFog.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DepthCompare.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DepthBlurMRE.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DepthBlur.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/CSSGI.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ControlBlur.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/CompositeLight.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BubbleNoiseTransform.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BlurGlowMRE.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Bimix.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BicubicYResample.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BicubicPosoffset.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BicubicFilter.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Wavy.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/TriplanarProjectUV.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/TexturePosition.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/TesselatorGeometry.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Subtract.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/SplineFromTexture.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/SpherizeCube.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Spherize.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/PositionFromBuffer.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/PNTriangle.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Mix.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/FakeCubeUtils.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/ExtruderVel.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Extruder.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/DistBasedTessellate.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Decimator.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/VolumeQueue.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/VelMapExtender.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/TemporalReprojection.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/SSAOTemporal.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/Sampletest.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/QueueRGBA.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/PNTriangleMRE.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/NormalizeHL.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/MatMetaFill.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/MakeCube.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/HBAO.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/FeatureOffsetFill.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/DumbHalo.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/DumberHalo.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/DepthBlur.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/CubeWriter.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/ConstantThickness.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/ConstantMREProp.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/ConstantDepth.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/CompositeLight.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/B-SplineSingleInput.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/B-SplineDirection.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/BokehGen.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/BicubicResample.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/AutoFocus.fx",
+		"/D/downloads/adobeCC2014/Illustrator/Crack-Windows/disable_activation.cmd",
+		"/C/Users/Jon Snow/Downloads/Corel Draw X7 [32-64]/CORELDRAW_GRAPHICS_SUITE_X7_WIN64-XFORCE/Crack/install.txt",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/vvvv/app/vvvv_45beta33.7_x64/addonpack/lib/nodes/plugins/libvlc_searchpath.txt",
+		"/C/vvvv/projects/CA-2-MAX/preprod/CalculationsPseudo.txt",
+		"/C/vvvv/projects/CA-2-MAX/_start-mirror.bat",
+		"/C/vvvv/projects/CA-2-MAX/_start.bat",
+		"/C/vvvv/projects/CA-2-MAX/_start-profile.bat",
+		"/C/vvvv/projects/CA-2-MAX/.gitignore",
+		"/C/vvvv/projects/CA-2-MAX/Programfiles/profile/OSKLayout.txt",
+		"/C/vvvv/projects/CA-2-MAX/Programfiles/users-Development.csv",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Materials.fxh",
+		"/C/Users/Jon Snow/AppData/Local/Temp/fz3temp-1/index.html",
+		"/C/vvvv/libs/mcropack/utils/AddNewV4P.bat",
+		"/C/vvvv/libs/mcropack/utils/AddNewV4P.reg"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"[ii]",
+			".0",
+			";",
+			"float",
+			"float4x4",
+			"float",
+			";",
+			"Position",
+			".z",
+			"Point",
+			".0",
+			"0",
+			" + 0",
+			"LightCol",
+			".x",
+			"MF_FLAGSIZE",
+			"rl",
+			"Rl",
+			"rl",
+			"Rl",
+			"rl",
+			"LE",
+			"REFLEC",
+			"MF_REFLECTION",
+			"rl",
+			"DISCSAMPLES",
+			"int",
+			"FresnelTextures",
+			"RotateRays",
+			"pointlightprop[i].Position",
+			"sunlightprop[i].Direction",
+			"vec",
+			"sqDist",
+			"cAttenuation",
+			"cLuminosity",
+			".z",
+			"float2",
+			".y",
+			"float2",
+			"float",
+			"cookTorrMultPS_t",
+			"Amb",
+			"amb",
+			"Phong",
+			"MF_LIGHTING_PHONG",
+			"fxh",
+			"texRoughness",
+			"s0",
+			"SpecMap",
+			"SPECULARMAP",
+			"SPECULAR",
+			"lCol",
+			"MF_LIGHTING_PHONG",
+			"Components Phong",
+			");\n",
+			"s0",
+			"SpecMaps",
+			"float3 ",
+			"lAtt",
+			"COOKTORRANCE_SPECULARMAP",
+			"_COOKTORRANCE_SPECULARMAP",
+			"\n    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * RoughMap * SStrength;",
+			"MF_LIGHTING_PHONG",
+			" MF_LIGHTING_PHONG_",
+			"MF_LIGHTING_PHONG_",
+			"SpecMap",
+			"SpecMaps",
+			"SpecMap",
+			"Components Phong",
+			"Phong",
+			"),",
+			", typeof",
+			"Add(",
+			"\"bool\".ToLower()",
+			"typeof(",
+			"ActivityFactor",
+			"OnScreenKeyboard (VOOG)",
+			"GUIVObject",
+			"Mouse",
+			"FConfig",
+			"].Height",
+			"].Width",
+			"sample.",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"sample.Depth",
+			"Color",
+			"COLOR",
+			"Color",
+			"color",
+			"Color",
+			"color",
+			"Color",
+			"color",
+			"versions",
+			"pinname=\"Configuration\"",
+			"id=\"4\"",
+			"Message (Split)",
+			"Kitchen",
+			"Livingroom",
+			"Stopwatch",
+			"spotlightprop",
+			"SSSpower",
+			"POWER",
+			"power",
+			"mask",
+			"NormW",
+			"spotlightprop[i].Position",
+			"LightDirW",
+			"PosW",
+			"Spec",
+			"pos",
+			"RayOrigin",
+			"Eye",
+			"EYE",
+			"UVtoEYE"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "nodes/dx11/LightDataFill.fx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3447,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								874,
+								874
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 312.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "nodes/fxh/bitwise.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 521,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								291,
+								291
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "nodes/fxh/ColorSpace.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1403,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "nodes/fxh/LightStructs.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 800,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								592,
+								592
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "nodes/fxh/LightUtils.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 930,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "nodes/fxh/MaterialFeatures.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6526,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "nodes/fxh/Materials.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8745,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "nodes/fxh/MRE.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2024,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "nodes/fxh/MREForward.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2587,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 663.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "nodes/fxh/PanoTools.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "nodes/fxh/PoissonDisc.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 552,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "nodes/fxh/pows.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage"
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "nodes/fxh/safedivide.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 598,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.515917555544,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "Emeshe.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 179.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
