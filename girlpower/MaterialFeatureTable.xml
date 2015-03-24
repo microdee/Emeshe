@@ -25,6 +25,12 @@
     <Offset>0</Offset>
   </Features>
   <Features>
+    <Feature>Lighting_Ambient</Feature>
+    <Parameter>Attenuation</Parameter>
+    <Size>3</Size>
+    <Offset>3</Offset>
+  </Features>
+  <Features>
     <Feature>Lighting_Phong</Feature>
     <Parameter>SpecularColor</Parameter>
     <Size>3</Size>
@@ -79,13 +85,7 @@
     <Offset>5</Offset>
   </Features>
   <Features>
-    <Feature>Lighting_CookTorrance_Baked</Feature>
-    <Parameter>BakedID</Parameter>
-    <Size>1</Size>
-    <Offset>0</Offset>
-  </Features>
-  <Features>
-    <Feature>Lighting_CookTorrance_GlossMap</Feature>
+    <Feature>Lighting_CookTorrance_RoughMap</Feature>
     <Parameter>MapID</Parameter>
     <Size>1</Size>
     <Offset>0</Offset>
@@ -139,6 +139,12 @@
     <Offset>7</Offset>
   </Features>
   <Features>
+    <Feature>Lighting_Composite_Map</Feature>
+    <Parameter>MapID</Parameter>
+    <Size>1</Size>
+    <Offset>0</Offset>
+  </Features>
+  <Features>
     <Feature>Lighting_FakeSSS</Feature>
     <Parameter>Strength</Parameter>
     <Size>1</Size>
@@ -161,6 +167,12 @@
     <Parameter>Coefficient</Parameter>
     <Size>3</Size>
     <Offset>3</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_FakeSSS</Feature>
+    <Parameter>Attenuation</Parameter>
+    <Size>3</Size>
+    <Offset>6</Offset>
   </Features>
   <Features>
     <Feature>Lighting_FakeSSS_Map</Feature>
@@ -197,6 +209,12 @@
     <Parameter>Transform</Parameter>
     <Size>16</Size>
     <Offset>1</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_MatCap_BlendMap</Feature>
+    <Parameter>MapID</Parameter>
+    <Size>1</Size>
+    <Offset>0</Offset>
   </Features>
   <Features>
     <Feature>Lighting_Emission</Feature>
@@ -272,9 +290,21 @@
   </Features>
   <Features>
     <Feature>Reflection_SphereMap</Feature>
-    <Parameter>EnvID</Parameter>
+    <Parameter>Blur</Parameter>
     <Size>1</Size>
     <Offset>2</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SphereMap</Feature>
+    <Parameter>EnvID</Parameter>
+    <Size>1</Size>
+    <Offset>3</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SphereMap</Feature>
+    <Parameter>FresnelID</Parameter>
+    <Size>1</Size>
+    <Offset>4</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
@@ -320,9 +350,21 @@
   </Features>
   <Features>
     <Feature>Refraction_SphereMap</Feature>
-    <Parameter>EnvID</Parameter>
+    <Parameter>Blur</Parameter>
     <Size>1</Size>
     <Offset>2</Offset>
+  </Features>
+  <Features>
+    <Feature>Refraction_SphereMap</Feature>
+    <Parameter>EnvID</Parameter>
+    <Size>1</Size>
+    <Offset>3</Offset>
+  </Features>
+  <Features>
+    <Feature>Refraction_SphereMap</Feature>
+    <Parameter>FresnelID</Parameter>
+    <Size>1</Size>
+    <Offset>4</Offset>
   </Features>
   <Features>
     <Feature>Refraction_SSLR</Feature>
