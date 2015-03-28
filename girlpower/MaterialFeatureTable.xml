@@ -206,9 +206,15 @@
   </Features>
   <Features>
     <Feature>Lighting_MatCap</Feature>
+    <Parameter>ViewSpace</Parameter>
+    <Size>1</Size>
+    <Offset>1</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_MatCap</Feature>
     <Parameter>Transform</Parameter>
     <Size>16</Size>
-    <Offset>1</Offset>
+    <Offset>2</Offset>
   </Features>
   <Features>
     <Feature>Lighting_MatCap_BlendMap</Feature>
@@ -307,6 +313,12 @@
     <Offset>4</Offset>
   </Features>
   <Features>
+    <Feature>Reflection_SphereMap</Feature>
+    <Parameter>Multiply</Parameter>
+    <Size>1</Size>
+    <Offset>5</Offset>
+  </Features>
+  <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Strength</Parameter>
     <Size>1</Size>
@@ -329,6 +341,12 @@
     <Parameter>Distance</Parameter>
     <Size>1</Size>
     <Offset>3</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SSLR</Feature>
+    <Parameter>Multiply</Parameter>
+    <Size>1</Size>
+    <Offset>4</Offset>
   </Features>
   <Features>
     <Feature>Reflection_Map</Feature>
@@ -367,6 +385,12 @@
     <Offset>4</Offset>
   </Features>
   <Features>
+    <Feature>Refraction_SphereMap</Feature>
+    <Parameter>Multiply</Parameter>
+    <Size>1</Size>
+    <Offset>5</Offset>
+  </Features>
+  <Features>
     <Feature>Refraction_SSLR</Feature>
     <Parameter>Strength</Parameter>
     <Size>1</Size>
@@ -383,6 +407,18 @@
     <Parameter>Blur</Parameter>
     <Size>1</Size>
     <Offset>2</Offset>
+  </Features>
+  <Features>
+    <Feature>Refraction_SSLR</Feature>
+    <Parameter>Distance</Parameter>
+    <Size>1</Size>
+    <Offset>3</Offset>
+  </Features>
+  <Features>
+    <Feature>Refraction_SSLR</Feature>
+    <Parameter>Multiply</Parameter>
+    <Size>1</Size>
+    <Offset>4</Offset>
   </Features>
   <Features>
     <Feature>Refraction_Map</Feature>

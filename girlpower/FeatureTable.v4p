@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="2325" scrolly="3150">
-   <BOUNDS type="Window" left="12465" top="1080" width="13350" height="13785">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="0" scrolly="4125">
+   <BOUNDS type="Window" left="6285" top="0" width="13350" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -790,9 +790,11 @@
    </NODE>
    <LINK srcnodeid="234" srcpinname="Error Message" dstnodeid="246" dstpinname="Input String">
    </LINK>
-   <NODE systemname="MaterialBuffer (DX11 MRE)" filename="..\nodes\modules\MaterialBuffer (DX11 MRE).v4p" nodename="MaterialBuffer (DX11 MRE)" componentmode="InAWindow" id="254">
-   <BOUNDS type="Node" left="9210" top="6840" width="100" height="100">
+   <NODE systemname="MaterialBuffer (DX11 MRE)" filename="..\nodes\modules\MaterialBuffer (DX11 MRE).v4p" nodename="MaterialBuffer (DX11 MRE)" componentmode="Hidden" id="254">
+   <BOUNDS type="Node" left="8730" top="7935" width="100" height="100">
    </BOUNDS>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
    </NODE>
    <NODE systemname="Count (String)" nodename="Count (String)" componentmode="Hidden" id="255">
    <BOUNDS type="Node" left="2280" top="6450" width="100" height="100">
@@ -864,7 +866,7 @@
    <BOUNDS type="Node" left="1470" top="4935" width="100" height="100">
    </BOUNDS>
    </NODE>
-   <NODE systemname="PointLightBuffer (DX11 MRE)" filename="..\nodes\Modules\PointLightBuffer (DX11 MRE).v4p" componentmode="InAWindow" id="261" nodename="..\nodes\Modules\PointLightBuffer (DX11 MRE).v4p">
+   <NODE systemname="PointLightBuffer (DX11 MRE)" filename="..\nodes\Modules\PointLightBuffer (DX11 MRE).v4p" componentmode="Hidden" id="261" nodename="..\nodes\Modules\PointLightBuffer (DX11 MRE).v4p">
    <BOUNDS type="Node" left="8715" top="8490" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="8715" top="8490" width="4800" height="3600">
@@ -875,11 +877,13 @@
    </PIN>
    <PIN pinname="Dictionary Out" visible="1">
    </PIN>
+   <PIN pinname="Apply" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="262" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="10200" top="7710" width="480" height="480">
+   <BOUNDS type="Box" left="7500" top="8025" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="10200" top="7710" width="0" height="0">
+   <BOUNDS type="Node" left="7500" top="8025" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -896,7 +900,7 @@
    </NODE>
    <LINK srcnodeid="262" srcpinname="Y Output Value" dstnodeid="261" dstpinname="Update Formulars">
    </LINK>
-   <NODE systemname="AddLight (MRE.PointLight)" filename="..\nodes\Modules\AddLight (MRE.PointLight).v4p" componentmode="InAWindow" id="264" nodename="..\nodes\Modules\AddLight (MRE.PointLight).v4p">
+   <NODE systemname="AddLight (MRE.PointLight)" filename="..\nodes\Modules\AddLight (MRE.PointLight).v4p" componentmode="Hidden" id="264" nodename="..\nodes\Modules\AddLight (MRE.PointLight).v4p">
    <BOUNDS type="Node" left="10305" top="8715" width="2100" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="10305" top="8715" width="4800" height="3600">
@@ -908,20 +912,58 @@
    </NODE>
    <LINK srcnodeid="261" srcpinname="Dictionary Out" dstnodeid="264" dstpinname="Dictionary">
    </LINK>
-   <NODE systemname="AddLight (MRE.SpotLight)" filename="..\nodes\Modules\AddLight (MRE.SpotLight).v4p" componentmode="InAWindow" id="265" nodename="..\nodes\Modules\AddLight (MRE.SpotLight).v4p">
-   <BOUNDS type="Node" left="10305" top="11790" width="2250" height="270">
+   <NODE systemname="AddLight (MRE.SpotLight)" filename="..\nodes\Modules\AddLight (MRE.SpotLight).v4p" componentmode="Hidden" id="265" nodename="..\nodes\Modules\AddLight (MRE.SpotLight).v4p">
+   <BOUNDS type="Node" left="10275" top="9465" width="2250" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="10305" top="11790" width="4800" height="3600">
+   <BOUNDS type="Box" left="10275" top="9465" width="4800" height="3600">
    </BOUNDS>
-   <BOUNDS type="Window" left="29910" top="2745" width="20325" height="10770">
+   <BOUNDS type="Window" left="3240" top="3420" width="20325" height="10770">
    </BOUNDS>
+   <PIN pinname="Dictionary" visible="1">
+   </PIN>
    </NODE>
-   <NODE systemname="SpotLightBuffer (DX11 MRE)" filename="..\nodes\Modules\SpotLightBuffer (DX11 MRE).v4p" componentmode="InAWindow" id="266" nodename="..\nodes\Modules\SpotLightBuffer (DX11 MRE).v4p">
-   <BOUNDS type="Node" left="8535" top="11310" width="100" height="100">
+   <NODE systemname="SpotLightBuffer (DX11 MRE)" filename="..\nodes\Modules\SpotLightBuffer (DX11 MRE).v4p" componentmode="Hidden" id="266" nodename="..\nodes\Modules\SpotLightBuffer (DX11 MRE).v4p">
+   <BOUNDS type="Node" left="8700" top="9240" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="8535" top="11310" width="4800" height="3600">
+   <BOUNDS type="Box" left="8700" top="9240" width="4800" height="3600">
    </BOUNDS>
-   <BOUNDS type="Window" left="34875" top="645" width="14115" height="13890">
+   <BOUNDS type="Window" left="9150" top="510" width="14115" height="13890">
    </BOUNDS>
+   <PIN pinname="Dictionary Out" visible="1">
+   </PIN>
    </NODE>
+   <NODE systemname="SunLightBuffer (DX11 MRE)" filename="..\nodes\Modules\SunLightBuffer (DX11 MRE).v4p" componentmode="Hidden" id="267" nodename="..\nodes\Modules\SunLightBuffer (DX11 MRE).v4p">
+   <BOUNDS type="Node" left="8760" top="9930" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8760" top="9930" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="14655" top="2550" width="12765" height="10785">
+   </BOUNDS>
+   <PIN pinname="Dictionary Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="AddLight (MRE.SunLight)" filename="..\nodes\Modules\AddLight (MRE.SunLight).v4p" componentmode="Hidden" id="268" nodename="..\nodes\Modules\AddLight (MRE.SunLight).v4p">
+   <BOUNDS type="Node" left="10245" top="10155" width="1800" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10245" top="10155" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="10965" top="780" width="16485" height="13935">
+   </BOUNDS>
+   <PIN pinname="Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Add" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="267" srcpinname="Dictionary Out" dstnodeid="268" dstpinname="Dictionary">
+   </LINK>
+   <LINK srcnodeid="266" srcpinname="Dictionary Out" dstnodeid="265" dstpinname="Dictionary">
+   </LINK>
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\modules\FeatureManager (MRE.Materials).v4p" nodename="FeatureManager (MRE.Materials)" componentmode="Hidden" id="269">
+   <BOUNDS type="Node" left="10920" top="8160" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="254" srcpinname="Material Dictionary" dstnodeid="269" dstpinname="Material">
+   </LINK>
    </PATCH>

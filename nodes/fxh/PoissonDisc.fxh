@@ -7,9 +7,11 @@ float3 PoissonDisc(float3 N, float t, float r)
 	float3 MinAbsN = 0;
 	float MinNComp = 1;
 
+	[unroll]
 	for(uint i=0; i<3; i++)
 		MinNComp = min(MinNComp, anN[i]);
 
+	[unroll]
 	for(uint i=0; i<3; i++)
 		MinAbsN[i] = (MinNComp == anN[i]) ? 1 : 0;
 
