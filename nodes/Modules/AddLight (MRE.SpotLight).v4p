@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLight (MRE.SpotLight).v4p" systemname="AddLight (MRE.SpotLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLight (MRE.SpotLight).v4p" scrollx="0" scrolly="360">
-   <BOUNDS type="Window" left="29910" top="2745" width="20325" height="10770">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\AddLight (MRE.SpotLight).v4p" systemname="AddLight (MRE.SpotLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLight (MRE.SpotLight).v4p" scrollx="0" scrolly="360">
+   <BOUNDS type="Window" left="3240" top="3420" width="20325" height="10770">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -759,5 +759,47 @@
    <LINK srcnodeid="42" srcpinname="Output Node" dstnodeid="47" dstpinname="Transform">
    </LINK>
    <LINK srcnodeid="49" srcpinname="Output" dstnodeid="12" dstpinname="Input 9" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="Self (VVVV)" nodename="Self (VVVV)" componentmode="Hidden" id="51">
+   <BOUNDS type="Node" left="13560" top="1440" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Caption" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Instance Count" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Instance index" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Node Count" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Is Changed" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Inlets" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Outlets" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="ID in ParentPatch" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Query Save" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="50" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="13545" top="795" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="13545" top="795" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="51" dstpinname="Query Save">
    </LINK>
    </PATCH>

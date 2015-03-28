@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\AddPhong (MRE.Materials).v4p" systemname="AddPhong (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddPhong (MRE.Materials).v4p" scrollx="1860" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\AddPhong (MRE.Materials).v4p" systemname="AddPhong (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddPhong (MRE.Materials).v4p" scrollx="3135" scrolly="255">
    <BOUNDS type="Window" left="18030" top="1260" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
