@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ToneMapping (DX11 MRE).v4p" systemname="ToneMapping (DX11 MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\ToneMapping (DX11 MRE).v4p" scrollx="0" scrolly="1530">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ToneMapping (DX11 MRE).v4p" systemname="ToneMapping (DX11 MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\ToneMapping (DX11 MRE).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="4740" top="840" width="18345" height="12720">
    </BOUNDS>
    <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="0">
@@ -239,7 +239,7 @@
    <LINK srcnodeid="36" srcpinname="Output" dstnodeid="33" dstpinname="Color">
    </LINK>
    <NODE systemname="ToneMapping (DX11.TextureFX)" filename="..\texture11\ToneMapping.tfx" nodename="ToneMapping (DX11.TextureFX)" componentmode="Hidden" id="14">
-   <BOUNDS type="Node" left="1560" top="11220" width="3000" height="270">
+   <BOUNDS type="Node" left="1560" top="11220" width="3150" height="270">
    </BOUNDS>
    <PIN pinname="AvgLuminance" visible="1" slicecount="1" values="||">
    </PIN>
@@ -285,6 +285,8 @@
    </PIN>
    <PIN pinname="ToneMapTechnique" slicecount="1" values="3">
    </PIN>
+   <PIN pinname="AutoExpReact" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="14" dstpinname="Texture In">
    </LINK>
@@ -329,7 +331,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3465" top="7155" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.26">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.78">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -347,7 +349,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3165" top="6645" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.46">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -365,7 +367,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3735" top="7710" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.17">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.03">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -401,7 +403,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="1830" top="10185" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -419,7 +421,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2070" top="10695" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="4">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -437,7 +439,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5580" top="7590" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1.91">
+   <PIN pinname="Y Input Value" slicecount="1" values="2.38">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -455,7 +457,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5805" top="8100" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.14">
+   <PIN pinname="Y Input Value" slicecount="1" values="3.16">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -473,7 +475,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6075" top="8595" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="-0.63">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.15">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -491,7 +493,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6405" top="9120" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1.11">
+   <PIN pinname="Y Input Value" slicecount="1" values="1.16">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -509,7 +511,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6645" top="9645" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="-0.01">
+   <PIN pinname="Y Input Value" slicecount="1" values="2.22">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -527,7 +529,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6840" top="10215" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.58">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.44">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -545,7 +547,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7110" top="10725" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="2.53">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -767,9 +769,9 @@
    <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="58" dstpinname="AutoExposure">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="68" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="7335" top="11775" width="795" height="240">
+   <BOUNDS type="Box" left="7395" top="11685" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7335" top="11775" width="0" height="0">
+   <BOUNDS type="Node" left="7395" top="11685" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="11">
    </PIN>
@@ -783,22 +785,6 @@
    <LINK srcnodeid="68" srcpinname="Y Output Value" dstnodeid="14" dstpinname="LumMapMipLevel">
    </LINK>
    <LINK srcnodeid="68" srcpinname="Y Output Value" dstnodeid="58" dstpinname="LumMapMipLevel">
-   </LINK>
-   <NODE systemname="Blur (DX11.TextureFX)" filename="%VVVV%\packs\DX11\nodes\texture11\Filter\Blur.tfx" nodename="Blur (DX11.TextureFX)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="3690" top="5400" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Enabled" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="0" srcpinname="Buffers" dstnodeid="69" dstpinname="Texture In">
-   </LINK>
-   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Width">
-   </LINK>
-   <LINK srcnodeid="69" srcpinname="Texture Out" dstnodeid="31" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="69" srcpinname="Texture Out" dstnodeid="14" dstpinname="AvgLuminance">
-   </LINK>
-   <LINK srcnodeid="69" srcpinname="Texture Out" dstnodeid="58" dstpinname="AvgLuminance">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="70" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="4050" top="12840" width="795" height="240">
@@ -891,11 +877,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="77" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2400" top="8100" width="795" height="480">
+   <BOUNDS type="Box" left="2205" top="7680" width="795" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="2400" top="8100" width="0" height="0">
+   <BOUNDS type="Node" left="2205" top="7680" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0.1,2">
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0,10">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -918,4 +904,64 @@
    </PACK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
+   <NODE systemname="BlurMax (DX11.TextureFX)" filename="texture11\BlurMax.tfx" nodename="BlurMax (DX11.TextureFX)" componentmode="Hidden" id="69">
+   <BOUNDS type="Node" left="3690" top="5400" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="TwoPass">
+   </PIN>
+   <PIN pinname="Sampler" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Buffers" dstnodeid="69" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Width">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Texture Out" dstnodeid="31" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Texture Out" dstnodeid="14" dstpinname="AvgLuminance">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Texture Out" dstnodeid="58" dstpinname="AvgLuminance">
+   </LINK>
+   <NODE systemname="Sampler (DX11 Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Sampler (DX11 Advanced)" componentmode="Hidden" id="78">
+   <BOUNDS type="Node" left="12180" top="3360" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Sampler" visible="1">
+   </PIN>
+   <PIN pinname="Comparison" slicecount="1" visible="1" values="Never">
+   </PIN>
+   <PIN pinname="Filter Mode" slicecount="1" values="ComparisonMinMagMipLinear">
+   </PIN>
+   <PIN pinname="Mip Lod Bias" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="79" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="12825" top="2805" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12825" top="2805" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="GreaterEqual">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="79" srcpinname="Output Enum" dstnodeid="78" dstpinname="Comparison">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="81" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2700" top="8505" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2700" top="8505" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.49">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Auto Exposure Sensitivity|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="14" dstpinname="AutoExpReact">
+   </LINK>
    </PATCH>

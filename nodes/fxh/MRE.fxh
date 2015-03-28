@@ -1,13 +1,13 @@
 #define MRE_FXH 1
 
 #if !defined(POWS_FXH)
-	#include "../fxh/pows.fxh"
+#include "../fxh/pows.fxh"
 #endif
 #if !defined(BITWISE_FXH)
-	#include "../fxh/bitwise.fxh"
+#include "../fxh/bitwise.fxh"
 #endif
 #if !defined(DEPTHRECONSTRUCT_FXH)
-	#include "../fxh/depthreconstruct.fxh"
+#include "../fxh/depthreconstruct.fxh"
 #endif
 
 Texture2D Color : MRE_COLOR;

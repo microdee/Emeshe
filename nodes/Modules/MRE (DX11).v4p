@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="1215" top="1890" width="21960" height="10995">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="7200">
+   <BOUNDS type="Window" left="1215" top="1890" width="22245" height="10995">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="5490" width="100" height="100">
@@ -115,9 +115,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="11" systemname="IOBox (Node)">
-   <BOUNDS type="Node" left="13275" top="3990" width="0" height="0">
+   <BOUNDS type="Node" left="13170" top="6540" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="13275" top="3990" width="795" height="240">
+   <BOUNDS type="Box" left="13170" top="6540" width="795" height="240">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|RenderTarget Query|">
    </PIN>
@@ -511,9 +511,9 @@
    <LINK srcnodeid="241" srcpinname="Output" dstnodeid="240" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="246" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="15300" top="5220" width="240" height="270">
+   <BOUNDS type="Node" left="14865" top="5220" width="240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="15300" top="5220" width="6855" height="3480">
+   <BOUNDS type="Box" left="14865" top="5220" width="6855" height="3480">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|#define MF_FLAGSIZE 32&cr;&lf;StructuredBuffer&lt;MaterialMeta&gt; MatMeta : MF_MATERIALMETA&cr;&lf;struct MaterialMeta&cr;&lf;{&cr;&lf;&tab;uint Flags; // Features (more components if feature count will exceed 32)&cr;&lf;&tab;uint Address; // Where data starts in MaterialData buffer&cr;&lf;&tab;uint Size; // Actual size&cr;&lf;}&cr;&lf;&cr;&lf;// Count = MF_FLAGSIZE * MaterialCount&cr;&lf;// Per-Material Feature offset in MaterialData buffer in bitwise order&cr;&lf;StructuredBuffer&lt;uint&gt; FeatureOffset : MF_FEATUREOFFSET&cr;&lf;&cr;&lf;// Get parameter by&cr;&lf;// MaterialMeta[MatID].Address + FeatureOffset[MatID * MF_FLAGSIZE + FeatureID] + ParamOffset&cr;&lf;StructuredBuffer&lt;float&gt; MaterialData : MF_MATERIALDATA|">
    </PIN>
@@ -697,7 +697,7 @@
    <LINK srcnodeid="261" srcpinname="TranslateXYZ" dstnodeid="259" dstpinname="InputXYZ">
    </LINK>
    <NODE systemname="Cons (DX11.RenderSemantic)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.RenderSemantic)" componentmode="Hidden" id="263">
-   <BOUNDS type="Node" left="7605" top="12075" width="3690" height="270">
+   <BOUNDS type="Node" left="7605" top="12075" width="3615" height="270">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
    </PIN>

@@ -1,0 +1,120 @@
+Texture2D tex0: PREVIOUS;
+Texture2D tex1 <string uiname="Control";>;
+
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float Width <float uimin=0.0;float uimax=1.0;> =0.5;
+};
+
+SamplerState s0 <bool visible=true;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+
+float4 pBLUR(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	float lod=log2(max(R.x,R.y));
+	float4 map=tex1.SampleLevel(s0,x,0);map=max(map.x,max(map.y,map.z))*map.a;
+	lod=map.x*(Width)*log2(max(R.x,R.y));
+	float4 c=0;
+	float2 off=.5/R*pow(2,lod)*saturate(lod);
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,0)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,1)*off,lod));
+	off*=1.86;
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,0)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,0)*off,lod));
+	return c;
+}
+
+float4 pBLUR_P1(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	float lod=log2(max(R.x,R.y));
+	float4 map=tex1.SampleLevel(s0,x,0);map=max(map.x,max(map.y,map.z))*map.a;
+	lod=map.x*(Width)*(log2(max(R.x,R.y)));
+	
+	float4 c=0;
+	float2 off=.5/R*pow(2,lod)*saturate(lod);
+	lod-=2;
+	
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,0)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,1)*off,lod));
+	off*=1.86;
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,0)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,0)*off,lod));
+	return c;
+}
+float4 pBLUR_P2(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	float lod=log2(max(R.x,R.y));
+	float4 map=tex1.SampleLevel(s0,x,0);map=max(map.x,max(map.y,map.z))*map.a;
+	lod=map.x*(Width)*log2(max(R.x,R.y));
+	float4 c=0;
+	float2 off=.5/R*pow(2,lod)*saturate(lod);
+	
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,0)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,1)*off,lod));
+	off*=1.86;
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,0)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,0)*off,lod));
+	return c;
+}
+float4 pBLUR_P3(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	float lod=log2(max(R.x,R.y));
+	float4 map=tex1.SampleLevel(s0,x,0);map=max(map.x,max(map.y,map.z))*map.a;
+	lod=map.x*(Width)*log2(max(R.x,R.y));
+	lod*=.75;
+	float4 c=0;
+	float2 off=.5/R*pow(2,lod)*saturate(lod);
+	lod-=3;
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,0)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,1)*off,lod));
+	off*=1.86;
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(0,-1)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(-1,0)*off,lod));
+	c=max(c,tex0.SampleLevel(s0,x+float2(1,0)*off,lod));
+	return c;
+}
+float4 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	return tex0.SampleLevel(s0,x,0);
+}
+technique10 FastBlur{
+	pass P0 <bool mips=true;>{SetPixelShader(CompileShader(ps_4_0,pMIPS()));}
+	pass P1{SetPixelShader(CompileShader(ps_4_0,pBLUR()));}
+}
+technique10 FastBlur_NoMips{
+	pass P1{SetPixelShader(CompileShader(ps_4_0,pBLUR()));}
+}
+technique10 TwoPass{
+	pass P0 <bool mips=true;>{SetPixelShader(CompileShader(ps_4_0,pMIPS()));}
+	pass P1 <bool mips=true;>{SetPixelShader(CompileShader(ps_4_0,pBLUR_P1()));}
+	pass P2 {SetPixelShader(CompileShader(ps_4_0,pBLUR_P2()));}
+}
+technique10 TwoPass_NoMips{
+	pass P1 <bool mips=true;>{SetPixelShader(CompileShader(ps_4_0,pBLUR_P1()));}
+	pass P2 {SetPixelShader(CompileShader(ps_4_0,pBLUR_P2()));}
+}
+technique10 ThreePass{
+	pass P0 <bool mips=true;>{SetPixelShader(CompileShader(ps_4_0,pMIPS()));}
+	pass P1 <bool mips=true;>{SetPixelShader(CompileShader(ps_4_0,pBLUR_P1()));}
+	pass P2 <bool mips=true;> {SetPixelShader(CompileShader(ps_4_0,pBLUR_P2()));}
+	pass P3 {SetPixelShader(CompileShader(ps_4_0,pBLUR_P3()));}
+}
+technique10 ThreePass_NoMips{
+	pass P1 <bool mips=true;>{SetPixelShader(CompileShader(ps_4_0,pBLUR_P1()));}
+	pass P2 <bool mips=true;> {SetPixelShader(CompileShader(ps_4_0,pBLUR_P2()));}
+	pass P3 {SetPixelShader(CompileShader(ps_4_0,pBLUR_P3()));}
+}
