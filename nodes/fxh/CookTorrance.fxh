@@ -1,18 +1,19 @@
 #if !defined(POWS_FXH)
-	#include "../fxh/pows.fxh"
+#include "../fxh/pows.fxh"
 #endif
 #if !defined(SAFEDIVIDE_FXH)
-	#include "../fxh/safedivide.fxh"
+#include "../fxh/safedivide.fxh"
 #endif
 #if !defined(MATERIALS_FXH)
-	#include "../fxh/Materials.fxh"
+#include "../fxh/Materials.fxh"
 #endif
 #if !defined(MRE_FXH)
-	#include "../fxh/MRE.fxh"
+#include "../fxh/MRE.fxh"
 #endif
 #if !defined(LIGHTUTILS_FXH)
-	#include "../fxh/LightUtils.fxh"
+#include "../fxh/LightUtils.fxh"
 #endif
+
 
 #define ROUGHNESS_LOOK_UP 0
 #define ROUGHNESS_BECKMANN 1
@@ -21,10 +22,12 @@
 #define ROUGHNESS_MODE 0
 
 Texture2D<float> TexRoughness;
-Texture2DArray RoughMaps;
+Texture2DArray SpecRoughMaps;
 Texture2DArray SSSMaps;
 Texture2DArray RimMaps;
 
+Texture2DArray ShadowMaps;
+float bias = 0.1;
 float halfLambert(float3 vec1, float3 vec2)
 {
 	float product = dot(vec1, vec2);
@@ -123,13 +126,13 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
 	uint matid = GetMatID(uv, sR);
 	float2 ouv = GetUV(uv, sR);
-	float RoughMap = 1;
+	float4 RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;
-	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP))
+	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_SPECULARMAP))
 	{
-		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP, 0);
-		RoughMap = RoughMaps.SampleLevel(MapSampler, float3(ouv, RoughMapId), 0).r;
+		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_SPECULARMAP, 0);
+		RoughMap = SpecRoughMaps.SampleLevel(MapSampler, float3(ouv, RoughMapId), 0);
 	}
 	if(KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP))
 	{
@@ -158,8 +161,8 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
     	lAttSSS = GetFloat3(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_ATTENUATION);
     }
 
-    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength;
-    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap;
+    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength * RoughMap.rgb;
+    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap.a;
 
     Components outc = (Components)0;
 
@@ -187,16 +190,27 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
 	        float3 V = ViewDirV;
 	        float3 diff = 0;
 	        float3 spec = 0;
+    		float shad = 1;
 	    	
 	        if(d<lRange)
 	        {
 		        diff = lCol;
 		        spec = lSpec * lCol;
 	        	cook_torrance(NormV, V, LightDirV, rough, diff, spec);
+	        	
+	        	#if defined(DOSHADOWS)
+	        	if(pointlightprop[i].KnowShadows > 0.5)
+	        	{
+	        		float3 lPosW = mul(float4(lPos, 1), CamViewInv).xyz;
+	        		float3 cPosW = mul(float4(PosV, 1), CamViewInv).xyz;
+	        		float penumbra = pointlightprop[i].Penumbra;
+		        	shad = PointShadows(s0, ShadowMaps, 0, lPosW, cPosW, bias, penumbra);
+	        	}
+	        	#endif
 	        }
 	    	
-	    	outc.Diffuse += diff * rangeF;
-	    	outc.Specular += spec * rangeF;
+	    	outc.Diffuse += diff * rangeF * shad;
+	    	outc.Specular += spec * rangeF * shad;
 	    	outc.Ambient = max(outc.Ambient, amb);
     	}
     }
@@ -267,13 +281,13 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
 	uint matid = GetMatID(uv, sR);
 	float2 ouv = GetUV(uv, sR);
-	float RoughMap = 1;
+	float4 RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;
-	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP))
+	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_SPECULARMAP))
 	{
-		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP, 0);
-		RoughMap = RoughMaps.SampleLevel(s0, float3(ouv, RoughMapId), 0).r;
+		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_SPECULARMAP, 0);
+		RoughMap = SpecRoughMaps.SampleLevel(s0, float3(ouv, RoughMapId), 0);
 	}
 	if(KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP))
 	{
@@ -302,8 +316,8 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
     	lAttSSS = GetFloat3(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_ATTENUATION);
     }
 
-    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength;
-    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap;
+    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength * RoughMap.rgb;
+    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap.a;
 
     Components outc = (Components)0;
 
@@ -420,14 +434,14 @@ Components CookTorranceSunSSS(SamplerState s0, float2 uv, float2 sR, float light
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
 	uint matid = GetMatID(uv, sR);
 	float2 ouv = GetUV(uv, sR);
-	float RoughMap = 1;
+	float4 RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;
 
-	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP))
+	if(KnowFeature(matid, MF_LIGHTING_COOKTORRANCE_SPECULARMAP))
 	{
-		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_ROUGHMAP, 0);
-		RoughMap = RoughMaps.SampleLevel(MapSampler, float3(ouv, RoughMapId), 0).r;
+		float RoughMapId = GetFloat(matid, MF_LIGHTING_COOKTORRANCE_SPECULARMAP, 0);
+		RoughMap = SpecRoughMaps.SampleLevel(MapSampler, float3(ouv, RoughMapId), 0);
 	}
 	if(KnowFeature(matid, MF_LIGHTING_FAKESSS_MAP))
 	{
@@ -449,8 +463,8 @@ Components CookTorranceSunSSS(SamplerState s0, float2 uv, float2 sR, float light
 
     float SStrength = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARSTRENGTH);
 
-    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength;
-    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap;
+    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * SStrength * RoughMap.rgb;
+    float rough = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_ROUGHNESS) * RoughMap.a;
     
     Components outc = (Components)0;
 

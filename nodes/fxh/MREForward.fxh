@@ -68,6 +68,15 @@ struct vs2ps
 	#endif
 };
 
+struct vs2psProp
+{
+    float4 PosWVP: SV_Position;
+    float4 PosW: WORLDPOSITION;
+    float3 NormW: WORLDNORMAL;
+	float4 TexCd: TEXCOORD0;
+    nointerpolation float ii: INSTANCEID;
+};
+
 struct PSOut
 {
 	float4 color : SV_Target0;
@@ -79,10 +88,9 @@ struct PSOut
 	#endif
 };
 
-struct PSProp
+struct PSOutProp
 {
 	float4 WorldPos : SV_Target;
-	float depth : SV_Depth;
 };
 
 SamplerState Sampler

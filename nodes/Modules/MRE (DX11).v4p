@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="7200">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="1215" top="1890" width="22245" height="10995">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
@@ -785,6 +785,8 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Depth From Camera Position|">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK srcnodeid="269" srcpinname="Y Output Value" dstnodeid="267" dstpinname="Input">
    </LINK>
@@ -954,4 +956,18 @@
    </LINK>
    <LINK srcnodeid="211" srcpinname="Output" dstnodeid="281" dstpinname="Aspect Ratio">
    </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="284" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="13680" top="840" width="1425" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13680" top="840" width="1425" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|not supported yet|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
    </PATCH>

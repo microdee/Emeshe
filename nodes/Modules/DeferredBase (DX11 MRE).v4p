@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="0" scrolly="1860">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="3855" scrolly="2025">
    <BOUNDS type="Window" left="4755" top="2190" width="16695" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -262,6 +262,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform Legacy).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="217">
@@ -863,7 +865,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="10995" top="4005" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1113,7 +1115,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5445" top="4560" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1129,5 +1131,151 @@
    <LINK srcnodeid="294" srcpinname="Y Output Value" dstnodeid="274" dstpinname="Select">
    </LINK>
    <LINK srcnodeid="105" srcpinname="Y Output Value" dstnodeid="219" dstpinname="FBumpAmount">
+   </LINK>
+   <NODE systemname="ConstantMREProp (DX11.Effect)" filename="..\dx11\ConstantMREProp.fx" nodename="ConstantMREProp (DX11.Effect)" componentmode="Hidden" id="296">
+   <BOUNDS type="Node" left="14490" top="13290" width="1950" height="270">
+   </BOUNDS>
+   <PIN pinname="Technique" slicecount="1" visible="1" values="DeferredProp">
+   </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="InstancedParams" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="DiffTex" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Sampler" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="TriPlanarPow" visible="1">
+   </PIN>
+   <PIN pinname="alphatest" visible="1">
+   </PIN>
+   <PIN pinname="FDiffColor" visible="1">
+   </PIN>
+   <PIN pinname="tTex" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Render State" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Layout Valid" visible="1">
+   </PIN>
+   <PIN pinname="Layout Message" visible="1">
+   </PIN>
+   <PIN pinname="Query" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output Node" dstnodeid="296" dstpinname="Geometry" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="283" srcpinname="Output" dstnodeid="296" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="195" srcpinname="Y Output Value" dstnodeid="296" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="235" srcpinname="Output Node" dstnodeid="296" dstpinname="InstancedParams" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="75" srcpinname="Output Node" dstnodeid="296" dstpinname="DiffTex" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="225" srcpinname="Output Node" dstnodeid="296" dstpinname="Sampler" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="245" srcpinname="Y Output Value" dstnodeid="296" dstpinname="TriPlanarPow" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="135" srcpinname="Y Output Value" dstnodeid="296" dstpinname="alphatest" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Color Output" dstnodeid="296" dstpinname="FDiffColor" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="123" srcpinname="Output Node" dstnodeid="296" dstpinname="tTex" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output Node" dstnodeid="296" dstpinname="Transform In" hiddenwhenlocked="1">
+   </LINK>
+   <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="299">
+   <BOUNDS type="Node" left="14625" top="12795" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Mode" slicecount="1" values="LessEqualReadWrite">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="298" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="15510" top="12315" width="2175" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="15510" top="12315" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" values="LessReadStencilIncrement">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="298" srcpinname="Output Enum" dstnodeid="299" dstpinname="Mode">
+   </LINK>
+   <LINK srcnodeid="299" srcpinname="Render State" dstnodeid="296" dstpinname="Render State">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="300" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="16800" top="10050" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="16800" top="10050" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Properties RenderState|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="300" srcpinname="Output Node" dstnodeid="299" dstpinname="Render State">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="301" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="14505" top="14205" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="14505" top="14205" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Prop Layer|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="296" srcpinname="Layer" dstnodeid="301" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="302" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="15525" top="14340" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="15525" top="14340" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Prop Layout Valid|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="296" srcpinname="Layout Valid" dstnodeid="302" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="303" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="16125" top="14160" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="16125" top="14160" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Prop Layout Message|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="296" srcpinname="Layout Message" dstnodeid="303" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="304" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="17925" top="14445" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="17925" top="14445" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Prop Query|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="296" srcpinname="Query" dstnodeid="304" dstpinname="Input Node">
    </LINK>
    </PATCH>

@@ -1,0 +1,141 @@
+# Blender MTL File: 'None'
+# Material Count: 12
+
+newmtl Material__25
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\lion.png
+map_Bump textures\\lion_bump.png
+map_Ka textures\\lion.png
+
+newmtl Material__298
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\background.png
+map_Bump textures\\background_bump.png
+map_Ka textures\\background.png
+
+newmtl arch
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\sponza_arch_diff.png
+map_Ka textures\\sponza_arch_diff.png
+
+newmtl bricks
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\spnza_bricks_a_diff.png
+map_Bump textures\\spnza_bricks_a_diff.png
+map_Ka textures\\spnza_bricks_a_diff.png
+
+newmtl ceiling
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\sponza_ceiling_a_diff.png
+map_Ka textures\\sponza_ceiling_a_diff.png
+
+newmtl column_a
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\sponza_column_a_diff.png
+map_Bump textures\\sponza_column_a_bump.png
+map_Ka textures\\sponza_column_a_diff.png
+
+newmtl column_b
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\sponza_column_b_diff.png
+map_Bump textures\\sponza_column_b_bump.png
+map_Ka textures\\sponza_column_b_diff.png
+
+newmtl column_c
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\sponza_column_c_diff.png
+map_Bump textures\\sponza_column_c_bump.png
+map_Ka textures\\sponza_column_c_diff.png
+
+newmtl flagpole
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\sponza_flagpole_diff.png
+map_Ka textures\\sponza_flagpole_diff.png
+
+newmtl floor
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\sponza_floor_a_diff.png
+map_Ka textures\\sponza_floor_a_diff.png
+
+newmtl roof
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\sponza_roof_diff.png
+map_Ka textures\\sponza_roof_diff.png
+
+newmtl vase
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures\vase_dif.png
+map_Bump textures\\vase_bump.png
+map_Ka textures\\vase_dif.png

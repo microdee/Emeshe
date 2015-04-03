@@ -85,7 +85,7 @@
     <Offset>5</Offset>
   </Features>
   <Features>
-    <Feature>Lighting_CookTorrance_RoughMap</Feature>
+    <Feature>Lighting_CookTorrance_SpecularMap</Feature>
     <Parameter>MapID</Parameter>
     <Size>1</Size>
     <Offset>0</Offset>
@@ -241,12 +241,6 @@
     <Offset>0</Offset>
   </Features>
   <Features>
-    <Feature>Lighting_Shadows</Feature>
-    <Parameter>Blend</Parameter>
-    <Size>1</Size>
-    <Offset>0</Offset>
-  </Features>
-  <Features>
     <Feature>GI_SSAO</Feature>
     <Parameter>AmountMul</Parameter>
     <Size>1</Size>
@@ -350,9 +344,15 @@
   </Features>
   <Features>
     <Feature>Reflection_Map</Feature>
-    <Parameter>MapID</Parameter>
+    <Parameter>AmountMapID</Parameter>
     <Size>1</Size>
     <Offset>0</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_Map</Feature>
+    <Parameter>RoughnessMapID</Parameter>
+    <Size>1</Size>
+    <Offset>1</Offset>
   </Features>
   <Features>
     <Feature>Refraction_SphereMap</Feature>
@@ -422,8 +422,14 @@
   </Features>
   <Features>
     <Feature>Refraction_Map</Feature>
-    <Parameter>MapID</Parameter>
+    <Parameter>AmountMapID</Parameter>
     <Size>1</Size>
     <Offset>0</Offset>
+  </Features>
+  <Features>
+    <Feature>Refraction_Map</Feature>
+    <Parameter>RoughnessMapID</Parameter>
+    <Size>1</Size>
+    <Offset>1</Offset>
   </Features>
 </MaterialFeatureTable>

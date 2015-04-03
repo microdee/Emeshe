@@ -1,47 +1,108 @@
+#if !defined(MATERIALS_FXH)
+#include "../fxh/Materials.fxh"
+#endif
+#if !defined(MRE_FXH)
+#include "../fxh/MRE.fxh"
+#endif
+
 Texture2D InTex: PREVIOUS;
 Texture2D Lights[5];
+Texture2DArray Maps;
 
-SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=WRAP;AddressV=WRAP;};
 float2 R:TARGETSIZE;
 
 cbuffer controls:register(b0){
 	float Opacity = 1;
+	float Ambient = 1;
+	float Diffuse = 1;
+	float Specular = 1;
+	float SSS = 1;
+	float Rim = 1;
 	float SpecMul = 0;
 	float SSSMul = 0;
-	float ComponentAmount[5] = {1,1,1,1,1};
+	float RimMul = 1;
 };
 
 float4 pMIX(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
 	
     float4 incol = InTex.Sample(s0,uv);
-	float4 col = 0;
-	col.a = incol.a;
-	float3 amb = Lights[0].Sample(s0,uv).rgb;
-	float3 diff = Lights[1].Sample(s0,uv).rgb;
-	float3 spec = Lights[2].Sample(s0,uv).rgb;
-	float3 SSS = Lights[3].Sample(s0,uv).rgb;
-	float3 rim = Lights[4].Sample(s0,uv).rgb;
-	
-	float3 Oamb = incol.rgb * amb;
-	
-	float3 Odiff = incol.rgb * diff;
-	
-	float3 Mspec = incol.rgb * spec;
-	float3 Ospec = lerp(spec,Mspec,SpecMul);
-	
-	float3 MSSS = incol.rgb * SSS;
-	float3 OSSS = lerp(SSS,MSSS,SSSMul);
-	
-	float3 Mrim = incol.rgb * rim;
-	float3 Orim = lerp(rim,Mrim,SSSMul);
-	
-	col.rgb = Oamb * ComponentAmount[0];
-	col.rgb += Odiff * ComponentAmount[1];
-	col.rgb += Ospec * ComponentAmount[2];
-	col.rgb += OSSS * ComponentAmount[3];
-	col.rgb += Orim * ComponentAmount[4];
-	
-    return lerp(incol,col,Opacity);
+    uint matid = GetMatID(uv, R);
+    bool KnowLight =
+    	KnowFeature(matid, MF_LIGHTING_PHONG) ||
+    	KnowFeature(matid, MF_LIGHTING_COOKTORRANCE);
+
+    if(KnowLight)
+    {
+    	bool KnowComposite = KnowFeature(matid, MF_LIGHTING_COMPOSITE);
+    	bool KnowCompositeMap = KnowFeature(matid, MF_LIGHTING_COMPOSITE_MAP);
+
+		float4 col = 0;
+		col.a = incol.a;
+
+		float amamb = Ambient;
+		float amdiff = Diffuse;
+		float amspec = Specular;
+		float amsss = SSS;
+		float amrim = Rim;
+
+		float mulspec = SpecMul;
+		float mulsss = SSSMul;
+		float mulrim = RimMul;
+
+		if(KnowComposite)
+		{
+			amamb *= GetFloat(matid, MF_LIGHTING_COMPOSITE, MF_LIGHTING_COMPOSITE_AMBIENT);
+			amdiff *= GetFloat(matid, MF_LIGHTING_COMPOSITE, MF_LIGHTING_COMPOSITE_DIFFUSE);
+			amspec *= GetFloat(matid, MF_LIGHTING_COMPOSITE, MF_LIGHTING_COMPOSITE_SPECULAR);
+			amsss *= GetFloat(matid, MF_LIGHTING_COMPOSITE, MF_LIGHTING_COMPOSITE_SSS);
+			amrim *= GetFloat(matid, MF_LIGHTING_COMPOSITE, MF_LIGHTING_COMPOSITE_RIM);
+
+			mulspec = GetFloat(matid, MF_LIGHTING_COMPOSITE, MF_LIGHTING_COMPOSITE_SPECMUL);
+			mulsss = GetFloat(matid, MF_LIGHTING_COMPOSITE, MF_LIGHTING_COMPOSITE_SSSMUL);
+			mulrim = GetFloat(matid, MF_LIGHTING_COMPOSITE, MF_LIGHTING_COMPOSITE_RIMMUL);
+		}
+
+		if(KnowCompositeMap)
+		{
+			float2 scnuv = GetUV(uv, R);
+			float slice = GetFloat(matid, MF_LIGHTING_COMPOSITE_MAP, 0);
+			float4 compmap = Maps.SampleLevel(s0, float3(scnuv, slice), 0);
+
+			amdiff *= compmap.r;
+			amspec *= compmap.g;
+			amsss *= compmap.b;
+			amrim *= compmap.a;
+		}
+
+		float3 amb = Lights[0].Sample(s0,uv).rgb;
+		float3 diff = Lights[1].Sample(s0,uv).rgb;
+		float3 spec = Lights[2].Sample(s0,uv).rgb;
+		float3 sss = Lights[3].Sample(s0,uv).rgb;
+		float3 rim = Lights[4].Sample(s0,uv).rgb;
+		
+		float3 Oamb = incol.rgb * amb;
+		
+		float3 Odiff = incol.rgb * diff;
+		
+		float3 Mspec = incol.rgb * spec;
+		float3 Ospec = lerp(spec,Mspec,mulspec);
+		
+		float3 MSSS = incol.rgb * sss;
+		float3 OSSS = lerp(sss,MSSS,mulsss);
+		
+		float3 Mrim = incol.rgb * rim;
+		float3 Orim = lerp(rim,Mrim,mulrim);
+		
+		col.rgb = Oamb * amamb;
+		col.rgb += Odiff * amdiff;
+		col.rgb += Ospec * amspec;
+		col.rgb += OSSS * amsss;
+		col.rgb += Orim * amrim;
+		
+	    return lerp(incol,col,Opacity);
+	}
+	else return incol;
 }
 
 

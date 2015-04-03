@@ -11,8 +11,8 @@ float2 R : TARGETSIZE;
 SamplerState s0
 {
     Filter = MIN_MAG_MIP_LINEAR;
-    AddressU = Clamp;
-    AddressV = Clamp;
+    AddressU = WRAP;
+    AddressV = MIRROR;
 };
 
 cbuffer cbPerObj : register( b1 )
