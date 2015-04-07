@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\AddLight (MRE.PointLight).v4p" systemname="AddLight (MRE.PointLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLight (MRE.PointLight).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\AddLight (MRE.PointLight).v4p" systemname="AddLight (MRE.PointLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLight (MRE.PointLight).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="5265" top="5865" width="19170" height="10020">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -471,7 +471,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="12975" top="3330" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.2">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.016">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -489,7 +489,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5580" top="7620" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="PointLight">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="light">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>

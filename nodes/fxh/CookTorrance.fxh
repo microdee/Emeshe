@@ -28,6 +28,7 @@ Texture2DArray RimMaps;
 
 Texture2DArray ShadowMaps;
 float bias = 0.1;
+
 float halfLambert(float3 vec1, float3 vec2)
 {
 	float product = dot(vec1, vec2);
@@ -204,7 +205,7 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
 	        		float3 lPosW = mul(float4(lPos, 1), CamViewInv).xyz;
 	        		float3 cPosW = mul(float4(PosV, 1), CamViewInv).xyz;
 	        		float penumbra = pointlightprop[i].Penumbra;
-		        	shad = PointShadows(s0, ShadowMaps, 0, lPosW, cPosW, bias, penumbra);
+		        	shad = PointShadows(ShadowMaps, 0, lPosW, lRange, cPosW, bias, penumbra);
 	        	}
 	        	#endif
 	        }
