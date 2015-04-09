@@ -79,6 +79,7 @@ vs2ps VS(VSin In)
     float4 PosWV = mul(PosW, tV);
     Out.PosV = PosWV;
     Out.PosWVP = mul(PosWV, tP);
+    Out.PosP = Out.PosWVP;
 	
 	// velocity
 	#if defined(HAS_GEOMVELOCITY)
@@ -93,13 +94,10 @@ vs2ps VS(VSin In)
 		float4x4 pw = ptW;
 	#endif
 
-	float3 npos = PosWV.xyz;
-	float4x4 ptWV = pw;
-	ptWV = mul(ptWV, ptV);
-	float3 pnpos = mul(pdispPos, ptWV).xyz;
-	Out.velocity.rgb = ((npos - pnpos) * gVelocityGain);
-	Out.velocity.rgb += 0.5;
-	Out.velocity.a = 1;
+	float4x4 ptWVP = pw;
+	ptWVP = mul(ptWVP, ptV);
+	ptWVP = mul(ptWVP, ptP);
+	Out.velocity = mul(pdispPos, ptWVP);
 	
     return Out;
 }
@@ -173,10 +171,12 @@ PSOut PS(vs2ps In)
 		}
 	#endif
 	
-	Out.velocity.rgb = In.velocity.xyz-.5;
-	Out.velocity.rgb *= min(3,2/PosV.z);
-	Out.velocity.rgb +=.5;
+	Out.velocity.rg = In.PosP.xy/In.PosP.w - In.velocity.xy/In.velocity.w;
+	Out.velocity.rg *= 0.5;
+	Out.velocity.rgb += 0.5;
 	Out.velocity.a = 1;
+	//Out.velocity.rgb *= min(3,2/PosV.z);
+	//Out.velocity.rgb +=.5;
 	
 	Out.matprop.rg = f32tof16(uvb);
 	#if defined(INSTANCING)

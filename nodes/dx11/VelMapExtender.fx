@@ -23,7 +23,6 @@ cbuffer cbPerObj : register( b1 )
 	float Amount = 0.5;
 	float maxextend = 0.3;
 	bool Aspect <bool visible=false;string uiname="Keep Aspect Ratio";> = true;
-	float FOV = 0;
 	bool ConstantVelCol = true;
 };
 
@@ -58,10 +57,6 @@ void GS(point vs2gs input[1], inout LineStream<gs2ps> gsout)
 	vs2gs inp = input[0];
 	float3 colin = inp.vel;
     float3 vel = colin-.5;
-    if ((FOV!=0) && (abs(FOV)!=0.5)) {
-    	vel.x -= (vel.z * (inp.TexCd.x*2-1)) * (0.25/abs(FOV-0.5));
-    	vel.y += (vel.z * (inp.TexCd.y*2-1)) * (0.25/abs(FOV-0.5));
-    }
 	vel *= Amount/2;
 	vel = normalize(vel)*min(length(vel),maxextend);
 	if(length(vel)>velocityepsilon && inp.mask)

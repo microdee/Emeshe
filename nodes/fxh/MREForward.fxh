@@ -56,6 +56,7 @@ struct VSin
 struct vs2ps
 {
     float4 PosWVP: SV_Position;
+    float4 PosP: PROJECTEDPOS;
     float4 PosV: VIEWPOS;
 	float4 TexCd: TEXCOORD0;
     float3 NormV: NORMAL;

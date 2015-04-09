@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="3855" scrolly="2025">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="0" scrolly="6750">
    <BOUNDS type="Window" left="4755" top="2190" width="16695" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -147,7 +147,7 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layout Valid|">
    </PIN>
-   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" visible="1" slicecount="32" values="1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="109" systemname="IOBox (String)">
@@ -163,7 +163,7 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layout Message|">
    </PIN>
-   <PIN pinname="Input String" visible="1" slicecount="1" values="||">
+   <PIN pinname="Input String" visible="1" slicecount="32" values="OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK,OK">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="112" systemname="IOBox (Node)">
@@ -360,152 +360,6 @@
    </NODE>
    <LINK srcnodeid="238" srcpinname="Output Enum" dstnodeid="237" dstpinname="Mode">
    </LINK>
-   <NODE systemname="ConstantMRE (DX11.Effect)" filename="..\dx11\ConstantMRE.fx" nodename="ConstantMRE (DX11.Effect)" componentmode="Hidden" id="219">
-   <BOUNDS type="Node" left="855" top="12585" width="11475" height="270">
-   </BOUNDS>
-   <PIN pinname="Render State" visible="1">
-   </PIN>
-   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="ptW" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="NormTr" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="gVelocityGain" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="GIAmount" visible="1">
-   </PIN>
-   <PIN pinname="isPTxCd" visible="1">
-   </PIN>
-   <PIN pinname="alphatest" visible="1" slicecount="1" values="0.5">
-   </PIN>
-   <PIN pinname="utilalpha" visible="1">
-   </PIN>
-   <PIN pinname="NormalMapTrB" visible="1">
-   </PIN>
-   <PIN pinname="NormalMapTrD" visible="1">
-   </PIN>
-   <PIN pinname="EmTex" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="DiffTex" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="SpecTex" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="ThickTex" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="BumpTex" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="NormTex" visible="1">
-   </PIN>
-   <PIN pinname="DispTex" visible="1">
-   </PIN>
-   <PIN pinname="pDispTex" visible="1">
-   </PIN>
-   <PIN pinname="RefTex" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="DispNormTex" visible="1">
-   </PIN>
-   <PIN pinname="tTex" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="FDiffAmount" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="FDiffColorXYZW" visible="1">
-   </PIN>
-   <PIN pinname="FBumpAmount" visible="1" slicecount="1" values="0.01">
-   </PIN>
-   <PIN pinname="FDispAmount" visible="1">
-   </PIN>
-   <PIN pinname="FpDispAmount" visible="1">
-   </PIN>
-   <PIN pinname="MatID" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="ObjIDXYZ" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   <PIN pinname="Layout Valid" visible="1">
-   </PIN>
-   <PIN pinname="Layout Message" visible="1">
-   </PIN>
-   <PIN pinname="Query" visible="1">
-   </PIN>
-   <PIN pinname="SmoothNormVal" visible="1">
-   </PIN>
-   <PIN pinname="SmoothNormPow">
-   </PIN>
-   <PIN pinname="UsePreviousGeometry">
-   </PIN>
-   <PIN pinname="PreviousGeometry">
-   </PIN>
-   <PIN pinname="IsWorld">
-   </PIN>
-   <PIN pinname="FDiffColor" visible="1" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
-   </PIN>
-   <PIN pinname="isTriPlanar" visible="1">
-   </PIN>
-   <PIN pinname="Technique" visible="1" slicecount="1" values="DeferredBase">
-   </PIN>
-   <PIN pinname="TriPlanarPow" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="bumpOffset" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="NormalTex" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="InstancedParams" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Sampler" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="3" values="||">
-   </PIN>
-   <PIN pinname="ObjIDXY" visible="1">
-   </PIN>
-   <PIN pinname="FlipNormals" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="2" srcpinname="Output Node" dstnodeid="219" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="69" srcpinname="Y Output Value" dstnodeid="219" dstpinname="gVelocityGain">
-   </LINK>
-   <LINK srcnodeid="135" srcpinname="Y Output Value" dstnodeid="219" dstpinname="alphatest">
-   </LINK>
-   <LINK srcnodeid="75" srcpinname="Output Node" dstnodeid="219" dstpinname="DiffTex">
-   </LINK>
-   <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="219" dstpinname="BumpTex">
-   </LINK>
-   <LINK srcnodeid="123" srcpinname="Output Node" dstnodeid="219" dstpinname="tTex">
-   </LINK>
-   <LINK srcnodeid="45" srcpinname="Y Output Value" dstnodeid="219" dstpinname="FDiffAmount">
-   </LINK>
-   <LINK srcnodeid="166" srcpinname="Y Output Value" dstnodeid="219" dstpinname="MatID">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Layer" dstnodeid="97" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="195" srcpinname="Y Output Value" dstnodeid="219" dstpinname="Enabled">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Layout Valid" dstnodeid="107" dstpinname="Y Input Value">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Layout Message" dstnodeid="109" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Compiled" dstnodeid="222" dstpinname="Y Input Value">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Query" dstnodeid="112" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="225" srcpinname="Output Node" dstnodeid="219" dstpinname="g_samLinear">
-   </LINK>
-   <LINK srcnodeid="234" srcpinname="Y Output Value" dstnodeid="219" dstpinname="InstanceFromGeomFX">
-   </LINK>
-   <LINK srcnodeid="235" srcpinname="Output Node" dstnodeid="219" dstpinname="InstancedParams">
-   </LINK>
-   <LINK srcnodeid="237" srcpinname="Render State" dstnodeid="219" dstpinname="Render State">
-   </LINK>
-   <LINK srcnodeid="34" srcpinname="Color Output" dstnodeid="219" dstpinname="FDiffColor">
-   </LINK>
-   <LINK srcnodeid="134" srcpinname="Y Output Value" dstnodeid="219" dstpinname="isTriPlanar">
-   </LINK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="241">
    <BOUNDS type="Node" left="1920" top="4635" width="100" height="100">
    </BOUNDS>
@@ -536,8 +390,6 @@
    </LINK>
    <LINK srcnodeid="241" srcpinname="Y Output Value" dstnodeid="242" dstpinname="Switch">
    </LINK>
-   <LINK srcnodeid="242" srcpinname="Output" dstnodeid="219" dstpinname="ptW">
-   </LINK>
    <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="243">
    <BOUNDS type="Node" left="1635" top="9720" width="100" height="100">
    </BOUNDS>
@@ -553,8 +405,6 @@
    <LINK srcnodeid="241" srcpinname="Y Output Value" dstnodeid="243" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="5" srcpinname="Output Node" dstnodeid="243" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="243" srcpinname="Output" dstnodeid="219" dstpinname="Transform In">
    </LINK>
    <NODE systemname="Unzip (Transform)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (Transform)" componentmode="Hidden" id="244">
    <BOUNDS type="Node" left="2115" top="8715" width="100" height="100">
@@ -588,8 +438,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="245" srcpinname="Y Output Value" dstnodeid="219" dstpinname="TriPlanarPow">
-   </LINK>
    <PACK Name="testPack" Version="0.1.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="247" systemname="IOBox (Value Advanced)">
@@ -612,8 +460,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="247" srcpinname="Y Output Value" dstnodeid="219" dstpinname="Instancing">
-   </LINK>
    <PACK Name="ImagePack" Version="0.1.0">
    </PACK>
    <PACK Name="addonpack" Version="33.7.0">
@@ -636,8 +482,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="248" srcpinname="Y Output Value" dstnodeid="219" dstpinname="bumpOffset">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="249" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="13065" top="5940" width="795" height="240">
    </BOUNDS>
@@ -648,10 +492,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Normal Map|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="249" srcpinname="Output Node" dstnodeid="219" dstpinname="NormalTex">
-   </LINK>
-   <LINK srcnodeid="225" srcpinname="Output Node" dstnodeid="219" dstpinname="Sampler">
-   </LINK>
    <NODE systemname="Select (String)" nodename="Select (String)" componentmode="Hidden" id="250">
    <BOUNDS type="Node" left="7965" top="9315" width="100" height="100">
    </BOUNDS>
@@ -786,8 +626,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Object ID 01|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="265" srcpinname="Y Output Value" dstnodeid="219" dstpinname="ObjIDXY">
-   </LINK>
    <NODE systemname="Select (String)" nodename="Select (String)" componentmode="Hidden" id="274">
    <BOUNDS type="Node" left="6375" top="9795" width="100" height="100">
    </BOUNDS>
@@ -956,8 +794,6 @@
    </NODE>
    <LINK srcnodeid="275" srcpinname="Output" dstnodeid="283" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="283" srcpinname="Output" dstnodeid="219" dstpinname="Defines">
-   </LINK>
    <NODE systemname="OR (Boolean)" filename="" nodename="OR (Boolean)" componentmode="Hidden" id="284">
    <BOUNDS type="Node" left="14835" top="7890" width="100" height="100">
    </BOUNDS>
@@ -1028,8 +864,6 @@
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="DeferredBase">
    </PIN>
    </NODE>
-   <LINK srcnodeid="288" srcpinname="Output Enum" dstnodeid="219" dstpinname="Technique">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="290" systemname="IOBox (String)">
    <BOUNDS type="Box" left="4695" top="14040" width="1530" height="240">
    </BOUNDS>
@@ -1068,8 +902,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="291" srcpinname="Y Output Value" dstnodeid="219" dstpinname="FlipNormals">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="292" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3885" top="3285" width="480" height="480">
    </BOUNDS>
@@ -1129,8 +961,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="294" srcpinname="Y Output Value" dstnodeid="274" dstpinname="Select">
-   </LINK>
-   <LINK srcnodeid="105" srcpinname="Y Output Value" dstnodeid="219" dstpinname="FBumpAmount">
    </LINK>
    <NODE systemname="ConstantMREProp (DX11.Effect)" filename="..\dx11\ConstantMREProp.fx" nodename="ConstantMREProp (DX11.Effect)" componentmode="Hidden" id="296">
    <BOUNDS type="Node" left="14490" top="13290" width="1950" height="270">
@@ -1277,5 +1107,65 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="296" srcpinname="Query" dstnodeid="304" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="ConstantMRE (DX11.Effect)" filename="..\dx11\ConstantMRE.fx" nodename="ConstantMRE (DX11.Effect)" componentmode="Hidden" id="305">
+   <BOUNDS type="Node" left="855" top="12585" width="11475" height="270">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output Node" dstnodeid="305" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Y Output Value" dstnodeid="305" dstpinname="gVelocityGain">
+   </LINK>
+   <LINK srcnodeid="135" srcpinname="Y Output Value" dstnodeid="305" dstpinname="alphatest">
+   </LINK>
+   <LINK srcnodeid="75" srcpinname="Output Node" dstnodeid="305" dstpinname="DiffTex">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="305" dstpinname="BumpTex">
+   </LINK>
+   <LINK srcnodeid="123" srcpinname="Output Node" dstnodeid="305" dstpinname="tTex">
+   </LINK>
+   <LINK srcnodeid="45" srcpinname="Y Output Value" dstnodeid="305" dstpinname="FDiffAmount">
+   </LINK>
+   <LINK srcnodeid="166" srcpinname="Y Output Value" dstnodeid="305" dstpinname="MatID">
+   </LINK>
+   <LINK srcnodeid="305" srcpinname="Layer" dstnodeid="97" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="195" srcpinname="Y Output Value" dstnodeid="305" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="305" srcpinname="Layout Valid" dstnodeid="107" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="305" srcpinname="Layout Message" dstnodeid="109" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="305" srcpinname="Compiled" dstnodeid="222" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="305" srcpinname="Query" dstnodeid="112" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="235" srcpinname="Output Node" dstnodeid="305" dstpinname="InstancedParams">
+   </LINK>
+   <LINK srcnodeid="237" srcpinname="Render State" dstnodeid="305" dstpinname="Render State">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Color Output" dstnodeid="305" dstpinname="FDiffColor">
+   </LINK>
+   <LINK srcnodeid="242" srcpinname="Output" dstnodeid="305" dstpinname="ptW">
+   </LINK>
+   <LINK srcnodeid="243" srcpinname="Output" dstnodeid="305" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="245" srcpinname="Y Output Value" dstnodeid="305" dstpinname="TriPlanarPow">
+   </LINK>
+   <LINK srcnodeid="248" srcpinname="Y Output Value" dstnodeid="305" dstpinname="bumpOffset">
+   </LINK>
+   <LINK srcnodeid="249" srcpinname="Output Node" dstnodeid="305" dstpinname="NormalTex">
+   </LINK>
+   <LINK srcnodeid="225" srcpinname="Output Node" dstnodeid="305" dstpinname="Sampler">
+   </LINK>
+   <LINK srcnodeid="265" srcpinname="Y Output Value" dstnodeid="305" dstpinname="ObjIDXY">
+   </LINK>
+   <LINK srcnodeid="283" srcpinname="Output" dstnodeid="305" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="288" srcpinname="Output Enum" dstnodeid="305" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="291" srcpinname="Y Output Value" dstnodeid="305" dstpinname="FlipNormals">
+   </LINK>
+   <LINK srcnodeid="105" srcpinname="Y Output Value" dstnodeid="305" dstpinname="FBumpAmount">
    </LINK>
    </PATCH>

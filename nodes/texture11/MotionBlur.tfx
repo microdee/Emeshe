@@ -10,7 +10,6 @@ float2 ScreenSize:TARGETSIZE;
 
 cbuffer controls:register(b0){
 	float Amount = 0.5;
-	float FOV = 0;
 	float minvel = 0.05;
 	float SampleFreq = 3;
 	float MaxSamples = 16;
@@ -79,10 +78,6 @@ float4 velmblur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target
 {
     float4 vmap = PrevTex.Sample(s0, uv);
     float3 vel =vmap.xyz-.5;
-    if ((FOV!=0) && (abs(FOV)!=0.5)) {
-    	vel.x -= (vel.z * (uv.x*2-1)) * (0.25/abs(FOV-0.5));
-    	vel.y += (vel.z * (uv.y*2-1)) * (0.25/abs(FOV-0.5));
-    }
 	vel *= Amount*2;
 	float2 asp=lerp(1,ScreenSize.x/ScreenSize,Aspect);
     float4 c=0;
@@ -98,10 +93,6 @@ float4 mblur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target
 {
     float4 vmap = PrevTex.Sample(s0, uv);
     float3 vel = vmap.xyz-0.5;
-    if ((FOV!=0) && (abs(FOV)!=0.5)) {
-    	vel.x -= (vel.z * (uv.x*2-1)) * (0.25/abs(FOV-0.5));
-    	vel.y += (vel.z * (uv.y*2-1)) * (0.25/abs(FOV-0.5));
-    }
 	vel *= Amount;/*
 	if((vel.x > 0.001) || (vel.y > 0.001))
 	{
