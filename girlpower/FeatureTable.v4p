@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="930" scrolly="1635">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="0" scrolly="750">
    <BOUNDS type="Window" left="11550" top="0" width="13350" height="15600">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -131,7 +131,7 @@
    <LINK srcnodeid="47" srcpinname="Output" dstnodeid="48" dstpinname="Input String">
    </LINK>
    <NODE systemname="Caps (String)" nodename="Caps (String)" componentmode="Hidden" id="57">
-   <BOUNDS type="Node" left="4740" top="8115" width="100" height="100">
+   <BOUNDS type="Node" left="5070" top="8130" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Caps Mode" slicecount="1" values="UpperCase">
    </PIN>
@@ -880,42 +880,4 @@
    </NODE>
    <LINK srcnodeid="273" srcpinname="Count" dstnodeid="274" dstpinname="Y Input Value">
    </LINK>
-   <NODE systemname="MaterialBuffer (DX11 MRE)" filename="..\nodes\modules\MaterialBuffer (DX11 MRE).v4p" nodename="MaterialBuffer (DX11 MRE)" componentmode="Hidden" id="288">
-   <BOUNDS type="Node" left="8055" top="10725" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Material Dictionary" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\modules\MaterialManager (MRE).v4p" nodename="MaterialManager (MRE)" componentmode="Hidden" id="289">
-   <BOUNDS type="Node" left="9225" top="11355" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Material Dictionary" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="288" srcpinname="Material Dictionary" dstnodeid="289" dstpinname="Material Dictionary">
-   </LINK>
-   <NODE systemname="AddPhong (MRE.Materials)" filename="..\nodes\modules\AddPhong (MRE.Materials).v4p" nodename="AddPhong (MRE.Materials)" componentmode="Hidden" id="290">
-   <BOUNDS type="Node" left="8985" top="11850" width="100" height="100">
-   </BOUNDS>
-   </NODE>
-   <NODE systemname="AddLightCompositing (MRE.Materials)" filename="..\nodes\Modules\AddLightCompositing (MRE.Materials).v4p" componentmode="Hidden" id="291" nodename="..\nodes\Modules\AddLightCompositing (MRE.Materials).v4p">
-   <BOUNDS type="Node" left="8820" top="12300" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="8820" top="12300" width="4800" height="3600">
-   </BOUNDS>
-   <BOUNDS type="Window" left="11910" top="8175" width="9000" height="6000">
-   </BOUNDS>
-   <PIN pinname="Multiply SSS" slicecount="1" values="0.5">
-   </PIN>
-   <PIN pinname="Multiply Rim Light" slicecount="1" values="0.5">
-   </PIN>
-   </NODE>
-   <NODE systemname="AddEmission (MRE.Materials)" filename="..\nodes\Modules\AddEmission (MRE.Materials).v4p" componentmode="Hidden" id="293" nodename="..\nodes\Modules\AddEmission (MRE.Materials).v4p">
-   <BOUNDS type="Node" left="9060" top="12825" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="9060" top="12825" width="4800" height="3600">
-   </BOUNDS>
-   <BOUNDS type="Window" left="15690" top="6780" width="9000" height="6000">
-   </BOUNDS>
-   </NODE>
    </PATCH>

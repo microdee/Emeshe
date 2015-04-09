@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45alpha31.7.dtd" >
-   <PATCH nodename="D:\vvvv\app\vvvv_45alpha31.7_x86\packs\Emeshe\nodes\modules\Bokeh (DX11 MRE).v4p" systemname="Bokeh (DX11 MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Bokeh (DX11 MRE).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Bokeh (DX11 MRE).v4p" systemname="Bokeh (DX11 MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\Bokeh (DX11 MRE).v4p" scrollx="0" scrolly="885">
    <BOUNDS type="Window" left="885" top="2520" width="9000" height="7380">
    </BOUNDS>
    <NODE systemname="NullGeometry (DX11.Drawer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="NullGeometry (DX11.Drawer)" componentmode="Hidden" id="5">
@@ -73,7 +73,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4050" top="465" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="2">
+   <PIN pinname="Y Input Value" slicecount="1" values="4">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -107,7 +107,7 @@
    </PIN>
    <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Background Color" visible="1" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   <PIN pinname="Background Color" visible="1" slicecount="1" values="|0.00000,0.00000,0.00000,0.00000|">
    </PIN>
    <PIN pinname="Generate Mip Maps" slicecount="1" values="1">
    </PIN>
@@ -156,14 +156,6 @@
    </NODE>
    <LINK srcnodeid="13" srcpinname="Output Enum" dstnodeid="7" dstpinname="Target Format">
    </LINK>
-   <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="14">
-   <BOUNDS type="Node" left="1440" top="2715" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Mode" slicecount="1" values="Add">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="16" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3885" top="5130" width="795" height="240">
    </BOUNDS>
@@ -227,13 +219,11 @@
    <NODE systemname="Rasterizer (DX11.RenderState)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Rasterizer (DX11.RenderState)" componentmode="Hidden" id="22">
    <BOUNDS type="Node" left="1500" top="3255" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Render State" visible="1">
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Mode" slicecount="1" values="NoCullSimple">
    </PIN>
    </NODE>
-   <LINK srcnodeid="14" srcpinname="Render State" dstnodeid="22" dstpinname="Render State">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="25" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="1800" top="8580" width="795" height="240">
    </BOUNDS>
@@ -261,7 +251,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5790" top="3870" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.05">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -275,7 +265,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2955" top="2715" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="2">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -289,7 +279,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4965" top="2295" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.009">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.018">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -317,7 +307,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3840" top="2535" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="7">
+   <PIN pinname="Y Input Value" slicecount="1" values="10">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -407,13 +397,13 @@
    </PIN>
    <PIN pinname="Render State" visible="1">
    </PIN>
-   <PIN pinname="coltex" visible="1">
+   <PIN pinname="coltex" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="bokehtex" visible="1">
+   <PIN pinname="bokehtex" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="size" visible="1">
    </PIN>
-   <PIN pinname="depth" visible="1">
+   <PIN pinname="depth" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Query" visible="1">
    </PIN>
@@ -425,7 +415,9 @@
    </PIN>
    <PIN pinname="sepsilon">
    </PIN>
-   <PIN pinname="maxsize" visible="1">
+   <PIN pinname="maxsize" visible="1" slicecount="1" values="0.1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="5" srcpinname="Geometry Out" dstnodeid="0" dstpinname="Geometry">
@@ -452,8 +444,6 @@
    </LINK>
    <LINK srcnodeid="64" srcpinname="Output" dstnodeid="0" dstpinname="size">
    </LINK>
-   <LINK srcnodeid="64" srcpinname="Output" dstnodeid="0" dstpinname="maxsize">
-   </LINK>
    <LINK srcnodeid="67" srcpinname="Output" dstnodeid="0" dstpinname="colamount">
    </LINK>
    <PACK Name="testPack" Version="0.1.0">
@@ -468,4 +458,64 @@
    </LINK>
    <LINK srcnodeid="20" srcpinname="Whole Part" dstnodeid="0" dstpinname="resXY">
    </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="68" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8910" top="2835" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8910" top="2835" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="68" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="68" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Enabled">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="33.7.0">
+   </PACK>
+   <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="14">
+   <BOUNDS type="Node" left="885" top="2805" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Mode" slicecount="1" values="Blend">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Alpha To Coverage" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Render State" dstnodeid="22" dstpinname="Render State">
+   </LINK>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="70">
+   <BOUNDS type="Node" left="3840" top="4065" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="64" srcpinname="Output" dstnodeid="70" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="70" srcpinname="Output" dstnodeid="0" dstpinname="maxsize">
+   </LINK>
+   <NODE systemname="Blend (DX11.RenderState Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState Advanced)" componentmode="Hidden" id="71">
+   <BOUNDS type="Node" left="1395" top="3765" width="100" height="100">
+   </BOUNDS>
+   </NODE>
    </PATCH>
