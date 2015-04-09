@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\AddLight (MRE.SpotLight).v4p" systemname="AddLight (MRE.SpotLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLight (MRE.SpotLight).v4p" scrollx="0" scrolly="360">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\AddLight (MRE.SpotLight).v4p" systemname="AddLight (MRE.SpotLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLight (MRE.SpotLight).v4p" scrollx="0" scrolly="360">
    <BOUNDS type="Window" left="3240" top="3420" width="20325" height="10770">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -241,7 +241,7 @@
    </PIN>
    <PIN pinname="Formular" slicecount="1" values="Emeshe.SpotLight">
    </PIN>
-   <PIN pinname="Definition" slicecount="1" values="|Transform lProjection, Transform lView, Vector4D LightCol, Vector3D Position, float Range, float RangePow, float LightStrength, float TexID, float KnowShadows, float Penumbra|">
+   <PIN pinname="Definition" slicecount="1" values="|Transform lProjection, Transform lView, Vector4D LightCol, Vector3D Position, float Range, float RangePow, float LightStrength, float TexID, float KnowShadows, float Penumbra, int MapID|">
    </PIN>
    <PIN pinname="Set" visible="1" slicecount="1" values="0">
    </PIN>
@@ -268,6 +268,8 @@
    <PIN pinname="lView" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="TexID" visible="1">
+   </PIN>
+   <PIN pinname="MapID" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="28" srcpinname="Output" dstnodeid="39" dstpinname="Source">
@@ -499,7 +501,7 @@
    <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="12" hiddenwhenlocked="1">
    <BOUNDS type="Node" left="12105" top="6225" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input Count" slicecount="1" values="9">
+   <PIN pinname="Input Count" slicecount="1" values="10">
    </PIN>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -520,6 +522,8 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    <PIN pinname="Input 9" visible="1">
+   </PIN>
+   <PIN pinname="Input 10" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="11" hiddenwhenlocked="1">
@@ -801,5 +805,37 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="51" dstpinname="Query Save">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="16035" top="4065" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="16035" top="4065" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Shadowmap ID|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Change (Animation)" nodename="Change (Animation)" componentmode="Hidden" id="52" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="16035" top="4800" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="3" values="0,0,0">
+   </PIN>
+   <PIN pinname="OnChange" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="53" srcpinname="Y Output Value" dstnodeid="28" dstpinname="MapID">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="OnChange" dstnodeid="12" dstpinname="Input 10" hiddenwhenlocked="1">
    </LINK>
    </PATCH>

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\SunLightBuffer (DX11 MRE).v4p" systemname="SunLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\SunLightBuffer (DX11 MRE).v4p" scrollx="0" scrolly="6915">
-   <BOUNDS type="Window" left="14655" top="2550" width="12765" height="10785">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\SunLightBuffer (DX11 MRE).v4p" systemname="SunLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\SunLightBuffer (DX11 MRE).v4p" scrollx="1440" scrolly="150">
+   <BOUNDS type="Window" left="9375" top="315" width="12765" height="10785">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -83,9 +83,9 @@
    <LINK srcnodeid="107" srcpinname="Output" dstnodeid="104" dstpinname="Parent">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="103" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2790" top="3855" width="795" height="240">
+   <BOUNDS type="Box" left="3000" top="3870" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2790" top="3855" width="0" height="0">
+   <BOUNDS type="Node" left="3000" top="3870" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="Metadata">
    </PIN>
@@ -321,7 +321,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="8385" top="3975" width="4560" height="750">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|Transform ShadowMapView, Vector4D LightCol, Vector3D Direction, float LightStrength, float KnowShadows, float Penumbra|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|Transform ShadowMapView, Vector4D LightCol, Vector3D Direction, float LightStrength, float KnowShadows, float Penumbra, int MapID|">
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
@@ -449,7 +449,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5370" top="14280" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="104">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="108">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -484,46 +484,10 @@
    <LINKPOINT x="5220" y="10348">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="79">
-   <BOUNDS type="Node" left="780" top="6645" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Formular" slicecount="1" values="Emeshe.SunLight">
-   </PIN>
-   <PIN pinname="Definition" slicecount="1" values="|Transform ShadowMapView, Vector4D LightCol, Vector3D Direction, float LightStrength, float KnowShadows, float Penumbra|">
-   </PIN>
-   <PIN pinname="LightColXYZW" visible="1">
-   </PIN>
-   <PIN pinname="PositionXYZ" visible="1">
-   </PIN>
-   <PIN pinname="ShadowMapCenterXYZ" visible="1">
-   </PIN>
-   <PIN pinname="Range" visible="1">
-   </PIN>
-   <PIN pinname="RangePow" visible="1">
-   </PIN>
-   <PIN pinname="LightStrength" visible="1">
-   </PIN>
-   <PIN pinname="KnowShadows" visible="1">
-   </PIN>
-   <PIN pinname="Penumbra" visible="1">
-   </PIN>
-   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="lProjection" visible="1">
-   </PIN>
-   <PIN pinname="lView" visible="1">
-   </PIN>
-   <PIN pinname="TexID" visible="1">
-   </PIN>
-   <PIN pinname="ShadowMapView" visible="1">
-   </PIN>
-   <PIN pinname="DirectionXYZ" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="Zip (Value Bin)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Zip (Value Bin)" componentmode="Hidden" id="78">
    <BOUNDS type="Node" left="945" top="10440" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input Count" slicecount="1" values="6">
+   <PIN pinname="Input Count" slicecount="1" values="7">
    </PIN>
    <PIN pinname="Input 1" visible="1" slicecount="16" values="1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1">
    </PIN>
@@ -545,7 +509,7 @@
    </PIN>
    <PIN pinname="Input 6 Bin Size" visible="1">
    </PIN>
-   <PIN pinname="Input 7 Bin Size" visible="1">
+   <PIN pinname="Input 7 Bin Size" visible="1" slicecount="1" values="-1">
    </PIN>
    <PIN pinname="Input 8 Bin Size" visible="1">
    </PIN>
@@ -553,7 +517,7 @@
    </PIN>
    <PIN pinname="Input 6" visible="1">
    </PIN>
-   <PIN pinname="Input 7" visible="1">
+   <PIN pinname="Input 7" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Input 8" visible="1">
    </PIN>
@@ -748,20 +712,12 @@
    <PIN pinname="Matrix Out" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="79" srcpinname="LightStrength" dstnodeid="78" dstpinname="Input 7">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="Penumbra" dstnodeid="78" dstpinname="Input 10">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="KnowShadows" dstnodeid="78" dstpinname="Input 9">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="TexID" dstnodeid="78" dstpinname="Input 8">
-   </LINK>
    <NODE systemname="Unzip (Transform)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (Transform)" componentmode="Hidden" id="65">
    <BOUNDS type="Node" left="5355" top="7230" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output Count" slicecount="1" values="4">
    </PIN>
-   <PIN pinname="Input" visible="1" slicecount="4" values=",,,">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output 2" visible="1">
    </PIN>
@@ -793,8 +749,6 @@
    <LINK srcnodeid="65" srcpinname="Output 1" dstnodeid="63" dstpinname="Transform In 2">
    </LINK>
    <LINK srcnodeid="63" srcpinname="Transform Out" dstnodeid="66" dstpinname="Transform">
-   </LINK>
-   <LINK srcnodeid="80" srcpinname="Output" dstnodeid="79" dstpinname="Primitive Object">
    </LINK>
    <NODE systemname="Info (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (VObjectCollection)" componentmode="Hidden" id="61">
    <BOUNDS type="Node" left="2085" top="12090" width="100" height="100">
@@ -854,17 +808,7 @@
    </LINK>
    <LINK srcnodeid="103" srcpinname="Output String" dstnodeid="59" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="79" srcpinname="ShadowMapView" dstnodeid="63" dstpinname="Transform In 1">
-   </LINK>
    <LINK srcnodeid="66" srcpinname="Matrix Out" dstnodeid="78" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="LightColXYZW" dstnodeid="78" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="LightStrength" dstnodeid="78" dstpinname="Input 4">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="KnowShadows" dstnodeid="78" dstpinname="Input 5">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="Penumbra" dstnodeid="78" dstpinname="Input 6">
    </LINK>
    <LINK srcnodeid="77" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Input 2 Bin Size">
    </LINK>
@@ -896,8 +840,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="79" srcpinname="DirectionXYZ" dstnodeid="110" dstpinname="Input 1">
-   </LINK>
    <LINK srcnodeid="110" srcpinname="Output" dstnodeid="109" dstpinname="XYZW UnTransformed">
    </LINK>
    <NODE systemname="GetSpread (Spreads Advanced)" filename="%VVVV%\addonpack\lib\nodes\plugins\GetSpreadAdv.dll" nodename="GetSpread (Spreads Advanced)" componentmode="Hidden" id="111">
@@ -957,5 +899,43 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="112" srcpinname="Y Output Value" dstnodeid="113" dstpinname="Query Save">
+   </LINK>
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="115">
+   <BOUNDS type="Node" left="780" top="6645" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Formular" slicecount="1" values="Emeshe.SunLight">
+   </PIN>
+   <PIN pinname="Definition" slicecount="1" values="|Transform ShadowMapView, Vector4D LightCol, Vector3D Direction, float LightStrength, float KnowShadows, float Penumbra, int MapID|">
+   </PIN>
+   <PIN pinname="ShadowMapView" visible="1">
+   </PIN>
+   <PIN pinname="LightColXYZW" visible="1">
+   </PIN>
+   <PIN pinname="DirectionXYZ" visible="1">
+   </PIN>
+   <PIN pinname="LightStrength" visible="1">
+   </PIN>
+   <PIN pinname="KnowShadows" visible="1">
+   </PIN>
+   <PIN pinname="Penumbra" visible="1">
+   </PIN>
+   <PIN pinname="MapID" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="80" srcpinname="Output" dstnodeid="115" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="115" srcpinname="ShadowMapView" dstnodeid="63" dstpinname="Transform In 1">
+   </LINK>
+   <LINK srcnodeid="115" srcpinname="LightColXYZW" dstnodeid="78" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="115" srcpinname="DirectionXYZ" dstnodeid="110" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="115" srcpinname="LightStrength" dstnodeid="78" dstpinname="Input 4">
+   </LINK>
+   <LINK srcnodeid="115" srcpinname="KnowShadows" dstnodeid="78" dstpinname="Input 5">
+   </LINK>
+   <LINK srcnodeid="115" srcpinname="Penumbra" dstnodeid="78" dstpinname="Input 6">
+   </LINK>
+   <LINK srcnodeid="115" srcpinname="MapID" dstnodeid="78" dstpinname="Input 7">
    </LINK>
    </PATCH>

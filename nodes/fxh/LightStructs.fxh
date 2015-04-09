@@ -10,8 +10,9 @@ struct PointLightProp
     float LightStrength;
     float KnowShadows; // > 0.5
     float Penumbra;
-    // NoF = 15
-    // Size = 60
+    float MapID;
+    // NoF = 16
+    // Size = 64
 };
 
 struct SpotLightProp
@@ -26,8 +27,9 @@ struct SpotLightProp
     float TexID;
     float KnowShadows; // > 0.5
     float Penumbra;
-    // NoF = 45
-    // Size = 180
+    float MapID;
+    // NoF = 46
+    // Size = 184
 };
 
 struct SunLightProp
@@ -38,6 +40,7 @@ struct SunLightProp
     float LightStrength;
     float KnowShadows; // > 0.5
     float Penumbra;
-    // NoF = 26
-    // Size = 104
+    float MapID;
+    // NoF = 27
+    // Size = 108
 };

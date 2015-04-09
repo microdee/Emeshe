@@ -202,10 +202,10 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
 	        	#if defined(DOSHADOWS)
 	        	if(pointlightprop[i].KnowShadows > 0.5)
 	        	{
-	        		float3 lPosW = mul(float4(lPos, 1), CamViewInv).xyz;
+	        		float3 lPosW = mul(float4(pointlightprop[i].ShadowMapCenter, 1), CamViewInv).xyz;
 	        		float3 cPosW = mul(float4(PosV, 1), CamViewInv).xyz;
 	        		float penumbra = pointlightprop[i].Penumbra;
-		        	shad = PointShadows(ShadowMaps, 0, lPosW, lRange, cPosW, bias, penumbra);
+		        	shad = PointShadows(ShadowMaps, pointlightprop[i].MapID, lPosW, lRange, cPosW, bias, penumbra);
 	        	}
 	        	#endif
 	        }

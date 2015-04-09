@@ -50,6 +50,7 @@ void CSPoint(csin input)
 		BOutput[ib].LightStrength = Values[ii + 12];
 		BOutput[ib].KnowShadows = Values[ii + 13];
 		BOutput[ib].Penumbra = Values[ii + 14];
+		BOutput[ib].MapID = Values[ii + 15];
 	#endif
 }
 technique11 Point { pass P0{SetComputeShader( CompileShader( cs_5_0, CSPoint() ) );} }
@@ -99,6 +100,7 @@ void CSSpot(csin input)
 		BOutput[ib].TexID = Values[ii + 42];
 		BOutput[ib].KnowShadows = Values[ii + 43];
 		BOutput[ib].Penumbra = Values[ii + 44];
+		BOutput[ib].MapID = Values[ii + 45];
 	#endif
 }
 technique11 Spot { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSpot() ) );} }
@@ -132,6 +134,7 @@ void CSSun(csin input)
 		BOutput[ib].LightStrength = Values[ii + 23];
 		BOutput[ib].KnowShadows = Values[ii + 24];
 		BOutput[ib].Penumbra = Values[ii + 25];
+		BOutput[ib].MapID = Values[ii + 26];
 	#endif
 }
 technique11 Sun { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSun() ) );} }
