@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\SSAO (DX11 MRE).v4p" systemname="SSAO (DX11 MRE.Temporal)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\SSAO (DX11 MRE.Temporal).v4p" scrollx="60" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\SSAO (DX11 MRE).v4p" systemname="SSAO (DX11 MRE.Temporal)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\SSAO (DX11 MRE.Temporal).v4p" scrollx="9990" scrolly="0">
    <BOUNDS type="Window" left="630" top="3210" width="15255" height="11565">
    </BOUNDS>
    <NODE id="5" systemname="Quad (DX11.Geometry)" filename="%VVVV%\directx11\plugins\VVVV.DX11.BasicPrimitives.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden">
@@ -182,34 +182,16 @@
    </NODE>
    <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="18" dstpinname="Index">
    </LINK>
-   <NODE systemname="Blend (DX11.TextureFX)" filename="%VVVV%\packs\DX11\nodes\texture11\Mixer\Blend.tfx" nodename="Blend (DX11.TextureFX)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="2430" top="10350" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Texture In 2" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   <PIN pinname="Opacity" slicecount="1" values="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="22" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="20295" top="1185" width="975" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="20295" top="1185" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="Multiply">
+   <PIN pinname="Input Enum" slicecount="1" values="Mul">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Blend">
    </PIN>
    </NODE>
-   <LINK srcnodeid="22" srcpinname="Output Enum" dstnodeid="21" dstpinname="Technique" linkstyle="Bezier">
-   <LINKPOINT x="20295" y="5873">
-   </LINKPOINT>
-   <LINKPOINT x="3015" y="5873">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7440" top="795" width="795" height="240">
    </BOUNDS>
@@ -610,18 +592,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="21" dstpinname="Texture In" linkstyle="Bezier">
-   <LINKPOINT x="1335" y="5565">
-   </LINKPOINT>
-   <LINKPOINT x="2445" y="5565">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="21" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="25200" y="5813">
-   </LINKPOINT>
-   <LINKPOINT x="3180" y="5813">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="41">
    <BOUNDS type="Node" left="21540" top="3150" width="100" height="100">
    </BOUNDS>
@@ -667,29 +637,9 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
    </PIN>
-   </NODE>
-   <LINK srcnodeid="21" srcpinname="Texture Out" dstnodeid="46" dstpinname="Input Node">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="47" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="20220" top="360" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="20220" top="360" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Opacity">
+   <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <LINK srcnodeid="47" srcpinname="Y Output Value" dstnodeid="21" dstpinname="Opacity" linkstyle="Bezier">
-   <LINKPOINT x="20220" y="5460">
-   </LINKPOINT>
-   <LINKPOINT x="2655" y="5460">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="67">
    <BOUNDS type="Node" left="22380" top="3195" width="100" height="100">
    </BOUNDS>
@@ -942,8 +892,6 @@
    </LINK>
    <LINK srcnodeid="83" srcpinname="Enum" dstnodeid="95" dstpinname="Technique">
    </LINK>
-   <LINK srcnodeid="95" srcpinname="Texture Out" dstnodeid="21" dstpinname="Texture In 2">
-   </LINK>
    <LINK srcnodeid="95" srcpinname="Texture Out" dstnodeid="73" dstpinname="Input Node">
    </LINK>
    <LINK srcnodeid="41" srcpinname="Output" dstnodeid="95" dstpinname="Enabled">
@@ -1029,5 +977,39 @@
    <LINK srcnodeid="104" srcpinname="Output" dstnodeid="100" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="100" srcpinname="Output" dstnodeid="4" dstpinname="Texture ScaleXY">
+   </LINK>
+   <NODE systemname="BlendBasic (DX11.TextureFX)" filename="%VVVV%\packs\dx11\nodes\texture11\Mixer\BlendBasic.tfx" nodename="BlendBasic (DX11.TextureFX)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="2430" top="10350" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In 2" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Opacity" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="Output Enum" dstnodeid="21" dstpinname="Technique" linkstyle="Bezier">
+   <LINKPOINT x="20295" y="5873">
+   </LINKPOINT>
+   <LINKPOINT x="3015" y="5873">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="21" dstpinname="Texture In" linkstyle="Bezier">
+   <LINKPOINT x="1335" y="5565">
+   </LINKPOINT>
+   <LINKPOINT x="2445" y="5565">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="21" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="25200" y="5813">
+   </LINKPOINT>
+   <LINKPOINT x="3180" y="5813">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Texture Out" dstnodeid="46" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="95" srcpinname="Texture Out" dstnodeid="21" dstpinname="Texture In 2">
    </LINK>
    </PATCH>
