@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="1950" scrolly="0">
    <BOUNDS type="Window" left="2100" top="3015" width="16230" height="11175">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -69,9 +69,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="37" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8460" top="855" width="795" height="240">
+   <BOUNDS type="Box" left="13605" top="615" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8460" top="855" width="0" height="0">
+   <BOUNDS type="Node" left="13605" top="615" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0.83">
    </PIN>
@@ -81,13 +81,17 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="RemoveArtifactsBright">
    </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK srcnodeid="37" srcpinname="Y Output Value" dstnodeid="36" dstpinname="Bright">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="38" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="9300" top="1095" width="795" height="240">
+   <BOUNDS type="Box" left="14445" top="855" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9300" top="1095" width="0" height="0">
+   <BOUNDS type="Node" left="14445" top="855" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="10">
    </PIN>
@@ -96,6 +100,10 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="RemoveArtifactsRadius">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK srcnodeid="38" srcpinname="Y Output Value" dstnodeid="36" dstpinname="Radius">
@@ -221,7 +229,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2700" top="630" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.48">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -233,7 +241,7 @@
    <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="33" dstpinname="width">
    </LINK>
    <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="63">
-   <BOUNDS type="Node" left="7095" top="3285" width="100" height="100">
+   <BOUNDS type="Node" left="7050" top="3570" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -255,7 +263,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Constant (DX11.Effect)" filename="%VVVV%\packs\DX11\nodes\dx11\Constant.fx" nodename="Constant (DX11.Effect)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="7410" top="2550" width="100" height="100">
+   <BOUNDS type="Node" left="7365" top="2835" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Geometry" visible="1">
    </PIN>
@@ -275,7 +283,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Quad (DX11.Geometry)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden" id="65">
-   <BOUNDS type="Node" left="7590" top="2100" width="100" height="100">
+   <BOUNDS type="Node" left="7545" top="2385" width="100" height="100">
    </BOUNDS>
    <PIN pinname="SizeXY" slicecount="2" values="2,2">
    </PIN>
@@ -289,7 +297,7 @@
    <LINK srcnodeid="34" srcpinname="Output Node" dstnodeid="64" dstpinname="Texture">
    </LINK>
    <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="70">
-   <BOUNDS type="Node" left="7335" top="1725" width="100" height="100">
+   <BOUNDS type="Node" left="7290" top="2010" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
    </PIN>
@@ -299,7 +307,7 @@
    <LINK srcnodeid="70" srcpinname="Render State" dstnodeid="64" dstpinname="Render State">
    </LINK>
    <NODE systemname="Subtract (Value)" nodename="Subtract (Value)" componentmode="Hidden" id="77">
-   <BOUNDS type="Node" left="6660" top="1545" width="300" height="270">
+   <BOUNDS type="Node" left="8145" top="2175" width="300" height="270">
    </BOUNDS>
    <PIN pinname="Input 1" slicecount="1" values="1">
    </PIN>
@@ -307,9 +315,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="78" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="6570" top="585" width="795" height="240">
+   <BOUNDS type="Box" left="11715" top="345" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="6570" top="585" width="0" height="0">
+   <BOUNDS type="Node" left="11715" top="345" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="0.8">
    </PIN>
@@ -318,6 +326,10 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Filter Time|">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="77" dstpinname="Input 2">
@@ -353,7 +365,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5430" top="540" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -399,11 +411,11 @@
    <LINK srcnodeid="82" srcpinname="Output" dstnodeid="33" dstpinname="AFpointXY">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="84" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="10500" top="5520" width="795" height="240">
+   <BOUNDS type="Box" left="6915" top="4845" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="10500" top="5520" width="0" height="0">
+   <BOUNDS type="Node" left="6915" top="4845" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.03">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.04">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -505,9 +517,9 @@
    <LINK srcnodeid="91" srcpinname="Y Output Value" dstnodeid="107" dstpinname="Enabled">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="111" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8805" top="7500" width="795" height="240">
+   <BOUNDS type="Box" left="7875" top="7125" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8805" top="7500" width="0" height="0">
+   <BOUNDS type="Node" left="7875" top="7125" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -521,9 +533,9 @@
    <LINK srcnodeid="111" srcpinname="Y Output Value" dstnodeid="107" dstpinname="Gamma">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="113" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="11970" top="1230" width="795" height="240">
+   <BOUNDS type="Box" left="9150" top="720" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="11970" top="1230" width="0" height="0">
+   <BOUNDS type="Node" left="9150" top="720" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="20">
    </PIN>

@@ -54,7 +54,8 @@ namespace VVVV.Nodes
 		{
 			SpreadMax = 0;
 			for(int i=0; i<FMatID.SliceCount; i++)
-				SpreadMax = Math.Max(SpreadMax, FMatID[i])+1;
+				SpreadMax = Math.Max(SpreadMax, FMatID[i]);
+			SpreadMax += 1;
 			
 			FFlagsOut.SliceCount = SpreadMax;
 			FAdressOut.SliceCount = SpreadMax;
