@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\SpotLightBuffer (DX11 MRE).v4p" systemname="SpotLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\SpotLightBuffer (DX11 MRE).v4p" scrollx="0" scrolly="1440">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\SpotLightBuffer (DX11 MRE).v4p" systemname="SpotLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\SpotLightBuffer (DX11 MRE).v4p" scrollx="0" scrolly="2010">
    <BOUNDS type="Window" left="9150" top="510" width="14115" height="13890">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -457,6 +457,8 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="80" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Stride">
    </LINK>
@@ -832,8 +834,6 @@
    </LINK>
    <LINK srcnodeid="78" srcpinname="lView" dstnodeid="61" dstpinname="Transform In 1">
    </LINK>
-   <LINK srcnodeid="61" srcpinname="Transform Out" dstnodeid="64" dstpinname="Transform">
-   </LINK>
    <NODE systemname="ApplyTransform (Transform Vector)" nodename="ApplyTransform (Transform Vector)" componentmode="Hidden" id="60">
    <BOUNDS type="Node" left="2175" top="6735" width="100" height="100">
    </BOUNDS>
@@ -945,5 +945,47 @@
    <LINK srcnodeid="74" srcpinname="Y Output Value" dstnodeid="77" dstpinname="Input 11 Bin Size">
    </LINK>
    <LINK srcnodeid="78" srcpinname="MapID" dstnodeid="77" dstpinname="Input 11">
+   </LINK>
+   <NODE systemname="Inverse (Transform)" nodename="Inverse (Transform)" componentmode="Hidden" id="110">
+   <BOUNDS type="Node" left="435" top="6825" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="61" srcpinname="Transform Out" dstnodeid="110" dstpinname="Source">
+   </LINK>
+   <LINK srcnodeid="110" srcpinname="Transform Out" dstnodeid="64" dstpinname="Transform">
+   </LINK>
+   <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="111">
+   <BOUNDS type="Node" left="7620" top="13560" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="80" srcpinname="Y Output Value" dstnodeid="111" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="112">
+   <BOUNDS type="Node" left="1155" top="11055" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="3">
+   </PIN>
+   </NODE>
+   <NODE systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden" id="113">
+   <BOUNDS type="Node" left="1170" top="10050" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="77" srcpinname="Output" dstnodeid="113" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="113" srcpinname="Count" dstnodeid="112" dstpinname="Input">
    </LINK>
    </PATCH>

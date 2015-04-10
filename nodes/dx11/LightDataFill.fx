@@ -32,7 +32,7 @@ struct csin
 void CSPoint(csin input)
 {
 	#if LIGHTTYPE == POINT
-		uint ii = input.DTID.x * 15;
+		uint ii = input.DTID.x * 16;
 		uint ib = input.DTID.x;
 	
 		BOutput[ib].LightCol.x = Values[ii + 0];
@@ -60,7 +60,7 @@ technique11 Point { pass P0{SetComputeShader( CompileShader( cs_5_0, CSPoint() )
 void CSSpot(csin input)
 {
 	#if LIGHTTYPE == SPOT
-		uint ii = input.DTID.x * 45;
+		uint ii = input.DTID.x * 46;
 		uint ib = input.DTID.x;
 	
 		uint ij = 0;
@@ -109,7 +109,7 @@ technique11 Spot { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSpot() ) )
 void CSSun(csin input)
 {
 	#if LIGHTTYPE == SUN
-		uint ii = input.DTID.x * 26;
+		uint ii = input.DTID.x * 27;
 		uint ib = input.DTID.x;
 	
 		uint ij = 0;

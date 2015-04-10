@@ -352,13 +352,14 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 				projpos = mul(projpos, spotlightprop[i].lProjection);
 			    projTexCd.x =  projpos.x / projpos.w / 2.0f + 0.5f;
 			    projTexCd.y = -projpos.y / projpos.w / 2.0f + 0.5f;
-	    		float dfc = length(projpos.xy/projpos.w)*.4;
+	    		float dfc = length(projpos.xy/projpos.w);
     			float indirectMul = 1;
 		    	if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
 		    	{
 		        	float attenamb = 1/(saturate(lAttAmb.x) + saturate(lAttAmb.y) * d + saturate(lAttAmb.z) * pow(d, 2));
 			    	amb = lAmb * attenamb * spotlightprop[i].LightStrength;
-		    		indirectMul = dfc * pow(saturate(projpos.z*attenamb*.3),1) * (1-saturate(pows(dfc,2)));
+		    		float cdfc = dfc * max(max(lAttAmb.x,lAttAmb.y),lAttAmb.z);
+		    		indirectMul = cdfc * pow(saturate(projpos.z*attenamb*.3),1) * (1-saturate(pows(cdfc,2)));
 		    		amb *= indirectMul;
 		    	}
 	    		
@@ -367,16 +368,26 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 	    		//bool depthmask = d<lRange;
 				if(Mask && depthmask)
 				{
-			    	projcol = SpotTexArray.SampleLevel(SpotSampler, float3(projTexCd,(float)spotlightprop[i].TexID), 0) * spotlightprop[i].LightStrength;
+			    	projcol = SpotTexArray.SampleLevel(SpotSampler, float3(projTexCd, spotlightprop[i].TexID), 0) * spotlightprop[i].LightStrength;
 
 			        float3 diff = color;
 			        float3 spec = lSpec * color;
 		        	cook_torrance(NormV, ViewDirV, lDir, rough, diff, spec);
-
-					tlCol.Diffuse = diff;
+					float shad = 1;
+		        	#if defined(DOSHADOWS)
+		        	if(spotlightprop[i].KnowShadows > 0.5)
+		        	{
+		        		float3 lPosW = mul(float4(lPos, 1), CamViewInv).xyz;
+		        		float3 cPosW = mul(float4(PosV, 1), CamViewInv).xyz;
+		        		float penumbra = spotlightprop[i].Penumbra;
+			        	shad = SpotShadows(ShadowMaps, spotlightprop[i].MapID, lPosW, lRange, cPosW, projTexCd, bias, penumbra);
+		        	}
+		        	#endif
+					
+					tlCol.Diffuse = diff * shad;
 			    	tlCol.Diffuse *= projcol.rgb*projcol.a;
 			    	tlCol.Ambient = amb;
-			    	tlCol.Specular = spec * pows(projcol.rgb*projcol.a,.5);
+			    	tlCol.Specular = spec * pows(projcol.rgb*projcol.a,.5) * shad;
 				}
 				else
 				{
@@ -393,7 +404,10 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 					float3 coeff = GetFloat3(matid, MF_LIGHTING_FAKESSS, MF_LIGHTING_FAKESSS_COEFFICIENT);
 			    	
 		    		float atten = 1/(saturate(lAttSSS.x) + saturate(lAttSSS.y) * d + saturate(lAttSSS.z) * pow(d, 2));
-		    		indirectMul = dfc * pow(saturate(projpos.z*atten*.3),1) * (1-saturate(pows(dfc,2)));
+			    	
+		    		float cdfc = dfc / (1 + power);
+			    	float3 sssprojcol = SpotTexArray.SampleLevel(SpotSampler, float3(projTexCd, spotlightprop[i].TexID), 7).rgb;
+		    		indirectMul = cdfc * pow(saturate(projpos.z*atten*.3),1) * (1-saturate(pows(cdfc,2)));
 
 					indirectLightComponent = (float3)(materialThickness * max(0, dot(-NormV, lDir)));
 					indirectLightComponent += materialThickness * halfLambert(-ViewDirV, lDir);
@@ -401,7 +415,7 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 
 					float rangeFSSS = pows(saturate((spotlightprop[i].Range*power-d)/(spotlightprop[i].Range*power)),dmod*.9*pointlightprop[i].RangePow);
 			    	float sssa = spotlightprop[i].LightStrength * amount * rangeFSSS * indirectMul;
-			    	tlCol.SSS = indirectLightComponent * sssa;
+			    	tlCol.SSS = indirectLightComponent * sssa * sssprojcol;
 					outc.SSS += max(tlCol.SSS * la,0);
 			    }
 
@@ -506,6 +520,7 @@ Components CookTorranceSunSSS(SamplerState s0, float2 uv, float2 sR, float light
 
 		    	float sssa = sunlightprop[i].LightStrength * amount;
 				outc.SSS += indirectLightComponent * sssa;
+	    		//outc.SSS = matid;
 		    }
 
 		    if(KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT))

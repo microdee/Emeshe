@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" systemname="SkullScene" filename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" scrollx="3720" scrolly="930">
-   <BOUNDS type="Window" left="9705" top="1140" width="16950" height="9165">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" systemname="SkullScene" filename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" scrollx="3855" scrolly="900">
+   <BOUNDS type="Window" left="5670" top="1260" width="16950" height="9165">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -669,6 +669,8 @@
    </PIN>
    <PIN pinname="Specular Color" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
+   <PIN pinname="Add" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="88" dstpinname="Material">
    </LINK>
@@ -713,13 +715,13 @@
    </BOUNDS>
    <PIN pinname="Material" visible="1">
    </PIN>
-   <PIN pinname="Add" visible="1">
+   <PIN pinname="Add" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Strength" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Power" slicecount="1" values="0.18">
    </PIN>
-   <PIN pinname="Thickness" slicecount="1" values="1">
+   <PIN pinname="Thickness" slicecount="1" values="0.04">
    </PIN>
    <PIN pinname="Coefficient" slicecount="1" visible="1" values="|1.00000,0.33768,0.00000,1.00000|">
    </PIN>
@@ -747,9 +749,9 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="85" dstpinname="Add">
-   </LINK>
    <NODE systemname="AddFakeRimLight (MRE.Materials)" filename="..\nodes\modules\AddFakeRimLight (MRE.Materials).v4p" componentmode="Hidden" id="83" nodename="..\nodes\Modules\AddFakeRimLight (MRE.Materials).v4p">
    <BOUNDS type="Node" left="15975" top="7365" width="1470" height="270">
    </BOUNDS>
@@ -759,7 +761,7 @@
    </BOUNDS>
    <PIN pinname="Material" visible="1">
    </PIN>
-   <PIN pinname="Add" visible="1">
+   <PIN pinname="Add" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Strength" visible="1">
    </PIN>
@@ -788,8 +790,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="83" dstpinname="Add">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="81" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="17355" top="6630" width="795" height="240">
    </BOUNDS>
@@ -841,7 +841,7 @@
    </BOUNDS>
    <PIN pinname="Material" visible="1">
    </PIN>
-   <PIN pinname="Add" visible="1">
+   <PIN pinname="Add" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Roughness" slicecount="1" visible="1" values="0">
    </PIN>
@@ -872,14 +872,12 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="77" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Add">
-   </LINK>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="76" systemname="IOBox (Color)">
    <BOUNDS type="Box" left="16875" top="3405" width="2250" height="480">
    </BOUNDS>
    <BOUNDS type="Node" left="16875" top="3405" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" visible="1" values="|1.00000,0.86133,0.76644,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.99444,0.92194,0.76218,1.00000|">
    </PIN>
    </NODE>
    <LINK srcnodeid="76" srcpinname="Color Output" dstnodeid="85" dstpinname="Coefficient">
@@ -953,7 +951,7 @@
    </BOUNDS>
    <PIN pinname="Material" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Add" visible="1">
+   <PIN pinname="Add" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Blur" slicecount="1" visible="1" values="0.27">
    </PIN>
@@ -984,8 +982,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="71" srcpinname="Y Output Value" dstnodeid="72" dstpinname="Add">
-   </LINK>
    <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="72" dstpinname="Material">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="70" systemname="IOBox (Value Advanced)">
@@ -1071,7 +1067,7 @@
    </BOUNDS>
    <PIN pinname="Material" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Add" visible="1">
+   <PIN pinname="Add" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Fresnel" slicecount="1" values="0">
    </PIN>
@@ -1098,8 +1094,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="92" srcpinname="Y Output Value" dstnodeid="93" dstpinname="Add">
-   </LINK>
    <LINK srcnodeid="72" srcpinname="Material Thru" dstnodeid="93" dstpinname="Material">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="95" systemname="IOBox (Node)">
@@ -1459,5 +1453,39 @@
    <LINK srcnodeid="125" srcpinname="Output Node" dstnodeid="122" dstpinname="Transform In">
    </LINK>
    <LINK srcnodeid="91" srcpinname="Y Output Value" dstnodeid="93" dstpinname="Refraction Map">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="126" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="17460" top="2775" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="17460" top="2775" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="89" dstpinname="Construct">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Add">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Add">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="72" dstpinname="Add">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="93" dstpinname="Add">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="83" dstpinname="Add">
+   </LINK>
+   <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="85" dstpinname="Add">
    </LINK>
    </PATCH>

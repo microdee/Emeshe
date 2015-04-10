@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\PointLightSource.v4p" systemname="PointLightSource" filename="C:\vvvv\libs\Emeshe\girlpower\PointLightSource.v4p" scrollx="330" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\PointLightSource.v4p" systemname="PointLightSource" filename="C:\vvvv\libs\Emeshe\girlpower\PointLightSource.v4p" scrollx="1185" scrolly="0">
    <BOUNDS type="Window" left="14115" top="6060" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -119,7 +119,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3105" top="1185" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0,0">
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="-3.86271242968684,9.27938788531564,1.18882064536894">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

@@ -6,7 +6,6 @@
 
 Texture2D Lights[5];
 Texture2D MaskTex;
-float2 R : TARGETSIZE;
 
 SamplerState s0
 {
@@ -21,6 +20,7 @@ cbuffer cbPerObj : register( b1 )
 	float DistanceMod = 1;
 	bool IsInitial = true;
 	float ComponentAmount[5] = {1,1,1,1,1};
+	float2 Res : TARGETSIZE;
 };
 
 struct VS_IN
@@ -58,9 +58,9 @@ OutComps pPnt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_COOKTORRANCE))
+	if((GetStencil(uv, Res) > 0) && KnowFeature(GetMatID(uv, Res), MF_LIGHTING_COOKTORRANCE))
 	{
-		Components col = CookTorrancePointSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
+		Components col = CookTorrancePointSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)0;
 		
 		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
@@ -99,9 +99,9 @@ OutComps pSpt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_COOKTORRANCE))
+	if((GetStencil(uv, Res) > 0) && KnowFeature(GetMatID(uv, Res), MF_LIGHTING_COOKTORRANCE))
 	{
-		Components col = CookTorranceSpotSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
+		Components col = CookTorranceSpotSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
 		
 		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
@@ -139,9 +139,9 @@ OutComps pSun(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_COOKTORRANCE))
+	if((GetStencil(uv, Res) > 0) && KnowFeature(GetMatID(uv, Res), MF_LIGHTING_COOKTORRANCE))
 	{
-		Components col = CookTorranceSunSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
+		Components col = CookTorranceSunSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
 		
 		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
@@ -157,7 +157,7 @@ OutComps pSun(vs2ps In)
 			outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
 			outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
 		}
-		
+		//outCol.SSS.xy = Res;
 		return outCol;
 	}
 	else
