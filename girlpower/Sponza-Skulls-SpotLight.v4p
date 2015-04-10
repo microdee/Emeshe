@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SpotLight.v4p" systemname="Sponza-Skulls-SpotLight" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SpotLight.v4p" scrollx="690" scrolly="-720">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SpotLight.v4p" systemname="Sponza-Skulls-SpotLight" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SpotLight.v4p" scrollx="795" scrolly="-180">
    <BOUNDS type="Window" left="315" top="990" width="13605" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -7,7 +7,7 @@
    <NODE systemname="MRE (DX11)" filename="..\nodes\modules\MRE (DX11).v4p" nodename="MRE (DX11)" componentmode="Hidden" id="129">
    <BOUNDS type="Node" left="2595" top="10140" width="1500" height="270">
    </BOUNDS>
-   <BOUNDS type="Window" left="315" top="1065" width="22245" height="10200">
+   <BOUNDS type="Window" left="3915" top="2835" width="22245" height="10200">
    </BOUNDS>
    <PIN pinname="Joined ObjID" slicecount="1" values="0">
    </PIN>
@@ -673,7 +673,7 @@
    <LINK srcnodeid="307" srcpinname="Texture Out" dstnodeid="308" dstpinname="Texture In">
    </LINK>
    <NODE systemname="ToneMapping (DX11 MRE)" filename="..\nodes\modules\ToneMapping (DX11 MRE).v4p" nodename="ToneMapping (DX11 MRE)" componentmode="Hidden" id="309">
-   <BOUNDS type="Node" left="3750" top="30870" width="100" height="100">
+   <BOUNDS type="Node" left="3750" top="30720" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -1003,7 +1003,7 @@
    </PIN>
    <PIN pinname="Range" visible="1">
    </PIN>
-   <PIN pinname="Texture ID" slicecount="1" values="0" visible="1">
+   <PIN pinname="Texture ID" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Strength" slicecount="1" values="1">
    </PIN>
@@ -2042,8 +2042,6 @@
    </LINK>
    <LINK srcnodeid="352" srcpinname="Prop Layer" dstnodeid="465" dstpinname="Layer 1">
    </LINK>
-   <LINK srcnodeid="210" srcpinname="Layer Out" dstnodeid="129" dstpinname="Layer In">
-   </LINK>
    <NODE systemname="CompositeLight (DX11.TextureFX)" filename="..\nodes\texture11\CompositeLight.tfx" nodename="CompositeLight (DX11.TextureFX)" componentmode="Hidden" id="519">
    <BOUNDS type="Node" left="3780" top="20250" width="100" height="100">
    </BOUNDS>
@@ -2093,9 +2091,9 @@
    <LINK srcnodeid="520" srcpinname="Input Value" dstnodeid="519" dstpinname="Resource Semantics">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="522" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4725" top="19425" width="795" height="240">
+   <BOUNDS type="Box" left="4545" top="19470" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4725" top="19425" width="0" height="0">
+   <BOUNDS type="Node" left="4545" top="19470" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -2107,9 +2105,9 @@
    <LINK srcnodeid="522" srcpinname="Y Output Value" dstnodeid="519" dstpinname="SSS">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="523" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4860" top="19725" width="795" height="240">
+   <BOUNDS type="Box" left="4710" top="19815" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4860" top="19725" width="0" height="0">
+   <BOUNDS type="Node" left="4710" top="19815" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.2">
    </PIN>
@@ -2223,7 +2221,7 @@
    </PIN>
    <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
    </PIN>
-   <PIN pinname="MFtoAF" slicecount="1" values="0">
+   <PIN pinname="MFtoAF" slicecount="1" values="1">
    </PIN>
    <BOUNDS type="Window" left="2100" top="3015" width="16230" height="11175">
    </BOUNDS>
@@ -2525,7 +2523,7 @@
    </PIN>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="Rotate" slicecount="1" values="-0.14" visible="1">
+   <PIN pinname="Rotate" slicecount="1" visible="1" values="-0.14">
    </PIN>
    <PIN pinname="ScaleX" visible="1">
    </PIN>
@@ -2688,20 +2686,6 @@
    </LINK>
    <LINK srcnodeid="325" srcpinname="Texture Out" dstnodeid="258" dstpinname="Texture In">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="601" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="5115" top="19710" width="240" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="5115" top="19710" width="240" height="270">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   </NODE>
    <NODE systemname="FakeFullscreen (VVVV)" filename="..\..\mcropack\nodes\modules\FakeFullscreen (VVVV).v4p" nodename="FakeFullscreen (VVVV)" componentmode="Hidden" id="602">
    <BOUNDS type="Node" left="5175" top="35400" width="100" height="100">
    </BOUNDS>
@@ -2758,30 +2742,6 @@
    </NODE>
    <LINK srcnodeid="605" srcpinname="Y Output Value" dstnodeid="602" dstpinname="Selected Monitor">
    </LINK>
-   <NODE systemname="ViewUV (DX11.TextureFX)" filename="..\nodes\texture11\ViewUV.tfx" nodename="ViewUV (DX11.TextureFX)" componentmode="Hidden" id="606">
-   <BOUNDS type="Node" left="4320" top="14205" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Technique" slicecount="1" values="MatID">
-   </PIN>
-   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Texture Out" visible="1">
-   </PIN>
-   <PIN pinname="scale" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Default SizeXY" visible="1" pintype="Input" slicecount="2" values="256,256">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="232" srcpinname="Input Value" dstnodeid="606" dstpinname="Custom Semantics">
-   </LINK>
-   <LINK srcnodeid="233" srcpinname="Input Value" dstnodeid="606" dstpinname="Resource Semantics">
-   </LINK>
-   <LINK srcnodeid="446" srcpinname="Output" dstnodeid="606" dstpinname="Default SizeXY">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="610" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="10410" top="11535" width="480" height="480">
    </BOUNDS>
@@ -2800,8 +2760,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="610" srcpinname="Y Output Value" dstnodeid="348" dstpinname="Global Update">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="611" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="9795" top="12030" width="480" height="480">
    </BOUNDS>
@@ -3136,8 +3094,6 @@
    </LINK>
    <LINK srcnodeid="623" srcpinname="Output" dstnodeid="347" dstpinname="Texture ID">
    </LINK>
-   <LINK srcnodeid="619" srcpinname="Texture Out" dstnodeid="587" dstpinname="Texture">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="641" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="14940" top="12705" width="795" height="240">
    </BOUNDS>
@@ -3173,5 +3129,35 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="642" srcpinname="Y Output Value" dstnodeid="353" dstpinname="Pause">
+   </LINK>
+   <LINK srcnodeid="586" srcpinname="Input Value" dstnodeid="348" dstpinname="Global Update">
+   </LINK>
+   <NODE systemname="ViewMeta (DX11.TextureFX)" filename="..\nodes\texture11\ViewMeta.tfx" nodename="ViewMeta (DX11.TextureFX)" componentmode="Hidden" id="606">
+   <BOUNDS type="Node" left="4320" top="14205" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Technique" slicecount="1" values="MatID">
+   </PIN>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="scale" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Default SizeXY" visible="1" pintype="Input" slicecount="2" values="256,256">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="232" srcpinname="Input Value" dstnodeid="606" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="233" srcpinname="Input Value" dstnodeid="606" dstpinname="Resource Semantics">
+   </LINK>
+   <LINK srcnodeid="446" srcpinname="Output" dstnodeid="606" dstpinname="Default SizeXY">
+   </LINK>
+   <LINK srcnodeid="210" srcpinname="Layer Out" dstnodeid="129" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="617" srcpinname="Texture Out" dstnodeid="587" dstpinname="Texture">
    </LINK>
    </PATCH>

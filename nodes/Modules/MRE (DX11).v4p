@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="4680">
-   <BOUNDS type="Window" left="315" top="1065" width="22245" height="10200">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="3015">
+   <BOUNDS type="Window" left="3915" top="2835" width="22245" height="10200">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="5490" width="100" height="100">
@@ -389,7 +389,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="14850" top="3270" width="4950" height="1575">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 MRE_COLOR&tab;R&tab;G&tab;B&tab;A&tab;Type&cr;&lf;1 MRE_NORMALS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;2 MRE_VELOCITY&tab;X &tab;Y&tab;Z&tab;&tab;float16&cr;&lf;3 MRE_MATERIAL&tab;U (f16)&tab;V (f16)&tab;MatID&tab;ObjID&tab;Uint16&cr;&lf;4 MRE_VIEWPOS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;5 MRE_DEPTH&tab;D24_UNorm_S8_Uint&cr;&lf;6 MRE_STENCIL&tab;uint4|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 MRE_COLOR&tab;R&tab;G&tab;B&tab;A&tab;Type&cr;&lf;1 MRE_NORMALS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;2 MRE_VELOCITY&tab;X &tab;Y&tab;&tab;&tab;float16&cr;&lf;3 MRE_MATERIAL&tab;U (f16)&tab;V (f16)&tab;MatID&tab;ObjID&tab;Uint16&cr;&lf;4 MRE_VIEWPOS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;5 MRE_DEPTH&tab;D24_UNorm_S8_Uint&cr;&lf;6 MRE_STENCIL&tab;uint4|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -419,7 +419,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="420" top="4905" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="4" visible="1" values="R16G16B16A16_Float,R16G16B16A16_Float,R16G16B16A16_Float,R16G16B16A16_UInt">
+   <PIN pinname="Input Enum" slicecount="4" visible="1" values="R16G16B16A16_Float,R16G16B16A16_Float,R16G16_Float,R16G16B16A16_UInt">
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="4">
    </PIN>

@@ -1,4 +1,4 @@
-Texture2D PrevTex: PREVIOUS;
+Texture2D<float2> PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
 //Texture2D CorrVelTex: PASSRESULT0;
 //Texture2D OffsVelTex1: PASSRESULT2;
@@ -37,25 +37,25 @@ SamplerState s_vel : IMMUTABLE
 	AddressV=CLAMP;
 	MipLODBias = 0;
 };
-float4 FillVel(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
+float2 FillVel(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
-    float3 colin = Velocity.Sample(s_vel,uv).xyz;
-	float4 col = float4(colin,1);
+    float2 colin = Velocity.Sample(s_vel,uv);
+	float2 col = colin;
 	float FillEpsilon = 0.01;
 	
-	if((colin.r<=FillEpsilon) && (colin.g<=FillEpsilon) && (colin.b<=FillEpsilon))
+	if((colin.r<=FillEpsilon) && (colin.g<=FillEpsilon))
 	{
-		col.rgb = 0.5;
+		col = 0.5;
 	}
 	//if(vPos.z==0) col.rgb = 0.5;
     return col;
 }
-float4 pBLUR(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+float2 pBLUR(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
 	float lod=log2(max(ScreenSize.x,ScreenSize.y));
 	//float4 map=tex1.SampleLevel(s0,x,0);map=max(map.x,max(map.y,map.z))*map.a;
 	//lod=map.x*(VelMapBlur)*log2(max(ScreenSize.x,ScreenSize.y));
 	lod=(VelMapBlur)*log2(max(ScreenSize.x,ScreenSize.y));
-	float4 c=0;
+	float2 c=0;
 	float2 off=.5/ScreenSize*pow(2,lod)*saturate(lod);
 	c+=PrevTex.SampleLevel(s0,x+float2(0,0)*off,lod);
 	c+=PrevTex.SampleLevel(s0,x+float2(1,1)*off,lod);
@@ -70,20 +70,21 @@ float4 pBLUR(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
 	c/=9;
 	return c;
 }
-float4 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+float2 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
 	return PrevTex.SampleLevel(s0,x,0);
 }
 
-float4 velmblur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target
+float2 velmblur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target
 {
-    float4 vmap = PrevTex.Sample(s0, uv);
-    float3 vel =vmap.xyz-.5;
+    float2 vmap = PrevTex.Sample(s0, uv);
+    float2 vel = vmap -.5;
 	vel *= Amount*2;
+	
 	float2 asp=lerp(1,ScreenSize.x/ScreenSize,Aspect);
-    float4 c=0;
+    float2 c=0;
 	int iter=saturate(length(vel.xy)*SampleFreq)*abs(MaxSamples/2-MinSamples/2)+MinSamples/2;
     for (float i=0;i<1;i+=1./iter){
-        c+=PrevTex.SampleLevel(s0,((uv-.5)/asp+vel.xy*float2(1,-1)*(i-.5-BlurOffset/2))*asp+.5,0);
+        c+=PrevTex.SampleLevel(s0,((uv-.5)/asp+vel*float2(1,-1)*(i-.5-BlurOffset/2))*asp+.5,0);
     }
     c=c/iter;
     return c;
@@ -91,57 +92,51 @@ float4 velmblur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target
 
 float4 mblur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target
 {
-    float4 vmap = PrevTex.Sample(s0, uv);
-    float3 vel = vmap.xyz-0.5;
-	vel *= Amount;/*
-	if((vel.x > 0.001) || (vel.y > 0.001))
-	{
-		float r = atan2(vel.y,vel.x);
-		float d = length(vel.xy);
-		vel.x = cos(r)*d;
-		vel.y = sin(r)*d;
-	}*/
+    float2 vmap = PrevTex.Sample(s0, uv);
+    float2 vel = vmap-0.5;
+	vel *= Amount;
+	
 	float2 asp=lerp(1,ScreenSize.x/ScreenSize,Aspect);
     float4 c=0;
 	int iter=saturate(length(vel.xy)*SampleFreq)*abs(MaxSamples-MinSamples)+MinSamples;
     for (float i=0;i<1;i+=1./iter){
-        c+=ColorTex.SampleLevel(s0,((uv-.5)/asp+vel.xy*float2(1,-1)*(i-.5-BlurOffset/2))*asp+.5,0);
+        c+=ColorTex.SampleLevel(s0,((uv-.5)/asp+vel*float2(1,-1)*(i-.5-BlurOffset/2))*asp+.5,0);
     }
     c=c/iter;
     return c;
 }
 
 technique10 MotionBlur{
-	pass P0 <string format="R32G32B32A32_Float";>
+	pass P0 <string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,FillVel()));}
-	pass P1 <bool mips=true; string format="R32G32B32A32_Float";>
+	pass P1 <bool mips=true; string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,pMIPS()));}
-	pass P2 <string format="R32G32B32A32_Float";>
+	pass P2 <string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,pBLUR()));}
-	pass P3
+	pass P3 <string format="R16G16B16A16_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,mblur()));}
 }
 technique10 MotionBlurAltVel{
-	pass P0 <string format="R32G32B32A32_Float";>
+	pass P0 <string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,FillVel()));}
-	pass P1 <bool mips=true; string format="R32G32B32A32_Float";>
+	pass P1 <bool mips=true; string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,pMIPS()));}
-	pass P2 <string format="R32G32B32A32_Float";>
+	pass P2 <string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,pBLUR()));}
-	pass P3 <string format="R32G32B32A32_Float";>
+	pass P3 <string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,velmblur()));}
-	pass P4
+	pass P4 <string format="R16G16B16A16_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,mblur()));}
 }
 technique10 MotionBlurAltVel2{
-	pass P0 <string format="R32G32B32A32_Float";>
+	pass P0 <string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,FillVel()));}
-	pass P1 <string format="R32G32B32A32_Float";>
+	pass P1 <string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,velmblur()));}
-	pass P2 <bool mips=true; string format="R32G32B32A32_Float";>
+	pass P2 <bool mips=true; string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,pMIPS()));}
-	pass P3 <string format="R32G32B32A32_Float";>
+	pass P3 <string format="R32G32_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,pBLUR()));}
-	pass P4
+	pass P4 <string format="R16G16B16A16_Float";>
 	{SetPixelShader(CompileShader(ps_5_0,mblur()));}
 }

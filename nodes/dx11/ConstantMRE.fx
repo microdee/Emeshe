@@ -171,12 +171,9 @@ PSOut PS(vs2ps In)
 		}
 	#endif
 	
-	Out.velocity.rg = In.PosP.xy/In.PosP.w - In.velocity.xy/In.velocity.w;
-	Out.velocity.rg *= 0.5;
-	Out.velocity.rgb += 0.5;
-	Out.velocity.a = 1;
-	//Out.velocity.rgb *= min(3,2/PosV.z);
-	//Out.velocity.rgb +=.5;
+	Out.velocity = In.PosP.xy/In.PosP.w - In.velocity.xy/In.velocity.w;
+	Out.velocity *= 0.5;
+	Out.velocity += 0.5;
 	
 	Out.matprop.rg = f32tof16(uvb);
 	#if defined(INSTANCING)

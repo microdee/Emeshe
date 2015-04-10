@@ -13,9 +13,9 @@
 Texture2D Color : MRE_COLOR;
 Texture2D ViewPos : MRE_VIEWPOS;
 Texture2D Normals : MRE_NORMALS;
-Texture2D Velocity : MRE_VELOCITY;
+Texture2D<float2> Velocity : MRE_VELOCITY;
 Texture2D<uint4> MatProp : MRE_MATERIAL;
-Texture2D Depth : MRE_DEPTH;
+Texture2D<float> Depth : MRE_DEPTH;
 Texture2D<uint4> Stencil : MRE_STENCIL;
 
 float4x4 CamView : CAM_VIEW;

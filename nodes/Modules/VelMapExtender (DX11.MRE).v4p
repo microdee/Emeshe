@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="13755" top="945" width="11880" height="9570">
    </BOUNDS>
    <NODE systemname="NullGeometry (DX11.Drawer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="NullGeometry (DX11.Drawer)" componentmode="Hidden" id="2">
@@ -179,7 +179,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4245" top="4245" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.4">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.25">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -212,6 +212,8 @@
    <PIN pinname="Enabled" visible="1">
    </PIN>
    <PIN pinname="Background Color" visible="1" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Target Format" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Cons (DX11.Texture 2d)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.Texture 2d)" componentmode="Hidden" id="35">
@@ -333,7 +335,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Grey Background|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Center Background|">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
@@ -659,5 +661,15 @@
    <LINK srcnodeid="34" srcpinname="Depth" dstnodeid="35" dstpinname="Input 6">
    </LINK>
    <LINK srcnodeid="34" srcpinname="Velocity" dstnodeid="40" dstpinname="Input 1">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="73" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="1650" top="6225" width="1395" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1650" top="6225" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="R16G16_Float">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="73" srcpinname="Output Enum" dstnodeid="28" dstpinname="Target Format">
    </LINK>
    </PATCH>

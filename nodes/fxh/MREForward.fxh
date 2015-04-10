@@ -82,7 +82,7 @@ struct PSOut
 {
 	float4 color : SV_Target0;
 	float4 normalV : SV_Target1;
-	float4 velocity : SV_Target2;
+	float2 velocity : SV_Target2;
 	uint4 matprop : SV_Target3; // UV MatID OID
 	#if defined(WRITEDEPTH)
 		float depth : SV_Depth;
