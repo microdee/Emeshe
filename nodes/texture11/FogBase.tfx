@@ -1,4 +1,4 @@
-#include "ColorSpace.fxh"
+#include "../fxh/ColorSpace.fxh"
 
 interface iChannel{
    float Channel(float4 c); 

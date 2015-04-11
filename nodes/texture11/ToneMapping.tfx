@@ -10,6 +10,7 @@ cbuffer PPConstants : register(b0)
     float Exposure;
     float KeyValue;
     float AutoExposure;
+	float AutoExpReact = 1;
     float WhiteLevel;
     float ShoulderStrength;
     float LinearStrength;
@@ -136,8 +137,9 @@ float3 CalcExposedColor(float3 color, float avgLuminance, float threshold, out f
 
     if (AutoExposure >= 1 && AutoExposure <= 2)
     {
-        // Use geometric mean        
-        avgLuminance = max(avgLuminance, 0.001f);
+        // Use geometric mean
+    	avgLuminance *= 1/AutoExpReact;
+        avgLuminance = max(pow(avgLuminance,AutoExpReact), 0.001f);
 
         float keyValue = 0;
         if (AutoExposure == 1)

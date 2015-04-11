@@ -1,34 +1,45 @@
+#if !defined(MATERIALS_FXH)
+#include "../fxh/Materials.fxh"
+#endif
+#if !defined(MRE_FXH)
+#include "../fxh/MRE.fxh"
+#endif
+
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
+Texture2DArray Maps;
 
-#define PI 3.14159265358979
-#include "LightUtils.fxh"
-#include "MRE.fxh"
-
-float2 ScreenSize:TARGETSIZE;
-
-cbuffer controls:register(b0)
-{
-	bool IsInitial = true;
-};
+float2 R:TARGETSIZE;
 
 SamplerState s0 <bool visible=false;string uiname="Sampler";>
 {
 	Filter=MIN_MAG_MIP_POINT;
 	AddressU=WRAP;
 	AddressV=WRAP;
-	MipLODBias = -1;
+	AddressW=WRAP;
 };
 
 float4 pEM(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
 
-	float matid = mre_getmatid(s0,uv);
-	float maps = mre_getmaps(s0,uv).z;
-	float4 col = float4(0,0,0,1);
-	if(!IsInitial) col = ColorTex.Sample(s0, uv);
-	//col.rgb += matprop[mprpa.z].EmCol.rgb * matprop[mprpa.z].EmAmount * mprpb.z;
-	col.rgb += matprop[matid].EmCol.rgb * matprop[matid].EmAmount * maps;
+	float4 col = ColorTex.Sample(s0, uv);
+	uint matid = GetMatID(uv, R);
+
+    bool KnowEmission = KnowFeature(matid, MF_LIGHTING_EMISSION);
+    if(KnowEmission)
+    {
+    	bool KnowEmissionMap = KnowFeature(matid, MF_LIGHTING_EMISSION_MAP);
+    	float3 emcol = GetFloat3(matid, MF_LIGHTING_EMISSION, MF_LIGHTING_EMISSION_COLOR);
+    	emcol *= GetFloat(matid, MF_LIGHTING_EMISSION, MF_LIGHTING_EMISSION_STRENGTH);
+
+    	if(KnowEmissionMap)
+    	{
+			float2 scnuv = GetUV(uv, R);
+			float slice = GetFloat(matid, MF_LIGHTING_EMISSION_MAP, 0);
+			emcol *= Maps.SampleLevel(s0, float3(scnuv, slice), 0).rgb;
+    	}
+    	col.rgb += emcol;
+    }
 		
 	return col;
 }

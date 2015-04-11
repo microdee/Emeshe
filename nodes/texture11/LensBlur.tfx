@@ -2,14 +2,14 @@
 //@help: template for texture fx
 //@tags: texture
 //@credits: 
-#include "pows.fxh"
+#include "../fxh/pows.fxh"
  
 float2 R:TARGETSIZE;
 float Width <float uimin=0.0; float uimax=1.0;> =0.3;
 float Gamma =5;
 float Seed <float uimin=0.0; float uimax=1.0;> =1;
 float MaxBlur =0.5;
-int Iterations <float uimin=1.0; float uimax=80.0;> =15;
+float Iterations <float uimin=1.0; float uimax=80.0;> =17;
  
 Texture2D tex0 : PREVIOUS;
 Texture2D tex1;

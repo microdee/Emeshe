@@ -1,0 +1,38 @@
+float2 R:TARGETSIZE;
+/*
+cbuffer controls:register(b0){
+
+	float4x4 tTex <string uiname="Transform";>;
+	float4 Color1 <bool color=true;> =float4(0,0,0,1);
+	float4 Color2 <bool color=true;> =1;
+	float Gamma=1;
+	bool ClipColor=0;
+};
+*/
+float4 pLINEAR(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	// This following fragment is a direct conversion of
+    // the code that appears in the HLSL shader
+    float NdotH = x.x;
+    float Roughness = x.y;
+
+    // Convert the 0.0..1.0 ranges to be -1.0..+1.0
+    NdotH *= 2.0f;
+    NdotH -= 1.0f;
+
+    // Evaluate a Beckmann distribution for this element
+    // of the look-up table:
+    float r_sq = Roughness * Roughness;
+    float r_a = 1.0f / ( 4.0f * r_sq * pow( NdotH, 4 ) );
+    float r_b = NdotH * NdotH - 1.0f;
+    float r_c = r_sq * NdotH * NdotH;
+
+    return r_a * exp( r_b / r_c );
+}
+technique10 Linear
+{
+	pass P1 <string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pLINEAR()));}
+}
+
+
+

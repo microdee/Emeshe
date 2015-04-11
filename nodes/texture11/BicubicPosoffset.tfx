@@ -1,5 +1,5 @@
 Texture2D PosTex : PREVIOUS;
-#include "Bicubic2.fxh"
+#include "../fxh/Bicubic2.fxh"
 Texture2D Tex;
 Texture2D OffsTex;
 

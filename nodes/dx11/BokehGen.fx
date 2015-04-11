@@ -88,6 +88,7 @@ float4 PS(gs2ps In) : SV_Target
 {
 	float4 col = 0;
 	col.rgb = bokehtex.Sample(s0,In.bTexCd).rgb * In.col * colamount;
+	col.a = colamount;
     return col;
 }
 

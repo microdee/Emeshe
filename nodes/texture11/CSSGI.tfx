@@ -1,5 +1,5 @@
 #define NUM_SAMPLES 3
-#include "ColorSpace.fxh"
+#include "../fxh/ColorSpace.fxh"
 
 Texture2D UnLit;
 Texture2D ViewMap;
@@ -11,7 +11,7 @@ float ratemuly = 1;
 float seed = 0;
 float colorThreshold = 0.5;
 float Bleeding = 1;
-float Occlusion = 1;
+float SatWidth = 0;
 
 float2 R : TARGETSIZE;
 
@@ -41,7 +41,8 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
   //far and near clip planes:
 
   //get depth at current pixel:
-  float prof = ViewMap.Sample(s0, uv).z;
+  float3 opos = ViewMap.SampleLevel(s0,uv,0).xyz;
+  float prof = opos.z;
   //scale sample number with depth:
   //float samples = round(NUM_SAMPLES/(0.5+prof));
   float samples = NUM_SAMPLES;
@@ -71,41 +72,23 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
         float2 coords = float2(i*incx,j*incy)/prof;
         float2 coords2 = float2(i*incx2,j*incy2)/prof;
 
-        float prof2 = ViewMap.SampleLevel(s0,uv+coords*rand(uv),0).z;
-        //prof2 = zFar * zNear / (prof2 * (zFar - zNear) - zFar);  //linearize z sample
-
-        float prof2g = ViewMap.SampleLevel(s0,uv+coords2*rand(uv),0).z;
-        //prof2g = zFar * zNear / (prof2g * (zFar - zNear) - zFar);  //linearize z sample
+  		float3 cpos = ViewMap.SampleLevel(s0,uv+coords*rand(uv),0).xyz;
+        float prof2 = cpos.z;
 
         float3 norm2g = normalize(normal.SampleLevel(s0,uv+coords2*rand(uv),0).xyz); 
 
         float3 dcolor2 = color.SampleLevel(s0, uv+coords*rand(uv),0).rgb;
 
-        //OCCLUSION:
-
-        //calculate approximate pixel distance:
-        //float3 dist2 = float3(coords2,prof-prof2g);
-
-        //calculate normal and sampling direction coherence:
-        //float coherence2 = dot(normalize(-coords2),normalize(float2(norm2g.xy)));
-
-        //if there is coherence, calculate occlusion:
-      	/*
-        if (coherence2 > 0)
-        {
-          //float pformfactor2 = 0.5*((1.0-dot(norm,norm2g)))/(3.1416*pow(abs(length(dist2*2)),2.0)+0.5);//el 4: depthscale
-          //sum += clamp(pformfactor2*0.2,0.0,1.0);//ao intensity; 
-        }
-      	*/
-
         //COLOR BLEEDING:
 
         if (length(dcolor2)<colorThreshold)
         {//color threshold
-          float3 norm2 = normalize(normal.SampleLevel(s0,uv+coords*rand(uv),0).xyz); 
+          float3 norm2 = normalize(normal.SampleLevel(s0,uv+coords*rand(uv),0).xyz);
+        	float3 viewV = normalize(opos-cpos);
 
           //calculate approximate pixel distance:
-          float3 dist = float3(coords,abs(prof-prof2));
+          //float3 dist = float3(coords,abs(prof-prof2));
+          float dist = distance(cpos, opos);
 
           //calculate normal and sampling direction coherence:
           float coherence = dot(normalize(-coords),normalize(float2(norm2.xy)));
@@ -113,8 +96,9 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
           //if there is coherence, calculate bleeding:
           if (coherence > 0)
           {
+          	float fade = pow(saturate(-dot(norm, viewV)+1),2);
             float pformfactor = ((1.0-dot(norm,norm2)))/(3.1416*pow(abs(length(dist*2)),2.0)+0.5);//el 4: depthscale
-            fcolor += dcolor2*(clamp(pformfactor,0.0,1.0));
+            fcolor += dcolor2*(clamp(pformfactor,0.0,1.0))*fade;
           }
         }
       }
@@ -124,7 +108,7 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
   float3 bleeding = (fcolor/samples)*Bleeding;
   //float occlusion = (sum/samples)*Occlusion;
 	float3 colout = bleeding * UnLit.Sample(s0,uv).xyz;
-	float3 hsvout = RGBtoHSV(saturate(colout));
+	float3 hsvout = lerp(RGBtoHSV(saturate(colout)), 1, SatWidth);
   return max(float4(colout * hsvout.y,1.0),0);
 }
 

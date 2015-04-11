@@ -1,4 +1,4 @@
-#include "ColorSpace.fxh"
+#include "../fxh/ColorSpace.fxh"
 
 float FogPower = 1;
 float FogDensity = 1;

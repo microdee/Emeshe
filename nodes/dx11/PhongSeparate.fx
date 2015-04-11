@@ -2,11 +2,11 @@
 //@help: lighting components
 
 #define PI 3.14159265358979
-#include "LightUtils.fxh"
-#include "MRE.fxh"
+#include "../fxh/Phong.fxh"
 
 Texture2D Lights[5];
-Texture2D Mask;
+Texture2D MaskTex;
+float2 R : TARGETSIZE;
 
 SamplerState s0
 {
@@ -17,7 +17,6 @@ SamplerState s0
 
 cbuffer cbPerObj : register( b1 )
 {
-	float4x4 tView;
 	float LightCount = 1;
 	float DistanceMod = 1;
 	bool IsInitial = true;
@@ -58,44 +57,32 @@ struct OutComps
 OutComps pPnt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
-	Components col = (Components)0;
-	float3 vel = mre_getvelocity(s0,uv);
-	float fe = 0.001;
-	if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
+
+	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_PHONG))
 	{
-		float3 wPos = mre_getworldpos(s0,uv);
-		float3 norm = mre_getworldnorm(s0,uv);
-		float3 viewdirv = normalize(mul(float4(wPos,0),tView).xyz);
-		//float3 viewdirv = normalize(wPos);
-		col = PhongPointSSS(
-			wPos,
-			norm,
-			viewdirv,
-			mre_getmaps(s0,uv).xy,
-			LightCount,
-			mre_getmatid(s0,uv),
-			tView,
-			DistanceMod,
-			Mask.Sample(s0, uv).r
-		);
+		Components col = PhongPointSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
+		OutComps outCol = (OutComps)0;
+		
+		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
+		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
+		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
+		outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
+		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+		if(!IsInitial)
+		{
+			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
+			outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
+			outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
+			outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
+			outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
+		}
+		
+		return outCol;
 	}
-	OutComps outCol = (OutComps)1;
-	
-	outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
-	outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
-	outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
-	outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
-	outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
-	if(!IsInitial)
+	else
 	{
-		outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
-		outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
-		outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
-		outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
-		outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
+		return (OutComps)0;
 	}
-	
-	return outCol;
 	
 }
 
@@ -103,27 +90,20 @@ technique10 Point
 {
 	pass P0
 	{
-		SetVertexShader( CompileShader( vs_4_0, VS() ) );
-		SetPixelShader( CompileShader( ps_4_0, pPnt() ) );
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetPixelShader( CompileShader( ps_5_0, pPnt() ) );
 	}
 }
 
 OutComps pSpt(vs2ps In)
 {
-	float2 uv = In.TexCd;
-	if(Mask.Sample(s0, uv).r>0.5)
+	float2 uv = In.TexCd.xy;
+
+	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_PHONG))
 	{
-		Components col = (Components)0;
-		float3 vel = mre_getvelocity(s0,uv);
-		float fe = 0.001;
-		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
-		{
-			float3 wPos = mre_getworldpos(s0,uv);
-			float3 norm = mre_getworldnorm(s0,uv);
-			float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
-			col = PhongSpotSSS(wPos, norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), DistanceMod, tView);
-		}
+		Components col = PhongSpotSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
+		
 		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
 		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
 		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
@@ -131,18 +111,18 @@ OutComps pSpt(vs2ps In)
 		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
 		if(!IsInitial)
 		{
-			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, In.TexCd).rgb);
-			outCol.Diffuse.rgb += Lights[1].Sample(s0, In.TexCd).rgb;
-			outCol.Specular.rgb += Lights[2].Sample(s0, In.TexCd).rgb;
-			outCol.SSS.rgb += Lights[3].Sample(s0, In.TexCd).rgb;
-			outCol.Rim.rgb += Lights[4].Sample(s0, In.TexCd).rgb;
+			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
+			outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
+			outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
+			outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
+			outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
 		}
 		
 		return outCol;
 	}
 	else
 	{
-		return (OutComps)1;
+		return (OutComps)0;
 	}
 }
 
@@ -150,27 +130,20 @@ technique10 Spot
 {
 	pass P0
 	{
-		SetVertexShader( CompileShader( vs_4_0, VS() ) );
-		SetPixelShader( CompileShader( ps_4_0, pSpt() ) );
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetPixelShader( CompileShader( ps_5_0, pSpt() ) );
 	}
 }
 
 OutComps pSun(vs2ps In)
 {
-	float2 uv = In.TexCd;
-	if(Mask.Sample(s0, uv).r>0.5)
+	float2 uv = In.TexCd.xy;
+
+	if((GetStencil(uv, R) > 0) && KnowFeature(GetMatID(uv, R), MF_LIGHTING_PHONG))
 	{
-		Components col = (Components)0;
-		float3 vel = mre_getvelocity(s0,uv);
-		float fe = 0.001;
-		if(!((vel.r<=fe) && (vel.g<=fe) && (vel.b<=fe)))
-		{
-			float3 wPos = mre_getworldpos(s0,uv);
-			float3 norm = mre_getworldnorm(s0,uv);
-			float3 viewdirv = normalize(mul(float4(wPos,1),tView).xyz);
-			col = PhongSunSSS(norm, viewdirv, mre_getmaps(s0,uv).xy, LightCount, mre_getmatid(s0,uv), tView);
-		}
+		Components col = PhongSunSSS(s0, uv, R, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
+		
 		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
 		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
 		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
@@ -178,18 +151,18 @@ OutComps pSun(vs2ps In)
 		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
 		if(!IsInitial)
 		{
-			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, In.TexCd).rgb);
-			outCol.Diffuse.rgb += Lights[1].Sample(s0, In.TexCd).rgb;
-			outCol.Specular.rgb += Lights[2].Sample(s0, In.TexCd).rgb;
-			outCol.SSS.rgb += Lights[3].Sample(s0, In.TexCd).rgb;
-			outCol.Rim.rgb += Lights[4].Sample(s0, In.TexCd).rgb;
+			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
+			outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
+			outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
+			outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
+			outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
 		}
 		
 		return outCol;
 	}
 	else
 	{
-		return (OutComps)1;
+		return (OutComps)0;
 	}
 }
 
@@ -197,8 +170,8 @@ technique10 Sun
 {
 	pass P0
 	{
-		SetVertexShader( CompileShader( vs_4_0, VS() ) );
-		SetPixelShader( CompileShader( ps_4_0, pSun() ) );
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetPixelShader( CompileShader( ps_5_0, pSun() ) );
 	}
 }
 

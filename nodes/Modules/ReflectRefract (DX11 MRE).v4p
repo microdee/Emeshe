@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.1.dtd" >
-   <PATCH nodename="E:\vvvv\Emeshe\Emeshe\nodes\modules\ReflectRefract (DX11 MRE).v4p" systemname="ReflectRefract" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\ReflectRefract.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ReflectRefract (DX11 MRE).v4p" systemname="ReflectRefract" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\ReflectRefract.v4p">
    <BOUNDS type="Window" left="7440" top="4890" width="12885" height="8790">
    </BOUNDS>
    <NODE systemname="GradientPow (DX11.TextureFX)" filename="%VVVV%\packs\mre.mdmod.2\nodes\texture11\GradientPow.tfx" nodename="GradientPow (DX11.TextureFX)" componentmode="Hidden" id="0">
@@ -75,7 +75,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5040" top="930" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="-0.01">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -91,7 +91,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6255" top="975" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="-1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -170,16 +170,6 @@
    </NODE>
    <LINK srcnodeid="12" srcpinname="Y Output Value" dstnodeid="0" dstpinname="ClipColor">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="15" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="2985" top="3510" width="1590" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="2985" top="3510" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" values="R32G32B32A32_Float">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="16" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="4695" top="4935" width="795" height="240">
    </BOUNDS>
@@ -192,28 +182,6 @@
    </NODE>
    <INFO author="microdee" description="Helper module for ReflectRefract.tfx" tags="">
    </INFO>
-   <NODE systemname="Join (DX11.Texture2DArray)" filename="%VVVV%\packs\mrre\nodes\modules\Join (DX11.Texture2DArray).v4p" nodename="Join (DX11.Texture2DArray)" componentmode="Hidden" id="14">
-   <BOUNDS type="Node" left="4710" top="4335" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Resolution" visible="1" slicecount="2" values="256,256">
-   </PIN>
-   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Target Format" visible="1">
-   </PIN>
-   <PIN pinname="Texture Array" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="15" srcpinname="Output Enum" dstnodeid="14" dstpinname="Target Format">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="14" dstpinname="Texture">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="XY" dstnodeid="14" dstpinname="Resolution">
-   </LINK>
-   <LINK srcnodeid="14" srcpinname="Texture Array" dstnodeid="16" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="17" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="8775" top="990" width="480" height="480">
    </BOUNDS>
@@ -232,12 +200,14 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
    </PIN>
    </NODE>
-   <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Enabled">
-   </LINK>
    <PACK Name="testPack" Version="0.1.0">
    </PACK>
    <PACK Name="ImagePack" Version="0.1.0">
    </PACK>
-   <PACK Name="addonpack" Version="31.9.0">
+   <PACK Name="addonpack" Version="33.7.0">
+   </PACK>
+   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="16" dstpinname="Input Node">
+   </LINK>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
    </PATCH>

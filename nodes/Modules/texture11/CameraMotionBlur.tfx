@@ -1,0 +1,68 @@
+float2 R : TARGETSIZE;
+float Width <float uimin=0.0;> =0.5;
+float Limit <float uimin=0.0;> =1;
+float4x4 tVI;
+float4x4 tPI;
+float4x4 tP;
+float4x4 tV;
+float4x4 tVI_p;
+float4x4 tPI_p;
+float4x4 tP_p;
+float4x4 tV_p;
+
+float3 posCam : CAMERAPOSITION;
+Texture2D sCOL : INITIAL;
+Texture2D sDEP1;
+Texture2D sDEP2;
+Texture2D Mask;
+
+SamplerState s0 <string uiname="Sampler";>
+{
+    Filter=MIN_MAG_MIP_LINEAR;
+    AddressU=CLAMP;
+    AddressV=CLAMP;
+};
+
+float4 UVDtoXYZ(float3 x){
+	float4 p=float4(-1.0+2.0*x.x,-1.0+2.0*x.y,-1.0+2.0*x.z,1.0);
+	p.y*=-1.0;
+	p=mul(p,tPI);
+	p=float4(p.xyz*2.0/p.w,1.0);
+	p=mul(p,tVI);
+	return p;
+}
+float2 XYZtoUV(float4 p){
+	p=mul(p,tV);
+	p=mul(p,tP);
+	p/=p.w;
+	float2 uv=p.xy*float2(1,-1)*0.5+0.5;
+	return uv;
+}
+
+float4 PS(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target{
+	if(Mask.SampleLevel(s0,uv,0).r > 0)
+	{
+		float z=sDEP1.SampleLevel(s0,uv,0).x;
+		float4 p=float4(UVDtoXYZ(float3(uv,sDEP1.SampleLevel(s0,uv,0).x)).xyz,1);
+	
+		float4 pp=mul(mul(p,tV_p),tP_p);
+		pp=pp/pp.w;
+		float2 dx=pp.xy/float2(1,-1)*.5+0.5-0.5/R;
+		float4 c=1;
+		float4 p2=float4(UVDtoXYZ(float3(dx,sDEP1.SampleLevel(s0,dx,0).x)).xyz,1);
+		c=float4(sCOL.SampleLevel(s0,uv,0).xyz,1)*.01;
+		for(float i=0;i<1;i+=1./26.){
+			float4 p3=lerp(p,p2,(i-.5)*Width);
+			p3=mul(mul(p3,tV),tP);
+			float2 dx=p3.xy/p3.w*float2(1,-1)*.5+.5;
+			if(dx.x<0||dx.x>1||dx.y<0||dx.y>1)continue;
+			c+=float4(sCOL.SampleLevel(s0,dx,0).xyz,1)*smoothstep(Limit,0,length(p2.xyz-p.xyz)/z);
+		}
+		c.rgb/=c.a;
+		c.a=sCOL.SampleLevel(s0,uv,0).a;
+	    return c;
+	}
+	else return float4(0,0,0,1);
+}
+
+technique10 Blur{pass P1{SetPixelShader(CompileShader(ps_4_0,PS()));}}

@@ -1,0 +1,3179 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"KnowE",
+				"KnowEmissionMap"
+			],
+			[
+				"MF_LIGHTING_E",
+				"MF_LIGHTING_EMISSION"
+			],
+			[
+				"ams",
+				"amspec"
+			],
+			[
+				"MF_L",
+				"MF_LIGHTING_COMPOSITE_MAP"
+			],
+			[
+				"MF_LIGH",
+				"MF_LIGHTING_COMPOSITE_MAP"
+			],
+			[
+				"Samp",
+				"Sample"
+			],
+			[
+				"Get",
+				"GetUV"
+			],
+			[
+				"KnowC",
+				"KnowCompositeMap"
+			],
+			[
+				"MF_LIGHTING_COMPOSITE_SPEC",
+				"MF_LIGHTING_COMPOSITE_SPECMUL"
+			],
+			[
+				"Rimm",
+				"RimMul"
+			],
+			[
+				"SSS",
+				"SSSMul"
+			],
+			[
+				"MF_LIGHTING_COMPOSITE_R",
+				"MF_LIGHTING_COMPOSITE_RIM"
+			],
+			[
+				"MF_LIGHTING_COMPOSITE_",
+				"MF_LIGHTING_COMPOSITE_SSS"
+			],
+			[
+				"Know",
+				"KnowFeature"
+			],
+			[
+				"MF_",
+				"MF_LIGHTING_COOKTORRANCE"
+			],
+			[
+				"roughm",
+				"roughmapslice"
+			],
+			[
+				"rro",
+				"rrroughmap"
+			],
+			[
+				"rrr",
+				"rrroughmap"
+			],
+			[
+				"MF_REFRACTION_MAP_",
+				"MF_REFRACTION_MAP_ROUGHNESSMAPID"
+			],
+			[
+				"MF_REFRACTION_MAP",
+				"MF_REFRACTION_MAP_AMOUNTMAPID"
+			],
+			[
+				"floa",
+				"float4"
+			],
+			[
+				"TexC",
+				"TexCd"
+			],
+			[
+				"float",
+				"float3"
+			],
+			[
+				"inv",
+				"invCenter"
+			],
+			[
+				"in",
+				"inv"
+			],
+			[
+				"InA",
+				"InAdjLead"
+			],
+			[
+				"lP",
+				"lProjection"
+			],
+			[
+				"Li",
+				"LightCol"
+			],
+			[
+				"Poin",
+				"PointLightProp"
+			],
+			[
+				"defi",
+				"define"
+			],
+			[
+				"Kno",
+				"KnowReflect"
+			],
+			[
+				"Sam",
+				"Sample"
+			],
+			[
+				"Refl",
+				"ReflectionMaps"
+			],
+			[
+				"rl",
+				"rlmap"
+			],
+			[
+				"get",
+				"GetFloat"
+			],
+			[
+				"Kn",
+				"KnowRrMap"
+			],
+			[
+				"rlS",
+				"rlStrength"
+			],
+			[
+				"rlFR",
+				"rlFresnelID"
+			],
+			[
+				"MF_REFL",
+				"MF_REFLECTION_SPHEREMAP_FRESNELID"
+			],
+			[
+				"En",
+				"Environments"
+			],
+			[
+				"Dis",
+				"DiscSample"
+			],
+			[
+				"Poi",
+				"PoissonDiscDir"
+			],
+			[
+				"D",
+				"DISCSAMPLES"
+			],
+			[
+				"Dir",
+				"DirToUV"
+			],
+			[
+				"Sa",
+				"Sampler"
+			],
+			[
+				"mat",
+				"matid"
+			],
+			[
+				"MF_REFR",
+				"MF_REFRACTION_SPHEREMAP"
+			],
+			[
+				"GetW",
+				"GetWorldNormal"
+			],
+			[
+				"MF_R",
+				"MF_REFLECTION_SPHEREMAP"
+			],
+			[
+				"nor",
+				"normalize"
+			],
+			[
+				"Min",
+				"MinAbsN"
+			],
+			[
+				"norm",
+				"normalize"
+			],
+			[
+				"def",
+				"define"
+			],
+			[
+				"MF_LIGHTING_COOK",
+				"MF_LIGHTING_COOKTORRANCE"
+			],
+			[
+				"Te",
+				"Texture2D"
+			],
+			[
+				"SS",
+				"SStrength"
+			],
+			[
+				"View",
+				"ViewDirV"
+			],
+			[
+				"MF_LIGHTING_COOKTORRANCE_",
+				"MF_LIGHTING_COOKTORRANCE_ROUGHNESS"
+			],
+			[
+				"out",
+				"outc"
+			],
+			[
+				"no",
+				"NormV"
+			],
+			[
+				"Spe",
+				"specular"
+			],
+			[
+				"com",
+				"Components"
+			],
+			[
+				"RO",
+				"ROUGHNESS_LOOK_UP"
+			],
+			[
+				"ROU",
+				"ROUGHNESS_LOOK_UP"
+			],
+			[
+				"rou",
+				"roughness_value"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"rgb",
+				"rgba()"
+			],
+			[
+				"Ba",
+				"background-color"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"attr",
+				"attr	.attr() - single"
+			],
+			[
+				"rea",
+				"ready	$(document).ready"
+			],
+			[
+				"res",
+				"resizable"
+			],
+			[
+				"Mask",
+				"MaskTex"
+			],
+			[
+				"Ligh",
+				"LightCount"
+			],
+			[
+				"MF_LIGHTING_FAK",
+				"MF_LIGHTING_FAKERIMLIGHT_MAP"
+			],
+			[
+				"MF",
+				"MF_LIGHTING_FAKESSS_POWER"
+			],
+			[
+				"Sample",
+				"SampleLevel"
+			],
+			[
+				"Norma",
+				"Normals"
+			],
+			[
+				"Norm",
+				"NormV"
+			],
+			[
+				"Specm",
+				"SpecMapId"
+			],
+			[
+				"MF_LIGHTING_FA",
+				"MF_LIGHTING_FAKERIMLIGHT_MAP"
+			],
+			[
+				"MF_LIGHTING_Fake",
+				"MF_LIGHTING_FAKESSS_MAP"
+			],
+			[
+				"MF_LIGHTING_PH",
+				"MF_LIGHTING_PHONG_SPECULARMAP"
+			],
+			[
+				"Cam",
+				"CamViewInv"
+			],
+			[
+				"Ca",
+				"CamViewInv"
+			],
+			[
+				"UV",
+				"UVZtoVIEW"
+			],
+			[
+				"UVD",
+				"UVDtoVIEW"
+			],
+			[
+				"De",
+				"Depth"
+			],
+			[
+				"Spl",
+				"SplitHalf"
+			],
+			[
+				"HAS",
+				"HAS_NORMALMAP"
+			],
+			[
+				"UVto",
+				"UVtoEYEV"
+			],
+			[
+				"Dept",
+				"DepthMode"
+			],
+			[
+				"Obj",
+				"ObjIDMode"
+			],
+			[
+				"Jo",
+				"JoinHalf"
+			],
+			[
+				"Pos",
+				"PosO"
+			],
+			[
+				"HA",
+				"HAS_GEOMVELOCITY"
+			],
+			[
+				"e",
+				"endif"
+			],
+			[
+				"VS",
+				"VSin"
+			],
+			[
+				"Feature",
+				"FeatureFlag"
+			],
+			[
+				"re",
+				"ret"
+			],
+			[
+				"FE",
+				"FeatureID"
+			],
+			[
+				"Ma",
+				"MaterialData"
+			],
+			[
+				"FLA",
+				"MF_FLAGSIZE"
+			],
+			[
+				"Fea",
+				"FeatureOffset"
+			],
+			[
+				"ray",
+				"raytraceFar"
+			],
+			[
+				"Colo",
+				"ColorTex"
+			],
+			[
+				"MF_LIGHTING_FAKESSS",
+				"MF_LIGHTING_FAKESSS_STRENGTH"
+			],
+			[
+				"MF_LIGHTING_FAKESSS_",
+				"MF_LIGHTING_FAKESSS_COEFFICIENT"
+			],
+			[
+				"MF_LIGHTING_PHONG",
+				"MF_LIGHTING_PHONG_SPECULARCOLOR_OFFSET"
+			],
+			[
+				"M",
+				"MF_LIGHTING_PHONG"
+			],
+			[
+				"lA",
+				"lAmb"
+			],
+			[
+				"MF_LIGHTING_AMBIENT",
+				"MF_LIGHTING_AMBIENT_AMBIENTCOLOR_OFFSET"
+			],
+			[
+				"la",
+				"lAmb"
+			],
+			[
+				"MF_LI",
+				"MF_LIGHTING_AMBIENT"
+			],
+			[
+				"ma",
+				"matid"
+			],
+			[
+				"Mater",
+				"Material"
+			],
+			[
+				"FeatureS",
+				"featurestart"
+			],
+			[
+				"Mat",
+				"MatID"
+			],
+			[
+				"Fe",
+				"Features"
+			],
+			[
+				"Ch",
+				"CheckFeature"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"Param",
+				"ParamOffset"
+			],
+			[
+				"MRE",
+				"MRE_MAT_UV"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "nodes/dx11/LightDataFill.fx",
+			"settings":
+			{
+				"buffer_size": 3560,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/CookTorrance.fxh",
+			"settings":
+			{
+				"buffer_size": 20394,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/texture11/CompositeLight.tfx",
+			"settings":
+			{
+				"buffer_size": 2998,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n",
+			"settings":
+			{
+				"buffer_size": 14413,
+				"line_ending": "Windows",
+				"name": "Package Control Messages",
+				"scratch": true
+			}
+		},
+		{
+			"file": "nodes/texture11/Emission.tfx",
+			"settings":
+			{
+				"buffer_size": 1176,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/dx11/CookTorranceSeparate.fx",
+			"settings":
+			{
+				"buffer_size": 4215,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/texture11/Reflection.tfx",
+			"settings":
+			{
+				"buffer_size": 3338,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/texture11/Refraction.tfx",
+			"settings":
+			{
+				"buffer_size": 3600,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<?php\n# This file was automatically generated by the MediaWiki 1.25wmf20\n# installer. If you make manual changes, please keep track in case you\n# need to recreate them later.\n#\n# See includes/DefaultSettings.php for all configurable settings\n# and their default values, but don't forget to make changes in _this_\n# file, not there.\n#\n# Further documentation for configuration settings may be found at:\n# https://www.mediawiki.org/wiki/Manual:Configuration_settings\n\n# Protect against web entry\nif ( !defined( 'MEDIAWIKI' ) ) {\n	exit;\n}\n\n## Uncomment this to disable output compression\n# $wgDisableOutputCompression = true;\n\n$wgSitename = \"FluidGOV Wiki\";\n$wgMetaNamespace = \"FGWiki\";\n\n## The URL base path to the directory containing the wiki;\n## defaults for all runtime URL paths are based off of this.\n## For more information on customizing the URLs\n## (like /w/index.php/Page_title to /wiki/Page_title) please see:\n## https://www.mediawiki.org/wiki/Manual:Short_URL\n$wgScriptPath = \"/wiki\";\n$wgScriptExtension = \".php\";\n\n## The protocol and server name to use in fully-qualified URLs\n$wgServer = \"http://198.38.91.193\";\n\n## The relative URL path to the skins directory\n$wgStylePath = \"$wgScriptPath/skins\";\n\n## The relative URL path to the logo.  Make sure you change this from the default,\n## or else you'll overwrite your logo when you upgrade!\n$wgLogo = \"$wgScriptPath/resources/assets/wiki.png\";\n\n## UPO means: this is also a user preference option\n\n$wgEnableEmail = false;\n$wgEnableUserEmail = true; # UPO\n\n$wgEmergencyContact = \"apache@198.38.91.193\";\n$wgPasswordSender = \"apache@198.38.91.193\";\n\n$wgEnotifUserTalk = false; # UPO\n$wgEnotifWatchlist = false; # UPO\n$wgEmailAuthentication = true;\n\n## Database settings\n$wgDBtype = \"mysql\";\n$wgDBserver = \"localhost\";\n$wgDBname = \"mediawikidb\";\n$wgDBuser = \"fluidgov\";\n$wgDBpassword = \"106810647_fg\";\n\n# MySQL specific settings\n$wgDBprefix = \"\";\n\n# MySQL table options to use during installation or update\n$wgDBTableOptions = \"ENGINE=InnoDB, DEFAULT CHARSET=binary\";\n\n# Experimental charset support for MySQL 5.0.\n$wgDBmysql5 = false;\n\n## Shared memory settings\n$wgMainCacheType = CACHE_ACCEL;\n$wgMemCachedServers = array();\n\n## To enable image uploads, make sure the 'images' directory\n## is writable, then set this to true:\n$wgEnableUploads = true;\n$wgUseImageMagick = true;\n$wgImageMagickConvertCommand = \"/usr/bin/convert\";\n\n# InstantCommons allows wiki to use images from http://commons.wikimedia.org\n$wgUseInstantCommons = false;\n\n## If you use ImageMagick (or any other shell command) on a\n## Linux server, this will need to be set to the name of an\n## available UTF-8 locale\n$wgShellLocale = \"en_US.utf8\";\n\n## If you want to use image uploads under safe mode,\n## create the directories images/archive, images/thumb and\n## images/temp, and make them all writable. Then uncomment\n## this, if it's not already uncommented:\n#$wgHashedUploadDirectory = false;\n\n## Set $wgCacheDirectory to a writable directory on the web server\n## to make your wiki go slightly faster. The directory should not\n## be publically accessible from the web.\n#$wgCacheDirectory = \"$IP/cache\";\n\n# Site language code, should be one of the list in ./languages/Names.php\n$wgLanguageCode = \"en\";\n\n$wgSecretKey = \"c2728c39d6c96709dcff6d484a53b998e320216fe507e8d2e44ba99fe62d84a9\";\n\n# Site upgrade key. Must be set to a string (default provided) to turn on the\n# web installer while LocalSettings.php is in place\n$wgUpgradeKey = \"2ed3c6f261915c49\";\n\n## For attaching licensing metadata to pages, and displaying an\n## appropriate copyright notice / icon. GNU Free Documentation\n## License and Creative Commons licenses are supported so far.\n$wgRightsPage = \"\"; # Set to the title of a wiki page that describes your license/copyright\n$wgRightsUrl = \"https://www.gnu.org/copyleft/fdl.html\";\n$wgRightsText = \"GNU Free Documentation License 1.3 or later\";\n$wgRightsIcon = \"{$wgResourceBasePath}/resources/assets/licenses/gnu-fdl.png\";\n\n# Path to the GNU diff3 utility. Used for conflict resolution.\n$wgDiff3 = \"/usr/bin/diff3\";\n\n## Default skin: you can change the default skin. Use the internal symbolic\n## names, ie 'vector', 'monobook':\n$wgDefaultSkin = \"vector\";\n\n# Enabled skins.\n# The following skins were automatically enabled:\nrequire_once \"$IP/skins/Vector/Vector.php\";\n\n\n# End of automatically generated settings.\n# Add more configuration options below.\n\nrequire_once \"$IP/extensions/Echo/Echo.php\";\n\nrequire_once \"$IP/extensions/ActivityMonitor/ActivityMonitor.php\";\n\nrequire_once \"$IP/extensions/AntiSpoof/AntiSpoof.php\";\n\n$wgUseAjax = true;\nrequire_once \"$IP/extensions/CategoryTree/CategoryTree.php\";\n\nrequire_once \"$IP/extensions/Cite/Cite.php\";\n\nrequire_once \"$IP/extensions/CleanChanges/CleanChanges.php\";\n$wgDefaultUserOptions['usenewrc'] = 1;\n\nrequire_once \"$IP/extensions/CharInsert/CharInsert.php\";\n\nrequire_once \"$IP/extensions/CodeEditor/CodeEditor.php\";\n\nrequire_once \"$IP/extensions/Duplicator/Duplicator.php\";\n\nrequire_once \"$IP/extensions/WikiEditor/WikiEditor.php\";\n# Enables use of WikiEditor by default but still allow users to disable it in preferences\n$wgDefaultUserOptions['usebetatoolbar'] = 1;\n$wgDefaultUserOptions['usebetatoolbar-cgd'] = 1;\n# Displays the Preview and Changes tabs\n$wgDefaultUserOptions['wikieditor-preview'] = 1;\n# Displays the Publish and Cancel buttons on the top right side\n$wgDefaultUserOptions['wikieditor-publish'] = 1;\n\nrequire_once \"$IP/extensions/UniversalLanguageSelector/UniversalLanguageSelector.php\";\nrequire_once \"$IP/extensions/VisualEditor/VisualEditor.php\";\n// Enable by default for everybody\n$wgDefaultUserOptions['visualeditor-enable'] = 1;\n// Don't allow users to disable it\n$wgHiddenPrefs[] = 'visualeditor-enable';\n// OPTIONAL: Enable VisualEditor's experimental code features\n$wgDefaultUserOptions['visualeditor-enable-experimental'] = 1;\n// URL to the Parsoid instance\n// MUST NOT end in a slash due to Parsoid bug\n// Use port 8142 if you use the Debian package\n$wgVisualEditorParsoidURL = 'http://localhost:8142';\n$wgVisualEditorParsoidPrefix = 'localhost';\n$wgVisualEditorEnableTocWidget = true;\n$wgVisualEditorNamespaces = array_merge( $wgContentNamespaces, $wgExtraNamespaces, array( NS_USER ) );",
+			"file": "/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv004d83/Bv004d83/LocalSettings.php",
+			"file_size": 6203,
+			"file_write_time": 130729941071166580,
+			"settings":
+			{
+				"buffer_size": 6203,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/vvvv/libs/mcropack/nodes/dx11/SetSlice.fx",
+			"settings":
+			{
+				"buffer_size": 1702,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/bitwise.fxh",
+			"settings":
+			{
+				"buffer_size": 521,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/ColorSpace.fxh",
+			"settings":
+			{
+				"buffer_size": 1403,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/LightStructs.fxh",
+			"settings":
+			{
+				"buffer_size": 850,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/LightUtils.fxh",
+			"settings":
+			{
+				"buffer_size": 5407,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/MaterialFeatures.fxh",
+			"settings":
+			{
+				"buffer_size": 7123,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/Materials.fxh",
+			"settings":
+			{
+				"buffer_size": 8744,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/MRE.fxh",
+			"settings":
+			{
+				"buffer_size": 2021,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/MREForward.fxh",
+			"settings":
+			{
+				"buffer_size": 2782,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/PanoTools.fxh",
+			"settings":
+			{
+				"buffer_size": 374,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/PoissonDisc.fxh",
+			"settings":
+			{
+				"buffer_size": 564,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/DiscSample.fxh",
+			"settings":
+			{
+				"buffer_size": 1353,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/pows.fxh",
+			"settings":
+			{
+				"buffer_size": 652,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "nodes/fxh/safedivide.fxh",
+			"settings":
+			{
+				"buffer_size": 598,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"king",
+				"King: Number: Transform Numbers"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"kin",
+				"King: Number: Number Sequence"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 536.0
+	},
+	"console":
+	{
+		"height": 51.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/vvvv/libs/Emeshe/nodes",
+		"/C/vvvv/libs/Emeshe/nodes/dx11",
+		"/C/vvvv/libs/Emeshe/nodes/fxh",
+		"/C/vvvv/libs/Emeshe/nodes/texture11"
+	],
+	"file_history":
+	[
+		"/C/vvvv/projects/CA-2-MAX/Programfiles/submit/Twitter.v4p",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv004d83/Bv00630a/VisualEditor.php",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv004d83/Bv006097/MWNamespace.php",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv000753/Bv000753/alias.conf",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv000753/Bv00469f/LocalSettings.php",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv000753/Bv0067a9/sources.list",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv000753/Bv007110/settings.js",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv000753/Bv00759d/localsettings.js",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv000753/Bv006bc8/settings.js",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv007375/Bv007375/sources.list",
+		"/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv004b72/Bv004b72/LocalSettings.php",
+		"/D/misc/fluidgov/LocalSettings.php",
+		"/C/vvvv/libs/Emeshe/nodes/Modules/ReflectRefract.v4p",
+		"/C/vvvv/libs/Emeshe/nodes/Modules/STLFile (DX11.Geometry).v4p",
+		"/C/vvvv/libs/Emeshe/nodes/Modules/ShadowMap (MRE.PointLight)~.xml",
+		"/C/vvvv/libs/Emeshe/nodes/Modules/ShadowMap (MRE.PointLight).v4p",
+		"/C/vvvv/projects/CA-2-MAX/Programfiles/mirror/geom11/LineMitter.gsfx",
+		"/C/vvvv/projects/MG-6-AAN-SM/.gitignore",
+		"/C/vvvv/projects/CA-2-MAX/.gitignore",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/CookTorrance.fxh",
+		"/C/Users/Jon Snow/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/barycentric.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/MRE.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/PanoTools.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/PoissonDisc.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/LightStructs.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/MaterialFeatures.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/PhongSeparate.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/ConstantMRE.fx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/Materials.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/MREForward.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ReflectRefract.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/Phong.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/LightDataFill.fx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/LightUtils.fxh",
+		"/C/Users/Jon Snow/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/CookTorranceSeparate.fx",
+		"/C/Users/Jon Snow/AppData/Roaming/Sublime Text 3/Packages/Number King/HELP.md",
+		"/C/vvvv/libs/mups/nodes/dx11/ForceAttractor.fx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/safedivide.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/SSAO.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/FakeCubeUtils.fxh",
+		"/C/Program Files/Allegorithmic/Substance Designer/5/documentation/shortcuts_windows.html",
+		"/C/vvvv/libs/Emeshe/CookTorranceMultiTexFresnel.fx",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/pows.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/mups.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/MaterialLightStruct.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/depthreconstruct.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/ColorSpace.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/bitwise.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/fxh/Bicubic2.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ViewUV.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ViewToWorld.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ViewPos.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ToneMappingVisualizer.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ToneMapping.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/SSAOTemporal.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/SelectHighlight.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/PointShadows.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Place.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Phong.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/NormalTr.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/NormalMapTransformable.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Noise.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/MotionBlur.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/MinMaxDepth.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/MergeTargets.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/MatCap.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/LensBlur.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/JoinFromVolume.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/HBAO.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Glare.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/FogBase.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/FilterBokeh.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/FillVelocity.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/FillVel.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Emission.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DOF.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DepthFog.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DepthCompare.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DepthBlurMRE.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/DepthBlur.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/CSSGI.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/ControlBlur.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/CompositeLight.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BubbleNoiseTransform.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BlurGlowMRE.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/Bimix.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BicubicYResample.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BicubicPosoffset.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/texture11/BicubicFilter.tfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Wavy.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/TriplanarProjectUV.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/TexturePosition.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/TesselatorGeometry.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Subtract.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/SplineFromTexture.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/SpherizeCube.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Spherize.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/PositionFromBuffer.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/PNTriangle.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Mix.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/FakeCubeUtils.fxh",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/ExtruderVel.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Extruder.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/DistBasedTessellate.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/geom11/Decimator.gsfx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/VolumeQueue.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/VelMapExtender.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/TemporalReprojection.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/SSAOTemporal.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/Sampletest.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/QueueRGBA.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/PNTriangleMRE.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/NormalizeHL.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/MatMetaFill.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/MakeCube.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/HBAO.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/FeatureOffsetFill.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/DumbHalo.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/DumberHalo.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/DepthBlur.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/CubeWriter.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/ConstantThickness.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/ConstantMREProp.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/ConstantDepth.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/CompositeLight.fx",
+		"/C/vvvv/libs/Emeshe/nodes/dx11/B-SplineSingleInput.fx"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$wgVisualEditorNamespaces",
+			"namespa",
+			"Composite",
+			"COMPOSITE",
+			"Composite",
+			"ScreenSize",
+			"diff",
+			"am",
+			"ComponentAmount",
+			"SSS",
+			"_COOKTORRANCE_ROUGHMAP",
+			"RoughMap",
+			"RoughMap = ",
+			"RoughMap",
+			"RoughMaps",
+			"roughmap",
+			"rrammap",
+			"MF_REFRACTION",
+			"rr",
+			"ScreenSize",
+			"REFLECTION",
+			"pRefleract",
+			"MaxMIPlevel",
+			"ReflTransform",
+			"ScreenSize",
+			"Sample",
+			"tex2D",
+			"texture",
+			"Texture",
+			"texture",
+			"float",
+			";",
+			"PI",
+			"Vs",
+			"Usual",
+			"[ii]",
+			".0",
+			";",
+			"float",
+			"float4x4",
+			"float",
+			";",
+			"Position",
+			".z",
+			"Point",
+			".0",
+			"0",
+			" + 0",
+			"LightCol",
+			".x",
+			"MF_FLAGSIZE",
+			"rl",
+			"Rl",
+			"rl",
+			"Rl",
+			"rl",
+			"LE",
+			"REFLEC",
+			"MF_REFLECTION",
+			"rl",
+			"DISCSAMPLES",
+			"int",
+			"FresnelTextures",
+			"RotateRays",
+			"pointlightprop[i].Position",
+			"sunlightprop[i].Direction",
+			"vec",
+			"sqDist",
+			"cAttenuation",
+			"cLuminosity",
+			".z",
+			"float2",
+			".y",
+			"float2",
+			"float",
+			"cookTorrMultPS_t",
+			"Amb",
+			"amb",
+			"Phong",
+			"MF_LIGHTING_PHONG",
+			"fxh",
+			"texRoughness",
+			"s0",
+			"SpecMap",
+			"SPECULARMAP",
+			"SPECULAR",
+			"lCol",
+			"MF_LIGHTING_PHONG",
+			"Components Phong",
+			");\n",
+			"s0",
+			"SpecMaps",
+			"float3 ",
+			"lAtt",
+			"COOKTORRANCE_SPECULARMAP",
+			"_COOKTORRANCE_SPECULARMAP",
+			"\n    float3 lSpec = GetFloat3(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARCOLOR) * RoughMap * SStrength;",
+			"MF_LIGHTING_PHONG",
+			" MF_LIGHTING_PHONG_",
+			"MF_LIGHTING_PHONG_",
+			"SpecMap",
+			"SpecMaps",
+			"SpecMap",
+			"Components Phong",
+			"Phong",
+			"),",
+			", typeof",
+			"Add(",
+			"\"bool\".ToLower()",
+			"typeof(",
+			"ActivityFactor",
+			"OnScreenKeyboard (VOOG)",
+			"GUIVObject",
+			"Mouse",
+			"FConfig",
+			"].Height",
+			"].Width",
+			"sample.",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth",
+			"Depth",
+			"depth"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "nodes/dx11/LightDataFill.fx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3560,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "nodes/fxh/CookTorrance.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20394,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "nodes/texture11/CompositeLight.tfx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2998,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1232,
+								1232
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 390.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								274,
+								274
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "nodes/texture11/Emission.tfx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1176,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "nodes/dx11/CookTorranceSeparate.fx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4215,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "nodes/texture11/Reflection.tfx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3338,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1909,
+								1909
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "nodes/texture11/Refraction.tfx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3600,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 845.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/C/Users/Jon Snow/AppData/Local/Temp/BvSshSftp/Bv004d83/Bv004d83/LocalSettings.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6203,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6199,
+								6199
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
+							],
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1755.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/vvvv/libs/mcropack/nodes/dx11/SetSlice.fx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1702,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1472,
+								1472
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 624.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 10,
+					"file": "nodes/fxh/bitwise.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 521,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								291,
+								291
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "nodes/fxh/ColorSpace.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1403,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "nodes/fxh/LightStructs.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 850,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								246,
+								251
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "nodes/fxh/LightUtils.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5407,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1793,
+								1793
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 312.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "nodes/fxh/MaterialFeatures.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7123,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								294,
+								315
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 858.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "nodes/fxh/Materials.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8744,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1123,
+								1123
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3861.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "nodes/fxh/MRE.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2021,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 117.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "nodes/fxh/MREForward.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2782,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 663.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "nodes/fxh/PanoTools.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 374,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "nodes/fxh/PoissonDisc.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "nodes/fxh/DiscSample.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1353,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "nodes/fxh/pows.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "nodes/fxh/safedivide.fxh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 598,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/High Level SL.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.640218363499,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Emeshe.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 179.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,7 +1,6 @@
 Texture2D texCOL : PREVIOUS;
-Texture2D texPOSW <string uiname="WorldPos Buffer";>;
-Texture2D texNORW <string uiname="WorldNorm Buffer";>;
-Texture2D texNORV <string uiname="ViewNorm Buffer";>;
+Texture2D texPOSW <string uiname="Position";>;
+Texture2D texNORW <string uiname="Normal";>;
 Texture2D texD <string uiname="Depth";>;
 
 
