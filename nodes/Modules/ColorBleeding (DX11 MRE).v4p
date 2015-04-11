@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ColorBleeding (DX11 MRE).v4p" systemname="ColorBleeding (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ColorBleeding (DX11 MRE).v4p" scrollx="870" scrolly="6180">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ColorBleeding (DX11 MRE).v4p" systemname="ColorBleeding (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ColorBleeding (DX11 MRE).v4p" scrollx="870" scrolly="-360">
    <BOUNDS type="Window" left="12810" top="2670" width="13815" height="11310">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -133,9 +133,9 @@
    <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="12" dstpinname="Texture In">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="14" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="1410" top="2250" width="795" height="240">
+   <BOUNDS type="Box" left="1365" top="1515" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1410" top="2250" width="0" height="0">
+   <BOUNDS type="Node" left="1365" top="1515" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -147,7 +147,7 @@
    <LINK srcnodeid="14" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In">
    </LINK>
    <NODE systemname="Info (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Info (DX11.Texture 2d)" componentmode="Hidden" id="15">
-   <BOUNDS type="Node" left="2460" top="2415" width="100" height="100">
+   <BOUNDS type="Node" left="1770" top="2295" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>

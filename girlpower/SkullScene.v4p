@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" systemname="SkullScene" filename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" scrollx="3855" scrolly="1980">
-   <BOUNDS type="Window" left="5670" top="1260" width="16950" height="9165">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" systemname="SkullScene" filename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" scrollx="8355" scrolly="0">
+   <BOUNDS type="Window" left="5640" top="3660" width="16950" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -641,7 +641,7 @@
    <LINK srcnodeid="19" srcpinname="Output" dstnodeid="30" dstpinname="Geometry In">
    </LINK>
    <NODE systemname="MaterialManager (MRE)" filename="..\nodes\modules\MaterialManager (MRE).v4p" nodename="MaterialManager (MRE)" componentmode="Hidden" id="89">
-   <BOUNDS type="Node" left="15165" top="3870" width="100" height="100">
+   <BOUNDS type="Node" left="17265" top="3720" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material Dictionary" visible="1" slicecount="1" values="||">
    </PIN>
@@ -653,9 +653,9 @@
    </PIN>
    </NODE>
    <NODE systemname="AddPhong (MRE.Materials)" filename="..\nodes\modules\AddPhong (MRE.Materials).v4p" componentmode="Hidden" id="88" nodename="..\nodes\Modules\AddPhong (MRE.Materials).v4p">
-   <BOUNDS type="Node" left="15975" top="5190" width="100" height="100">
+   <BOUNDS type="Node" left="18075" top="5040" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="15975" top="5190" width="4800" height="3600">
+   <BOUNDS type="Box" left="18075" top="5040" width="4800" height="3600">
    </BOUNDS>
    <BOUNDS type="Window" left="18030" top="1260" width="9000" height="6000">
    </BOUNDS>
@@ -669,15 +669,15 @@
    </PIN>
    <PIN pinname="Specular Color" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
-   <PIN pinname="Add" visible="1">
+   <PIN pinname="Add" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="88" dstpinname="Material">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="87" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="17385" top="4140" width="795" height="720">
+   <BOUNDS type="Box" left="19485" top="3990" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="17385" top="4140" width="0" height="0">
+   <BOUNDS type="Node" left="19485" top="3990" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0.25,0">
    </PIN>
@@ -693,9 +693,9 @@
    <LINK srcnodeid="87" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Attenuation">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="86" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="16395" top="4560" width="795" height="240">
+   <BOUNDS type="Box" left="18495" top="4410" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="16395" top="4560" width="0" height="0">
+   <BOUNDS type="Node" left="18495" top="4410" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="25">
    </PIN>
@@ -707,9 +707,9 @@
    <LINK srcnodeid="86" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Specular Power">
    </LINK>
    <NODE systemname="AddFakeSSS (MRE.Materials)" filename="..\nodes\modules\AddFakeSSS (MRE.Materials).v4p" componentmode="Hidden" id="85" nodename="..\nodes\Modules\AddFakeSSS (MRE.Materials).v4p">
-   <BOUNDS type="Node" left="15150" top="6390" width="100" height="100">
+   <BOUNDS type="Node" left="17250" top="6240" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="15150" top="6390" width="4800" height="3600">
+   <BOUNDS type="Box" left="17250" top="6240" width="4800" height="3600">
    </BOUNDS>
    <BOUNDS type="Window" left="11955" top="8505" width="9000" height="6000">
    </BOUNDS>
@@ -732,30 +732,10 @@
    </NODE>
    <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="85" dstpinname="Material">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="84" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="15300" top="5580" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="15300" top="5580" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="AddFakeRimLight (MRE.Materials)" filename="..\nodes\modules\AddFakeRimLight (MRE.Materials).v4p" componentmode="Hidden" id="83" nodename="..\nodes\Modules\AddFakeRimLight (MRE.Materials).v4p">
-   <BOUNDS type="Node" left="15975" top="7365" width="1470" height="270">
+   <BOUNDS type="Node" left="18075" top="7215" width="1470" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="15975" top="7365" width="4800" height="3600">
+   <BOUNDS type="Box" left="18075" top="7215" width="4800" height="3600">
    </BOUNDS>
    <BOUNDS type="Window" left="16395" top="7815" width="9000" height="6000">
    </BOUNDS>
@@ -772,28 +752,10 @@
    </NODE>
    <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="83" dstpinname="Material">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="82" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="16770" top="6045" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="16770" top="6045" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="81" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="17355" top="6630" width="795" height="240">
+   <BOUNDS type="Box" left="18660" top="6435" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="17355" top="6630" width="0" height="0">
+   <BOUNDS type="Node" left="18660" top="6435" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -805,9 +767,9 @@
    <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="83" dstpinname="Strength">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="80" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="18540" top="6930" width="795" height="240">
+   <BOUNDS type="Box" left="18915" top="6795" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="18540" top="6930" width="0" height="0">
+   <BOUNDS type="Node" left="18915" top="6795" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="5">
    </PIN>
@@ -819,9 +781,9 @@
    <LINK srcnodeid="80" srcpinname="Y Output Value" dstnodeid="83" dstpinname="Power">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="79" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="17565" top="5325" width="795" height="720">
+   <BOUNDS type="Box" left="19665" top="5175" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="17565" top="5325" width="0" height="0">
+   <BOUNDS type="Node" left="19665" top="5175" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0.25,0">
    </PIN>
@@ -837,7 +799,7 @@
    <LINK srcnodeid="79" srcpinname="Y Output Value" dstnodeid="85" dstpinname="Attenuation">
    </LINK>
    <NODE systemname="AddCookTorrance (MRE.Materials)" filename="..\nodes\modules\AddCookTorrance (MRE.Materials).v4p" nodename="AddCookTorrance (MRE.Materials)" componentmode="Hidden" id="78">
-   <BOUNDS type="Node" left="13530" top="5430" width="100" height="100">
+   <BOUNDS type="Node" left="15630" top="5280" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material" visible="1">
    </PIN>
@@ -854,28 +816,10 @@
    </NODE>
    <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="78" dstpinname="Material">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="77" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="13275" top="4560" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="13275" top="4560" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="76" systemname="IOBox (Color)">
-   <BOUNDS type="Box" left="16875" top="3405" width="2250" height="480">
+   <BOUNDS type="Box" left="18975" top="3255" width="2250" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="16875" top="3405" width="0" height="0">
+   <BOUNDS type="Node" left="18975" top="3255" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.99444,0.92194,0.76218,1.00000|">
    </PIN>
@@ -883,9 +827,9 @@
    <LINK srcnodeid="76" srcpinname="Color Output" dstnodeid="85" dstpinname="Coefficient">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="75" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="15000" top="4605" width="480" height="480">
+   <BOUNDS type="Box" left="17100" top="4455" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="15000" top="4605" width="0" height="0">
+   <BOUNDS type="Node" left="17100" top="4455" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -903,9 +847,9 @@
    <LINK srcnodeid="75" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Rough Map">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="74" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="19095" top="5490" width="480" height="480">
+   <BOUNDS type="Box" left="21195" top="5340" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="19095" top="5490" width="0" height="0">
+   <BOUNDS type="Node" left="21195" top="5340" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -923,9 +867,9 @@
    <LINK srcnodeid="74" srcpinname="Y Output Value" dstnodeid="83" dstpinname="Rim Map">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="73" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="19425" top="4200" width="480" height="480">
+   <BOUNDS type="Box" left="21525" top="4050" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="19425" top="4200" width="0" height="0">
+   <BOUNDS type="Node" left="21525" top="4050" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -943,9 +887,9 @@
    <LINK srcnodeid="73" srcpinname="Y Output Value" dstnodeid="85" dstpinname="SSS Map">
    </LINK>
    <NODE systemname="AddReflection (MRE.Materials SphereMap)" filename="..\nodes\Modules\AddReflection (MRE.Materials SphereMap).v4p" componentmode="Hidden" id="72" nodename="..\nodes\Modules\AddReflection (MRE.Materials SphereMap).v4p">
-   <BOUNDS type="Node" left="13440" top="7470" width="1350" height="270">
+   <BOUNDS type="Node" left="15540" top="7320" width="1350" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="13440" top="7470" width="4800" height="3600">
+   <BOUNDS type="Box" left="15540" top="7320" width="4800" height="3600">
    </BOUNDS>
    <BOUNDS type="Window" left="10095" top="8160" width="9000" height="6000">
    </BOUNDS>
@@ -964,30 +908,12 @@
    <PIN pinname="Material Thru" visible="1">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="71" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="13620" top="6675" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="13620" top="6675" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="72" dstpinname="Material">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="70" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="14070" top="3630" width="795" height="240">
+   <BOUNDS type="Box" left="16170" top="3480" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="14070" top="3630" width="0" height="0">
+   <BOUNDS type="Node" left="16170" top="3480" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.65">
    </PIN>
@@ -1001,7 +927,7 @@
    <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="72" dstpinname="Blur">
    </LINK>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="14400" top="4035" width="100" height="100">
+   <BOUNDS type="Node" left="16500" top="3885" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="0.33">
    </PIN>
@@ -1013,7 +939,7 @@
    <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Input 1">
    </LINK>
    <NODE systemname="Add (Value)" nodename="Add (Value)" componentmode="Hidden" id="68">
-   <BOUNDS type="Node" left="14370" top="4725" width="100" height="100">
+   <BOUNDS type="Node" left="16470" top="4575" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -1027,7 +953,7 @@
    <LINK srcnodeid="68" srcpinname="Output" dstnodeid="78" dstpinname="Roughness">
    </LINK>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="90">
-   <BOUNDS type="Node" left="15150" top="2775" width="100" height="100">
+   <BOUNDS type="Node" left="17250" top="2625" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="MaterialDictionary">
    </PIN>
@@ -1037,9 +963,9 @@
    <LINK srcnodeid="90" srcpinname="Input Value" dstnodeid="89" dstpinname="Material Dictionary">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="91" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="14430" top="6450" width="480" height="480">
+   <BOUNDS type="Box" left="16530" top="6300" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="14430" top="6450" width="0" height="0">
+   <BOUNDS type="Node" left="16530" top="6300" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -1059,9 +985,9 @@
    <LINK srcnodeid="91" srcpinname="Y Output Value" dstnodeid="72" dstpinname="Reflection Map">
    </LINK>
    <NODE systemname="AddRefraction (MRE.Materials SphereMap)" filename="..\nodes\Modules\AddRefraction (MRE.Materials SphereMap).v4p" componentmode="Hidden" id="93" nodename="..\nodes\Modules\AddRefraction (MRE.Materials SphereMap).v4p">
-   <BOUNDS type="Node" left="13425" top="8595" width="100" height="100">
+   <BOUNDS type="Node" left="15525" top="8445" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="13425" top="8595" width="4800" height="3600">
+   <BOUNDS type="Box" left="15525" top="8445" width="4800" height="3600">
    </BOUNDS>
    <BOUNDS type="Window" left="16890" top="7770" width="9000" height="6000">
    </BOUNDS>
@@ -1074,24 +1000,6 @@
    <PIN pinname="Blur" slicecount="1" values="0.01">
    </PIN>
    <PIN pinname="Refraction Map" visible="1" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="92" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="13575" top="7905" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="13575" top="7905" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="72" srcpinname="Material Thru" dstnodeid="93" dstpinname="Material">
@@ -1239,9 +1147,9 @@
    <LINK srcnodeid="111" srcpinname="Transform Out" dstnodeid="99" dstpinname="Transform In">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="112" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="15840" top="1500" width="285" height="240">
+   <BOUNDS type="Box" left="17940" top="1350" width="285" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="15840" top="1500" width="0" height="0">
+   <BOUNDS type="Node" left="17940" top="1350" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -1453,39 +1361,5 @@
    <LINK srcnodeid="125" srcpinname="Output Node" dstnodeid="122" dstpinname="Transform In">
    </LINK>
    <LINK srcnodeid="91" srcpinname="Y Output Value" dstnodeid="93" dstpinname="Refraction Map">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="126" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="17460" top="2775" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="17460" top="2775" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="89" dstpinname="Construct">
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Add">
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Add">
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="72" dstpinname="Add">
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="93" dstpinname="Add">
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="83" dstpinname="Add">
-   </LINK>
-   <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="85" dstpinname="Add">
    </LINK>
    </PATCH>

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="3015">
-   <BOUNDS type="Window" left="3915" top="2835" width="22245" height="10200">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="1665" top="510" width="22245" height="14670">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="5490" width="100" height="100">
@@ -385,11 +385,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="235" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14850" top="3270" width="240" height="270">
+   <BOUNDS type="Node" left="14850" top="2520" width="240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14850" top="3270" width="4950" height="1575">
+   <BOUNDS type="Box" left="14850" top="2520" width="5340" height="2085">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 MRE_COLOR&tab;R&tab;G&tab;B&tab;A&tab;Type&cr;&lf;1 MRE_NORMALS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;2 MRE_VELOCITY&tab;X &tab;Y&tab;&tab;&tab;float16&cr;&lf;3 MRE_MATERIAL&tab;U (f16)&tab;V (f16)&tab;MatID&tab;ObjID&tab;Uint16&cr;&lf;4 MRE_VIEWPOS&tab;X&tab;Y&tab;Z&tab;&tab;float16&cr;&lf;5 MRE_DEPTH&tab;D24_UNorm_S8_Uint&cr;&lf;6 MRE_STENCIL&tab;uint4|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 MRE_COLOR&tab;R&tab;G&tab;B&tab;A&tab;Type&cr;&lf;1 MRE_NORMALS&tab;X&tab;Y&tab;Z&tab;&tab;float16x4&cr;&lf;2 MRE_VELOCITY&tab;X &tab;Y&tab;&tab;&tab;float16x2&cr;&lf;3 MRE_MATERIAL&tab;U (f16)&tab;V (f16)&tab;MatID&tab;ObjID&tab;Uint16x4&cr;&lf;&cr;&lf;calculated/depth:&cr;&lf;4 MRE_VIEWPOS&tab;X&tab;Y&tab;Z&tab;&tab;float16x4&cr;&lf;5 MRE_DEPTH&tab;D24_UNorm_S8_Uint&cr;&lf;6 MRE_STENCIL&tab;uint4|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -399,9 +399,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="234" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14835" top="2925" width="765" height="270">
+   <BOUNDS type="Node" left="14835" top="2175" width="765" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14835" top="2925" width="2175" height="330">
+   <BOUNDS type="Box" left="14835" top="2175" width="2160" height="465">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="GBuffer/Targets">
    </PIN>
@@ -969,5 +969,13 @@
    </PIN>
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
+   </NODE>
+   <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="285">
+   <BOUNDS type="Node" left="690" top="2820" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="DepthStencil (DX11.RenderState Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState Advanced)" componentmode="Hidden" id="286">
+   <BOUNDS type="Node" left="810" top="3615" width="100" height="100">
+   </BOUNDS>
    </NODE>
    </PATCH>
