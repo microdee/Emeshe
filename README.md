@@ -20,9 +20,9 @@ FEATURES
     * SSS
     * Rimlight
   * Stochastic wide range SSAO with temporal reprojection (sampling by UNC)<br />
-    or Low Frequency SSAO
+    *or Low Frequency SSAO*
   * Classic short range Local SSAO (SSLAO)<br />
-    or High Frequency SSAO
+    *or High Frequency SSAO*
   * One-bounce stochastic Local Color Bleeding (CSSGI by ArKano22)
   * Environment map based Reflection / Refraction with roughness
   * Spotlights can have custom texture.
@@ -32,9 +32,8 @@ FEATURES
 * **Post-Processing**
   * Stochastic "lens blur" DOF with optional "Autofocus"
   * Texture based Bokeh (not implemented properly though)
-  * Motion Blur with pixel extension in the direction of motion
-
-    (no hard edges)
+  * Motion Blur with pixel extension in the direction of motion<br />
+    *(no hard edges)*
   * Tonemapping (HDR to SDR)
     * Filmic (Uncharted 2)
     * Filmic (ALU)
@@ -48,7 +47,7 @@ FEATURES
   * Optional Triplanar texture coordinates and sampling
   * Normal mapping
   * Support for automatic and manual instancing<br />
-    For manual instancing see Geometry part.
+    *For manual instancing see Geometry part.*
   * Rendertarget for UV coordinates, Material ID and Object ID's
 
 * **Materials**
@@ -79,11 +78,9 @@ Emeshe requires the following packs to be included in the nodelist of vvvv:
 
  - mcropack: https://github.com/microdee/VVVV.Packs.mcro
  - VObjects: https://github.com/microdee/VVVV.Packs.VObject
- - Special DX11 version: https://drive.google.com/open?id=0B6nEyHrL_XkEUXZtcFZoQmtXaU0&authuser=0
-
-   it is required because of a bugfix i haven't sent for pull request yet. it will sent soon
- - (OPTIONAL) if you'd like to read .HDR and .EXR format hdr images (like the panoramas in girlpower) you will need CV.Image Pack for that
-
+ - Special DX11 version: https://drive.google.com/open?id=0B6nEyHrL_XkEUXZtcFZoQmtXaU0&authuser=0<br />
+   it is required because of a bugfix i haven't sent for pull request yet. it will be sent soon
+ - (OPTIONAL) if you'd like to read .HDR and .EXR format hdr images (like the panoramas in girlpower) you will need CV.Image Pack for that<br />
    I'd recommend joreg's fork https://github.com/joreg/VVVV.Packs.Image
 
 Put all of them in the packs folder of VVVV then download (or clone) this repository to the packs folder as well.
