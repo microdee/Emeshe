@@ -8,69 +8,66 @@ Rendering engine for VVVV using DX11 and based on the principles of the great or
 FEATURES
 ======
 
- - **Lighting / Global Illumination**
-  - HDR rendering
-  - Cook-Torrance and Phong models (Ashikmin-Shirley coming soon)
-  - Multiple Point, Spot, Sun lights
-  - Multiple PCSS Shadows for each light types
-  - Separated light components for versatile composition
-   - Ambient
-   - Diffuse
-   - Specular
-   - SSS
-   - Rimlight
-  - Stochastic wide range SSAO with temporal reprojection (sampling by UNC)
-
+* **Lighting / Global Illumination**
+  * HDR rendering
+  * Cook-Torrance and Phong models (Ashikmin-Shirley coming soon)
+  * Multiple Point, Spot, Sun lights
+  * Multiple PCSS Shadows for each light types
+  * Separated light components for versatile composition
+    * Ambient
+    * Diffuse
+    * Specular
+    * SSS
+    * Rimlight
+  * Stochastic wide range SSAO with temporal reprojection (sampling by UNC)<br />
     or Low Frequency SSAO
-  - Classic short range Local SSAO (SSLAO)
-
+  * Classic short range Local SSAO (SSLAO)<br />
     or High Frequency SSAO
-  - One-bounce stochastic Local Color Bleeding (CSSGI by ArKano22)
-  - Environment map based Reflection / Refraction with roughness
-  - Spotlights can have custom texture.
-  - Support for ZBrush MatCap
-  - Emission
+  * One-bounce stochastic Local Color Bleeding (CSSGI by ArKano22)
+  * Environment map based Reflection / Refraction with roughness
+  * Spotlights can have custom texture.
+  * Support for ZBrush MatCap
+  * Emission
 
- - **Post-Processing**
-  - Stochastic "lens blur" DOF with optional "Autofocus"
-  - Texture based Bokeh (not implemented properly though)
-  - Motion Blur with pixel extension in the direction of motion
+* **Post-Processing**
+  * Stochastic "lens blur" DOF with optional "Autofocus"
+  * Texture based Bokeh (not implemented properly though)
+  * Motion Blur with pixel extension in the direction of motion
 
     (no hard edges)
-  - Tonemapping (HDR to SDR)
-   - Filmic (Uncharted 2)
-   - Filmic (ALU)
-   - Reinhard (standard and modified)
-   - Drago Logarithmic
-   - Standard linear, logarithmic and exponential
-  - Glare with chromatic aberration
+  * Tonemapping (HDR to SDR)
+    * Filmic (Uncharted 2)
+    * Filmic (ALU)
+    * Reinhard (standard and modified)
+    * Drago Logarithmic
+    * Standard linear, logarithmic and exponential
+  * Glare with chromatic aberration
 
- - **Forward rendering part**
-  - define driven feature switches (opt-out style)
-  - Optional Triplanar texture coordinates and sampling
-  - Normal mapping
-  - Support for automatic and manual instancing
-
+* **Forward rendering part**
+  * define driven feature switches (opt-out style)
+  * Optional Triplanar texture coordinates and sampling
+  * Normal mapping
+  * Support for automatic and manual instancing<br />
     For manual instancing see Geometry part.
-  - Rendertarget for UV coordinates, Material ID and Object ID's
+  * Rendertarget for UV coordinates, Material ID and Object ID's
 
- - **Materials**
-  - Flags driven modular deferred material system
-  - 25 different predefined material features (out of current 32)
-  - 60+ possible predefined parameters per material and growing
-  - Texture mapped deferred parameters because UV is written in GBuffer
-  - Custom features can be added without effort (there's place for 7 custom features)
-  - VObject Oriented construction in patch
+* **Materials**
+  * Flags driven modular deferred material system
+  * 25 different predefined material features (out of current 32)
+  * 60+ possible predefined parameters per material and growing
+  * Texture mapped deferred parameters because UV is written in GBuffer
+  * Custom features can be added without effort (there's place for 7 custom features)
+  * VObject Oriented construction in patch
 
- - **Geometry**
-  - Support for previous frame position for animated geometry (used for calculating velocity map for motion blur)
-  - Instance or general purpose ID is written next to previous position
-  - Simple Decimator
-  - Triangle area based tessellation
-  - Extruder
-  - PN-Triangle tessellation
-  - Spherize
-  - Splines
+* **Geometry**
+  * Support for previous frame position for animated geometry (used for calculating velocity map for motion blur)
+  * Instance or general purpose ID is written next to previous position
+  * Simple Decimator
+  * Triangle area based tessellation
+  * Extruder
+  * PN-Triangle tessellation
+  * Spherize
+  * Splines
 
 USAGE
 ======
