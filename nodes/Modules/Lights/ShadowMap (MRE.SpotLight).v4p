@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\ShadowMap (MRE.SpotLight).v4p" systemname="ShadowMap (MRE.SpotLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\ShadowMap (MRE.SpotLight).v4p" scrollx="0" scrolly="825">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\ShadowMap (MRE.SpotLight).v4p" systemname="ShadowMap (MRE.SpotLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\ShadowMap (MRE.SpotLight).v4p" scrollx="0" scrolly="825">
    <BOUNDS type="Window" left="11910" top="1245" width="9000" height="8805">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -58,6 +58,8 @@
    <PIN pinname="Render State" visible="1">
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="DeferredProp">
    </PIN>
    </NODE>
    <NODE systemname="Sphere (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Sphere (DX11.Geometry)" componentmode="Hidden" id="3">

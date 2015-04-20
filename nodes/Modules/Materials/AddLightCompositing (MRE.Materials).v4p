@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLightCompositing (MRE.Materials).v4p" systemname="AddLightCompositing (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLightCompositing (MRE.Materials).v4p" scrollx="435" scrolly="0">
-   <BOUNDS type="Window" left="11910" top="8175" width="9000" height="6000">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddLightCompositing (MRE.Materials).v4p" systemname="AddLightCompositing (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLightCompositing (MRE.Materials).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="9525" top="480" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -221,7 +221,7 @@
    </PIN>
    <PIN pinname="Input 3" visible="1" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Input 4" visible="1" slicecount="1" values="0">
+   <PIN pinname="Input 4" visible="1" slicecount="1" values="0.37">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -233,11 +233,11 @@
    </PIN>
    <PIN pinname="Input 8 Bin Size" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Input 5" visible="1">
+   <PIN pinname="Input 5" visible="1" slicecount="1" values="0.33">
    </PIN>
-   <PIN pinname="Input 6" visible="1">
+   <PIN pinname="Input 6" visible="1" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Input 7" visible="1">
+   <PIN pinname="Input 7" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Input 8" visible="1">
    </PIN>
@@ -249,7 +249,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2355" top="645" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -297,7 +297,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3480" top="1155" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.36">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -305,15 +305,15 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="SSS">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="22" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 4">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="23" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="4245" top="675" width="750" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="4245" top="675" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.33">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -321,15 +321,15 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Rim Light|">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 5">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="4425" top="1245" width="795" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="4425" top="1245" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.5">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -337,15 +337,15 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Multiply Specular|">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 6">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="25" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5145" top="660" width="795" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="5145" top="660" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.5">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -356,14 +356,12 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="25" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 7">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="26" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5865" top="1170" width="795" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="5865" top="1170" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.5">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -373,5 +371,13 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 8">
+   </LINK>
+   <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 4">
+   </LINK>
+   <LINK srcnodeid="22" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 5">
+   </LINK>
+   <LINK srcnodeid="25" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 6">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 7">
    </LINK>
    </PATCH>

@@ -1,0 +1,46 @@
+#include "../fxh/MRE.fxh"
+#include "../fxh/Materials.fxh"
+Texture2D texNORM: PREVIOUS;
+Texture2D texDEPTH;
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+float3 _UVZtoVIEW(float2 uv, float z)
+{
+	return UVZtoVIEW(uv, z, CamProj, CamProjInv);
+}
+
+SamplerState sPointClamp:IMMUTABLE {Filter=MIN_MAG_MIP_POINT;AddressU=CLAMP;AddressV=CLAMP;};
+float4 pNORMALFIX(float4 PosWVP:SV_POSITION,float2 UV:TEXCOORD0):SV_TARGET{
+	uint matid = GetMatID(UV, R);
+	if(KnowFeature(matid, MF_CALCULATENORMALS))
+	{
+		float d = texDEPTH.SampleLevel(sPointClamp,UV,0).x;
+		float3 w0=_UVZtoVIEW(UV,d).xyz;
+		float3 w1=_UVZtoVIEW(UV-float2(1,0)/R,texDEPTH.SampleLevel(sPointClamp,UV-float2(1,0)/R,0).x).xyz;
+		float3 w2=_UVZtoVIEW(UV-float2(0,1)/R,texDEPTH.SampleLevel(sPointClamp,UV-float2(0,1)/R,0).x).xyz;
+		float3 w3=_UVZtoVIEW(UV+float2(1,0)/R,texDEPTH.SampleLevel(sPointClamp,UV+float2(1,0)/R,0).x).xyz;
+		float3 w4=_UVZtoVIEW(UV+float2(0,1)/R,texDEPTH.SampleLevel(sPointClamp,UV+float2(0,1)/R,0).x).xyz;
+		
+		float3 c1=normalize(w1-w0);
+		float3 c2=normalize(w2-w0);
+		
+		c1=lerp(normalize(w1-w0),normalize(w0-w3),length(w1-w0)>length(w3-w0));
+		c2=lerp(normalize(w2-w0),normalize(w0-w4),length(w2-w0)>length(w4-w0));
+		
+		float3 Eye=UVtoEYEV(UV, CamProjInv);
+		float3 NorV=normalize(cross(c1,c2));
+		float4 c=float4(NorV,1);
+		if(d==1)c.rgb=Eye;
+		return lerp(texNORM.SampleLevel(sPointClamp,UV,0), c, GetFloat(matid, MF_CALCULATENORMALS, 0));
+	}
+	else return texNORM.SampleLevel(sPointClamp,UV,0);
+}
+
+
+technique10 Norms
+{
+	pass P1 <string format="R16G16B16A16_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pNORMALFIX()));}
+}

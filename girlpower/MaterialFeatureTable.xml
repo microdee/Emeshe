@@ -241,6 +241,12 @@
     <Offset>0</Offset>
   </Features>
   <Features>
+    <Feature>Lighting_Shadows</Feature>
+    <Parameter>Bias</Parameter>
+    <Size>1</Size>
+    <Offset>0</Offset>
+  </Features>
+  <Features>
     <Feature>GI_SSAO</Feature>
     <Parameter>AmountMul</Parameter>
     <Size>1</Size>
@@ -431,5 +437,11 @@
     <Parameter>RoughnessMapID</Parameter>
     <Size>1</Size>
     <Offset>1</Offset>
+  </Features>
+  <Features>
+    <Feature>CalculateNormals</Feature>
+    <Parameter>Blend</Parameter>
+    <Size>1</Size>
+    <Offset>0</Offset>
   </Features>
 </MaterialFeatureTable>
