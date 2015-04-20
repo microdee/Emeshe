@@ -53,7 +53,7 @@ struct VSin
 	uint iid : SV_InstanceID;
 };
 
-struct vs2ps
+struct PSin
 {
     float4 PosWVP: SV_Position;
     float4 PosP: PROJECTEDPOS;
@@ -69,7 +69,7 @@ struct vs2ps
 	#endif
 };
 
-struct vs2psProp
+struct PSinProp
 {
     float4 PosWVP: SV_Position;
     float4 PosW: WORLDPOSITION;
@@ -127,6 +127,27 @@ float4 TriPlanarSample(Texture2D tex, SamplerState s0, float3 pos, float3 norm, 
 	float4 colxy = tex.Sample(s0, uvxy);
 	float4 colxz = tex.Sample(s0, uvxz);
 	float4 colyz = tex.Sample(s0, uvyz);
+	float3 uxy = {0,0,1};
+	float3 uxz = {0,1,0};
+	float3 uyz = {1,0,0};
+	float3 d = 0;
+	d.x = abs(dot(norm, uxy));
+	d.y = abs(dot(norm, uxz));
+	d.z = abs(dot(norm, uyz));
+	d /= (d.x+d.y+d.z).xxx;
+	d = pows(d,tpow);
+	d /= (d.x+d.y+d.z).xxx;
+	float4 col = colxy*d.xxxx + colxz*d.yyyy + colyz*d.zzzz;
+	return col;
+}
+float4 TriPlanarSampleLevel(Texture2D tex, SamplerState s0, float3 pos, float3 norm, float tpow, float LOD)
+{
+	float2 uvxy = pos.xy;
+	float2 uvxz = pos.xz;
+	float2 uvyz = pos.yz;
+	float4 colxy = tex.SampleLevel(s0, uvxy, LOD);
+	float4 colxz = tex.SampleLevel(s0, uvxz, LOD);
+	float4 colyz = tex.SampleLevel(s0, uvyz, LOD);
 	float3 uxy = {0,0,1};
 	float3 uxz = {0,1,0};
 	float3 uyz = {1,0,0};

@@ -31,13 +31,13 @@ cbuffer cbPerObject : register( b1 )
 	int2 ObjID = 0;
 	float gVelocityGain = 1;
 	float TriPlanarPow = 1;
-	bool FlipNormals = false;
+	float3 FlipNormals = 1;
 };
 
-vs2ps VS(VSin In)
+PSin VS(VSin In)
 {
     // inititalize
-    vs2ps Out = (vs2ps)0;
+    PSin Out = (PSin)0;
 	// get Instance ID from GeomFX
 	#if defined(IID_FROM_GEOM) && defined(HAS_GEOMVELOCITY)
 		float ii = In.velocity.w;
@@ -56,7 +56,7 @@ vs2ps VS(VSin In)
 	#endif
 	
 	float4 dispPos = In.PosO;
-	float3 dispNorm = (FlipNormals) ? -In.NormO : In.NormO;
+	float3 dispNorm = In.NormO * FlipNormals;
 
 	float4x4 tWV = mul(w, tV);
     Out.NormV = normalize(mul(float4(dispNorm,0), tWV).xyz);
@@ -102,7 +102,7 @@ vs2ps VS(VSin In)
     return Out;
 }
 
-PSOut PS(vs2ps In)
+PSOut PS(PSin In)
 {
 	float ii = In.ii;
 	float3 PosV = In.PosV.xyz;
@@ -175,7 +175,13 @@ PSOut PS(vs2ps In)
 	Out.velocity *= 0.5;
 	Out.velocity += 0.5;
 	
-	Out.matprop.rg = f32tof16(uvb);
+    #if defined(TRIPLANAR)
+		float2 tuv = TriPlanar(In.TexCd.xyz, In.NormW, TriPlanarPow);
+    	Out.matprop.rg = f32tof16(tuv);
+	#else
+    	Out.matprop.rg = f32tof16(uvb);
+	#endif
+	
 	#if defined(INSTANCING)
 		Out.matprop.b = InstancedParams[ii].MatID;
 		if(ObjIDMode == 1)

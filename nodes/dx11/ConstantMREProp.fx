@@ -21,10 +21,10 @@ cbuffer cbPerObject : register( b1 )
 	float TriPlanarPow = 1;
 };
 
-vs2psProp VS(VSin In)
+PSinProp VS(VSin In)
 {
     // inititalize
-    vs2psProp Out = (vs2psProp)0;
+    PSinProp Out = (PSinProp)0;
 	// get Instance ID from GeomFX
 	#if defined(IID_FROM_GEOM) && defined(HAS_GEOMVELOCITY)
 		float ii = In.velocity.w;
@@ -58,7 +58,7 @@ vs2psProp VS(VSin In)
     return Out;
 }
 
-PSOutProp PS(vs2psProp In)
+PSOutProp PS(PSinProp In)
 {
 	float ii = In.ii;
 	float3 PosW = In.PosW.xyz;

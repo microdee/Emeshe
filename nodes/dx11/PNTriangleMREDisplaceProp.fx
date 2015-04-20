@@ -1,46 +1,30 @@
 //@author: microdee
-
 #include "../fxh/MREForward.fxh"
 
 Texture2D DiffTex;
-Texture2D BumpTex;
-Texture2D NormalTex;
+Texture2D DispTex;
 StructuredBuffer<sDeferredBase> InstancedParams;
 
 cbuffer cbPerDraw : register( b0 )
 {
-    float4x4 tV : VIEW;
-    float4x4 ptV : PREVIOUSVIEW;
-    float4x4 tP : PROJECTION;
-    float4x4 ptP : PREVIOUSPROJECTION;
-	float3 NearFarPow : NEARFARDEPTHPOW;
-	int ObjIDMode : MRE_OBJIDMODE;
-	int DepthMode : MRE_DEPTHMODE;
+	float4x4 tV : VIEW;
+	float4x4 tP : PROJECTION;
+	float4x4 tVP : VIEWPROJECTION;
+	float3 CamPos : CAM_POSITION;
 };
 
 cbuffer cbPerObject : register( b1 )
 {
 	float4x4 tW : WORLD;
-	float4x4 ptW; // previous frame world transform per draw call
 	float4x4 tTex;
-	float alphatest = 0.5;
-	float FDiffAmount = 1;
 	float4 FDiffColor <bool color=true;> = 1;
-	float FBumpAmount = 0;
-	float bumpOffset = 0;
-	int MatID = 0;
-	int2 ObjID = 0;
-	float gVelocityGain = 1;
+	float alphatest = 0.5;
 	float TriPlanarPow = 1;
 	float CurveAmount = 1;
-	float pCurveAmount = 1;
 	float Factor = 1;
+	float DispAmount = 0;
 	bool FlipNormals = false;
 };
-
-/////////////////////////
-//////// Structs ////////
-/////////////////////////
 
 struct HSin
 {
@@ -50,10 +34,6 @@ struct HSin
     nointerpolation float ii : INSTANCEID;
     #if defined(HAS_GEOMVELOCITY)
         float4 Velocity : COLOR0;
-    #endif
-    #if defined(HAS_NORMALMAP)
-        float3 Tangent : TANGENT;
-        float3 Binormal : BINORMAL;
     #endif
 };
 struct hsconst
@@ -80,15 +60,7 @@ struct DSin
     #if defined(HAS_GEOMVELOCITY)
         float4 Velocity : COLOR0;
     #endif
-    #if defined(HAS_NORMALMAP)
-        float3 Tangent : TANGENT;
-        float3 Binormal : BINORMAL;
-    #endif
 };
-
-////////////////////
-//////// VS ////////
-////////////////////
 
 HSin VS(VSin In)
 {
@@ -115,18 +87,12 @@ HSin VS(VSin In)
         Out.TexCd = 0;
     #endif
 
-    #if defined(HAS_NORMALMAP)
-        Out.Tangent = In.Tangent;
-        Out.Binormal = In.Binormal;
-    #endif
-
     #if defined(HAS_GEOMVELOCITY)
         Out.Velocity = float4(In.velocity.xyz,1);
     #endif
 	
     return Out;
 }
-
 /////////////////////
 //////// HSC ////////
 /////////////////////
@@ -187,10 +153,6 @@ DSin HS( InputPatch<HSin, 3> I, uint uCPID : SV_OutputControlPointID )
     #if defined(HAS_GEOMVELOCITY)
         O.Velocity = I[uCPID].Velocity;
     #endif
-    #if defined(HAS_NORMALMAP)
-        O.Tangent = I[uCPID].Tangent;
-        O.Binormal = I[uCPID].Binormal;
-    #endif
 	
     return O;
 }
@@ -245,9 +207,9 @@ float3 InterpolatePos(
 }
 
 [domain("tri")]
-PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3BarycentricCoords : SV_DomainLocation )
+PSinProp DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3BarycentricCoords : SV_DomainLocation )
 {
-    PSin O = (PSin)0;
+    PSinProp O = (PSinProp)0;
 	
 	float ii = I[0].ii;
 	O.ii = ii;
@@ -256,11 +218,9 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
     #if defined(INSTANCING)
         float4x4 tT = mul(InstancedParams[ii].tTex,tTex);
         float4x4 w = mul(InstancedParams[ii].tW,tW);
-        float4x4 pw = mul(InstancedParams[ii].ptW,ptW);
     #else
         float4x4 tT = tTex;
         float4x4 w = tW;
-        float4x4 pw = ptW;
     #endif
     float4x4 tWV = mul(w, tV);
 
@@ -274,167 +234,62 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
         fUVW2, fUVW, CurveAmount,
         cPos, fPos
     );
-
-    #if defined(HAS_GEOMVELOCITY)
-        float3 pcPos, pfPos;
-        float3 pf3Position = InterpolatePos(
-            HSConstantData,
-            I[0].Velocity.xyz, I[1].Velocity.xyz, I[2].Velocity.xyz,
-            fUVW2, fUVW, pCurveAmount,
-            pcPos, pfPos
-        );
-    #else
-        float3 pf3Position = lerp(fPos,cPos,pCurveAmount);
-    #endif
 	
     float3 f3Normal = InterpolateDir(
         HSConstantData,
         I[0].NormW, I[1].NormW, I[2].NormW,
         fUVW2, fUVW, CurveAmount
-        );
-
-    #if defined(HAS_NORMALMAP)
-        float3 f3Tangent = InterpolateDir(
-            HSConstantData,
-            I[0].Tangent, I[1].Tangent, I[2].Tangent,
-            fUVW2, fUVW, CurveAmount
-        );
-
-        float3 f3Binormal = InterpolateDir(
-            HSConstantData,
-            I[0].Binormal, I[1].Binormal, I[2].Binormal,
-            fUVW2, fUVW, CurveAmount
-        );
-
-        O.Tangent = normalize(mul(float4(f3Tangent,0), tWV).xyz);
-        O.Binormal = normalize(mul(float4(f3Binormal,0), tWV).xyz);
-    #endif
-	
-	float3 dispPos = f3Position;
-	float3 dispNorm = f3Normal;
-
-    float3 pdispPos = pf3Position;
-
-    float4 PosW = mul(float4(dispPos,1), w);
-    O.PosV = mul(PosW, tV);
-    O.NormV = normalize(mul(float4(dispNorm,0), tWV).xyz);
-    O.NormW = normalize(mul(float4(dispNorm,0), w).xyz);
-    O.PosWVP = mul(O.PosV, tP);
-    O.PosP = O.PosWVP;
+    );
 	
 	float4 f3UV = I[0].TexCd * fUVW.z + I[1].TexCd * fUVW.x + I[2].TexCd * fUVW.y;
     O.TexCd = mul(float4(f3UV.xyz,1), tT);
+	
+    #if defined(TRIPLANAR)
+		float2 disp = TriPlanarSampleLevel(DispTex, Sampler, mul(float4(f3Position,1), tT).xyz, f3Normal, TriPlanarPow, 0).rg-.5;
+	#else
+		float2 disp = DispTex.SampleLevel(Sampler, O.TexCd.xy, 0).rg-.5;
+	#endif
+	
+	float3 dispPos = f3Position + f3Normal * disp.r * DispAmount;
+	float3 dispNorm = f3Normal;
 
-    float4x4 ptWVP = pw;
-    ptWVP = mul(ptWVP, ptV);
-    ptWVP = mul(ptWVP, ptP);
-    O.velocity = mul(float4(pdispPos,1), ptWVP);
+    O.PosW = mul(float4(dispPos,1), w);
+    O.NormW = normalize(mul(float4(dispNorm,0), w).xyz);
+    O.PosWVP = mul(O.PosW, tVP);
    
     return O;
 }
-////////////////////
-//////// PS ////////
-////////////////////
 
-PSOut PS(PSin In)
+PSOutProp PS(PSinProp In)
 {
-    float ii = In.ii;
-    float3 PosV = In.PosV.xyz;
+	float ii = In.ii;
+	float3 PosW = In.PosW.xyz;
 
-    PSOut Out = (PSOut)0;
-    float3 NormV = In.NormV;
-    
-    float2 uvb = In.TexCd.xy;
-    
-    #if defined(INSTANCING)
-        float bmpam = InstancedParams[ii].BumpAmount * FBumpAmount;
-    #else
-        float bmpam = FBumpAmount;
-    #endif
+	PSOutProp Out = (PSOutProp)0;
+	
+	float2 uvb = In.TexCd.xy;
 
-    float depth = bmpam;
-    #if defined(TRIPLANAR)
-        float mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow).r + bumpOffset;
-        float4 diffcol = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow);
-    #else
-        float mdepth = BumpTex.Sample(Sampler, uvb).r + bumpOffset;
-        float4 diffcol = DiffTex.Sample( Sampler, uvb);
-    #endif
-    
-    if(depth!=0) PosV += In.NormV * mdepth * (depth/100);
-
-    #if defined(HAS_NORMALMAP)
-        float3 normmap = NormalTex.Sample(Sampler, uvb).xyz*2-1;
-        float3 outnorm = normalize(normmap.x * In.Tangent + normmap.y * In.Binormal + normmap.z * In.NormV);
-        Out.normalV = float4(lerp(NormV, outnorm, depth),1);
-    #else
-        Out.normalV = float4(NormV,1);
-    #endif
-
-    float alphat = diffcol.a * FDiffColor.a;
-
-    #if defined(ALPHATEST)
-        if(alphatest!=0)
-        {
-            alphat = lerp(alphat, (alphat>=alphatest), min(alphatest*10,1));
-            clip(alphat - (1-alphatest));
-        }
-    #endif
-    
-    #if defined(INSTANCING)
-        diffcol.rgb *= FDiffColor.rgb * FDiffAmount * InstancedParams[ii].DiffAmount * InstancedParams[ii].DiffCol.rgb;
-    #else
-        diffcol.rgb *= FDiffColor.rgb * FDiffAmount;
-    #endif
-    Out.color.rgb = diffcol.rgb;
-    Out.color.a = alphat;
-    
-    #if defined(WRITEDEPTH)
-        if(DepthMode == 1)
-        {
-            float d = length(PosV.xyz);
-            d -= NearFarPow.x;
-            d /= abs(NearFarPow.y - NearFarPow.x);
-            d = pows(d, NearFarPow.z);
-            Out.depth = saturate(d);
-        }
-        else
-        {
-            float4 posout = mul(float4(PosV,1),tP);
-            Out.depth = posout.z/posout.w;
-        }
-    #endif
-    
-    Out.velocity = In.PosP.xy/In.PosP.w - In.velocity.xy/In.velocity.w;
-    Out.velocity *= 0.5;
-    Out.velocity += 0.5;
-    
-    #if defined(TRIPLANAR)
-		float2 tuv = TriPlanar(In.TexCd.xyz, In.NormW, TriPlanarPow);
-    	Out.matprop.rg = f32tof16(tuv);
-	#else
-    	Out.matprop.rg = f32tof16(uvb);
+	#if defined(ALPHATEST)
+		if(alphatest!=0)
+		{
+			#if defined(TRIPLANAR)
+				float4 diffcol = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow);
+			#else
+		    	float4 diffcol = DiffTex.Sample( Sampler, uvb);
+			#endif
+			float alphat = diffcol.a * FDiffColor.a;
+			alphat = lerp(alphat, (alphat>=alphatest), min(alphatest*10,1));
+			clip(alphat - (1-alphatest));
+		}
 	#endif
 	
-    #if defined(INSTANCING)
-        Out.matprop.b = InstancedParams[ii].MatID;
-        if(ObjIDMode == 1)
-        {
-            uint o0 = InstancedParams[ii].ObjID0;
-            uint o1 = InstancedParams[ii].ObjID1;
-            Out.matprop.a = JoinHalf(o0, o1);
-        }
-        else Out.matprop.a = InstancedParams[ii].ObjID0;
-    #else
-        Out.matprop.b = MatID;
-        if(ObjIDMode == 1) Out.matprop.a = JoinHalf(ObjID.x, ObjID.y);
-        else Out.matprop.a = ObjID.x;
-    #endif
-    
+	float d = distance(PosW, CamPos);
+	Out.WorldPos = float4(PosW, d);
+	
     return Out;
 }
 
-technique10 DeferredBase
+technique10 DeferredProp
 {
 	pass P0
 	{

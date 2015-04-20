@@ -5,11 +5,14 @@
 Texture2D DiffTex;
 Texture2D BumpTex;
 Texture2D NormalTex;
+Texture2D DispTex;
 StructuredBuffer<sDeferredBase> InstancedParams;
+
 
 cbuffer cbPerDraw : register( b0 )
 {
     float4x4 tV : VIEW;
+    float4x4 tVI : VIEWINVERSE;
     float4x4 ptV : PREVIOUSVIEW;
     float4x4 tP : PROJECTION;
     float4x4 ptP : PREVIOUSPROJECTION;
@@ -27,6 +30,7 @@ cbuffer cbPerObject : register( b1 )
 	float FDiffAmount = 1;
 	float4 FDiffColor <bool color=true;> = 1;
 	float FBumpAmount = 0;
+    float2 DispAmount = 0;
 	float bumpOffset = 0;
 	int MatID = 0;
 	int2 ObjID = 0;
@@ -310,10 +314,19 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
         O.Binormal = normalize(mul(float4(f3Binormal,0), tWV).xyz);
     #endif
 	
-	float3 dispPos = f3Position;
+	float4 f3UV = I[0].TexCd * fUVW.z + I[1].TexCd * fUVW.x + I[2].TexCd * fUVW.y;
+    O.TexCd = mul(float4(f3UV.xyz,1), tT);
+	
+    #if defined(TRIPLANAR)
+		float2 disp = TriPlanarSampleLevel(DispTex, Sampler, mul(float4(f3Position,1), tT).xyz, f3Normal, TriPlanarPow, 0).rg-.5;
+	#else
+		float2 disp = DispTex.SampleLevel(Sampler, O.TexCd.xy, 0).rg-.5;
+	#endif
+	
+	float3 dispPos = f3Position + f3Normal * disp.r * DispAmount.x;
 	float3 dispNorm = f3Normal;
 
-    float3 pdispPos = pf3Position;
+    float3 pdispPos = pf3Position + f3Normal * disp.g * DispAmount.y;
 
     float4 PosW = mul(float4(dispPos,1), w);
     O.PosV = mul(PosW, tV);
@@ -321,9 +334,6 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
     O.NormW = normalize(mul(float4(dispNorm,0), w).xyz);
     O.PosWVP = mul(O.PosV, tP);
     O.PosP = O.PosWVP;
-	
-	float4 f3UV = I[0].TexCd * fUVW.z + I[1].TexCd * fUVW.x + I[2].TexCd * fUVW.y;
-    O.TexCd = mul(float4(f3UV.xyz,1), tT);
 
     float4x4 ptWVP = pw;
     ptWVP = mul(ptWVP, ptV);
@@ -335,6 +345,27 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
 ////////////////////
 //////// PS ////////
 ////////////////////
+
+[maxvertexcount(3)]
+void GS(triangle PSin input[3], inout TriangleStream<PSin>GSOut)
+{
+	PSin v = (PSin)0;
+	
+    float3 trv0 = input[0].PosV.xyz;
+    float3 trv1 = input[1].PosV.xyz;
+    float3 trv2 = input[2].PosV.xyz;
+    float3 f1 = trv1 - trv0;
+    float3 f2 = trv2 - trv0;
+    float3 cnorm = normalize(cross(f1,f2));
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		v.NormV = cnorm;
+		v.NormW = mul(float4(cnorm,0),tVI).xyz;
+		GSOut.Append(v);
+	}
+}
 
 PSOut PS(PSin In)
 {
@@ -434,7 +465,7 @@ PSOut PS(PSin In)
     return Out;
 }
 
-technique10 DeferredBase
+technique10 Main
 {
 	pass P0
 	{
@@ -442,6 +473,17 @@ technique10 DeferredBase
 		SetVertexShader( CompileShader( vs_5_0, VS() ) );
 		SetHullShader( CompileShader( hs_5_0, HS()) );
 		SetDomainShader( CompileShader( ds_5_0, DS() ) );
+		SetPixelShader( CompileShader( ps_5_0, PS() ) );
+	}
+}
+technique10 FlatNormals
+{
+	pass P0
+	{
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetHullShader( CompileShader( hs_5_0, HS()) );
+		SetDomainShader( CompileShader( ds_5_0, DS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
 		SetPixelShader( CompileShader( ps_5_0, PS() ) );
 	}
 }
