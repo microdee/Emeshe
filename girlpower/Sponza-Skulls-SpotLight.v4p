@@ -2221,15 +2221,15 @@
    </PIN>
    <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
    </PIN>
-   <PIN pinname="MFtoAF" slicecount="1" values="1" visible="1">
+   <PIN pinname="MFtoAF" slicecount="1" visible="1" values="1">
    </PIN>
    <BOUNDS type="Window" left="2220" top="7245" width="16230" height="11175">
    </BOUNDS>
    <PIN pinname="Blur Velocity" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Blur Amount" slicecount="1" values="0.04" visible="1">
+   <PIN pinname="Blur Amount" slicecount="1" visible="1" values="0.04">
    </PIN>
-   <PIN pinname="width" slicecount="1" values="2.5" visible="1">
+   <PIN pinname="width" slicecount="1" visible="1" values="2.5">
    </PIN>
    <PIN pinname="Max Distance" visible="1">
    </PIN>
@@ -2439,7 +2439,7 @@
    </PIN>
    <PIN pinname="Yaw" slicecount="1" values="-0.41">
    </PIN>
-   <PIN pinname="Roll" slicecount="1" values="0" visible="1">
+   <PIN pinname="Roll" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="TranslateZ" slicecount="1" values="2.37">
    </PIN>
@@ -2765,7 +2765,7 @@
    </PIN>
    <PIN pinname="Yaw" slicecount="1" values="-0.2">
    </PIN>
-   <PIN pinname="Roll" slicecount="1" values="0" visible="1">
+   <PIN pinname="Roll" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="TranslateZ" slicecount="1" values="0.59">
    </PIN>
@@ -2819,7 +2819,7 @@
    </PIN>
    <PIN pinname="Yaw" slicecount="1" values="0.26">
    </PIN>
-   <PIN pinname="Roll" slicecount="1" values="0" visible="1">
+   <PIN pinname="Roll" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="TranslateZ" slicecount="1" values="0.03">
    </PIN>

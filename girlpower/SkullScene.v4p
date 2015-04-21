@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" systemname="SkullScene" filename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" scrollx="8355" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" systemname="SkullScene" filename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" scrollx="120" scrolly="0">
    <BOUNDS type="Window" left="5640" top="3660" width="16950" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -1048,16 +1048,6 @@
    </NODE>
    <LINK srcnodeid="100" srcpinname="Output" dstnodeid="30" dstpinname="Global World Transform">
    </LINK>
-   <NODE systemname="Subtract (Value)" nodename="Subtract (Value)" componentmode="Hidden" id="102">
-   <BOUNDS type="Node" left="5505" top="5385" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 2" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="98" srcpinname="OutputXYZ" dstnodeid="102" dstpinname="Input 2">
-   </LINK>
    <NODE id="101" systemname="LookAt (Transform Vector)" nodename="LookAt (Transform Vector)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
    <PIN pinname="LookAt XYZ" visible="1" slicecount="30" pintype="Input" values="-0.435889894354067,0,-0.9,0.526586706823126,-0.482396559064402,-0.7,-0.0757128985491523,0.862709427903327,-0.5,-0.580413681153212,-0.757046866931089,-0.3,0.979777547038326,0.173308852398144,-0.0999999999999999,-0.839525918330528,0.534037669505892,0.1,0.247646723302129,-0.921233466846336,0.3,0.39915719218448,0.768552884274987,0.5,-0.670809580910478,-0.244978583061273,0.7,0.402912886811559,-0.166316582580257,0.9">
    </PIN>
@@ -1101,9 +1091,9 @@
    <LINK srcnodeid="105" srcpinname="Transform Out" dstnodeid="100" dstpinname="Input">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="109" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="6705" top="5370" width="795" height="720">
+   <BOUNDS type="Box" left="5610" top="5370" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="6705" top="5370" width="0" height="0">
+   <BOUNDS type="Node" left="5610" top="5370" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,1,0">
    </PIN>
