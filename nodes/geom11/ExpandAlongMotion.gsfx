@@ -1,0 +1,100 @@
+
+#if !defined(PREVPOS_IN)
+#define PREVPOS_IN 1
+#endif
+#if !defined(PREVPOS_OUT)
+#define PREVPOS_OUT 1
+#endif
+
+#include "../fxh/MREInputElements.fxh"
+
+float ForwAmount = 0;
+float BackwAmount = 0;
+float SpeedThreshold = 0;
+float PrevPosMul = 1;
+float DotPow = 1;
+
+GSin VS(VSin input)
+{
+    GSin output = (GSin)0;
+    float3 cpos = input.cpoint.xyz;
+    float3 ppos = input.PrevPos.xyz;
+	float3 dir = cpos-ppos;
+	float3 cnorm = input.norm;
+	
+	if(length(dir) > SpeedThreshold)
+	{
+		float dotdir = dot(normalize(dir), cnorm);
+		if(dotdir > 0)
+		{
+			cpos += dir * ForwAmount * pow(abs(dotdir), DotPow);
+			ppos += dir * ForwAmount * pow(abs(dotdir), DotPow) * PrevPosMul;
+			//ppos = cpos;
+		}
+		else
+		{
+			cpos += dir * BackwAmount * pow(abs(dotdir), DotPow);
+			ppos += dir * BackwAmount * pow(abs(dotdir), DotPow) * PrevPosMul;
+			//ppos = cpos;
+		}
+	}
+	
+	output.cpoint = float4(cpos,1);
+	output.norm = cnorm;
+	output.PrevPos = float4(ppos, input.PrevPos.w);
+	#if defined(TEXCOORD_IN) && defined(TEXCOORD_OUT)
+		output.TexCd = input.TexCd;
+	#endif
+	#if defined(TANGENTS_IN) && defined(TANGENTS_OUT)
+		output.Tangent = input.Tangent;
+		output.Binormal = input.Binormal;
+	#endif
+	#if defined(BLENDWEIGHTS_IN) && defined(BLENDWEIGHTS_OUT)
+		output.BlendId = input.BlendId;
+		output.BlendWeight = input.BlendWeight;
+	#endif
+	
+    return output;
+}
+[maxvertexcount(3)]
+void GS(triangle GSin input[3], inout TriangleStream<GSin>GSOut)
+{
+	GSin v = (GSin)0;
+
+	for(uint i=0;i<3;i++)
+	{
+		v=input[i];
+		GSOut.Append(v);
+	}
+}
+
+GeometryShader StreamOutGS = ConstructGSWithSO( CompileShader( gs_5_0, GS() ),
+	"SV_Position.xyz;"
+	"NORMAL.xyz"
+	#if defined(TEXCOORD_OUT)
+		";TEXCOORD0.xy"
+	#endif
+	#if defined(TANGENTS_OUT)
+		";TANGENT.xyz"
+		";BINORMAL.xyz"
+	#endif
+	#if defined(BLENDWEIGHTS_OUT)
+		";BLENDINDICES.xyzw"
+		";BLENDWEIGHT.xyzw"
+	#endif
+	#if defined(PREVPOS_OUT)
+		";COLOR0.xyzw"
+	#endif
+);
+
+technique11 Layout
+{
+	pass P0
+	{
+		
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetGeometryShader( CompileShader( gs_5_0, GS() ) );
+	    SetGeometryShader( StreamOutGS );
+
+	}
+}
