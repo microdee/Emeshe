@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" systemname="MaterialBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" scrollx="0" scrolly="5655">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" systemname="MaterialBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="7965" top="1995" width="13050" height="11325">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
