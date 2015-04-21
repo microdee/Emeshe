@@ -5,7 +5,7 @@
 Texture2D DiffTex;
 Texture2D BumpTex;
 Texture2D NormalTex;
-StructuredBuffer<sDeferredBase> InstancedParams;
+StructuredBuffer<InstanceParams> InstancedParams;
 
 cbuffer cbPerDraw : register( b0 )
 {

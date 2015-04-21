@@ -2,7 +2,7 @@
 #include "../fxh/MREForward.fxh"
 
 Texture2D DiffTex;
-StructuredBuffer<sDeferredBase> InstancedParams;
+StructuredBuffer<InstanceParams> InstancedParams;
 
 cbuffer cbPerDraw : register( b0 )
 {

@@ -1,11 +1,16 @@
-#if !defined(POWS_FXH)
-	#include "../fxh/pows.fxh"
-#endif
-#if !defined(BITWISE_FXH)
-	#include "../fxh/bitwise.fxh"
-#endif
 
 #define MREFORWARD_FXH 1
+
+#if !defined(POWS_FXH)
+#include "../fxh/pows.fxh"
+#endif
+#if !defined(BITWISE_FXH)
+#include "../fxh/bitwise.fxh"
+#endif
+#if !defined(INSTANCEPARAMS_FXH)
+#include "../fxh/InstanceParams.fxh"
+#endif
+
 /*
 	optional defines:
 	HAS_TEXCOORD
@@ -17,23 +22,6 @@
 	INSTANCING
 	ALPHATEST
 */
-
-struct sDeferredBase
-{
-	float4x4 tW;
-	float4x4 ptW;
-	float4x4 tTex;
-	float DiffAmount;
-	float4 DiffCol;
-	float VelocityGain;
-	float BumpAmount;
-	float DispAmount;
-	float pDispAmount;
-	uint MatID;
-	int ObjID0;
-	int ObjID1;
-	int ObjID2;
-};
 
 struct VSin
 {
