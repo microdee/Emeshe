@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
    <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="360" scrolly="-360">
-   <BOUNDS type="Window" left="780" top="525" width="20805" height="14670">
+   <BOUNDS type="Window" left="315" top="1065" width="22245" height="10200">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="5490" width="100" height="100">
@@ -940,14 +940,6 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="285">
-   <BOUNDS type="Node" left="690" top="2820" width="100" height="100">
-   </BOUNDS>
-   </NODE>
-   <NODE systemname="DepthStencil (DX11.RenderState Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState Advanced)" componentmode="Hidden" id="286">
-   <BOUNDS type="Node" left="810" top="3615" width="100" height="100">
-   </BOUNDS>
-   </NODE>
    <NODE systemname="CalculateNormals (DX11.TextureFX)" filename="..\texture11\CalculateNormals.tfx" nodename="CalculateNormals (DX11.TextureFX)" componentmode="Hidden" id="288">
    <BOUNDS type="Node" left="2085" top="12135" width="100" height="100">
    </BOUNDS>
@@ -965,7 +957,7 @@
    </PIN>
    <PIN pinname="texDEPTH" visible="1">
    </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="1" visible="1">
+   <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
    </PIN>
    </NODE>
    <NODE id="281" componentmode="Hidden" systemname="DepthReconstruction (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\modules\DepthReconstruction\DepthReconstruction (DX11.Texture 2d).v4p" nodename="DepthReconstruction (DX11.Texture 2d)">
