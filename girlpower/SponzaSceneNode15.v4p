@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SponzaScene.v4p" systemname="SponzaScene" filename="C:\vvvv\libs\Emeshe\girlpower\SponzaScene.v4p" scrollx="1590" scrolly="3090">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SponzaSceneNode15.v4p" systemname="SponzaSceneNode15" filename="C:\vvvv\libs\Emeshe\girlpower\SponzaSceneNode15.v4p" scrollx="2580" scrolly="2970">
    <BOUNDS type="Window" left="13905" top="2175" width="11730" height="9480">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -47,7 +47,7 @@
    </PIN>
    <PIN pinname="Base Query" visible="1">
    </PIN>
-   <PIN pinname="Normal Mapping" visible="1">
+   <PIN pinname="Normal Mapping" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Texture Coordinates" slicecount="1" values="1">
    </PIN>
@@ -65,7 +65,7 @@
    </PIN>
    <PIN pinname="Global Velocity Gain" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Velocity From Geometry" visible="1">
+   <PIN pinname="Velocity From Geometry" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Box (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Box (DX11.Geometry)" componentmode="Hidden" id="28">
@@ -75,9 +75,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="27" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5940" top="5865" width="480" height="480">
+   <BOUNDS type="Box" left="5955" top="6105" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="5940" top="5865" width="0" height="0">
+   <BOUNDS type="Node" left="5955" top="6105" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -142,24 +142,6 @@
    </NODE>
    <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="29" dstpinname="Object ID 01">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="22" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4170" top="6150" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4170" top="6150" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
    <NODE systemname="SceneFile (DX11.Geometry Assimp)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.Assimp.dll" nodename="SceneFile (DX11.Geometry Assimp)" componentmode="Hidden" id="21">
    <BOUNDS type="Node" left="2595" top="1830" width="100" height="100">
    </BOUNDS>
@@ -239,26 +221,6 @@
    <LINK srcnodeid="19" srcpinname="Output Bin Size" dstnodeid="16" dstpinname="Input Bin Size">
    </LINK>
    <LINK srcnodeid="19" srcpinname="Output" dstnodeid="16" dstpinname="Input Node">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4860" top="5670" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4860" top="5670" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="29" dstpinname="Normal Mapping">
    </LINK>
    <LINK srcnodeid="18" srcpinname="Output" dstnodeid="29" dstpinname="Geometry In">
    </LINK>
@@ -396,7 +358,7 @@
    <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\modules\MaterialManager (MRE).v4p" nodename="MaterialManager (MRE)" componentmode="Hidden" id="32">
+   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\modules\Materials\MaterialManager (MRE).v4p" nodename="MaterialManager (MRE)" componentmode="Hidden" id="32">
    <BOUNDS type="Node" left="9450" top="8205" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material Dictionary" visible="1" slicecount="1" values="||">
@@ -432,7 +394,7 @@
    </LINK>
    <LINK srcnodeid="33" srcpinname="Y Output Value" dstnodeid="29" dstpinname="Material ID">
    </LINK>
-   <NODE systemname="AddCookTorrance (MRE.Materials)" filename="..\nodes\modules\AddCookTorrance (MRE.Materials).v4p" nodename="AddCookTorrance (MRE.Materials)" componentmode="Hidden" id="35">
+   <NODE systemname="AddCookTorrance (MRE.Materials)" filename="..\nodes\modules\Materials\AddCookTorrance (MRE.Materials).v4p" nodename="AddCookTorrance (MRE.Materials)" componentmode="Hidden" id="35">
    <BOUNDS type="Node" left="9450" top="9405" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material" visible="1">
@@ -446,7 +408,7 @@
    </NODE>
    <LINK srcnodeid="32" srcpinname="Material Out" dstnodeid="35" dstpinname="Material">
    </LINK>
-   <NODE systemname="AddFakeSSS (MRE.Materials)" filename="..\nodes\modules\AddFakeSSS (MRE.Materials).v4p" nodename="AddFakeSSS (MRE.Materials)" componentmode="Hidden" id="37">
+   <NODE systemname="AddFakeSSS (MRE.Materials)" filename="..\nodes\modules\Materials\AddFakeSSS (MRE.Materials).v4p" nodename="AddFakeSSS (MRE.Materials)" componentmode="Hidden" id="37">
    <BOUNDS type="Node" left="9435" top="10035" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material" visible="1">
@@ -466,7 +428,7 @@
    </NODE>
    <LINK srcnodeid="35" srcpinname="Material Thru" dstnodeid="37" dstpinname="Material">
    </LINK>
-   <NODE systemname="AddFakeRimLight (MRE.Materials)" filename="..\nodes\modules\AddFakeRimLight (MRE.Materials).v4p" nodename="AddFakeRimLight (MRE.Materials)" componentmode="Hidden" id="38">
+   <NODE systemname="AddFakeRimLight (MRE.Materials)" filename="..\nodes\modules\Materials\AddFakeRimLight (MRE.Materials).v4p" nodename="AddFakeRimLight (MRE.Materials)" componentmode="Hidden" id="38">
    <BOUNDS type="Node" left="9450" top="10515" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material" visible="1">
@@ -480,7 +442,7 @@
    </NODE>
    <LINK srcnodeid="37" srcpinname="Material Thru" dstnodeid="38" dstpinname="Material">
    </LINK>
-   <NODE systemname="AddReflection (MRE.Materials SphereMap)" filename="..\nodes\modules\AddReflection (MRE.Materials SphereMap).v4p" nodename="AddReflection (MRE.Materials SphereMap)" componentmode="Hidden" id="39">
+   <NODE systemname="AddReflection (MRE.Materials SphereMap)" filename="..\nodes\modules\Materials\AddReflection (MRE.Materials SphereMap).v4p" nodename="AddReflection (MRE.Materials SphereMap)" componentmode="Hidden" id="39">
    <BOUNDS type="Node" left="9450" top="11115" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material" visible="1" slicecount="1" values="||">
@@ -674,24 +636,42 @@
    </LINK>
    <LINK srcnodeid="25" srcpinname="Render State" dstnodeid="29" dstpinname="Render State">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4230" top="5475" width="480" height="480">
+   <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="55">
+   <BOUNDS type="Node" left="4320" top="5580" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Node" left="4230" top="5475" width="0" height="0">
+   <PIN pinname="Receive String" slicecount="1" values="PresentationCounter">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GT (Value)" nodename="GT (Value)" componentmode="Hidden" id="56">
+   <BOUNDS type="Node" left="4410" top="6255" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="55" srcpinname="Input Value" dstnodeid="56" dstpinname="Input 1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="57" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4770" top="6045" width="330" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4770" top="6045" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="2">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
    </NODE>
-   <LINK srcnodeid="53" srcpinname="Y Output Value" dstnodeid="29" dstpinname="Velocity From Geometry">
+   <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="56" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="56" srcpinname="Output" dstnodeid="29" dstpinname="Normal Mapping">
    </LINK>
    </PATCH>

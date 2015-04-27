@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" systemname="SkullScene" filename="C:\vvvv\libs\Emeshe\girlpower\SkullScene.v4p" scrollx="9870" scrolly="2550">
-   <BOUNDS type="Window" left="16005" top="5340" width="16950" height="9165">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\SkullSceneNode15.v4p" systemname="SkullSceneNode15" filename="C:\vvvv\libs\Emeshe\girlpower\SkullSceneNode15.v4p" scrollx="5085" scrolly="225">
+   <BOUNDS type="Window" left="9705" top="1140" width="16950" height="9165">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -47,7 +47,7 @@
    </PIN>
    <PIN pinname="Base Query" visible="1">
    </PIN>
-   <PIN pinname="Normal Mapping" visible="1">
+   <PIN pinname="Normal Mapping" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Texture Coordinates" slicecount="1" values="1">
    </PIN>
@@ -195,26 +195,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="22" srcpinname="Scene" dstnodeid="19" dstpinname="Scene">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5580" top="8490" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="5580" top="8490" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="30" dstpinname="Normal Mapping">
    </LINK>
    <NODE systemname="Sampler (DX11 Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Sampler (DX11 Advanced)" componentmode="Hidden" id="10">
    <BOUNDS type="Node" left="6075" top="4800" width="100" height="100">
@@ -640,7 +620,7 @@
    </LINK>
    <LINK srcnodeid="19" srcpinname="Output" dstnodeid="30" dstpinname="Geometry In">
    </LINK>
-   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\modules\MaterialManager (MRE).v4p" nodename="MaterialManager (MRE)" componentmode="Hidden" id="89">
+   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\modules\Materials\MaterialManager (MRE).v4p" nodename="MaterialManager (MRE)" componentmode="Hidden" id="89">
    <BOUNDS type="Node" left="17265" top="3720" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material Dictionary" visible="1" slicecount="1" values="||">
@@ -652,7 +632,7 @@
    <PIN pinname="Material ID" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="AddPhong (MRE.Materials)" filename="..\nodes\modules\AddPhong (MRE.Materials).v4p" componentmode="Hidden" id="88" nodename="..\nodes\Modules\AddPhong (MRE.Materials).v4p">
+   <NODE systemname="AddPhong (MRE.Materials)" filename="..\nodes\modules\Materials\AddPhong (MRE.Materials).v4p" componentmode="Hidden" id="88" nodename="..\nodes\Modules\AddPhong (MRE.Materials).v4p">
    <BOUNDS type="Node" left="18075" top="5040" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="18075" top="5040" width="4800" height="3600">
@@ -706,7 +686,7 @@
    </NODE>
    <LINK srcnodeid="86" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Specular Power">
    </LINK>
-   <NODE systemname="AddFakeSSS (MRE.Materials)" filename="..\nodes\modules\AddFakeSSS (MRE.Materials).v4p" componentmode="Hidden" id="85" nodename="..\nodes\Modules\AddFakeSSS (MRE.Materials).v4p">
+   <NODE systemname="AddFakeSSS (MRE.Materials)" filename="..\nodes\modules\Materials\AddFakeSSS (MRE.Materials).v4p" componentmode="Hidden" id="85" nodename="..\nodes\Modules\AddFakeSSS (MRE.Materials).v4p">
    <BOUNDS type="Node" left="17250" top="6240" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="17250" top="6240" width="4800" height="3600">
@@ -732,7 +712,7 @@
    </NODE>
    <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="85" dstpinname="Material">
    </LINK>
-   <NODE systemname="AddFakeRimLight (MRE.Materials)" filename="..\nodes\modules\AddFakeRimLight (MRE.Materials).v4p" componentmode="Hidden" id="83" nodename="..\nodes\Modules\AddFakeRimLight (MRE.Materials).v4p">
+   <NODE systemname="AddFakeRimLight (MRE.Materials)" filename="..\nodes\modules\Materials\AddFakeRimLight (MRE.Materials).v4p" componentmode="Hidden" id="83" nodename="..\nodes\Modules\AddFakeRimLight (MRE.Materials).v4p">
    <BOUNDS type="Node" left="18075" top="7215" width="1470" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="18075" top="7215" width="4800" height="3600">
@@ -798,7 +778,7 @@
    </NODE>
    <LINK srcnodeid="79" srcpinname="Y Output Value" dstnodeid="85" dstpinname="Attenuation">
    </LINK>
-   <NODE systemname="AddCookTorrance (MRE.Materials)" filename="..\nodes\modules\AddCookTorrance (MRE.Materials).v4p" nodename="AddCookTorrance (MRE.Materials)" componentmode="Hidden" id="78">
+   <NODE systemname="AddCookTorrance (MRE.Materials)" filename="..\nodes\modules\Materials\AddCookTorrance (MRE.Materials).v4p" nodename="AddCookTorrance (MRE.Materials)" componentmode="Hidden" id="78">
    <BOUNDS type="Node" left="15630" top="5280" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material" visible="1">
@@ -1282,28 +1262,42 @@
    </NODE>
    <LINK srcnodeid="125" srcpinname="Output Node" dstnodeid="122" dstpinname="Transform In">
    </LINK>
-   <NODE systemname="AddReflection (MRE.Materials SphereMap)" filename="..\nodes\modules\Materials\AddReflection (MRE.Materials SphereMap).v4p" nodename="AddReflection (MRE.Materials SphereMap)" componentmode="Hidden" id="126">
-   <BOUNDS type="Node" left="15585" top="7740" width="100" height="100">
+   <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="128">
+   <BOUNDS type="Node" left="5745" top="7590" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Material" visible="1">
+   <PIN pinname="Receive String" slicecount="1" values="PresentationCounter">
    </PIN>
-   <PIN pinname="Blur" visible="1">
+   <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="126" dstpinname="Material">
+   <NODE systemname="GT (Value)" nodename="GT (Value)" componentmode="Hidden" id="127">
+   <BOUNDS type="Node" left="5835" top="8265" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="128" srcpinname="Input Value" dstnodeid="127" dstpinname="Input 1">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="127" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="16305" top="7305" width="795" height="240">
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="126" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="6195" top="8055" width="330" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="16305" top="7305" width="0" height="0">
+   <BOUNDS type="Node" left="6195" top="8055" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.29">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="2">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="127" srcpinname="Y Output Value" dstnodeid="126" dstpinname="Blur">
+   <LINK srcnodeid="126" srcpinname="Y Output Value" dstnodeid="127" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="30" dstpinname="Normal Mapping">
    </LINK>
    </PATCH>

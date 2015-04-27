@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="0" scrolly="3105">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="0" scrolly="2025">
    <BOUNDS type="Window" left="11550" top="0" width="13350" height="15600">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">

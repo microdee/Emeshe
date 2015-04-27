@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Dinosaur.v4p" systemname="Dinosaur" filename="C:\vvvv\libs\Emeshe\girlpower\Dinosaur.v4p" scrollx="3225" scrolly="12315">
-   <BOUNDS type="Window" left="360" top="2010" width="13530" height="13935">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\DinosaurNode15.v4p" systemname="DinosaurNode15" filename="C:\vvvv\libs\Emeshe\girlpower\DinosaurNode15.v4p" scrollx="0" scrolly="3795">
+   <BOUNDS type="Window" left="0" top="1425" width="13530" height="13935">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -139,7 +139,7 @@
    </BOUNDS>
    <PIN pinname="Roughness" slicecount="1" visible="1" values="0.84">
    </PIN>
-   <PIN pinname="Spec/Rough Map" slicecount="1" values="1" visible="1">
+   <PIN pinname="Spec/Rough Map" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Specular Strength" slicecount="1" values="10">
    </PIN>
@@ -157,7 +157,7 @@
    </PIN>
    <BOUNDS type="Box" left="5100" top="20145">
    </BOUNDS>
-   <PIN pinname="SSS Map" slicecount="1" values="0" visible="1">
+   <PIN pinname="SSS Map" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Coefficient" visible="1" slicecount="1" values="|1.00000,0.87658,0.65247,1.00000|">
    </PIN>
@@ -184,27 +184,9 @@
    <PIN pinname="Rim Map" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="AddReflection (MRE.Materials SphereMap)" filename="..\nodes\modules\Materials\AddReflection (MRE.Materials SphereMap).v4p" nodename="AddReflection (MRE.Materials SphereMap)" componentmode="Hidden" id="38">
-   <BOUNDS type="Node" left="5100" top="21270" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Material" visible="1">
-   </PIN>
-   <PIN pinname="Material Thru" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="5100" top="21270">
-   </BOUNDS>
-   <PIN pinname="Reflection Map" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Fresnel" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Blur" slicecount="1" visible="1" values="1">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="32" srcpinname="Material Thru" dstnodeid="35" dstpinname="Material">
    </LINK>
    <LINK srcnodeid="35" srcpinname="Material Thru" dstnodeid="36" dstpinname="Material">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="Material Thru" dstnodeid="38" dstpinname="Material">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="39" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="4140" top="16320" width="795" height="240">
@@ -262,8 +244,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="45" srcpinname="Y Output Value" dstnodeid="38" dstpinname="Blur">
-   </LINK>
    <LINK srcnodeid="45" srcpinname="Y Output Value" dstnodeid="43" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="46" systemname="IOBox (Value Advanced)">
@@ -889,7 +869,7 @@
    </PIN>
    <PIN pinname="Write to Depth" visible="1">
    </PIN>
-   <PIN pinname="Normal Mapping" visible="1">
+   <PIN pinname="Normal Mapping" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Material ID" visible="1">
    </PIN>
@@ -931,8 +911,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="46" srcpinname="Y Output Value" dstnodeid="51" dstpinname="Write to Depth">
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Y Output Value" dstnodeid="51" dstpinname="Normal Mapping">
    </LINK>
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="51" dstpinname="Material ID">
    </LINK>
@@ -1733,7 +1711,7 @@
    <NODE systemname="AddLightCompositing (MRE.Materials)" filename="..\nodes\modules\Materials\AddLightCompositing (MRE.Materials).v4p" nodename="AddLightCompositing (MRE.Materials)" componentmode="Hidden" id="420">
    <BOUNDS type="Node" left="5100" top="22020" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Material" visible="1">
+   <PIN pinname="Material" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Material Thru" visible="1">
    </PIN>
@@ -1741,23 +1719,23 @@
    </PIN>
    <PIN pinname="Ambient" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Multiply Specular" slicecount="1" values="0.73">
+   <PIN pinname="Multiply Specular" slicecount="1" values="0.5">
    </PIN>
    <PIN pinname="Specular" slicecount="1" values="1">
    </PIN>
    <PIN pinname="SSS" slicecount="1" visible="1" values="0.36">
    </PIN>
-   <PIN pinname="Rim Light" slicecount="1" values="0.54">
+   <PIN pinname="Rim Light" slicecount="1" visible="1" values="0">
    </PIN>
-   <PIN pinname="Multiply SSS" slicecount="1" visible="1" values="0.6">
+   <PIN pinname="Multiply SSS" slicecount="1" visible="1" values="0.5">
    </PIN>
-   <PIN pinname="Multiply Rim Light" slicecount="1" values="1">
+   <PIN pinname="Multiply Rim Light" slicecount="1" values="0">
    </PIN>
    <BOUNDS type="Window" left="9525" top="480" width="9000" height="6000">
    </BOUNDS>
+   <PIN pinname="Diffuse" slicecount="1" values="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="38" srcpinname="Material Thru" dstnodeid="420" dstpinname="Material">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="421" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7035" top="20850" width="480" height="480">
    </BOUNDS>
@@ -1789,7 +1767,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7935" top="21255" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.37">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1887,5 +1865,59 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="428" srcpinname="Y Output Value" dstnodeid="32" dstpinname="Spec/Rough Map">
+   </LINK>
+   <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="431">
+   <BOUNDS type="Node" left="3645" top="12510" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="PresentationCounter">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GT (Value)" nodename="GT (Value)" componentmode="Hidden" id="430">
+   <BOUNDS type="Node" left="3735" top="13185" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="431" srcpinname="Input Value" dstnodeid="430" dstpinname="Input 1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="429" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4095" top="12975" width="330" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4095" top="12975" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="2">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="429" srcpinname="Y Output Value" dstnodeid="430" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="430" srcpinname="Output" dstnodeid="51" dstpinname="Normal Mapping">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Material Thru" dstnodeid="420" dstpinname="Material">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="432" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7545" top="21885" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7545" top="21885" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.06">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="432" srcpinname="Y Output Value" dstnodeid="420" dstpinname="Rim Light">
    </LINK>
    </PATCH>

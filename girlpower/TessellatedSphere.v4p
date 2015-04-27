@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\TessellatedSphere.v4p" systemname="TessellatedSphere" filename="C:\vvvv\libs\Emeshe\girlpower\TessellatedSphere.v4p" scrollx="690" scrolly="1455">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\TessellatedSphere.v4p" systemname="TessellatedSphere" filename="C:\vvvv\libs\Emeshe\girlpower\TessellatedSphere.v4p" scrollx="0" scrolly="1080">
    <BOUNDS type="Window" left="0" top="4080" width="12390" height="8805">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -210,22 +210,6 @@
    <PIN pinname="Add" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE systemname="AddEmission (MRE.Materials)" filename="..\..\libs\Emeshe\nodes\modules\Materials\AddEmission (MRE.Materials).v4p" nodename="AddEmission (MRE.Materials)" componentmode="Hidden" id="15">
-   <BOUNDS type="Node" left="8115" top="5985" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Material" visible="1" slicecount="1" values="||">
-   </PIN>
-   <BOUNDS type="Box" left="8115" top="5985">
-   </BOUNDS>
-   <PIN pinname="Emission Map" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Strength" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Add" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Material Thru" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="AddReflection (MRE.Materials SphereMap)" filename="..\..\libs\Emeshe\nodes\modules\Materials\AddReflection (MRE.Materials SphereMap).v4p" nodename="AddReflection (MRE.Materials SphereMap)" componentmode="Hidden" id="14">
    <BOUNDS type="Node" left="9345" top="5475" width="100" height="100">
    </BOUNDS>
@@ -353,7 +337,7 @@
    </PIN>
    <PIN pinname="Texture Transform" visible="1">
    </PIN>
-   <PIN pinname="Factor" visible="1">
+   <PIN pinname="Factor" visible="1" slicecount="1" values="9">
    </PIN>
    <PIN pinname="Global World Transform" visible="1">
    </PIN>
@@ -405,9 +389,9 @@
    </PIN>
    </NODE>
    <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\modules\Materials\FeatureManager (MRE.Materials).v4p" nodename="FeatureManager (MRE.Materials)" componentmode="Hidden" id="29">
-   <BOUNDS type="Node" left="8115" top="7950" width="100" height="100">
+   <BOUNDS type="Node" left="8115" top="6750" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Material" visible="1">
+   <PIN pinname="Material" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Standard Features" visible="1">
    </PIN>
@@ -420,12 +404,10 @@
    <PIN pinname="Remove" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="15" srcpinname="Material Thru" dstnodeid="29" dstpinname="Material">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="30" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="9075" top="7575" width="1500" height="240">
+   <BOUNDS type="Box" left="9075" top="6375" width="1500" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9075" top="7575" width="0" height="0">
+   <BOUNDS type="Node" left="9075" top="6375" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="CalculateNormals">
    </PIN>
@@ -433,9 +415,9 @@
    <LINK srcnodeid="30" srcpinname="Output Enum" dstnodeid="29" dstpinname="Standard Features">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="31" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8685" top="7305" width="795" height="240">
+   <BOUNDS type="Box" left="8685" top="6105" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8685" top="7305" width="0" height="0">
+   <BOUNDS type="Node" left="8685" top="6105" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -447,9 +429,9 @@
    <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="29" dstpinname="Parameters">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="32" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8280" top="6465" width="480" height="480">
+   <BOUNDS type="Box" left="8280" top="5265" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="8280" top="6465" width="0" height="0">
+   <BOUNDS type="Node" left="8280" top="5265" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -571,9 +553,9 @@
    <LINK srcnodeid="41" srcpinname="Y Output Value" dstnodeid="39" dstpinname="Opacity">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="43" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8820" top="6420" width="480" height="480">
+   <BOUNDS type="Box" left="8820" top="5220" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="8820" top="6420" width="0" height="0">
+   <BOUNDS type="Node" left="8820" top="5220" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -615,11 +597,9 @@
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="45" srcpinname="Y Output Value" dstnodeid="25" dstpinname="Factor">
-   </LINK>
-   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="25" dstpinname="CurveAmount">
-   </LINK>
    <NODE systemname="Integrate (Differential)" nodename="Integrate (Differential)" componentmode="Hidden" id="48">
    <BOUNDS type="Node" left="3960" top="2700" width="100" height="100">
    </BOUNDS>
@@ -762,6 +742,10 @@
    </LINK>
    <LINK srcnodeid="58" srcpinname="Value Output" dstnodeid="56" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="16" srcpinname="Material Thru" dstnodeid="15" dstpinname="Material">
+   <LINK srcnodeid="16" srcpinname="Material Thru" dstnodeid="29" dstpinname="Material">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="25" dstpinname="CurveAmount">
+   </LINK>
+   <LINK srcnodeid="45" srcpinname="Y Output Value" dstnodeid="25" dstpinname="Factor">
    </LINK>
    </PATCH>
