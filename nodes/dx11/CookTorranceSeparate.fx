@@ -63,18 +63,18 @@ OutComps pPnt(vs2ps In)
 		Components col = CookTorrancePointSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)0;
 		
-		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
-		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
-		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
-		outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
-		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+		outCol.Ambient.xyz = max(0,col.Ambient.xyz * ComponentAmount[0]);
+		outCol.Diffuse.xyz = max(0,col.Diffuse.xyz * ComponentAmount[1]);
+		outCol.Specular.xyz = max(0,col.Specular.xyz * ComponentAmount[2]);
+		outCol.SSS.xyz = max(0,col.SSS.xyz * ComponentAmount[3]);
+		outCol.Rim.xyz = max(0,col.Rim.xyz * ComponentAmount[4]);
 		if(!IsInitial)
 		{
 			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
-			outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
-			outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
-			outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
-			outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
+			outCol.Diffuse.rgb += max(0,Lights[1].Sample(s0, uv).rgb);
+			outCol.Specular.rgb += max(0,Lights[2].Sample(s0, uv).rgb);
+			outCol.SSS.rgb += max(0,Lights[3].Sample(s0, uv).rgb);
+			outCol.Rim.rgb += max(0,Lights[4].Sample(s0, uv).rgb);
 		}
 		
 		return outCol;
@@ -104,18 +104,18 @@ OutComps pSpt(vs2ps In)
 		Components col = CookTorranceSpotSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
 		
-		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
-		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
-		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
-		outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
-		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+		outCol.Ambient.xyz = max(0,col.Ambient.xyz * ComponentAmount[0]);
+		outCol.Diffuse.xyz = max(0,col.Diffuse.xyz * ComponentAmount[1]);
+		outCol.Specular.xyz = max(0,col.Specular.xyz * ComponentAmount[2]);
+		outCol.SSS.xyz = max(0,col.SSS.xyz * ComponentAmount[3]);
+		outCol.Rim.xyz = max(0,col.Rim.xyz * ComponentAmount[4]);
 		if(!IsInitial)
 		{
 			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
-			outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
-			outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
-			outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
-			outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
+			outCol.Diffuse.rgb += max(0,Lights[1].Sample(s0, uv).rgb);
+			outCol.Specular.rgb += max(0,Lights[2].Sample(s0, uv).rgb);
+			outCol.SSS.rgb += max(0,Lights[3].Sample(s0, uv).rgb);
+			outCol.Rim.rgb += max(0,Lights[4].Sample(s0, uv).rgb);
 		}
 		
 		return outCol;
@@ -144,18 +144,18 @@ OutComps pSun(vs2ps In)
 		Components col = CookTorranceSunSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
 		
-		outCol.Ambient.xyz = col.Ambient.xyz * ComponentAmount[0];
-		outCol.Diffuse.xyz = col.Diffuse.xyz * ComponentAmount[1];
-		outCol.Specular.xyz = col.Specular.xyz * ComponentAmount[2];
-		outCol.SSS.xyz = col.SSS.xyz * ComponentAmount[3];
-		outCol.Rim.xyz = col.Rim.xyz * ComponentAmount[4];
+		outCol.Ambient.xyz = max(0,col.Ambient.xyz * ComponentAmount[0]);
+		outCol.Diffuse.xyz = max(0,col.Diffuse.xyz * ComponentAmount[1]);
+		outCol.Specular.xyz = max(0,col.Specular.xyz * ComponentAmount[2]);
+		outCol.SSS.xyz = max(0,col.SSS.xyz * ComponentAmount[3]);
+		outCol.Rim.xyz = max(0,col.Rim.xyz * ComponentAmount[4]);
 		if(!IsInitial)
 		{
 			outCol.Ambient.rgb = max(outCol.Ambient.rgb,Lights[0].Sample(s0, uv).rgb);
-			outCol.Diffuse.rgb += Lights[1].Sample(s0, uv).rgb;
-			outCol.Specular.rgb += Lights[2].Sample(s0, uv).rgb;
-			outCol.SSS.rgb += Lights[3].Sample(s0, uv).rgb;
-			outCol.Rim.rgb += Lights[4].Sample(s0, uv).rgb;
+			outCol.Diffuse.rgb += max(0,Lights[1].Sample(s0, uv).rgb);
+			outCol.Specular.rgb += max(0,Lights[2].Sample(s0, uv).rgb);
+			outCol.SSS.rgb += max(0,Lights[3].Sample(s0, uv).rgb);
+			outCol.Rim.rgb += max(0,Lights[4].Sample(s0, uv).rgb);
 		}
 		//outCol.SSS.xy = Res;
 		return outCol;
