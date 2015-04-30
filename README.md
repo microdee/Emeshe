@@ -78,14 +78,10 @@ Emeshe requires the following packs to be included in the nodelist of vvvv:
 
  - mcropack: https://github.com/microdee/VVVV.Packs.mcro
  - VObjects: https://github.com/microdee/VVVV.Packs.VObject
- - Special DX11 version: https://drive.google.com/open?id=0B6nEyHrL_XkEUXZtcFZoQmtXaU0&authuser=0<br />
-   it is required because of a bugfix i haven't sent for pull request yet. it will be sent soon
  - (OPTIONAL) if you'd like to read .HDR and .EXR format hdr images (like the panoramas in girlpower) you will need CV.Image Pack for that<br />
    I'd recommend joreg's fork https://github.com/joreg/VVVV.Packs.Image
 
 Put all of them in the packs folder of VVVV then download (or clone) this repository to the packs folder as well.
-
-There is a preconfigured VVVV bundle to work with Emeshe here https://drive.google.com/open?id=0B6nEyHrL_XkEeklCTS1ZNFdCdm8&authuser=0 if you want to spare time, however legally it is only available for testing purposes.
 
 **Emeshe is provided "as is", and it's not guaranteed to work in several scenarios. A high-end GPU is required to run this thing at least on a 30 FPS average on 720p (20-25 on 1080p). It will never run on built-in Intel graphics cards or reduced performance mobile GPU's. Read full copyright at the bottom of README.md.**
 
