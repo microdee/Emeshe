@@ -5,6 +5,8 @@ EMESHE
 
 Rendering engine for VVVV using DX11 and based on the principles of the great original MRE for DX9. It's a deferred engine most of the effects (lighting, reflection, global illumination, shadows etc.) is done in post process. It is not the fastest one you can find. Actually by performance it's way behind Unity/Unreal Engine/Cryengine trinity standards but as I can recall Emeshe is the closest thing to those engines what you can get in vvvv publicly. Emeshe is also probably the noisiest render engine out there, because of Stochastic methods and artifacts dampened by noise (like irregular sampling in PCSS).
 
+Prezi created for NODE15 can be found here: http://prezi.com/n3gvyzo9szrw
+
 FEATURES
 ======
 
