@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="0" scrolly="8835">
-   <BOUNDS type="Window" left="2070" top="3720" width="19155" height="10830">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="0" scrolly="1680">
+   <BOUNDS type="Window" left="1950" top="4620" width="16815" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -69,6 +69,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="51" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Node" left="9300" top="3540" width="0" height="0">
@@ -84,6 +86,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Global Velocity Gain|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="50" systemname="IOBox (Node)">
@@ -373,6 +377,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="28">
    <BOUNDS type="Node" left="2445" top="10155" width="100" height="100">
@@ -437,6 +443,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE systemname="Topology (DX11.Geometry)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Topology (DX11.Geometry)" componentmode="Hidden" id="24">
    <BOUNDS type="Node" left="1485" top="11940" width="100" height="100">
@@ -465,7 +473,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="18420" top="8820" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="20">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -514,6 +522,8 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="bumpOffset">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE systemname="Defines (MRE DeferredBase)" filename="Defines (MRE DeferredBase).v4p" componentmode="Hidden" id="17" nodename="Defines (MRE DeferredBase).v4p">
@@ -601,7 +611,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2565" top="5370" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0,0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -614,6 +624,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Flip Normals|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
@@ -714,6 +726,8 @@
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Write to Depth|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK srcnodeid="8" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Write to Depth">
@@ -1081,7 +1095,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="13995" top="6780" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

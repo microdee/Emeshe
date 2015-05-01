@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="0" scrolly="4530">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="0" scrolly="2040">
    <BOUNDS type="Window" left="1950" top="4620" width="16815" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -43,7 +43,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="6900" top="2160" width="2205" height="240">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Diffuse Color|">
    </PIN>
@@ -65,6 +65,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="69" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Node" left="9315" top="3495" width="0" height="0">
@@ -80,6 +82,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Global Velocity Gain|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="75" systemname="IOBox (Node)">
@@ -373,6 +377,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="242">
    <BOUNDS type="Node" left="2460" top="10110" width="100" height="100">
@@ -437,6 +443,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <PACK Name="testPack" Version="0.1.0">
    </PACK>
@@ -480,6 +488,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Bump Offset|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="249" systemname="IOBox (Node)">
@@ -530,6 +540,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Write to Depth|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="285">
@@ -596,6 +608,8 @@
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="292" systemname="IOBox (Value Advanced)">

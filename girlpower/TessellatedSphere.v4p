@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\TessellatedSphere.v4p" systemname="TessellatedSphere" filename="C:\vvvv\libs\Emeshe\girlpower\TessellatedSphere.v4p" scrollx="0" scrolly="1080">
-   <BOUNDS type="Window" left="0" top="4080" width="12390" height="8805">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\TessellatedSphere.v4p" systemname="TessellatedSphere" filename="C:\vvvv\libs\Emeshe\girlpower\TessellatedSphere.v4p" scrollx="300" scrolly="180">
+   <BOUNDS type="Window" left="13035" top="6210" width="12390" height="8805">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>

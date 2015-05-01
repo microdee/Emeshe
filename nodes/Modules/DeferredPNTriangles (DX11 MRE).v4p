@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE).v4p" systemname="DeferredPNTriangles (DX11 MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mrre\nodes\Modules\DeferredPNTriangles (DX11 MRE).v4p" locked="0" scrollx="3030" scrolly="3480">
-   <BOUNDS type="Window" left="8430" top="3930" width="16815" height="9885">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE).v4p" systemname="DeferredPNTriangles (DX11 MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mrre\nodes\Modules\DeferredPNTriangles (DX11 MRE).v4p" locked="0" scrollx="6570" scrolly="4800">
+   <BOUNDS type="Window" left="1740" top="4245" width="16815" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="1170" top="1410" width="0" height="0">
@@ -65,6 +65,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="69" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Node" left="9315" top="3495" width="0" height="0">
@@ -80,6 +82,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Global Velocity Gain|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="75" systemname="IOBox (Node)">
@@ -371,6 +375,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="242">
    <BOUNDS type="Node" left="2460" top="10110" width="100" height="100">
@@ -434,6 +440,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="TriPlanarPow">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE systemname="Topology (DX11.Geometry)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Topology (DX11.Geometry)" componentmode="Hidden" id="247">
@@ -647,6 +655,8 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="bumpOffset">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK srcnodeid="253" srcpinname="Y Output Value" dstnodeid="246" dstpinname="bumpOffset">
    </LINK>
@@ -759,6 +769,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
    <LINK srcnodeid="265" srcpinname="Y Output Value" dstnodeid="246" dstpinname="FlipNormals">
    </LINK>
@@ -860,6 +872,8 @@
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Write to Depth|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK srcnodeid="270" srcpinname="Y Output Value" dstnodeid="254" dstpinname="Write to Depth">

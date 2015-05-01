@@ -437,7 +437,7 @@ PSOut PS(PSin In)
     #endif
     
     Out.velocity = In.PosP.xy/In.PosP.w - In.velocity.xy/In.velocity.w;
-    Out.velocity *= 0.5;
+    Out.velocity *= 0.5 * gVelocityGain;
     Out.velocity += 0.5;
     
     #if defined(TRIPLANAR)

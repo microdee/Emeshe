@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Dancer-TessellatedSphere-Pointlight.v4p" systemname="Emeshe-test" filename="C:\vvvv\release\EmesheDroid\Emeshe-test.v4p" scrollx="0" scrolly="-360">
-   <BOUNDS type="Window" left="11910" top="1740" width="13605" height="13785">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Dancer-TessellatedSphere-Pointlight.v4p" systemname="Emeshe-test" filename="C:\vvvv\release\EmesheDroid\Emeshe-test.v4p" scrollx="0" scrolly="25935">
+   <BOUNDS type="Window" left="9645" top="1050" width="13605" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -129,7 +129,7 @@
    </BOUNDS>
    <PIN pinname="Transform" visible="1">
    </PIN>
-   <PIN pinname="Texture" visible="1">
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -369,7 +369,7 @@
    </PIN>
    </NODE>
    <NODE systemname="FXAA11 (DX11.TextureFX)" filename="%VVVV%\packs\dx11\nodes\texture11\Filter\FXAA11.tfx" nodename="FXAA11 (DX11.TextureFX)" componentmode="Hidden" id="258">
-   <BOUNDS type="Node" left="3735" top="32895" width="100" height="100">
+   <BOUNDS type="Node" left="3765" top="32550" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -378,8 +378,6 @@
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="258" srcpinname="Texture Out" dstnodeid="159" dstpinname="Texture">
-   </LINK>
    <NODE systemname="SSAO (DX11 MRE)" filename="..\..\libs\Emeshe\nodes\modules\SSAO (DX11 MRE).v4p" nodename="SSAO (DX11 MRE)" componentmode="Hidden" id="274">
    <BOUNDS type="Node" left="3720" top="25065" width="100" height="100">
    </BOUNDS>
@@ -935,7 +933,7 @@
    </PIN>
    </NODE>
    <NODE systemname="S (Node)" nodename="S (Node)" componentmode="Hidden" id="433">
-   <BOUNDS type="Node" left="12615" top="5790" width="100" height="100">
+   <BOUNDS type="Node" left="12525" top="5835" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Send String" slicecount="1" values="MaterialBuffer">
    </PIN>
@@ -945,7 +943,7 @@
    <LINK srcnodeid="176" srcpinname="Material Buffers" dstnodeid="433" dstpinname="Input Value">
    </LINK>
    <NODE systemname="S (Node)" nodename="S (Node)" componentmode="Hidden" id="434">
-   <BOUNDS type="Node" left="14205" top="5805" width="100" height="100">
+   <BOUNDS type="Node" left="14460" top="5850" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Send String" slicecount="1" values="MaterialDictionary">
    </PIN>
@@ -1718,26 +1716,6 @@
    </NODE>
    <LINK srcnodeid="594" srcpinname="Y Output Value" dstnodeid="274" dstpinname="Blur Radius">
    </LINK>
-   <NODE systemname="Glow (DX11.TextureFX)" filename="%VVVV%\packs\dx11\nodes\texture11\Filter\Glow.tfx" nodename="Glow (DX11.TextureFX)" componentmode="Hidden" id="600">
-   <BOUNDS type="Node" left="5205" top="33765" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
-   </PIN>
-   <PIN pinname="Texture Out" visible="1">
-   </PIN>
-   <PIN pinname="Highlight Boost" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="Shape" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Exposure" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Saturation" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Auto Exposure Factor" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="531" srcpinname="Texture Out" dstnodeid="600" dstpinname="Texture In">
-   </LINK>
    <LINK srcnodeid="325" srcpinname="Texture Out" dstnodeid="258" dstpinname="Texture In">
    </LINK>
    <NODE systemname="FakeFullscreen (VVVV)" filename="..\..\libs\mcropack\nodes\modules\FakeFullscreen (VVVV).v4p" nodename="FakeFullscreen (VVVV)" componentmode="Hidden" id="602">
@@ -1794,7 +1772,7 @@
    </NODE>
    <LINK srcnodeid="605" srcpinname="Y Output Value" dstnodeid="602" dstpinname="Selected Monitor">
    </LINK>
-   <NODE systemname="ShadowMap (MRE.PointLight)" filename="..\..\libs\Emeshe\nodes\modules\Lights\ShadowMap (MRE.PointLight).v4p" nodename="ShadowMap (MRE.PointLight)" componentmode="InAWindow" id="614">
+   <NODE systemname="ShadowMap (MRE.PointLight)" filename="..\..\libs\Emeshe\nodes\modules\Lights\ShadowMap (MRE.PointLight).v4p" nodename="ShadowMap (MRE.PointLight)" componentmode="Hidden" id="614">
    <BOUNDS type="Node" left="11085" top="6435" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Window" left="18900" top="4485" width="9000" height="10275">
@@ -2013,7 +1991,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2085" top="2325" width="4800" height="3600">
    </BOUNDS>
-   <BOUNDS type="Window" left="0" top="4080" width="12390" height="8805">
+   <BOUNDS type="Window" left="13035" top="6210" width="12390" height="8805">
    </BOUNDS>
    <PIN pinname="Base Layer" visible="1">
    </PIN>
@@ -2079,7 +2057,7 @@
    <LINK srcnodeid="676" srcpinname="Buffer Out" dstnodeid="167" dstpinname="Pointlight Buffer">
    </LINK>
    <NODE systemname="AddLight (MRE.PointLight)" filename="..\nodes\modules\Lights\AddLight (MRE.PointLight).v4p" nodename="AddLight (MRE.PointLight)" componentmode="Hidden" id="677">
-   <BOUNDS type="Node" left="12030" top="12300" width="100" height="100">
+   <BOUNDS type="Node" left="12165" top="12300" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Dictionary" visible="1">
    </PIN>
@@ -2480,10 +2458,6 @@
    </LINK>
    <LINK srcnodeid="157" srcpinname="Keyboard State" dstnodeid="707" dstpinname="Keyboard">
    </LINK>
-   <LINK srcnodeid="707" srcpinname="View" dstnodeid="129" dstpinname="View">
-   </LINK>
-   <LINK srcnodeid="707" srcpinname="Projection" dstnodeid="129" dstpinname="Projection">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="708" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5895" top="8835" width="480" height="480">
    </BOUNDS>
@@ -2533,5 +2507,11 @@
    <LINK srcnodeid="668" srcpinname="Specular" dstnodeid="167" dstpinname="RoughMaps">
    </LINK>
    <LINK srcnodeid="668" srcpinname="SSS Map" dstnodeid="167" dstpinname="SSSMaps">
+   </LINK>
+   <LINK srcnodeid="707" srcpinname="View" dstnodeid="129" dstpinname="View">
+   </LINK>
+   <LINK srcnodeid="707" srcpinname="Projection" dstnodeid="129" dstpinname="Projection">
+   </LINK>
+   <LINK srcnodeid="258" srcpinname="Texture Out" dstnodeid="159" dstpinname="Texture">
    </LINK>
    </PATCH>
