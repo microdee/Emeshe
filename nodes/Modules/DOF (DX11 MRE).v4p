@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
    <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="0" scrolly="3420">
-   <BOUNDS type="Window" left="2220" top="7245" width="16230" height="11175">
+   <BOUNDS type="Window" left="16605" top="3750" width="16230" height="11175">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="915" top="165" width="795" height="240">

@@ -1,0 +1,441 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\LightRender.v4p" systemname="LightRender" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\LightRender.v4p" scrollx="0" scrolly="1620">
+   <BOUNDS type="Window" left="16530" top="4800" width="11505" height="9315">
+   </BOUNDS>
+   <PACK Name="VVVV.Packs" Version="0.2.0">
+   </PACK>
+   <PACK Name="addonpack" Version="33.7.0">
+   </PACK>
+   <NODE systemname="CookTorrance (DX11 MRE)" filename="..\..\nodes\modules\CookTorrance (DX11 MRE).v4p" nodename="CookTorrance (DX11 MRE)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1560" top="3270" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="8" values=",,,,,,,">
+   </PIN>
+   <PIN pinname="Resource Semantics" visible="1">
+   </PIN>
+   <PIN pinname="Sunlight Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Technique" visible="1">
+   </PIN>
+   <PIN pinname="Light Out" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics Thru" visible="1">
+   </PIN>
+   <PIN pinname="Resource Semantics Thru" visible="1">
+   </PIN>
+   <PIN pinname="RoughMaps" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="1950" top="1425" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Input Value" dstnodeid="0" dstpinname="Resolution">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="2190" top="1905" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="CustomSemantics">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Input Value" dstnodeid="0" dstpinname="Custom Semantics">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="2385" top="2190" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Resources">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Input Value" dstnodeid="0" dstpinname="Resource Semantics">
+   </LINK>
+   <NODE systemname="Lighting" filename="Lighting.v4p" componentmode="Hidden" id="5" nodename="Lighting.v4p">
+   <BOUNDS type="Node" left="4245" top="705" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4245" top="705" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="32655" top="4995" width="11340" height="6000">
+   </BOUNDS>
+   <PIN pinname="Sunlight Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Pointlight Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Sunlight Buffer" dstnodeid="0" dstpinname="Sunlight Buffer">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="6" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="4200" top="2685" width="840" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4200" top="2685" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Sun">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Output Enum" dstnodeid="0" dstpinname="Technique">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="7" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1380" top="8550" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1380" top="8550" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Light Out|">
+   </PIN>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="CookTorrance (DX11 MRE)" filename="..\..\nodes\modules\CookTorrance (DX11 MRE).v4p" nodename="CookTorrance (DX11 MRE)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="1530" top="5205" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Light In" visible="1">
+   </PIN>
+   <PIN pinname="Light Out" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pointlight Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1">
+   </PIN>
+   <PIN pinname="Resource Semantics" visible="1">
+   </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
+   <PIN pinname="Technique" visible="1">
+   </PIN>
+   <PIN pinname="Initial" visible="1">
+   </PIN>
+   <PIN pinname="LightCount" visible="1">
+   </PIN>
+   <PIN pinname="ShadowMaps" visible="1">
+   </PIN>
+   <PIN pinname="Enable Shadows" visible="1">
+   </PIN>
+   <PIN pinname="Shadow Bias" slicecount="1" values="0.3">
+   </PIN>
+   <PIN pinname="RoughMaps" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Light Out" dstnodeid="8" dstpinname="Light In">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Pointlight Buffer" dstnodeid="8" dstpinname="Pointlight Buffer">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Custom Semantics Thru" dstnodeid="8" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Resource Semantics Thru" dstnodeid="8" dstpinname="Resource Semantics">
+   </LINK>
+   <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="1695" top="4710" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Input Value" dstnodeid="8" dstpinname="Resolution">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="10" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="4830" top="4920" width="765" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4830" top="4920" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Point">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output Enum" dstnodeid="8" dstpinname="Technique">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="11" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3345" top="4065" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3345" top="4065" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Initial">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="450" top="4500" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="450" top="4500" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Y Output Value" dstnodeid="8" dstpinname="LightCount">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="13">
+   <BOUNDS type="Node" left="3900" top="4155" width="675" height="270">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="PointShadowMaps">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Input Value" dstnodeid="8" dstpinname="ShadowMaps">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5880" top="1905" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5880" top="1905" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Enable Shadows|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Enable Shadows">
+   </LINK>
+   <NODE systemname="ReflectionInDiffuse (DX11 MRE)" filename="..\..\nodes\modules\ReflectionInDiffuse (DX11 MRE).v4p" nodename="ReflectionInDiffuse (DX11 MRE)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="2340" top="7125" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Light In" visible="1">
+   </PIN>
+   <PIN pinname="Environments" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="RefractIndices" visible="1">
+   </PIN>
+   <PIN pinname="FresnelTextures" visible="1">
+   </PIN>
+   <PIN pinname="Render Semantics" visible="1">
+   </PIN>
+   <PIN pinname="Resource Semantics" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Strength" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="ReflectionMaps" visible="1">
+   </PIN>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Light Out" dstnodeid="15" dstpinname="Light In">
+   </LINK>
+   <NODE systemname="FileTexture (DX11 HDR)" filename="..\..\..\mcropack\nodes\modules\FileTexture (DX11 HDR).v4p" nodename="FileTexture (DX11 HDR)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="5910" top="5895" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="34035" top="5370" width="9000" height="6000">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Buffers" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Reload" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="17" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5970" top="5400" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5970" top="5400" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\assets\Environments\hdr\northcliff_2k.exr">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Files (*.*)||*.*|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="16" dstpinname="Filename">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7155" top="5055" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7155" top="5055" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="16" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="16" dstpinname="Reload">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="20" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="5700" top="7260" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5700" top="7260" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Environments">
+   </PIN>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="ReflectRefract (DX11 MRE)" filename="..\..\nodes\modules\ReflectRefract (DX11 MRE).v4p" nodename="ReflectRefract (DX11 MRE)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="2445" top="6015" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Refraction Indices Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Fresnel Array" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Refraction Indices Buffer" dstnodeid="15" dstpinname="RefractIndices">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Fresnel Array" dstnodeid="15" dstpinname="FresnelTextures">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="23">
+   <BOUNDS type="Node" left="3855" top="6075" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="CustomSemantics">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="22">
+   <BOUNDS type="Node" left="4050" top="6360" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Resources">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Input Value" dstnodeid="15" dstpinname="Render Semantics">
+   </LINK>
+   <LINK srcnodeid="22" srcpinname="Input Value" dstnodeid="15" dstpinname="Resource Semantics">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5040" top="6780" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5040" top="6780" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="7" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="2505" top="2610" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="SpecularMaps">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Input Value" dstnodeid="0" dstpinname="RoughMaps">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="2745" top="3750" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="SpecularMaps">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="26" srcpinname="Input Value" dstnodeid="8" dstpinname="RoughMaps">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="3780" top="5625" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="SpecularMaps">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="Input Value" dstnodeid="15" dstpinname="ReflectionMaps">
+   </LINK>
+   <NODE systemname="FileTexture (DX11 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="FileTexture (DX11 2d)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="8085" top="6105" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="8190" top="5520" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8190" top="5520" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\assets\Environments\PANO_20150502_122906.jpg">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Files (*.*)||*.*|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="29" srcpinname="Output String" dstnodeid="28" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="28" srcpinname="Texture Out" dstnodeid="15" dstpinname="Environments">
+   </LINK>
+   <LINK srcnodeid="28" srcpinname="Texture Out" dstnodeid="20" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="30">
+   <BOUNDS type="Node" left="1230" top="6375" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="30" srcpinname="Input Value" dstnodeid="15" dstpinname="Resolution">
+   </LINK>
+   </PATCH>

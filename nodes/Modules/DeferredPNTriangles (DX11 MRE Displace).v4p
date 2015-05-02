@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="0" scrolly="1680">
-   <BOUNDS type="Window" left="1950" top="4620" width="16815" height="9885">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="1770" scrolly="9150">
+   <BOUNDS type="Window" left="6510" top="5715" width="16815" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\PoissionDiscPrototype.v4p" scrollx="1125" scrolly="420" systemname="PoissionDiscPrototype" filename="C:\vvvv\libs\Emeshe\girlpower\PoissionDiscPrototype.v4p">
-   <BOUNDS type="Window" left="7800" top="1155" width="9000" height="6000">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\PoissonDiscPrototype.v4p" scrollx="0" scrolly="0" systemname="PoissionDiscPrototype" filename="C:\vvvv\libs\Emeshe\girlpower\PoissionDiscPrototype.v4p">
+   <BOUNDS type="Window" left="7800" top="1155" width="9000" height="9240">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -87,7 +87,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2820" top="480" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="-0.3,0.33,-0.23">
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.27,0.15,0.08">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -119,7 +119,7 @@
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <PIN pinname="Direction" visible="1" slicecount="30" values="-0.710128724344961,-0.475443729932238,0.244096430155558,-0.608241681648578,-0.107546573439938,0.639052750679776,-0.274026989936831,0.301429718732832,0.789912641048431,0.164856698095961,0.59527010356898,0.63905275067978,0.540770730729175,0.661737541328448,0.244096430155563,0.710128724344961,0.475443729932235,-0.244096430155564,0.608241681648576,0.107546573439934,-0.63905275067978,0.274026989936826,-0.301429718732836,-0.789912641048431,-0.164856698095966,-0.595270103568983,-0.639052750679776,-0.540770730729179,-0.661737541328447,-0.244096430155558">
+   <PIN pinname="Direction" visible="1" slicecount="30" values="-0.799001455307007,-0.534945547580719,0.274645119905472,-0.684363186359406,-0.121006041765213,0.719030261039734,-0.308321505784988,0.339153677225113,0.888770282268524,0.185488536953926,0.669768214225769,0.719030261039734,0.608448207378387,0.744554102420807,0.274645119905472,0.799001455307007,0.534945547580719,-0.274645119905472,0.684363186359406,0.121006041765213,-0.719030261039734,0.308321505784988,-0.339153677225113,-0.888770282268524,-0.185488536953926,-0.669768214225769,-0.719030261039734,-0.608448207378387,-0.744554102420807,-0.274645119905472">
    </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="Layer" dstnodeid="8" dstpinname="Layer 2">
@@ -318,8 +318,22 @@
    </LINK>
    <LINK srcnodeid="41" srcpinname="Output" dstnodeid="23" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="40" srcpinname="NormalizedXYZ" dstnodeid="15" dstpinname="Direction">
-   </LINK>
    <LINK srcnodeid="37" srcpinname="Radians" dstnodeid="39" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Select (Value Vector)" filename="%VVVV%\addonpack\lib\nodes\plugins\VectorSized.dll" nodename="Select (Value Vector)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="4380" top="5610" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Select" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="40" srcpinname="NormalizedXYZ" dstnodeid="42" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="Output" dstnodeid="15" dstpinname="Direction">
    </LINK>
    </PATCH>

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" systemname="MaterialBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" systemname="MaterialBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" scrollx="0" scrolly="4635">
    <BOUNDS type="Window" left="7965" top="1995" width="13050" height="11325">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -1165,15 +1165,5 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="132" srcpinname="Output String" dstnodeid="5" dstpinname="Filename">
-   </LINK>
-   <NODE systemname="ReadBack (DX11.Buffer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="ReadBack (DX11.Buffer)" componentmode="Hidden" id="133">
-   <BOUNDS type="Node" left="6585" top="15765" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Layout" slicecount="1" values="|uint,uint,uint|">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="36" srcpinname="Buffers" dstnodeid="133" dstpinname="Input">
    </LINK>
    </PATCH>

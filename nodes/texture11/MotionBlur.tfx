@@ -10,7 +10,7 @@ float2 ScreenSize:TARGETSIZE;
 
 cbuffer controls:register(b0){
 	float Amount = 0.5;
-	float minvel = 0.05;
+	float minvel = 0;
 	float SampleFreq = 3;
 	float MaxSamples = 16;
 	float MinSamples = 16;

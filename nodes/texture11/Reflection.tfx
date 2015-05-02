@@ -114,6 +114,6 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 }
 
 technique10 Main{
-	pass P0
+	pass P0 <string format="R16G16B16A16_Float";>
 	{SetPixelShader(CompileShader(ps_5_0, pRefleract()));}
 }
