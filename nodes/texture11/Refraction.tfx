@@ -13,11 +13,9 @@
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
-StructuredBuffer<float3> RefractIndices;
 
 Texture2DArray Environments;
 Texture2DArray RefractionMaps;
-Texture2DArray FresnelTextures;
 
 float2 R : TARGETSIZE;
 
@@ -92,8 +90,10 @@ float4 pRef(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 		float rrSlice = GetFloat(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_ENVID);
 		float rrStrength = GetFloat(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_STRENGTH) * EnvStrength;
 
-		float rrFresnelID = GetFloat(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_FRESNELID);
-		float rrFresnel = FresnelTextures.SampleLevel(s0, float3(dot(norm, rrV), 0, rrFresnelID), 0).r;
+		float2 fresnel = GetFloat2(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_FRESNEL);
+		float2 fresnelPow = GetFloat2(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_FRESNELPOWER);
+		float3 IOR = GetFloat3(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_IOR);
+		float2 rrFresnel = pow(saturate(dot(norm, rrV) + lerp(1,-1,fresnel)), fresnelPow);
 
 		const half4 colors[3] =
 	    {
@@ -102,26 +102,31 @@ float4 pRef(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 	    	{ 0, 0, 1, 1 },
 		};
 		float4 transColor = 0;
+		float4 sTransColor = 0;
 	  	bool fail = false;
 	    for(int j=0; j<3; j++) {
-	    	float3 rrT = refract(-rrV, bn, RefractIndices[rrFresnelID][j]);
+	    	float3 rrT = refract(-rrV, bn, IOR[j]);
 			rrT = mul(float4(rrT,0), CamViewInv).xyz;
 	    	transColor += DiscSample(Environments, s0, rrT, rrBlur, rrSlice, MaxMIPlevel) * colors[j];
+			sTransColor += Environments.SampleLevel(s0, float3(DirToUV(rrT), rrSlice), 0) * colors[j];
 		}
+
+		transColor *= rrFresnel.x;
+		float4 outcol = lerp(transColor, sTransColor, rrFresnel.y);
 
 		if(IsInitial)
 		{
-			float4 rrcol = transColor * rrStrength * 2 * rrFresnel;
+			float4 rrcol = outcol * rrStrength * 2;
 			float4 rrcolmul = lerp(rrcol, rrcol * diffcol, rrMul);
-			col.rgb = lerp(input.rgb, rrcolmul.rgb, rrammap);
+			col.rgb = rrcolmul * rrammap;
+			col.a = max(rrammap.r, max(rrammap.g, rrammap.b)) * max(rrFresnel.x, rrFresnel.y);
+			return float4(col.rgb, col.a * ColorTex.Sample(s0,uv).a);
 		}
 		else
 		{
-			col.rgb += transColor.rgb * rrStrength * 2 * rrFresnel * rrammap;
+			col.rgb += transColor.rgb * rrStrength * 2 * rrammap;
+			return float4(col.rgb,ColorTex.Sample(s0,uv).a);
 		}
-
-		return float4(col.xyz,ColorTex.Sample(s0,uv).a);
-		//return rrroughmap;
 	}
 	else return ColorTex.Sample(s0, uv);
 	

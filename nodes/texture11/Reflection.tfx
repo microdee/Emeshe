@@ -13,11 +13,9 @@
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
-StructuredBuffer<float3> RefractIndices;
 
 Texture2DArray Environments;
 Texture2DArray ReflectionMaps;
-Texture2DArray FresnelTextures;
 
 float2 R : TARGETSIZE;
 
@@ -92,23 +90,28 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 		float rlSlice = GetFloat(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_ENVID);
 		float rlStrength = GetFloat(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_STRENGTH) * EnvStrength;
 
-		float rlFresnelID = GetFloat(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_FRESNELID);
-		float rlFresnel = FresnelTextures.SampleLevel(s0, float3(dot(norm, rrV), 0, rlFresnelID), 0).r;
+		float2 fresnel = GetFloat2(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_FRESNEL);
+		float2 fresnelPow = GetFloat2(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_FRESNELPOWER);
+		float2 rlFresnel = pow(saturate(dot(norm, rrV) + lerp(-1,1,fresnel)), fresnelPow);
 
 		float4 reflColor = DiscSample(Environments, s0, rrR, rlBlur, rlSlice, MaxMIPlevel);
+		float4 sReflColor = Environments.SampleLevel(s0, float3(DirToUV(rrR), rlSlice), 0);
+		reflColor *= rlFresnel.x;
+		float4 outcol = lerp(reflColor, sReflColor, rlFresnel.y);
 
 		if(IsInitial)
 		{
-			float4 rlcol = reflColor * rlStrength * 2 * rlFresnel;
+			float4 rlcol = outcol * rlStrength * 2;
 			float4 rlcolmul = lerp(rlcol, rlcol * diffcol, rlMul);
-			col.rgb = lerp(input.rgb, rlcolmul.rgb, rlammap);
+			col.rgb = rlcolmul * rlammap;
+			col.a = max(rlammap.r, max(rlammap.g, rlammap.b)) * max(rlFresnel.x, rlFresnel.y);
+			return float4(col.rgb, col.a * ColorTex.Sample(s0,uv).a);
 		}
 		else
 		{
-			col.rgb += reflColor.rgb * rlStrength * 2 * rlFresnel * rlammap;
+			col.rgb += outcol.rgb * rlStrength * 2 * rlammap;
+			return float4(col.rgb,ColorTex.Sample(s0,uv).a);
 		}
-
-		return float4(col.rgb,ColorTex.Sample(s0,uv).a);
 	}
 	else return ColorTex.Sample(s0, uv);
 }

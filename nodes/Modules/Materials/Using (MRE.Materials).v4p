@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\Modules\Materials\Using (MRE.Materials).v4p" systemname="Using (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Materials\Using (MRE.Materials).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\Using (MRE.Materials).v4p" systemname="Using (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Materials\Using (MRE.Materials).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="10380" top="5535" width="13545" height="9015">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -343,7 +343,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3450" top="1395" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

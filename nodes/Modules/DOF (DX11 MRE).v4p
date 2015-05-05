@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="0" scrolly="3420">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="1395" scrolly="0">
    <BOUNDS type="Window" left="16605" top="3750" width="16230" height="11175">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -211,7 +211,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="1335" top="720" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="10">
+   <PIN pinname="Y Input Value" slicecount="1" values="18.94">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
