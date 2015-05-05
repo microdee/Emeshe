@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Box-Skulls-Shadows.v4p" systemname="Box-Skulls-Shadows" filename="C:\vvvv\libs\Emeshe\girlpower\Box-Skulls-Shadows.v4p" scrollx="0" scrolly="1350">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Box-Skulls-Shadows.v4p" systemname="Box-Skulls-Shadows" filename="C:\vvvv\libs\Emeshe\girlpower\Box-Skulls-Shadows.v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="14400" top="1320" width="13350" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -122,18 +122,20 @@
    </LINK>
    <LINK srcnodeid="156" srcpinname="Y Output Value" dstnodeid="-6" dstpinname="Maximum background fpsS">
    </LINK>
-   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="157">
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="157" border="0">
    <BOUNDS type="Node" left="3090" top="28800" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="3090" top="28800" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="-120" top="-120" width="28980" height="16380">
+   <BOUNDS type="Window" left="28800" top="0" width="28800" height="16200">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
    <PIN pinname="Mouse State" visible="1">
    </PIN>
    <PIN pinname="Keyboard State" visible="1">
+   </PIN>
+   <PIN pinname="ID" visible="1" pintype="Output">
    </PIN>
    </NODE>
    <NODE systemname="Quad (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Layer)" componentmode="Hidden" id="159">
@@ -204,7 +206,7 @@
    <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE systemname="MaterialBuffer (DX11 MRE)" filename="..\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" nodename="MaterialBuffer (DX11 MRE)" componentmode="InAWindow" id="176">
+   <NODE systemname="MaterialBuffer (DX11 MRE)" filename="..\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" nodename="MaterialBuffer (DX11 MRE)" componentmode="Hidden" id="176">
    <BOUNDS type="Node" left="13260" top="4725" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Clear" visible="1">
@@ -561,9 +563,9 @@
    </PIN>
    <PIN pinname="Enable Shadows" visible="1">
    </PIN>
-   <PIN pinname="Shadow Bias" visible="1" slicecount="1" values="0.05" pintype="Input">
+   <PIN pinname="Shadow Bias" visible="1" slicecount="1" pintype="Input" values="0.05">
    </PIN>
-   <PIN pinname="Shadow Noise" slicecount="1" values="0.15" visible="1" pintype="Input">
+   <PIN pinname="Shadow Noise" slicecount="1" visible="1" pintype="Input" values="0.15">
    </PIN>
    </NODE>
    <LINK srcnodeid="228" srcpinname="Output Enum" dstnodeid="167" dstpinname="Technique">
@@ -1268,7 +1270,7 @@
    <PIN pinname="Output 1" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="ShadowMap (MRE.PointLight)" filename="..\nodes\modules\Lights\ShadowMap (MRE.PointLight).v4p" nodename="ShadowMap (MRE.PointLight)" componentmode="InAWindow" id="476">
+   <NODE systemname="ShadowMap (MRE.PointLight)" filename="..\nodes\modules\Lights\ShadowMap (MRE.PointLight).v4p" nodename="ShadowMap (MRE.PointLight)" componentmode="Hidden" id="476">
    <BOUNDS type="Node" left="9285" top="12390" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
@@ -1621,7 +1623,7 @@
    </PIN>
    <PIN pinname="Lights" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Specular" slicecount="1" values="1" visible="1">
+   <PIN pinname="Specular" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Diffuse" slicecount="1" values="1">
    </PIN>
@@ -1766,22 +1768,6 @@
    </LINK>
    <LINK srcnodeid="422" srcpinname="Output" dstnodeid="519" dstpinname="Lights">
    </LINK>
-   <NODE systemname="ReflectRefract (DX11 MRE)" filename="..\nodes\modules\ReflectRefract (DX11 MRE).v4p" nodename="ReflectRefract (DX11 MRE)" componentmode="Hidden" id="361">
-   <BOUNDS type="Node" left="6885" top="16410" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Refraction Indices Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Fresnel Array" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Fresnel Offset" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Fresnel Width" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="361" srcpinname="Refraction Indices Buffer" dstnodeid="422" dstpinname="RefractIndices">
-   </LINK>
-   <LINK srcnodeid="361" srcpinname="Fresnel Array" dstnodeid="422" dstpinname="FresnelTextures">
-   </LINK>
    <LINK srcnodeid="321" srcpinname="Texture Out" dstnodeid="526" dstpinname="Texture In">
    </LINK>
    <NODE systemname="DeferredBase (DX11 MRE)" filename="..\nodes\modules\DeferredBase (DX11 MRE).v4p" nodename="DeferredBase (DX11 MRE)" componentmode="Hidden" id="531">
@@ -1797,7 +1783,7 @@
    </PIN>
    <PIN pinname="Properties RenderState" visible="1">
    </PIN>
-   <PIN pinname="Flip Normals" slicecount="3" values="1,1,1" visible="1" pintype="Input">
+   <PIN pinname="Flip Normals" slicecount="3" visible="1" pintype="Input" values="1,1,1">
    </PIN>
    <PIN pinname="Global World Transform" visible="1" slicecount="1" values="||">
    </PIN>
@@ -1925,7 +1911,7 @@
    </PIN>
    <PIN pinname="Transform In" visible="1">
    </PIN>
-   <PIN pinname="Pause" slicecount="1" values="0" visible="1">
+   <PIN pinname="Pause" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="MaterialID" visible="1">
    </PIN>
@@ -2257,7 +2243,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3870" top="3375" width="2250" height="480">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|this is for referencing a feature from another material|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|this is for referencing features from another material|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -2361,5 +2347,25 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="589" srcpinname="Y Output Value" dstnodeid="167" dstpinname="Shadow Bias">
+   </LINK>
+   <NODE systemname="FakeFullscreen (VVVV)" filename="..\..\mcropack\nodes\modules\FakeFullscreen (VVVV).v4p" nodename="FakeFullscreen (VVVV)" componentmode="Hidden" id="590">
+   <BOUNDS type="Node" left="4620" top="29745" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="id" visible="1">
+   </PIN>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   <PIN pinname="Selected Monitor" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="157" srcpinname="ID" dstnodeid="590" dstpinname="id">
+   </LINK>
+   <NODE systemname="PatchAlias (VVVV)" nodename="PatchAlias (VVVV)" componentmode="Hidden" id="591">
+   <BOUNDS type="Node" left="4605" top="29250" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Patch" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="591" srcpinname="Patch" dstnodeid="590" dstpinname="Patch">
    </LINK>
    </PATCH>

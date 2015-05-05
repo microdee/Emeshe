@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Droid-Environment.v4p" systemname="Droid-Environment" filename="C:\vvvv\libs\Emeshe\girlpower\Droid-Environment.v4p" scrollx="0" scrolly="22905">
-   <BOUNDS type="Window" left="14700" top="1980" width="10590" height="13785">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Droid-Environment.v4p" systemname="Droid-Environment" filename="C:\vvvv\libs\Emeshe\girlpower\Droid-Environment.v4p" scrollx="0" scrolly="19755">
+   <BOUNDS type="Window" left="7365" top="960" width="10590" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -161,7 +161,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3090" top="34650" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="0" top="0" width="28800" height="16200">
+   <BOUNDS type="Window" left="28800" top="0" width="28800" height="16200">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
@@ -2335,6 +2335,8 @@
    </PIN>
    <PIN pinname="Force Update" visible="1">
    </PIN>
+   <PIN pinname="Selected Monitor" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="157" srcpinname="ID" dstnodeid="593" dstpinname="id">
    </LINK>
@@ -2433,9 +2435,9 @@
    <LINK srcnodeid="607" srcpinname="Output String" dstnodeid="606" dstpinname="Filename">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="610" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1815" top="13860" width="480" height="480">
+   <BOUNDS type="Box" left="1815" top="13365" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="1815" top="13860" width="0" height="0">
+   <BOUNDS type="Node" left="1815" top="13365" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -2481,13 +2483,11 @@
    </BOUNDS>
    <PIN pinname="Frames" slicecount="1" values="3">
    </PIN>
-   <PIN pinname="Set" visible="1">
+   <PIN pinname="Set" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="610" srcpinname="Y Output Value" dstnodeid="612" dstpinname="Set">
-   </LINK>
    <LINK srcnodeid="612" srcpinname="Output" dstnodeid="606" dstpinname="Evaluate">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="615" systemname="IOBox (Value Advanced)">
@@ -2546,7 +2546,7 @@
    </LINK>
    <LINK srcnodeid="617" srcpinname="Texture Out" dstnodeid="428" dstpinname="Input 2">
    </LINK>
-   <NODE systemname="DroidGirl" filename="Subpatches\DroidGirl.v4p" nodename="Subpatches\DroidGirl.v4p" componentmode="Hidden" id="619">
+   <NODE systemname="DroidGirl" filename="Subpatches\DroidGirl.v4p" nodename="Subpatches\DroidGirl.v4p" componentmode="InAWindow" id="619">
    <BOUNDS type="Node" left="2970" top="2175" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Base Layer" visible="1">
@@ -2559,7 +2559,7 @@
    </PIN>
    <PIN pinname="Reflection" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="13695" top="1500" width="13530" height="13935">
+   <BOUNDS type="Window" left="12855" top="1245" width="13530" height="13935">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="619" srcpinname="Base Layer" dstnodeid="210" dstpinname="Layer 1">
@@ -2581,5 +2581,17 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="623" srcpinname="Input Value" dstnodeid="444" dstpinname="GBuffer">
+   </LINK>
+   <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="624">
+   <BOUNDS type="Node" left="1860" top="14115" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Simulate" visible="1">
+   </PIN>
+   <PIN pinname="Bang" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="610" srcpinname="Y Output Value" dstnodeid="624" dstpinname="Simulate">
+   </LINK>
+   <LINK srcnodeid="624" srcpinname="Bang" dstnodeid="612" dstpinname="Set">
    </LINK>
    </PATCH>

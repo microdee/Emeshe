@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\LightRender.v4p" systemname="LightRender" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\LightRender.v4p" scrollx="0" scrolly="1620">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\LightRender.v4p" systemname="LightRender" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\LightRender.v4p" scrollx="0" scrolly="3435">
    <BOUNDS type="Window" left="16530" top="4800" width="11505" height="9315">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -115,7 +115,7 @@
    </PIN>
    <PIN pinname="LightCount" visible="1">
    </PIN>
-   <PIN pinname="ShadowMaps" visible="1">
+   <PIN pinname="ShadowMaps" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Enable Shadows" visible="1">
    </PIN>
@@ -267,7 +267,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5970" top="5400" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\assets\Environments\hdr\northcliff_2k.exr">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\assets\Environments\hdr\parkinglot_2k.hdr">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -314,18 +314,6 @@
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="ReflectRefract (DX11 MRE)" filename="..\..\nodes\modules\ReflectRefract (DX11 MRE).v4p" nodename="ReflectRefract (DX11 MRE)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="2445" top="6015" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Refraction Indices Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Fresnel Array" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="21" srcpinname="Refraction Indices Buffer" dstnodeid="15" dstpinname="RefractIndices">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Fresnel Array" dstnodeid="15" dstpinname="FresnelTextures">
-   </LINK>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="23">
    <BOUNDS type="Node" left="3855" top="6075" width="100" height="100">
    </BOUNDS>
@@ -424,10 +412,6 @@
    </NODE>
    <LINK srcnodeid="29" srcpinname="Output String" dstnodeid="28" dstpinname="Filename">
    </LINK>
-   <LINK srcnodeid="28" srcpinname="Texture Out" dstnodeid="15" dstpinname="Environments">
-   </LINK>
-   <LINK srcnodeid="28" srcpinname="Texture Out" dstnodeid="20" dstpinname="Input Node">
-   </LINK>
    <NODE systemname="R (Value)" nodename="R (Value)" componentmode="Hidden" id="30">
    <BOUNDS type="Node" left="1230" top="6375" width="100" height="100">
    </BOUNDS>
@@ -437,5 +421,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="30" srcpinname="Input Value" dstnodeid="15" dstpinname="Resolution">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Buffers" dstnodeid="15" dstpinname="Environments">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Buffers" dstnodeid="20" dstpinname="Input Node">
    </LINK>
    </PATCH>

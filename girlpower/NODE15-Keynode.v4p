@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\NODE15-Keynode.v4p" systemname="NODE15-Keynode" filename="C:\vvvv\libs\Emeshe\girlpower\NODE15-Keynode.v4p" scrollx="6735" scrolly="13395">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\NODE15-Keynode.v4p" systemname="NODE15-Keynode" filename="C:\vvvv\libs\Emeshe\girlpower\NODE15-Keynode.v4p" scrollx="0" scrolly="720">
    <BOUNDS type="Window" left="-810" top="1815" width="13350" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -163,7 +163,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3090" top="40950" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="0" top="0" width="28800" height="16200">
+   <BOUNDS type="Window" left="28800" top="0" width="28800" height="16200">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
@@ -971,7 +971,7 @@
    </PIN>
    <PIN pinname="ReflectionMaps" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Strength" slicecount="1" values="0.06" visible="1">
+   <PIN pinname="Strength" slicecount="1" visible="1" values="0.06">
    </PIN>
    <PIN pinname="ReflTransform" visible="1">
    </PIN>
@@ -1820,22 +1820,6 @@
    </LINK>
    <LINK srcnodeid="530" srcpinname="Output Y" dstnodeid="501" dstpinname="Z">
    </LINK>
-   <NODE systemname="ReflectRefract (DX11 MRE)" filename="..\nodes\modules\ReflectRefract (DX11 MRE).v4p" nodename="ReflectRefract (DX11 MRE)" componentmode="Hidden" id="361">
-   <BOUNDS type="Node" left="6885" top="22710" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Refraction Indices Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Fresnel Array" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Fresnel Offset" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Fresnel Width" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="361" srcpinname="Refraction Indices Buffer" dstnodeid="422" dstpinname="RefractIndices">
-   </LINK>
-   <LINK srcnodeid="361" srcpinname="Fresnel Array" dstnodeid="422" dstpinname="FresnelTextures">
-   </LINK>
    <LINK srcnodeid="511" srcpinname="Output" dstnodeid="476" dstpinname="Cubemap Size">
    </LINK>
    <LINK srcnodeid="325" srcpinname="Texture Out" dstnodeid="258" dstpinname="Texture In">
@@ -2252,6 +2236,8 @@
    <PIN pinname="Patch" visible="1">
    </PIN>
    <PIN pinname="Force Update" visible="1">
+   </PIN>
+   <PIN pinname="Selected Monitor" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="157" srcpinname="ID" dstnodeid="593" dstpinname="id">

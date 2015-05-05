@@ -291,32 +291,32 @@
   <Features>
     <Feature>Reflection_SphereMap</Feature>
     <Parameter>Fresnel</Parameter>
-    <Size>1</Size>
+    <Size>2</Size>
     <Offset>1</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SphereMap</Feature>
+    <Parameter>FresnelPower</Parameter>
+    <Size>2</Size>
+    <Offset>3</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SphereMap</Feature>
     <Parameter>Blur</Parameter>
     <Size>1</Size>
-    <Offset>2</Offset>
+    <Offset>5</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SphereMap</Feature>
     <Parameter>EnvID</Parameter>
     <Size>1</Size>
-    <Offset>3</Offset>
-  </Features>
-  <Features>
-    <Feature>Reflection_SphereMap</Feature>
-    <Parameter>FresnelID</Parameter>
-    <Size>1</Size>
-    <Offset>4</Offset>
+    <Offset>6</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SphereMap</Feature>
     <Parameter>Multiply</Parameter>
     <Size>1</Size>
-    <Offset>5</Offset>
+    <Offset>7</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
@@ -332,21 +332,27 @@
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
-    <Parameter>Blur</Parameter>
+    <Parameter>FresnelPower</Parameter>
     <Size>1</Size>
     <Offset>2</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
-    <Parameter>Distance</Parameter>
+    <Parameter>Blur</Parameter>
     <Size>1</Size>
     <Offset>3</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
-    <Parameter>Multiply</Parameter>
+    <Parameter>Distance</Parameter>
     <Size>1</Size>
     <Offset>4</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SSLR</Feature>
+    <Parameter>Multiply</Parameter>
+    <Size>1</Size>
+    <Offset>5</Offset>
   </Features>
   <Features>
     <Feature>Reflection_Map</Feature>
@@ -368,33 +374,39 @@
   </Features>
   <Features>
     <Feature>Refraction_SphereMap</Feature>
-    <Parameter>Fresnel</Parameter>
-    <Size>1</Size>
+    <Parameter>IOR</Parameter>
+    <Size>3</Size>
     <Offset>1</Offset>
+  </Features>
+  <Features>
+    <Feature>Refraction_SphereMap</Feature>
+    <Parameter>Fresnel</Parameter>
+    <Size>2</Size>
+    <Offset>4</Offset>
+  </Features>
+  <Features>
+    <Feature>Refraction_SphereMap</Feature>
+    <Parameter>FresnelPower</Parameter>
+    <Size>2</Size>
+    <Offset>6</Offset>
   </Features>
   <Features>
     <Feature>Refraction_SphereMap</Feature>
     <Parameter>Blur</Parameter>
     <Size>1</Size>
-    <Offset>2</Offset>
+    <Offset>8</Offset>
   </Features>
   <Features>
     <Feature>Refraction_SphereMap</Feature>
     <Parameter>EnvID</Parameter>
     <Size>1</Size>
-    <Offset>3</Offset>
-  </Features>
-  <Features>
-    <Feature>Refraction_SphereMap</Feature>
-    <Parameter>FresnelID</Parameter>
-    <Size>1</Size>
-    <Offset>4</Offset>
+    <Offset>9</Offset>
   </Features>
   <Features>
     <Feature>Refraction_SphereMap</Feature>
     <Parameter>Multiply</Parameter>
     <Size>1</Size>
-    <Offset>5</Offset>
+    <Offset>10</Offset>
   </Features>
   <Features>
     <Feature>Refraction_SSLR</Feature>
@@ -410,21 +422,27 @@
   </Features>
   <Features>
     <Feature>Refraction_SSLR</Feature>
-    <Parameter>Blur</Parameter>
+    <Parameter>FresnelPower</Parameter>
     <Size>1</Size>
     <Offset>2</Offset>
   </Features>
   <Features>
     <Feature>Refraction_SSLR</Feature>
-    <Parameter>Distance</Parameter>
+    <Parameter>Blur</Parameter>
     <Size>1</Size>
     <Offset>3</Offset>
   </Features>
   <Features>
     <Feature>Refraction_SSLR</Feature>
-    <Parameter>Multiply</Parameter>
+    <Parameter>Distance</Parameter>
     <Size>1</Size>
     <Offset>4</Offset>
+  </Features>
+  <Features>
+    <Feature>Refraction_SSLR</Feature>
+    <Parameter>Multiply</Parameter>
+    <Size>1</Size>
+    <Offset>5</Offset>
   </Features>
   <Features>
     <Feature>Refraction_Map</Feature>

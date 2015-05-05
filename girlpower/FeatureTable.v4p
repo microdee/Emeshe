@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="0" scrolly="2025">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="0" scrolly="2160">
    <BOUNDS type="Window" left="11550" top="0" width="13350" height="15600">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -879,5 +879,61 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="273" srcpinname="Count" dstnodeid="274" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="AddReflection (MRE.Materials SphereMap)" filename="..\nodes\modules\Materials\AddReflection (MRE.Materials SphereMap).v4p" nodename="AddReflection (MRE.Materials SphereMap)" componentmode="Hidden" id="275">
+   <BOUNDS type="Node" left="7350" top="13155" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="MaterialBuffer (DX11 MRE)" filename="..\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" nodename="MaterialBuffer (DX11 MRE)" componentmode="Hidden" id="276">
+   <BOUNDS type="Node" left="6945" top="11715" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="MaterialManager (MRE)" filename="..\nodes\modules\Materials\MaterialManager (MRE).v4p" nodename="MaterialManager (MRE)" componentmode="Hidden" id="277">
+   <BOUNDS type="Node" left="8235" top="12375" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Material Dictionary" visible="1">
+   </PIN>
+   <PIN pinname="Material Out" visible="1">
+   </PIN>
+   <PIN pinname="Construct" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="276" srcpinname="Material Dictionary" dstnodeid="277" dstpinname="Material Dictionary">
+   </LINK>
+   <LINK srcnodeid="277" srcpinname="Material Out" dstnodeid="275" dstpinname="Material">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="278" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8850" top="11520" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8850" top="11520" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="278" srcpinname="Y Output Value" dstnodeid="277" dstpinname="Construct">
+   </LINK>
+   <NODE systemname="AddRefraction (MRE.Materials SphereMap)" filename="..\nodes\modules\Materials\AddRefraction (MRE.Materials SphereMap).v4p" nodename="AddRefraction (MRE.Materials SphereMap)" componentmode="Hidden" id="280">
+   <BOUNDS type="Node" left="8745" top="13605" width="1800" height="270">
+   </BOUNDS>
+   <PIN pinname="Material" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Window" left="9600" top="2940" width="17070" height="6000">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="277" srcpinname="Material Out" dstnodeid="280" dstpinname="Material">
    </LINK>
    </PATCH>

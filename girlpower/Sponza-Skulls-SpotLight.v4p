@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SpotLight.v4p" systemname="Sponza-Skulls-SpotLight" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SpotLight.v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SpotLight.v4p" systemname="Sponza-Skulls-SpotLight" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SpotLight.v4p" scrollx="0" scrolly="6120">
    <BOUNDS type="Window" left="8145" top="1290" width="13605" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -161,7 +161,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3090" top="33450" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="0" top="0" width="28800" height="16200">
+   <BOUNDS type="Window" left="28800" top="0" width="28800" height="16200">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
@@ -749,7 +749,7 @@
    </PIN>
    <PIN pinname="Penumbra Size" slicecount="1" values="0.03">
    </PIN>
-   <PIN pinname="Shadows" slicecount="1" values="1" visible="1">
+   <PIN pinname="Shadows" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Shadowmap ID" visible="1">
    </PIN>
@@ -1711,22 +1711,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="524" srcpinname="Base Layer" dstnodeid="210" dstpinname="Layer 3">
-   </LINK>
-   <NODE systemname="ReflectRefract (DX11 MRE)" filename="..\nodes\modules\ReflectRefract (DX11 MRE).v4p" nodename="ReflectRefract (DX11 MRE)" componentmode="Hidden" id="361">
-   <BOUNDS type="Node" left="6885" top="16410" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Refraction Indices Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Fresnel Array" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Fresnel Offset" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Fresnel Width" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="361" srcpinname="Refraction Indices Buffer" dstnodeid="422" dstpinname="RefractIndices">
-   </LINK>
-   <LINK srcnodeid="361" srcpinname="Fresnel Array" dstnodeid="422" dstpinname="FresnelTextures">
    </LINK>
    <NODE systemname="DOF (DX11 MRE)" filename="..\nodes\modules\DOF (DX11 MRE).v4p" nodename="DOF (DX11 MRE)" componentmode="Hidden" id="531">
    <BOUNDS type="Node" left="3765" top="30285" width="1500" height="270">
@@ -2761,5 +2745,7 @@
    <LINK srcnodeid="321" srcpinname="Texture Out" dstnodeid="431" dstpinname="Texture In">
    </LINK>
    <LINK srcnodeid="531" srcpinname="Texture Out" dstnodeid="258" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="446" srcpinname="Output" dstnodeid="422" dstpinname="Resolution">
    </LINK>
    </PATCH>

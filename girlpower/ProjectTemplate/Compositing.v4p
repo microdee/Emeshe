@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\Compositing.v4p" systemname="Compositing" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\Compositing.v4p" scrollx="630" scrolly="0">
-   <BOUNDS type="Window" left="17970" top="1440" width="9000" height="10350">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\Compositing.v4p" systemname="Compositing" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\Compositing.v4p" scrollx="600" scrolly="5175">
+   <BOUNDS type="Window" left="18090" top="1935" width="9000" height="10350">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -111,6 +111,8 @@
    </PIN>
    <PIN pinname="Temporal Fade" visible="1">
    </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="8">
    <BOUNDS type="Node" left="3090" top="3825" width="100" height="100">
@@ -165,31 +167,15 @@
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Bias" slicecount="1" values="0.1">
+   <PIN pinname="Bias" slicecount="1" values="0.05">
    </PIN>
    <PIN pinname="Intensity" slicecount="1" values="2">
    </PIN>
    </NODE>
    <LINK srcnodeid="7" srcpinname="Texture Out" dstnodeid="11" dstpinname="Texture In">
    </LINK>
-   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="14">
-   <BOUNDS type="Node" left="4110" top="240" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="CustomSemantics">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="13">
-   <BOUNDS type="Node" left="4305" top="525" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="Resources">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="17">
-   <BOUNDS type="Node" left="5850" top="4920" width="100" height="100">
+   <BOUNDS type="Node" left="4080" top="4995" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="CustomSemantics">
    </PIN>
@@ -197,7 +183,7 @@
    </PIN>
    </NODE>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="16">
-   <BOUNDS type="Node" left="6045" top="5205" width="100" height="100">
+   <BOUNDS type="Node" left="4275" top="5280" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="Resources">
    </PIN>
@@ -335,13 +321,15 @@
    </PIN>
    <PIN pinname="Exposure" visible="1">
    </PIN>
-   <PIN pinname="KeyValue" slicecount="1" values="0.65">
+   <PIN pinname="KeyValue" slicecount="1" values="1.87">
    </PIN>
    <PIN pinname="AutoExpo MinMax" visible="1">
    </PIN>
    <PIN pinname="Visualization" visible="1">
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Blur Luminance" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="29" systemname="IOBox (Value Advanced)">
@@ -489,6 +477,16 @@
    </PIN>
    <BOUNDS type="Window" left="16605" top="3750" width="16230" height="11175">
    </BOUNDS>
+   <PIN pinname="MFtoAF" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="focus" slicecount="1" values="16.72">
+   </PIN>
+   <PIN pinname="width" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="AFpointXY" visible="1" slicecount="2" values="0.262,0">
+   </PIN>
+   <PIN pinname="Filter Time" slicecount="1" values="0.8">
+   </PIN>
    </NODE>
    <LINK srcnodeid="27" srcpinname="Texture Out" dstnodeid="41" dstpinname="Texture In">
    </LINK>
@@ -567,5 +565,75 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="48" srcpinname="Input Value" dstnodeid="22" dstpinname="GBuffer">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="49" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1320" top="9675" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1320" top="9675" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="Y Output Value" dstnodeid="41" dstpinname="width">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="50" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5625" top="9015" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5625" top="9015" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.8">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="27" dstpinname="Blur Luminance">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="51" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5325" top="11325" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5325" top="11325" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0.262,0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <NODE systemname="Mouse (Devices Window)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Mouse (Devices Window)" componentmode="Hidden" id="52">
+   <BOUNDS type="Node" left="4875" top="12540" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="PositionXY" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="PositionXY" dstnodeid="41" dstpinname="AFpointXY">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="6570" top="11775" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6570" top="11775" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="2" values=",">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="PositionXY" dstnodeid="53" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
