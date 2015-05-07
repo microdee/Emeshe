@@ -1,9 +1,7 @@
 #define NUM_SAMPLES 3
 #include "../fxh/ColorSpace.fxh"
+#include "../fxh/MRE.fxh"
 
-Texture2D UnLit;
-Texture2D ViewMap;
-Texture2D normal;
 Texture2D color : PREVIOUS;
 
 float ratemulx = 1;
@@ -41,7 +39,7 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
   //far and near clip planes:
 
   //get depth at current pixel:
-  float3 opos = ViewMap.SampleLevel(s0,uv,0).xyz;
+  float3 opos = GetViewPos(s0,uv);
   float prof = opos.z;
   //scale sample number with depth:
   //float samples = round(NUM_SAMPLES/(0.5+prof));
@@ -49,7 +47,7 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
   //prof = zFar * zNear / (prof * (zFar - zNear) - zFar);  //linearize z sample
 
   //obtain normal and color at current pixel:
-  float3 norm = normalize(normal.SampleLevel(s0,uv,0).xyz);
+  float3 norm = normalize(Normals.SampleLevel(s0,uv,0).xyz);
   float3 dcolor1 = color.Sample(s0, uv).rgb;
 
   float hf = samples;
@@ -72,10 +70,10 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
         float2 coords = float2(i*incx,j*incy)/prof;
         float2 coords2 = float2(i*incx2,j*incy2)/prof;
 
-  		float3 cpos = ViewMap.SampleLevel(s0,uv+coords*rand(uv),0).xyz;
+  		float3 cpos = GetViewPos(s0,uv+coords*rand(uv));
         float prof2 = cpos.z;
 
-        float3 norm2g = normalize(normal.SampleLevel(s0,uv+coords2*rand(uv),0).xyz); 
+        float3 norm2g = normalize(Normals.SampleLevel(s0,uv+coords2*rand(uv),0).xyz); 
 
         float3 dcolor2 = color.SampleLevel(s0, uv+coords*rand(uv),0).rgb;
 
@@ -83,7 +81,7 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 
         if (length(dcolor2)<colorThreshold)
         {//color threshold
-          float3 norm2 = normalize(normal.SampleLevel(s0,uv+coords*rand(uv),0).xyz);
+          float3 norm2 = normalize(Normals.SampleLevel(s0,uv+coords*rand(uv),0).xyz);
         	float3 viewV = normalize(opos-cpos);
 
           //calculate approximate pixel distance:
@@ -107,7 +105,7 @@ float4 CSSGI(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 
   float3 bleeding = (fcolor/samples)*Bleeding;
   //float occlusion = (sum/samples)*Occlusion;
-	float3 colout = bleeding * UnLit.Sample(s0,uv).xyz;
+	float3 colout = bleeding * Color.SampleLevel(s0,uv,0).xyz;
 	float3 hsvout = lerp(RGBtoHSV(saturate(colout)), 1, SatWidth);
   return max(float4(colout * hsvout.y,1.0),0);
 }

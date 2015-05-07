@@ -41,7 +41,7 @@ SamplerState s0 <string uiname="Sampler";>
 float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
 	float stencil = GetStencil(R, uv);
-	uint matid = GetMatID(R, uv);
+	uint matid = GetMatID(s0, uv);
 	float4 col = float4(0,0,0,1);
 
 	bool KnowReflect = KnowFeature(matid, MF_REFLECTION_SPHEREMAP);
@@ -49,13 +49,13 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 	if((stencil > 0) && KnowReflect)
 	{
 		float4 input = ColorTex.Sample(s0, uv);
-		float4 diffcol = Color.Sample(s0, uv);
+		float4 diffcol = float4(Color.Sample(s0, uv).rgb, 1);
 		float2 SceneUV = 0;
 		bool KnowRlMap = KnowFeature(matid, MF_REFLECTION_MAP);
 
 		if(KnowRlMap)
 		{
-			SceneUV = GetUV(uv, R);
+			SceneUV = GetUV(s0, uv);
 		}
 
 		float3 vPos = GetViewPos(s0, uv);

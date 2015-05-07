@@ -23,7 +23,7 @@ float4 pEM(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
 
 	float4 col = ColorTex.Sample(s0, uv);
-	uint matid = GetMatID(uv, R);
+	uint matid = GetMatID(s0, uv);
 
     bool KnowEmission = KnowFeature(matid, MF_LIGHTING_EMISSION);
     if(KnowEmission)
@@ -34,7 +34,7 @@ float4 pEM(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 
     	if(KnowEmissionMap)
     	{
-			float2 scnuv = GetUV(uv, R);
+			float2 scnuv = GetUV(s0, uv);
 			float slice = GetFloat(matid, MF_LIGHTING_EMISSION_MAP, 0);
 			emcol *= Maps.SampleLevel(s0, float3(scnuv, slice), 0).rgb;
     	}

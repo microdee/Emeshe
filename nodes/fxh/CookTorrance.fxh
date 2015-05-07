@@ -26,7 +26,7 @@ Texture2DArray SpecRoughMaps;
 Texture2DArray SSSMaps;
 Texture2DArray RimMaps;
 
-Texture2DArray ShadowMaps;
+Texture2DArray<float> ShadowMaps;
 float bias = 0.1;
 
 float halfLambert(float3 vec1, float3 vec2)
@@ -125,8 +125,8 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
 	float3 PosV = GetViewPos(s0, uv);
 	float3 ViewDirV = normalize(PosV);
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
-	uint matid = GetMatID(uv, sR);
-	float2 ouv = GetUV(uv, sR);
+	uint matid = GetMatID(s0, uv);
+	float2 ouv = GetUV(s0, uv);
 	float4 RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;
@@ -289,8 +289,8 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 	float3 PosV = GetViewPos(s0, uv);
 	float3 ViewDirV = normalize(PosV);
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
-	uint matid = GetMatID(uv, sR);
-	float2 ouv = GetUV(uv, sR);
+	uint matid = GetMatID(s0, uv);
+	float2 ouv = GetUV(s0, uv);
 	float4 RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;
@@ -456,8 +456,8 @@ Components CookTorranceSunSSS(SamplerState s0, float2 uv, float2 sR, float light
 	float3 PosV = GetViewPos(s0, uv);
 	float3 ViewDirV = normalize(PosV);
 	float3 NormV = Normals.SampleLevel(s0, uv, 0).xyz;
-	uint matid = GetMatID(uv, sR);
-	float2 ouv = GetUV(uv, sR);
+	uint matid = GetMatID(s0, uv);
+	float2 ouv = GetUV(s0, uv);
 	float4 RoughMap = 1;
 	float3 SSSMap = 1;
 	float3 RimMap = 1;

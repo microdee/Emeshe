@@ -11,10 +11,8 @@
 #endif
 
 Texture2D Color : MRE_COLOR;
-Texture2D ViewPos : MRE_VIEWPOS;
 Texture2D Normals : MRE_NORMALS;
-Texture2D<float2> Velocity : MRE_VELOCITY;
-Texture2D<uint4> MatProp : MRE_MATERIAL;
+Texture2D Velocity : MRE_VELUV;
 Texture2D<float> Depth : MRE_DEPTH;
 Texture2D<uint4> Stencil : MRE_STENCIL;
 
@@ -25,56 +23,54 @@ float4x4 CamProjInv : CAM_PROJINV;
 float3 CamPos : CAM_POSITION;
 
 float DepthMode : MRE_DEPTHMODE;
-float ObjIDMode : MRE_OBJIDMODE;
 float3 NearFarPow : NEARFARDEPTHPOW;
 
-float2 GetUV(float2 uv, float2 R)
+float2 GetUV(SamplerState SS, float2 uv)
 {
-	uint2 p0 = MatProp.Load(int3(uv * R, 0)).xy;
-	float2 ret = f16tof32(p0);
-	return ret;
+	return Velocity.SampleLevel(SS, uv, 0).zw;
 }
-uint GetMatID(float2 uv, float2 R)
+uint GetMatID(SamplerState SS, float2 uv)
 {
-	return MatProp.Load(int3(uv * R, 0)).z;
+	return (uint)Color.SampleLevel(SS, uv, 0).a;
 }
-uint2 GetObjID(float2 uv, float2 R)
+float GetObjID(SamplerState SS, float2 uv)
 {
-	uint p0 = MatProp.Load(int3(uv * R, 0)).w;
-	if(ObjIDMode == 1) return SplitHalf(p0);
-	else return uint2(p0, p0);
+	return Normals.SampleLevel(SS, uv, 0).a;
 }
-float GetStencil(float2 uv, float2 R)
+float GetStencil(float2 R, float2 uv)
 {
 	return Stencil.Load(int3(uv * R, 0)).g;
 }
-
-float3 GetViewPos(SamplerState s0, float2 uv)
+/*
+float3 GetViewPos(SamplerState SS, float2 uv)
 {
-	float3 d = ViewPos.SampleLevel(s0, uv, 0).rgb;
+	float3 d = ViewPos.SampleLevel(SS, uv, 0).rgb;
 	return d;
 }
-float3 CalculateViewPos(SamplerState s0, float2 uv)
+*/
+float3 GetViewPos(SamplerState SS, float2 uv)
 {
-	float d = Depth.SampleLevel(s0, uv, 0).r;
+	float d = Depth.SampleLevel(SS, uv, 0).r;
 	if(DepthMode == 1)
 		return UVDtoVIEW(uv, d, NearFarPow, CamProj, CamProjInv);
 	else
 		return UVZtoVIEW(uv, d, CamProj, CamProjInv);
 }
-float3 GetWorldPos(SamplerState s0, float2 uv)
+float3 GetWorldPos(SamplerState SS, float2 uv)
 {
-	return mul(float4(GetViewPos(s0, uv), 1), CamViewInv).xyz;
+	return mul(float4(GetViewPos(SS, uv), 1), CamViewInv).xyz;
 }
-float3 CalculateWorldPos(SamplerState s0, float2 uv)
+/*
+float3 CalculateWorldPos(SamplerState SS, float2 uv)
 {
-	float d = Depth.SampleLevel(s0, uv, 0).r;
+	float d = Depth.SampleLevel(SS, uv, 0).r;
 	if(DepthMode == 1)
 		return UVDtoWORLD(uv, d, NearFarPow, CamViewInv, CamProj, CamProjInv);
 	else
 		return UVZtoWORLD(uv, d, CamViewInv, CamProj, CamProjInv);
 }
-float3 GetWorldNormal(SamplerState s0, float2 uv)
+*/
+float3 GetWorldNormal(SamplerState SS, float2 uv)
 {
-	return normalize(mul(float4(Normals.SampleLevel(s0, uv, 0).rgb, 0), CamViewInv).xyz);
+	return normalize(mul(float4(Normals.SampleLevel(SS, uv, 0).rgb, 0), CamViewInv).xyz);
 }

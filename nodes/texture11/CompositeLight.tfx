@@ -27,10 +27,8 @@ cbuffer controls:register(b0){
 float4 pMIX(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
 	
     float4 incol = InTex.Sample(s0,uv);
-    uint matid = GetMatID(uv, R);
-    bool KnowLight =
-    	KnowFeature(matid, MF_LIGHTING_PHONG) ||
-    	KnowFeature(matid, MF_LIGHTING_COOKTORRANCE);
+	uint matid = GetMatID(s0, uv);
+    bool KnowLight = KnowFeature(matid, MF_LIGHTING_COOKTORRANCE);
 
     if(KnowLight)
     {
@@ -65,7 +63,7 @@ float4 pMIX(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
 
 		if(KnowCompositeMap)
 		{
-			float2 scnuv = GetUV(uv, R);
+			float2 scnuv = GetUV(s0, uv);
 			float slice = GetFloat(matid, MF_LIGHTING_COMPOSITE_MAP, 0);
 			float4 compmap = Maps.SampleLevel(s0, float3(scnuv, slice), 0);
 

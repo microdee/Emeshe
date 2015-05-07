@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\ShadowMap (MRE.PointLight).v4p" systemname="ShadowMap (MRE.PointLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ShadowMap (MRE.PointLight).v4p" scrollx="165" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\ShadowMap (MRE.PointLight).v4p" systemname="ShadowMap (MRE.PointLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ShadowMap (MRE.PointLight).v4p" scrollx="225" scrolly="0">
    <BOUNDS type="Window" left="18900" top="4485" width="9000" height="10275">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -11,7 +11,7 @@
    </BOUNDS>
    <PIN pinname="Size" visible="1">
    </PIN>
-   <PIN pinname="Target Format" visible="1">
+   <PIN pinname="Target Format" visible="1" slicecount="1" values="R32_Float">
    </PIN>
    <PIN pinname="Layer" visible="1" slicecount="1" values="||">
    </PIN>
@@ -45,20 +45,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="1" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Size">
-   </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="3" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="2805" top="5295" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="2805" top="5295" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="R16G16B16A16_Float">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Target Format|">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="0" dstpinname="Target Format">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="4" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="915" top="495" width="660" height="240">
@@ -97,7 +83,7 @@
    <NODE systemname="CubeToPano (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\modules\Cubemap\CubeToPano (DX11.Texture 2d).v4p" nodename="CubeToPano (DX11.Texture 2d)" componentmode="Hidden" id="7">
    <BOUNDS type="Node" left="4365" top="6825" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Target Format" visible="1">
+   <PIN pinname="Target Format" visible="1" slicecount="1" values="R16G16B16A16_Float">
    </PIN>
    <PIN pinname="Texture SizeXY" visible="1">
    </PIN>
@@ -112,8 +98,6 @@
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="7" dstpinname="Target Format">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="8" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5760" top="4680" width="795" height="480">
    </BOUNDS>
@@ -234,20 +218,6 @@
    </LINK>
    <LINK srcnodeid="14" srcpinname="Output" dstnodeid="13" dstpinname="Custom Semantics">
    </LINK>
-   <NODE systemname="Scale (Transform)" nodename="Scale (Transform)" componentmode="Hidden" id="18">
-   <BOUNDS type="Node" left="6600" top="5460" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   <PIN pinname="Z" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Y" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="X" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="20">
    <BOUNDS type="Node" left="735" top="3420" width="100" height="100">
    </BOUNDS>
@@ -274,6 +244,8 @@
    <PIN pinname="Render State" visible="1">
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="DeferredProp">
    </PIN>
    </NODE>
    <NODE systemname="Sphere (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Sphere (DX11.Geometry)" componentmode="Hidden" id="23">
@@ -325,5 +297,87 @@
    <LINK srcnodeid="22" srcpinname="Layer" dstnodeid="20" dstpinname="Layer 2">
    </LINK>
    <LINK srcnodeid="7" srcpinname="Texture Out" dstnodeid="9" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="Map (Value)" nodename="Map (Value)" componentmode="Hidden" id="31">
+   <BOUNDS type="Node" left="2805" top="1425" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Destination Minimum" visible="1" slicecount="1" values="6">
+   </PIN>
+   <PIN pinname="Destination Maximum" visible="1">
+   </PIN>
+   <PIN pinname="Input" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="32" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3240" top="1035" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3240" top="1035" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="34">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="31" dstpinname="Destination Minimum">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="33" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3660" top="1065" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3660" top="1065" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="27">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="33" srcpinname="Y Output Value" dstnodeid="31" dstpinname="Destination Maximum">
+   </LINK>
+   <NODE systemname="Ord2Enum (Enumerations)" nodename="Ord2Enum (Enumerations)" componentmode="Hidden" id="34">
+   <BOUNDS type="Node" left="2790" top="5370" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Ord Value" visible="1">
+   </PIN>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Output" dstnodeid="34" dstpinname="Ord Value">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Enum" dstnodeid="0" dstpinname="Target Format">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Enum" dstnodeid="7" dstpinname="Target Format">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="35" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2805" top="480" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2805" top="480" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|High Precision|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="35" srcpinname="Y Output Value" dstnodeid="31" dstpinname="Input">
    </LINK>
    </PATCH>

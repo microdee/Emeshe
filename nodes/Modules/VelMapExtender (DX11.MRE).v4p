@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p" scrollx="0" scrolly="2115">
    <BOUNDS type="Window" left="13755" top="945" width="11880" height="9570">
    </BOUNDS>
    <NODE systemname="NullGeometry (DX11.Drawer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="NullGeometry (DX11.Drawer)" componentmode="Hidden" id="2">
@@ -219,7 +219,7 @@
    <NODE systemname="Cons (DX11.Texture 2d)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.Texture 2d)" componentmode="Hidden" id="35">
    <BOUNDS type="Node" left="2700" top="10380" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input Count" slicecount="1" values="7">
+   <PIN pinname="Input Count" slicecount="1" values="5">
    </PIN>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
    </PIN>
@@ -271,7 +271,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="10905" top="1350" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -543,7 +543,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5805" top="1635" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="5">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="3">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -583,11 +583,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="66" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="7545" top="7575" width="1155" height="1245">
+   <BOUNDS type="Box" left="7545" top="7575" width="1110" height="1170">
    </BOUNDS>
    <BOUNDS type="Node" left="7545" top="7575" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="7" visible="1" values="MRE_COLOR,MRE_NORMALS,MRE_VELOCITY,MRE_MATERIAL,MRE_VIEWPOS,MRE_DEPTH,MRE_STENCIL">
+   <PIN pinname="Input String" slicecount="5" visible="1" values="MRE_COLOR,MRE_NORMALS,MRE_VELUV,MRE_DEPTH,MRE_STENCIL">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="SEMANTIC">
    </PIN>
@@ -597,7 +597,7 @@
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
-   <PIN pinname="Rows" slicecount="1" values="7">
+   <PIN pinname="Rows" slicecount="1" values="5">
    </PIN>
    </NODE>
    <LINK srcnodeid="66" srcpinname="Output String" dstnodeid="67" dstpinname="Semantic">
@@ -623,7 +623,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2700" top="7965" width="4800" height="3600">
    </BOUNDS>
-   <BOUNDS type="Window" left="16245" top="5460" width="9000" height="6000">
+   <BOUNDS type="Window" left="17775" top="8730" width="9000" height="6000">
    </BOUNDS>
    <PIN pinname="Channels" visible="1" slicecount="1" values="||">
    </PIN>
@@ -645,6 +645,8 @@
    </PIN>
    <PIN pinname="Depth" visible="1">
    </PIN>
+   <PIN pinname="Stencil" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="20" srcpinname="Output Node" dstnodeid="34" dstpinname="GBuffer">
    </LINK>
@@ -652,11 +654,7 @@
    </LINK>
    <LINK srcnodeid="34" srcpinname="Normals" dstnodeid="35" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="34" srcpinname="Material" dstnodeid="35" dstpinname="Input 4">
-   </LINK>
    <LINK srcnodeid="34" srcpinname="Stencil" dstnodeid="35" dstpinname="Input 7">
-   </LINK>
-   <LINK srcnodeid="34" srcpinname="View Position" dstnodeid="35" dstpinname="Input 5">
    </LINK>
    <LINK srcnodeid="34" srcpinname="Depth" dstnodeid="35" dstpinname="Input 6">
    </LINK>
@@ -671,5 +669,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="73" srcpinname="Output Enum" dstnodeid="28" dstpinname="Target Format">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Depth" dstnodeid="35" dstpinname="Input 4">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Stencil" dstnodeid="35" dstpinname="Input 5">
    </LINK>
    </PATCH>

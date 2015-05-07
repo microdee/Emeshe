@@ -39,7 +39,7 @@ SamplerState s_vel : IMMUTABLE
 };
 float2 FillVel(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
-    float2 colin = Velocity.Sample(s_vel,uv);
+    float2 colin = Velocity.Sample(s_vel,uv).xy;
 	float2 col = colin;
 	float FillEpsilon = 0.01;
 	

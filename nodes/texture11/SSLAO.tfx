@@ -34,7 +34,7 @@ float CorrectRad()
 */
 float3 getPosition(in float2 uv)
 {
-	float3 poso = ViewPos.SampleLevel(s0, uv, 0).xyz;
+	float3 poso = GetViewPos(s0, uv);
 	//if((poso.x == 0) && (poso.y == 0) && (poso.z == 0)) poso = float3(uv,farval);
 	//return poso + (NoiseTex.Sample(s0, uv).xyz - .5) * NoiseAmount;
 	return poso;

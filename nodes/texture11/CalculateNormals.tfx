@@ -13,8 +13,9 @@ float3 _UVZtoVIEW(float2 uv, float z)
 
 SamplerState sPointClamp:IMMUTABLE {Filter=MIN_MAG_MIP_POINT;AddressU=CLAMP;AddressV=CLAMP;};
 float4 pNORMALFIX(float4 PosWVP:SV_POSITION,float2 UV:TEXCOORD0):SV_TARGET{
-	uint matid = GetMatID(UV, R);
-	if(KnowFeature(matid, MF_CALCULATENORMALS))
+	uint matid = GetMatID(s0, UV);
+	float stencil = GetStencil(R, UV);
+	if((stencil > 0) && KnowFeature(matid, MF_CALCULATENORMALS))
 	{
 		float d = texDEPTH.SampleLevel(sPointClamp,UV,0).x;
 		float3 w0=_UVZtoVIEW(UV,d).xyz;
@@ -31,9 +32,11 @@ float4 pNORMALFIX(float4 PosWVP:SV_POSITION,float2 UV:TEXCOORD0):SV_TARGET{
 		
 		float3 Eye=UVtoEYEV(UV, CamProjInv);
 		float3 NorV=normalize(cross(c1,c2));
-		float4 c=float4(NorV,1);
-		if(d==1)c.rgb=Eye;
-		return lerp(texNORM.SampleLevel(sPointClamp,UV,0), c, GetFloat(matid, MF_CALCULATENORMALS, 0));
+		float3 c=NorV;
+		if(d==1)c.xyz=Eye;
+		float4 innorm = texNORM.SampleLevel(sPointClamp,UV,0);
+		float3 outnorm = lerp(innorm.xyz, c, GetFloat(matid, MF_CALCULATENORMALS, 0));
+		return float4(outnorm, innorm.a);
 	}
 	else return texNORM.SampleLevel(sPointClamp,UV,0);
 }

@@ -9,17 +9,15 @@ cbuffer cbPerDraw : register( b0 )
 	float4x4 tV : VIEW;
 	float4x4 tP : PROJECTION;
 	float4x4 tVP : VIEWPROJECTION;
-	float3 CamPos : CAM_POSITION;
 };
 
-cbuffer cbPerObject : register( b1 )
+cbuffer cbPerObjectGeom : register( b1 )
 {
 	float4x4 tW : WORLD;
 	float4x4 tTex;
-	float4 FDiffColor <bool color=true;> = 1;
-	float alphatest = 0.5;
-	float TriPlanarPow = 1;
 };
+
+#include "../fxh/MREForwardPSProp.fxh"
 
 PSinProp VS(VSin In)
 {
@@ -54,35 +52,6 @@ PSinProp VS(VSin In)
 	#endif
 	
     Out.PosWVP = mul(Out.PosW, tVP);
-	
-    return Out;
-}
-
-PSOutProp PS(PSinProp In)
-{
-	float ii = In.ii;
-	float3 PosW = In.PosW.xyz;
-
-	PSOutProp Out = (PSOutProp)0;
-	
-	float2 uvb = In.TexCd.xy;
-
-	#if defined(ALPHATEST)
-		if(alphatest!=0)
-		{
-			#if defined(TRIPLANAR)
-				float4 diffcol = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow);
-			#else
-		    	float4 diffcol = DiffTex.Sample( Sampler, uvb);
-			#endif
-			float alphat = diffcol.a * FDiffColor.a;
-			alphat = lerp(alphat, (alphat>=alphatest), min(alphatest*10,1));
-			clip(alphat - (1-alphatest));
-		}
-	#endif
-	
-	float d = distance(PosW, CamPos);
-	Out.WorldPos = float4(PosW, d);
 	
     return Out;
 }

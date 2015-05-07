@@ -3,7 +3,7 @@
 //@tags: color
 //@credits: 
 
-Texture2D<float2> velmap;
+Texture2D velmap;
 Texture2D<float> velmask;
 Texture2D<float> depth;
 
@@ -40,7 +40,7 @@ vs2gs VS(uint ix: SV_VertexID, uint iy: SV_InstanceID)
 	float2 txcd = float2(ix/res.x,iy/res.y);
     Out.pos  = float4((txcd.x-.5)*2,-(txcd.y-.5)*2,0,1);
     Out.TexCd = txcd;
-	Out.vel = velmap.SampleLevel(s0,txcd,0);
+	Out.vel = velmap.SampleLevel(s0,txcd,0).xy;
 	Out.mask = velmask.SampleLevel(s0,txcd,0) > maskepsilon;
     return Out;
 }
@@ -74,7 +74,7 @@ void GS(point vs2gs input[1], inout LineStream<gs2ps> gsout)
 		}
 		else
 		{
-			float2 vvel = velmap.SampleLevel(s0,newtxcd,0);
+			float2 vvel = velmap.SampleLevel(s0,newtxcd,0).xy;
 			//veltest = max(.9999-length(vvel)/ maxextend,0);
 			veltest = depth.SampleLevel(s0,newtxcd,0);
 			o.pos = float4((newtxcd.x-.5)*2,-(newtxcd.y-.5)*2,veltest,1);
@@ -102,7 +102,7 @@ void GS(point vs2gs input[1], inout LineStream<gs2ps> gsout)
 		}
 		else
 		{
-			float2 vvel = velmap.SampleLevel(s0,newtxcd,0);
+			float2 vvel = velmap.SampleLevel(s0,newtxcd,0).xy;
 			//veltest = max(.9999-length(vvel)/ maxextend,0);
 			veltest = depth.SampleLevel(s0,newtxcd,0);
 			o.pos = float4((newtxcd.x-.5)*2,-(newtxcd.y-.5)*2,veltest,1);

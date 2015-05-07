@@ -89,7 +89,7 @@ float PenumbraSize(float zReceiver, float zBlocker) //Parallel plane estimation
 }
 
 float PointShadows(
-    Texture2DArray maps,
+    Texture2DArray<float> maps,
     float slice,
     float3 lpos,
 	float lrange,
@@ -109,11 +109,11 @@ float PointShadows(
         float tt = (i/SEARCH_DISCSAMPLES) * PI * 2;
 		//float noise = 1 - rand(cwpos.xy + tt) * ShadNoise.x;
         float3 discray = PoissonDiscDir(ldir, tt, penumbra);
-        float4 currpos = maps.SampleLevel(ShadSampler, float3(DirToUV(discray), slice), 0);
+        float currd = maps.SampleLevel(ShadSampler, float3(DirToUV(discray), slice), 0);
     	
-    	if ( abs(currpos.a - centerld) > bias )
+    	if ( abs(currd - centerld) > bias )
     	{
-			sumBlocks += currpos.a;
+			sumBlocks += currd;
 			numBlocks++;
 		}
     }
@@ -128,10 +128,10 @@ float PointShadows(
         float tt = (i/DISCSAMPLES) * PI * 2;
 		float noise = 1 - rand(cwpos.xy + tt) * ShadNoise.x;
         float3 discray = PoissonDiscDir(ldir, tt, vpenumbra * noise);
-        float4 currpos = maps.SampleLevel(ShadSampler, float3(DirToUV(discray), slice), 0);
+        float currd = maps.SampleLevel(ShadSampler, float3(DirToUV(discray), slice), 0);
     	
     	float dbias = (centerld > 1) ? pow(centerld,0.25) : pow(centerld,4);
-    	if ( abs(currpos.a - centerld) > (bias * dbias) )
+    	if ( abs(currd - centerld) > (bias * dbias) )
     	{
 			res = res - 1.0/DISCSAMPLES;
 		}
@@ -141,7 +141,7 @@ float PointShadows(
 }
 
 float SpotShadows(
-    Texture2DArray maps,
+    Texture2DArray<float> maps,
     float slice,
     float3 lpos,
 	float lrange,
@@ -164,11 +164,11 @@ float SpotShadows(
 	    	float2 uvoffs = float2(j/SEARCH_SPOTSAMPLES, i/SEARCH_SPOTSAMPLES)-0.5;
 	    	//uvoffs += 0.5 / SEARCH_SPOTSAMPLES;
 	    	float2 uvoffsn = uvoffs + rand2(cwpos.xy + uvoffs) * ShadNoise.x;
-	        float4 currpos = maps.SampleLevel(ShadSampler, float3(uvP + uvoffsn * penumbra, slice), 0);
+	        float currd = maps.SampleLevel(ShadSampler, float3(uvP + uvoffsn * penumbra, slice), 0);
 	    	
-	    	if ( abs(currpos.a - centerld) > bias )
+	    	if ( abs(currd - centerld) > bias )
 	    	{
-				sumBlocks += currpos.a;
+				sumBlocks += currd;
 				numBlocks++;
 			}
 	    }
@@ -187,10 +187,10 @@ float SpotShadows(
 	    	//uvoffs += 0.5 / SPOTSAMPLES;
 	    	float2 uvoffsn = uvoffs + rand2(cwpos.xy + uvoffs) * ShadNoise.x;
 	    	
-	        float4 currpos = maps.SampleLevel(ShadSampler, float3(uvP + uvoffsn * vpenumbra, slice), 0);
+	        float currd = maps.SampleLevel(ShadSampler, float3(uvP + uvoffsn * vpenumbra, slice), 0);
 	    	
 	    	float dbias = (centerld > 1) ? pow(centerld,0.25) : pow(centerld,4);
-	    	if ( abs(currpos.a - centerld) > (bias * dbias) )
+	    	if ( abs(currd - centerld) > (bias * dbias) )
 	    	{
 				res = res - 1.0/(SPOTSAMPLES * SPOTSAMPLES);
 			}

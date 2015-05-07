@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="75" scrolly="2700">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="150" scrolly="4440">
    <BOUNDS type="Window" left="11835" top="4170" width="15840" height="10875">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -557,13 +557,13 @@
    </PIN>
    <PIN pinname="ShadowMaps" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="bias" slicecount="1" visible="1" values="0.06">
+   <PIN pinname="bias" slicecount="1" visible="1" values="0.100000001490116">
    </PIN>
-   <PIN pinname="ShadNoiseXY" visible="1" slicecount="2" values="1,0.19">
+   <PIN pinname="ShadNoiseXY" visible="1" slicecount="2" values="0,0">
    </PIN>
-   <PIN pinname="ShadGamma" slicecount="1" values="0.75">
+   <PIN pinname="ShadGamma" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="ShadSoftOffs" slicecount="1" visible="1" values="0.002">
+   <PIN pinname="ShadSoftOffs" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="RXY" visible="1">
    </PIN>
@@ -715,7 +715,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="11415" top="7665" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.05">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.06">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

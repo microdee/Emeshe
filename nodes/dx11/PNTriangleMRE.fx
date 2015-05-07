@@ -18,25 +18,18 @@ cbuffer cbPerDraw : register( b0 )
 	int DepthMode : MRE_DEPTHMODE;
 };
 
-cbuffer cbPerObject : register( b1 )
+cbuffer cbPerObjectGeom : register( b1 )
 {
-	float4x4 tW : WORLD;
-	float4x4 ptW; // previous frame world transform per draw call
-	float4x4 tTex;
-	float alphatest = 0.5;
-	float FDiffAmount = 1;
-	float4 FDiffColor <bool color=true;> = 1;
-	float FBumpAmount = 0;
-	float bumpOffset = 0;
-	int MatID = 0;
-	int2 ObjID = 0;
-	float gVelocityGain = 1;
-	float TriPlanarPow = 1;
-	float CurveAmount = 1;
-	float pCurveAmount = 1;
-	float Factor = 1;
-	bool FlipNormals = false;
+    float4x4 tW : WORLD;
+    float4x4 ptW;
+    float4x4 tTex;
+    float CurveAmount = 1;
+    float pCurveAmount = 1;
+    float Factor = 1;
+    bool FlipNormals = false;
 };
+
+#include "../fxh/MREForwardPS.fxh"
 
 /////////////////////////
 //////// Structs ////////
@@ -331,107 +324,6 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
     O.velocity = mul(float4(pdispPos,1), ptWVP);
    
     return O;
-}
-////////////////////
-//////// PS ////////
-////////////////////
-
-PSOut PS(PSin In)
-{
-    float ii = In.ii;
-    float3 PosV = In.PosV.xyz;
-
-    PSOut Out = (PSOut)0;
-    float3 NormV = In.NormV;
-    
-    float2 uvb = In.TexCd.xy;
-    
-    #if defined(INSTANCING)
-        float bmpam = InstancedParams[ii].BumpAmount * FBumpAmount;
-    #else
-        float bmpam = FBumpAmount;
-    #endif
-
-    float depth = bmpam;
-    #if defined(TRIPLANAR)
-        float mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow).r + bumpOffset;
-        float4 diffcol = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow);
-    #else
-        float mdepth = BumpTex.Sample(Sampler, uvb).r + bumpOffset;
-        float4 diffcol = DiffTex.Sample( Sampler, uvb);
-    #endif
-    
-    if(depth!=0) PosV += In.NormV * mdepth * (depth/100);
-
-    #if defined(HAS_NORMALMAP)
-        float3 normmap = NormalTex.Sample(Sampler, uvb).xyz*2-1;
-        float3 outnorm = normalize(normmap.x * In.Tangent + normmap.y * In.Binormal + normmap.z * In.NormV);
-        Out.normalV = float4(lerp(NormV, outnorm, depth),1);
-    #else
-        Out.normalV = float4(NormV,1);
-    #endif
-
-    float alphat = diffcol.a * FDiffColor.a;
-
-    #if defined(ALPHATEST)
-        if(alphatest!=0)
-        {
-            alphat = lerp(alphat, (alphat>=alphatest), min(alphatest*10,1));
-            clip(alphat - (1-alphatest));
-        }
-    #endif
-    
-    #if defined(INSTANCING)
-        diffcol.rgb *= FDiffColor.rgb * FDiffAmount * InstancedParams[ii].DiffAmount * InstancedParams[ii].DiffCol.rgb;
-    #else
-        diffcol.rgb *= FDiffColor.rgb * FDiffAmount;
-    #endif
-    Out.color.rgb = diffcol.rgb;
-    Out.color.a = alphat;
-    
-    #if defined(WRITEDEPTH)
-        if(DepthMode == 1)
-        {
-            float d = length(PosV.xyz);
-            d -= NearFarPow.x;
-            d /= abs(NearFarPow.y - NearFarPow.x);
-            d = pows(d, NearFarPow.z);
-            Out.depth = saturate(d);
-        }
-        else
-        {
-            float4 posout = mul(float4(PosV,1),tP);
-            Out.depth = posout.z/posout.w;
-        }
-    #endif
-    
-    Out.velocity = In.PosP.xy/In.PosP.w - In.velocity.xy/In.velocity.w;
-    Out.velocity *= 0.5 * gVelocityGain;
-    Out.velocity += 0.5;
-    
-    #if defined(TRIPLANAR)
-		float2 tuv = TriPlanar(In.TexCd.xyz, In.NormW, TriPlanarPow);
-    	Out.matprop.rg = f32tof16(tuv);
-	#else
-    	Out.matprop.rg = f32tof16(uvb);
-	#endif
-	
-    #if defined(INSTANCING)
-        Out.matprop.b = InstancedParams[ii].MatID;
-        if(ObjIDMode == 1)
-        {
-            uint o0 = InstancedParams[ii].ObjID0;
-            uint o1 = InstancedParams[ii].ObjID1;
-            Out.matprop.a = JoinHalf(o0, o1);
-        }
-        else Out.matprop.a = InstancedParams[ii].ObjID0;
-    #else
-        Out.matprop.b = MatID;
-        if(ObjIDMode == 1) Out.matprop.a = JoinHalf(ObjID.x, ObjID.y);
-        else Out.matprop.a = ObjID.x;
-    #endif
-    
-    return Out;
 }
 
 technique10 DeferredBase

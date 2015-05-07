@@ -68,18 +68,12 @@ struct PSinProp
 
 struct PSOut
 {
-	float4 color : SV_Target0;
-	float4 normalV : SV_Target1;
-	float2 velocity : SV_Target2;
-	uint4 matprop : SV_Target3; // UV MatID OID
+	float4 color : SV_Target0; // rgb: col; a: MatID
+	float4 normalV : SV_Target1; // rgb: norm; a: ObjID
+	float4 veluv : SV_Target2; // rg: velocity; ba: UV
 	#if defined(WRITEDEPTH)
 		float depth : SV_Depth;
 	#endif
-};
-
-struct PSOutProp
-{
-	float4 WorldPos : SV_Target;
 };
 
 SamplerState Sampler

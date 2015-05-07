@@ -44,7 +44,6 @@ vs2ps VS(VS_IN input)
     return Out;
 }
 
-
 struct OutComps
 {
 	float4 Ambient : SV_Target0;
@@ -58,7 +57,7 @@ OutComps pPnt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, Res) > 0) && KnowFeature(GetMatID(uv, Res), MF_LIGHTING_COOKTORRANCE))
+	if((GetStencil(Res, uv) > 0) && KnowFeature(GetMatID(s0, uv), MF_LIGHTING_COOKTORRANCE))
 	{
 		Components col = CookTorrancePointSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)0;
@@ -99,7 +98,7 @@ OutComps pSpt(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, Res) > 0) && KnowFeature(GetMatID(uv, Res), MF_LIGHTING_COOKTORRANCE))
+	if((GetStencil(Res, uv) > 0) && KnowFeature(GetMatID(s0, uv), MF_LIGHTING_COOKTORRANCE))
 	{
 		Components col = CookTorranceSpotSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
@@ -139,7 +138,7 @@ OutComps pSun(vs2ps In)
 {
 	float2 uv = In.TexCd.xy;
 
-	if((GetStencil(uv, Res) > 0) && KnowFeature(GetMatID(uv, Res), MF_LIGHTING_COOKTORRANCE))
+	if((GetStencil(Res, uv) > 0) && KnowFeature(GetMatID(s0, uv), MF_LIGHTING_COOKTORRANCE))
 	{
 		Components col = CookTorranceSunSSS(s0, uv, Res, LightCount, DistanceMod, MaskTex.SampleLevel(s0, uv, 0).r);
 		OutComps outCol = (OutComps)1;
