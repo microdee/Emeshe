@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
    <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Dancer-TessellatedSphere-Pointlight.v4p" systemname="Emeshe-test" filename="C:\vvvv\release\EmesheDroid\Emeshe-test.v4p" scrollx="0" scrolly="-360">
-   <BOUNDS type="Window" left="16035" top="765" width="13605" height="13785">
+   <BOUNDS type="Window" left="8040" top="1305" width="13605" height="13785">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>

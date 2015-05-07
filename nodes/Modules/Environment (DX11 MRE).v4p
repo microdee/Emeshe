@@ -163,15 +163,13 @@
    <NODE systemname="Decompose (Transform Quaternion)" filename="%VVVV%\addonpack\lib\nodes\plugins\TransformsAdvanced.dll" nodename="Decompose (Transform Quaternion)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="7425" top="2535" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Transform In" visible="1">
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="TranslateXYZ" visible="1">
    </PIN>
    <PIN pinname="RotateXYZW" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="7" srcpinname="Output 1" dstnodeid="1" dstpinname="Transform In">
-   </LINK>
    <LINK srcnodeid="1" srcpinname="RotateXYZW" dstnodeid="2" dstpinname="Quaternion XYZW">
    </LINK>
    <LINK srcnodeid="2" srcpinname="Transform Out" dstnodeid="9" dstpinname="View">
@@ -425,5 +423,33 @@
    <LINK srcnodeid="31" srcpinname="Output Node" dstnodeid="30" dstpinname="Input Node">
    </LINK>
    <LINK srcnodeid="30" srcpinname="Output Node" dstnodeid="5" dstpinname="Texture In">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="32" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="5685" top="930" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5685" top="930" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Transform In|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="33">
+   <BOUNDS type="Node" left="6690" top="1920" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform In 2" visible="1">
+   </PIN>
+   <PIN pinname="Transform In 1" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Output 1" dstnodeid="33" dstpinname="Transform In 2">
+   </LINK>
+   <LINK srcnodeid="32" srcpinname="Output Node" dstnodeid="33" dstpinname="Transform In 1">
+   </LINK>
+   <LINK srcnodeid="33" srcpinname="Transform Out" dstnodeid="1" dstpinname="Transform In">
    </LINK>
    </PATCH>

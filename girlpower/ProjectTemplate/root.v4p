@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\root.v4p" systemname="root" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\root.v4p" scrollx="300" scrolly="-360">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\root.v4p" systemname="root" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\root.v4p" scrollx="0" scrolly="4020">
    <BOUNDS type="Window" left="14850" top="5280" width="9870" height="9495">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">

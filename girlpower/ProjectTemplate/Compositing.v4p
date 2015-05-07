@@ -477,13 +477,13 @@
    </PIN>
    <BOUNDS type="Window" left="16605" top="3750" width="16230" height="11175">
    </BOUNDS>
-   <PIN pinname="MFtoAF" slicecount="1" values="0">
+   <PIN pinname="MFtoAF" slicecount="1" values="1">
    </PIN>
    <PIN pinname="focus" slicecount="1" values="16.72">
    </PIN>
    <PIN pinname="width" slicecount="1" visible="1" values="1">
    </PIN>
-   <PIN pinname="AFpointXY" visible="1" slicecount="2" values="0.262,0">
+   <PIN pinname="AFpointXY" visible="1" slicecount="2" values="0,0">
    </PIN>
    <PIN pinname="Filter Time" slicecount="1" values="0.8">
    </PIN>
@@ -593,47 +593,5 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="27" dstpinname="Blur Luminance">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="51" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5325" top="11325" width="795" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="5325" top="11325" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0.262,0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Vector Size" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="2">
-   </PIN>
-   </NODE>
-   <NODE systemname="Mouse (Devices Window)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Mouse (Devices Window)" componentmode="Hidden" id="52">
-   <BOUNDS type="Node" left="4875" top="12540" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="PositionXY" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="52" srcpinname="PositionXY" dstnodeid="41" dstpinname="AFpointXY">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="6570" top="11775" width="795" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6570" top="11775" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Vector Size" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="Y Input Value" slicecount="2" values=",">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="52" srcpinname="PositionXY" dstnodeid="53" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
