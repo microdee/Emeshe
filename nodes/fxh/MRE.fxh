@@ -50,7 +50,15 @@ float3 GetViewPos(SamplerState SS, float2 uv)
 */
 float3 GetViewPos(SamplerState SS, float2 uv)
 {
-	float d = Depth.SampleLevel(SS, uv, 0).r;
+	float d = Depth.SampleLevel(SS, uv, 0);
+	if(DepthMode == 1)
+		return UVDtoVIEW(uv, d, NearFarPow, CamProj, CamProjInv);
+	else
+		return UVZtoVIEW(uv, d, CamProj, CamProjInv);
+}
+float3 LoadViewPos(float2 RR, float2 uv)
+{
+	float d = Depth.Load(int3(uv*RR,0));
 	if(DepthMode == 1)
 		return UVDtoVIEW(uv, d, NearFarPow, CamProj, CamProjInv);
 	else

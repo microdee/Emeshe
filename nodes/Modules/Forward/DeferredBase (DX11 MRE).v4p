@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="0" scrolly="2040">
-   <BOUNDS type="Window" left="1950" top="4620" width="16815" height="9885">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="2490" scrolly="7200">
+   <BOUNDS type="Window" left="1200" top="3375" width="16815" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="1170" top="1410" width="0" height="0">
@@ -559,9 +559,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="288" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="9870" top="12105" width="1290" height="240">
+   <BOUNDS type="Box" left="11355" top="12105" width="1290" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9870" top="12105" width="0" height="0">
+   <BOUNDS type="Node" left="11355" top="12105" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="DeferredBase">
    </PIN>
@@ -823,6 +823,10 @@
    </PIN>
    <PIN pinname="FlipNormalsXYZ" visible="1">
    </PIN>
+   <PIN pinname="AddressU" slicecount="1" values="AWrap" visible="1">
+   </PIN>
+   <PIN pinname="AddressV" slicecount="1" values="AWrap" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Output Node" dstnodeid="305" dstpinname="Geometry">
    </LINK>
@@ -941,5 +945,35 @@
    <LINK srcnodeid="291" srcpinname="Y Output Value" dstnodeid="307" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="307" srcpinname="Output" dstnodeid="305" dstpinname="FlipNormalsXYZ">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="309" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="7875" top="5340" width="1005" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7875" top="5340" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AWrap">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="AddressU">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="309" srcpinname="Output Enum" dstnodeid="305" dstpinname="AddressU">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="310" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="8040" top="5895" width="975" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8040" top="5895" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AWrap">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="AddressV">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="310" srcpinname="Output Enum" dstnodeid="305" dstpinname="AddressV">
    </LINK>
    </PATCH>

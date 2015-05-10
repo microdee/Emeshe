@@ -1,109 +1,124 @@
-Texture2D PrevTex: PREVIOUS;
-Texture2D ColorTex: INITIAL;
 
-#define PI 3.14159265358979
 #include "../fxh/MRE.fxh"
 
-float2 ScreenSize:TARGETSIZE;
-
-cbuffer controls:register(b0){
-	float SampleRadius = 0.05;
-	float Intensity = 1;
-	float Scale = 1;
-	float Bias = 0.06;
-	float SelfOcclusion = 0;
-	float Blur = 1;
-	//float FOV = 0;
-	//float farval = 100;
-};
+Texture2D PrevTex: PREVIOUS;
+Texture2D Noise;
 
 SamplerState s0 <bool visible=false;string uiname="Sampler";>
 {
 	Filter=MIN_MAG_MIP_POINT;
 	AddressU=WRAP;
 	AddressV=WRAP;
-	MipLODBias = -1;
+	//MipLODBias = -1;
 };
-/*
-float CorrectRad()
-{
-	float fovtang = tan(PI*FOV);
-	if(fovtang!=0) return 1/fovtang;
-	else return 1;
-}
-*/
-float3 getPosition(in float2 uv)
-{
-	float3 poso = GetViewPos(s0, uv);
-	//if((poso.x == 0) && (poso.y == 0) && (poso.z == 0)) poso = float3(uv,farval);
-	//return poso + (NoiseTex.Sample(s0, uv).xyz - .5) * NoiseAmount;
-	return poso;
-}
 
-float3 getNormal(in float2 uv)
-{
-	float3 normo = Normals.Sample(s0, uv).xyz;
-	return normo;
+float2 screenSize : TARGETSIZE;
+float2 screenResMul = 1;
+
+StructuredBuffer<float2> kernel;
+float aoSize = 1;
+float kernelSize = 32;
+float strength = 1;
+float Gamma = 1;
+float NoiseAmount = 0;
+
+float3 getFaceNormal( float3 position , float2 uv)
+{	
+	// Get the face normal by using position buffer derivatives
+	// dFdx/dFdy may also be used
+	float2 pixelStep = 1.0 / ( screenResMul.x * screenSize.xy );
+	
+	float3 n1 = cross( ( GetViewPos(s0, uv - pixelStep * float2( 1, 0 ) ) - position ), 
+					 ( GetViewPos(s0, uv - pixelStep * float2( 0, 1 ) ) - position ) );
+						  
+	float3 n2 = cross( ( GetViewPos(s0, uv + pixelStep * float2( 1, 0 ) ) - position ), 
+					 ( GetViewPos(s0, uv + pixelStep * float2( 0, 1 ) ) - position ) );
+	  
+	return normalize( n1 + n2 );
 }
 
 float getRandom(in float2 uv)
-{	return ((frac(uv.x * (ScreenSize.x/2.0))*0.25)+(frac(uv.y*(ScreenSize.y/2.0))*0.5));	}
+{	return ((frac(uv.x * (screenSize.x/2.0))*0.25)+(frac(uv.y*(screenSize.y/2.0))*0.5));	}
 
-float doAmbientOcclusion(in float2 tcoord,in float2 uv, in float3 p, in float3 cnorm)
+float4 PS(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
-  float3 diff = getPosition(tcoord + uv) - p;
-  const float3 v = normalize(diff);
-  const float  d = length(diff)*Scale;
-  return max(0.0-SelfOcclusion,dot(cnorm,v)-Bias)*(1.0/(1.0+d*d))*Intensity;
-}
+	// Get the current pixel's positiom
+	float3 currentPos = GetViewPos(s0, uv );
+	
+	// Get the current pixel's distance
+	// This is very much like the pixel's depth
+	float currentDistance = length( currentPos );
 
-float4 SSAO(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
-{
-	float2 InvScreenSize = 1/ScreenSize;
-	uv.x += InvScreenSize.x;
-	uv.y -= InvScreenSize.y;
-  const float3 vec[14] = {float3(1,1,-1),float3(1,-1,-1),
-                         float3(1,1,1),float3(1,-1,1),
-                         float3(-1,1,-1),float3(-1,-1,-1),
-                         float3(-1,1,1),float3(-1,-1,1),
+	// Get either pixel normal or face normal
+	#if defined(CALCULATENORMALS)	
+		float3 currentNormal = Normals.SampleLevel(s0, uv, 0).xyz;
+	#else
+		float3 currentNormal = getFaceNormal( currentPos, uv );
+	#endif
 
-                         float3(1,0,0),float3(-1,0,0),
-                         float3(0,1,0),float3(0,-1,0),
-                         float3(0,0,1),float3(0,0,-1),
-                       };
+	// Calculate an aspect-ratio variable. This is required because the output buffer is non-square
+	// The process will work without this, however, the result will look weird/incorrect
+	float2 aspectRatio = float2( min( 1.0, screenSize.y / screenSize.x ), min( 1.0, screenSize.x / screenSize.y ) );
 
-  float4 o = float4(0.0,0.0,0.0,1.0);
-  float3 p = getPosition(uv);
-  float3 n = getNormal(uv);
-  float rand = getRandom(uv);
+	// Grab a random vector from a 8x8 tiled random texture
+	float4 randomVec = Noise.SampleLevel(s0, uv, 0);
+	
+	// Transform randomVec from range 0 - 1 to range -1 - 1
+	randomVec *= 2.0;
+	randomVec -= 1.0;
+	
+	// Create a 2D rotation matrix
+	// For your own source, it is better to #define PI
+	float2x2 rotMat = float2x2( float2( cos( randomVec.x * 3.1415926 ), -sin( randomVec.x * 3.1415926 ) ),
+						float2( sin( randomVec.x * 3.1415926 ), cos( randomVec.x * 3.1415926 ) ) );
+	
+	float amount = 0.0;
+	
+	for ( int i = 0; i < int( kernelSize ); i++ )
+	{
+		// Retrieve the kernel vector and scale it with aspectRatio
+		float2 kernelVec = kernel[i];
+		kernelVec *= aspectRatio;
+	
+		float radius = aoSize * lerp(1,randomVec.y, NoiseAmount);
+		
+		kernelVec = lerp(kernelVec, mul(rotMat, kernelVec), NoiseAmount);
+	
+		// Divide by currentDistance to get the correct behaviour and scale with radius
+		kernelVec = ( kernelVec / currentDistance ) * radius;
+		
+		// Calculate a horizon vector
+		float3 pos = GetViewPos(s0, uv + kernelVec );
+		pos = pos - currentPos;
+		
+		// Calculate the horizon angle
+		float angle = dot( pos, currentNormal );
+		
+		// Use a normalized angle to ignore small angles
+		angle *= step( 0.3, angle / length( pos ) );
 
-  float ao = 0.0;
-  //float rad = (SampleRadius * CorrectRad())/p.z;
-  float rad = SampleRadius;
-  //**SSAO Calculation**//
+		// Bias the angle depending on distance
+		angle -= currentDistance * 0.001;
+		angle = max( 0.0, angle );
+		// We diminish the angle if it is too close to the view
+		angle /= dot( pos, pos ) / min( currentDistance * 0.25, 1.0 ) + 0.00001;
+		
+		amount += angle;
+	}
+	
+	// Create the final amount value
+	amount *= strength / kernelSize;
+	amount = 1.0 - amount;
+	amount = max( 0.0, amount );
 
-  for (int j = 0; j < 14; ++j)
-  {
-    float3 coord = vec[j]*rad*rand;
-    coord.y = ScreenSize.y-coord.y;
-    ao += doAmbientOcclusion(uv,coord*InvScreenSize*2000.0, p, n )/2;
-  }
-  for (int j = 0; j < 14; ++j)
-  {
-    float3 coord = vec[j]*rad*.5*rand;
-    coord.y = ScreenSize.y-coord.y;
-    ao += doAmbientOcclusion(uv,coord*InvScreenSize*2000.0, p, n )/2;
-  }
-  ao/=8;
-  ao+=SelfOcclusion;
-
-  o.rgb = ao;
-  //**END**//
-  return o;
+	float4 outcol = 1;
+	
+	outcol.rgb = pow(saturate(amount),Gamma);
+	return outcol;
 }
 float4 SSAOBlur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
-	float2 InvScreenSize = 1/ScreenSize;
+	float2 InvScreenSize = 1/screenSize;
   float4 o = 1;
   const float2 vec[3] = {
    float2(1,1),
@@ -111,31 +126,25 @@ float4 SSAOBlur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
    float2(0,1),
    };
 
-  float4 n = float4(getNormal(uv),1);
+  float4 n = float4(Normals.SampleLevel(s0, uv, 0).xyz,1);
 
   float3 ao = PrevTex.Sample(s0,uv).xyz;
   int samples = 1;
   for (int k=0;k<3;k++){
-     float2 tcoord = uv+float2(vec[k].x*InvScreenSize.x*Blur,vec[k].y*InvScreenSize.y*Blur);
+     float2 tcoord = uv+float2(vec[k].x*InvScreenSize.x,vec[k].y*InvScreenSize.y);
      ao+=PrevTex.Sample(s0,tcoord).xyz;
      samples++;
   }
   ao/=samples;
 
-  o.rgb *= 1-(saturate(ao)*n.a);
+  o.rgb *= saturate(ao)*n.a;
 
   return o;
 }
 
-float4 pMUL(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
-	return float4(PrevTex.Sample(s0,x).rgb * ColorTex.Sample(s0,x).rgb,ColorTex.Sample(s0,x).a);
-}
-
 technique10 SSAOt{
 	pass P0
-	{SetPixelShader(CompileShader(ps_4_0,SSAO()));}
-	pass P1
-	{SetPixelShader(CompileShader(ps_4_0,SSAOBlur()));}
-	pass P2
-	{SetPixelShader(CompileShader(ps_4_0,pMUL()));}
+	{SetPixelShader(CompileShader(ps_4_0,PS()));}
+	//pass P1
+	//{SetPixelShader(CompileShader(ps_4_0,SSAOBlur()));}
 }

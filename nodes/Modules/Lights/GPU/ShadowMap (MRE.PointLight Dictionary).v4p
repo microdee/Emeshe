@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\ShadowMap (MRE.PointLight Dictionary).v4p" systemname="ShadowMap (MRE.PointLight Dictionary)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\ShadowMap (MRE.PointLight Dictionary).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\ShadowMap (MRE.PointLight Dictionary).v4p" systemname="ShadowMap (MRE.PointLight Dictionary)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\ShadowMap (MRE.PointLight Dictionary).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="29115" top="3585" width="14805" height="11730">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">

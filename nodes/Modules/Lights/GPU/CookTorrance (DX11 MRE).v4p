@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="150" scrolly="4440">
-   <BOUNDS type="Window" left="11835" top="4170" width="15840" height="10875">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="2820" scrolly="3795">
+   <BOUNDS type="Window" left="11175" top="1935" width="15840" height="10875">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -63,7 +63,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6585" top="11070" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="5">
+   <PIN pinname="Y Input Value" slicecount="1" values="3">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -229,13 +229,15 @@
    </BOUNDS>
    <BOUNDS type="Box" left="17415" top="8160" width="990" height="1185">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 Ambient;&cr;&lf;1 Diffuse;&cr;&lf;2 Specular;&cr;&lf;3 SSS;&cr;&lf;4 Rim;|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|0 Diffuse;&cr;&lf;1 Specular;&cr;&lf;2 SSS;|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="0">
    </PIN>
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="||">
    </PIN>
    </NODE>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="24">
@@ -374,28 +376,6 @@
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="10935" top="3930" width="930" height="1170">
-   </BOUNDS>
-   <BOUNDS type="Node" left="10935" top="3930" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="5" values="1,1,1,1,1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="5">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Component Amount|">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="13" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="7575" top="2025" width="795" height="240">
    </BOUNDS>
@@ -513,7 +493,7 @@
    <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="5" dstpinname="Input Node">
    </LINK>
    <NODE systemname="CookTorranceSeparate (DX11.Effect)" filename="..\dx11\CookTorranceSeparate.fx" nodename="CookTorranceSeparate (DX11.Effect)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="7245" top="9375" width="5100" height="270">
+   <BOUNDS type="Node" left="7245" top="9480" width="5100" height="270">
    </BOUNDS>
    <PIN pinname="Technique">
    </PIN>
@@ -569,6 +549,8 @@
    </PIN>
    <PIN pinname="ResXY" visible="1" slicecount="2" values="1,0.17">
    </PIN>
+   <PIN pinname="ComponentAmountXYZ" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="36" srcpinname="Geometry Out" dstnodeid="21" dstpinname="Geometry">
    </LINK>
@@ -597,8 +579,6 @@
    <LINK srcnodeid="17" srcpinname="Buffer" dstnodeid="21" dstpinname="MaskID">
    </LINK>
    <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="21" dstpinname="ZeroBypass">
-   </LINK>
-   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="21" dstpinname="ComponentAmount">
    </LINK>
    <LINK srcnodeid="12" srcpinname="Output Node" dstnodeid="21" dstpinname="SSSMaps">
    </LINK>
@@ -851,5 +831,27 @@
    <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="60" srcpinname="Output" dstnodeid="23" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="61" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="10710" top="4620" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10710" top="4620" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="1,1,1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Components Amount|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="21" dstpinname="ComponentAmountXYZ">
    </LINK>
    </PATCH>

@@ -149,13 +149,6 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
 
     float SStrength = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARSTRENGTH);
     
-    float3 lAmb = 0;
-    float3 lAttAmb = 1;
-    if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
-    {
-    	lAmb = GetFloat(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_AMBIENTCOLOR);
-    	lAttAmb = GetFloat3(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_ATTENUATION);
-    }
     float3 lAttSSS = 1;
     if(KnowFeature(matid, MF_LIGHTING_FAKESSS))
     {
@@ -173,18 +166,11 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
     	if((pointlightprop[i].LightStrength > lEpsilon) && valid)
     	{
 		   	float atten = 0;
-		    float3 amb = 0;
 	        float3 lPos = pointlightprop[i].Position;
 	        float lRange = pointlightprop[i].Range;
 	        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
 	
 	        float d = distance(PosV, lPos);
-	            
-	    	if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
-	    	{
-	        	float attenamb = 1/(saturate(lAttAmb.x) + saturate(lAttAmb.y) * d + saturate(lAttAmb.z) * pow(d, 2));
-		    	amb = lAmb * attenamb * spotlightprop[i].LightStrength;
-	    	}
 
 	    	float rangeF = pow(saturate((lRange-d)/lRange),dmod*pointlightprop[i].RangePow);
 	        float3 LightDirV = normalize(lPos-PosV);
@@ -202,26 +188,44 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
 	        	#if defined(DOSHADOWS)
 	        	if(pointlightprop[i].KnowShadows > 0.5)
 	        	{
-	        		float facing = dot(NormV,LightDirV);
-	        		if(facing >= 0)
-	        		{
-	        			float cbias = bias;
-	        			if(KnowFeature(matid, MF_LIGHTING_SHADOWS))
-	        				cbias = GetFloat(matid, MF_LIGHTING_SHADOWS, 0);
-		        		float3 lPosW = mul(float4(pointlightprop[i].ShadowMapCenter, 1), CamViewInv).xyz;
-		        		float3 cPosW = mul(float4(PosV, 1), CamViewInv).xyz;
-		        		float penumbra = pointlightprop[i].Penumbra;
-			        	shad = PointShadows(ShadowMaps, pointlightprop[i].MapID, lPosW, lRange, cPosW, cbias, penumbra);
-	        			shad = lerp(1, shad, pow(saturate(facing+0.2),0.25));
-	        		}
+        			float cbias = bias;
+        			if(KnowFeature(matid, MF_LIGHTING_SHADOWS))
+        				cbias = GetFloat(matid, MF_LIGHTING_SHADOWS, 0);
+	        		float3 lPosW = mul(float4(pointlightprop[i].ShadowMapCenter, 1), CamViewInv).xyz;
+	        		float3 cPosW = mul(float4(PosV, 1), CamViewInv).xyz;
+	        		float penumbra = pointlightprop[i].Penumbra;
+		        	shad = PointShadows(ShadowMaps, pointlightprop[i].MapID, lPosW, lRange, cPosW, cbias, penumbra);
 	        	}
 	        	#endif
 	        }
 	    	
 	    	outc.Diffuse += diff * rangeF * shad;
-	    	//outc.Diffuse = shad;
 	    	outc.Specular += spec * rangeF * shad;
-	    	outc.Ambient = max(outc.Ambient, amb);
+    		
+		    if(KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT))
+		    {
+				float power = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_POWER);
+				float amount = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_STRENGTH);
+				float width = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_WIDTH);
+
+		        float3 lPos = pointlightprop[i].Position;
+	        	float d = distance(PosV, lPos);
+		        float lRange = pointlightprop[i].Range;
+		        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
+
+				float rangeRim = pow(saturate(1-d/lRange), dmod * 0.9 * pointlightprop[i].RangePow);
+		    	float rima = pointlightprop[i].LightStrength * amount * rangeRim;
+		    	
+				float dotnv = dot(NormV, ViewDirV);
+				float dotnl = dot(NormV, LightDirV);
+				float3 rim = 1-saturate(abs(dotnv) * width);
+			    float rimshad = lerp(1, shad, pow(saturate(-dotnl), 1/power));
+			    rimshad = lerp(shad, rimshad, pow(abs(dotnv), power));
+		    	
+				rim = pows(rim, power) * amount * lCol;
+		    	outc.Specular += rim * rima * RimMap * rimshad;
+		    	
+			}
     	}
     }
 
@@ -252,32 +256,6 @@ Components CookTorrancePointSSS(SamplerState s0, float2 uv, float2 sR, float lig
 				float rangeFSSS = pow(saturate((lRange * power - d)/(lRange * power)), dmod * 0.9 * pointlightprop[i].RangePow);
 		    	float sssa = pointlightprop[i].LightStrength * amount * rangeFSSS;
 		    	outc.SSS += indirectLightComponent * sssa;
-	    	}
-	    }
-	}
-
-    if(KnowFeature(matid, MF_LIGHTING_FAKERIMLIGHT))
-    {
-		float power = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_POWER);
-		float amount = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_STRENGTH);
-
-	    for(float i = 0; i<lightcount; i++)
-	    {
-    		bool valid = (mask == MaskID[i]) || (!UseMask) || ((mask == 0) && ZeroBypass);
-	    	if(pointlightprop[i].LightStrength > lEpsilon && valid)
-	    	{
-
-		        float3 lPos = pointlightprop[i].Position;
-	        	float d = distance(PosV, lPos);
-		        float lRange = pointlightprop[i].Range;
-		        float3 lCol = pointlightprop[i].LightCol.xyz * pointlightprop[i].LightStrength;
-
-				float rangeFSSS = pow(saturate((lRange * power - d * power)/(lRange * power)), dmod * 0.9 * pointlightprop[i].RangePow);
-		    	float sssa = pointlightprop[i].LightStrength * amount * rangeFSSS;
-
-				float3 rim = saturate(1-abs(dot(NormV, ViewDirV)));
-				rim = pows(rim, power) * amount * lCol;
-		    	outc.Rim += rim * sssa * RimMap;
 	    	}
 	    }
 	}
@@ -312,14 +290,7 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 	}
 
     float SStrength = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARSTRENGTH);
-    
-    float3 lAmb = 0;
-    float3 lAttAmb = 1;
-    if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
-    {
-    	lAmb = GetFloat(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_AMBIENTCOLOR);
-    	lAttAmb = GetFloat3(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_ATTENUATION);
-    }
+
     float3 lAttSSS = 1;
     if(KnowFeature(matid, MF_LIGHTING_FAKESSS))
     {
@@ -349,7 +320,6 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 	    	float3 lDir = normalize(lPos-PosV);
 		    float3 indirectLightComponent = 0;
 		    float3 rim = 0;
-		    float3 amb = 0;
 
 
 	    	if(spotlightprop[i].LightStrength > lEpsilon)
@@ -363,18 +333,11 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 			    projTexCd.y = -projpos.y / projpos.w / 2.0f + 0.5f;
 	    		float dfc = length(projpos.xy/projpos.w);
     			float indirectMul = 1;
-		    	if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
-		    	{
-		        	float attenamb = 1/(saturate(lAttAmb.x) + saturate(lAttAmb.y) * d + saturate(lAttAmb.z) * pow(d, 2));
-			    	amb = lAmb * attenamb * spotlightprop[i].LightStrength;
-		    		float cdfc = dfc * max(max(lAttAmb.x,lAttAmb.y),lAttAmb.z);
-		    		indirectMul = cdfc * pow(saturate(projpos.z*attenamb*.3),1) * (1-saturate(pows(cdfc,2)));
-		    		amb *= indirectMul;
-		    	}
 	    		
 				bool Mask = (saturate(projTexCd.x) == projTexCd.x) && (saturate(projTexCd.y) == projTexCd.y);
 	    		bool depthmask = saturate(projpos.z/projpos.w) == (projpos.z/projpos.w);
 	    		//bool depthmask = d<lRange;
+				float shad = 1;
 				if(Mask && depthmask)
 				{
 			    	projcol = SpotTexArray.SampleLevel(SpotSampler, float3(projTexCd, spotlightprop[i].TexID), 0) * spotlightprop[i].LightStrength;
@@ -382,7 +345,6 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 			        float3 diff = color;
 			        float3 spec = lSpec * color;
 		        	cook_torrance(NormV, ViewDirV, lDir, rough, diff, spec);
-					float shad = 1;
 		        	#if defined(DOSHADOWS)
 		        	if(spotlightprop[i].KnowShadows > 0.5)
 		        	{
@@ -395,12 +357,7 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 					
 					tlCol.Diffuse = diff * shad;
 			    	tlCol.Diffuse *= projcol.rgb*projcol.a;
-			    	tlCol.Ambient = amb;
 			    	tlCol.Specular = spec * pows(projcol.rgb*projcol.a,.5) * shad;
-				}
-				else
-				{
-			    	tlCol.Ambient = amb;
 				}
 			    
 			    float la = pows(1-d/spotlightprop[i].Range, spotlightprop[i].RangePow);
@@ -432,19 +389,22 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 			    {
 					float power = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_POWER);
 					float amount = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_STRENGTH);
+					float width = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_WIDTH);
 
-					rim = (float3)(max(0,0.5+dot(NormV, ViewDirV)));
-					rim = pows(rim, power) * amount * pows(projcol.rgb,.5);
-			    	
-					float rangeFSSS = pows(saturate((spotlightprop[i].Range*power-d * power)/(spotlightprop[i].Range*power)),dmod*.9*pointlightprop[i].RangePow);
-			    	float sssa = spotlightprop[i].LightStrength * amount * rangeFSSS * indirectMul;
-			    	tlCol.Rim = rim * sssa;
-					outc.Rim += max(tlCol.Rim * la,0);
+					float dotnv = dot(NormV, ViewDirV);
+					float dotnl = dot(NormV, lDir);
+			    	float rimshad = lerp(1, shad, pow(saturate(-dotnl), 1/power));
+			    	rimshad = lerp(shad, rimshad, pow(abs(dotnv), power));
+					rim = 1-saturate(abs(dotnv) * width);
+					rim = pows(rim, power) * amount * pows(projcol.rgb, 0.9);
+
+					float rangeRim = pow(saturate(1-d/spotlightprop[i].Range), dmod * 0.9 * pointlightprop[i].RangePow);
+			    	float rima = spotlightprop[i].LightStrength * amount * rangeRim * indirectMul;
+			    	tlCol.Specular += max(rim * rima, 0) * rimshad;
 			    }
 	    		
 				outc.Diffuse += tlCol.Diffuse * la;
 				outc.Specular += tlCol.Specular * la;
-				outc.Ambient = max(outc.Ambient, tlCol.Ambient * la);
 			}
 		}
 	}
@@ -478,12 +438,6 @@ Components CookTorranceSunSSS(SamplerState s0, float2 uv, float2 sR, float light
 		float RimMapId = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT_MAP, 0);
 		RimMap = RimMaps.SampleLevel(MapSampler, float3(ouv, RimMapId), 0).rgb;
 	}
-    
-    float3 lAmb = 0;
-    if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
-    {
-    	lAmb = GetFloat3(matid, MF_LIGHTING_AMBIENT, MF_LIGHTING_AMBIENT_AMBIENTCOLOR);
-    }
 
     float SStrength = GetFloat(matid, MF_LIGHTING_COOKTORRANCE, MF_LIGHTING_COOKTORRANCE_SPECULARSTRENGTH);
 
@@ -497,17 +451,11 @@ Components CookTorranceSunSSS(SamplerState s0, float2 uv, float2 sR, float light
     	bool valid = (mask == MaskID[i]) || (!UseMask) || ((mask == 0) && ZeroBypass);
     	if((sunlightprop[i].LightStrength > lEpsilon) && valid)
     	{
-		    float3 amb=0;
 	        float3 lDir = sunlightprop[i].Direction;
 	        float3 lCol = sunlightprop[i].LightCol.xyz * sunlightprop[i].LightStrength;
 	    	
 	    	float3 indirectLightComponent = 0;
 	    	float3 rim = 0;
-
-	        if(KnowFeature(matid, MF_LIGHTING_AMBIENT))
-	        {
-	        	amb = lAmb.rgb * sunlightprop[i].LightStrength;
-	        }
 
 	        float3 LightDirV = normalize(lDir);
 	        float3 V = ViewDirV;
@@ -536,17 +484,17 @@ Components CookTorranceSunSSS(SamplerState s0, float2 uv, float2 sR, float light
 		    {
 				float power = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_POWER);
 				float amount = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_STRENGTH);
+				float width = GetFloat(matid, MF_LIGHTING_FAKERIMLIGHT, MF_LIGHTING_FAKERIMLIGHT_WIDTH);
 
-				rim = (float3)(max(0,0.5+dot(NormV, ViewDirV)));
+				rim = 1-saturate(abs(dot(NormV, ViewDirV)) * width);
 				rim = pows(rim, power) * amount * lCol;
 		    	
-		    	float sssa = sunlightprop[i].LightStrength * amount;
-				outc.Rim += rim * sssa;
+		    	float rima = sunlightprop[i].LightStrength * amount;
+				outc.Specular += rim * rima;
 		    }
 	    	
 	    	outc.Diffuse += diff;
 	    	outc.Specular += spec;
-	    	outc.Ambient = max(outc.Ambient, amb);
     	}
     }
     return outc;

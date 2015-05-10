@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="1770" scrolly="9150">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="1770" scrolly="1950">
    <BOUNDS type="Window" left="6510" top="5715" width="16815" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -43,9 +43,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="53" systemname="IOBox (Color)">
-   <BOUNDS type="Node" left="5295" top="2490" width="0" height="0">
+   <BOUNDS type="Node" left="5940" top="2760" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="5295" top="2490" width="2205" height="240">
+   <BOUNDS type="Box" left="5940" top="2760" width="2205" height="240">
    </BOUNDS>
    <PIN pinname="Color Input" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
@@ -91,9 +91,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="50" systemname="IOBox (Node)">
-   <BOUNDS type="Node" left="5700" top="2835" width="0" height="0">
+   <BOUNDS type="Node" left="6090" top="3180" width="0" height="0">
    </BOUNDS>
-   <BOUNDS type="Box" left="5700" top="2835" width="795" height="240">
+   <BOUNDS type="Box" left="6090" top="3180" width="795" height="240">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
@@ -917,6 +917,10 @@
    </PIN>
    <PIN pinname="DispAmountXY" visible="1">
    </PIN>
+   <PIN pinname="AddressU" visible="1">
+   </PIN>
+   <PIN pinname="AddressV" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="27" srcpinname="Output" dstnodeid="19" dstpinname="Transform In">
    </LINK>
@@ -1197,5 +1201,37 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="66" srcpinname="Output Enum" dstnodeid="19" dstpinname="Technique">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="68" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="5670" top="5940" width="855" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5670" top="5940" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AWrap">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="AddressU">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="67" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="5745" top="6420" width="855" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5745" top="6420" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AWrap">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="AddressV">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="68" srcpinname="Output Enum" dstnodeid="19" dstpinname="AddressU">
+   </LINK>
+   <LINK srcnodeid="67" srcpinname="Output Enum" dstnodeid="19" dstpinname="AddressV">
    </LINK>
    </PATCH>

@@ -14,11 +14,9 @@
 
 struct Components
 {
-    float3 Ambient;
     float3 Diffuse;
     float3 Specular;
     float3 SSS;
-    float3 Rim;
 };
 
 StructuredBuffer<PointLightProp> pointlightprop <string uiname="Pointlight Buffer";>;
@@ -39,8 +37,8 @@ SamplerState SpotSampler <bool visible=false;string uiname="Spotlight Sampler";>
 SamplerState MapSampler <string uiname="Map Sampler";>
 {
     Filter=MIN_MAG_MIP_LINEAR;
-    AddressU=CLAMP;
-    AddressV=CLAMP;
+    AddressU=WRAP;
+    AddressV=WRAP;
 };
 
 SamplerState ShadSampler

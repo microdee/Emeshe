@@ -21,7 +21,7 @@ float2 R : TARGETSIZE;
 
 cbuffer controls : register(b0)
 {
-	float4x4 ReflTransform;
+	float4x4 EnvTransform;
 	bool IsInitial = true;
 	float EnvStrength = 1;
 	float Blur = 0;
@@ -59,7 +59,8 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 		}
 
 		float3 vPos = GetViewPos(s0, uv);
-		float3 norm = mul(float4(Normals.Sample(s0,uv).xyz,0),ReflTransform).xyz;
+		float3 onorm = Normals.Sample(s0,uv).xyz;
+		float3 norm = mul(float4(onorm,0),EnvTransform).xyz;
 		if(!IsInitial) col = input;
 
 		float3 rrV = normalize(vPos);
@@ -92,7 +93,7 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 
 		float2 fresnel = GetFloat2(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_FRESNEL);
 		float2 fresnelPow = GetFloat2(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_FRESNELPOWER);
-		float2 rlFresnel = pow(saturate(dot(norm, rrV) + lerp(-1,1,fresnel)), fresnelPow);
+		float2 rlFresnel = pow(saturate(dot(onorm, rrV) + lerp(-1,1,fresnel)), fresnelPow);
 
 		float4 reflColor = DiscSample(Environments, s0, rrR, rlBlur, rlSlice, MaxMIPlevel);
 		float4 sReflColor = Environments.SampleLevel(s0, float3(DirToUV(rrR), rlSlice), 0);

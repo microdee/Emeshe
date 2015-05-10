@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ColorBleedingInDiffuse (DX11 MRE).v4p" systemname="ColorBleedingInDiffuse (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ColorBleedingInDiffuse (DX11 MRE).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\ColorBleedingInDiffuse (DX11 MRE).v4p" systemname="ColorBleedingInDiffuse (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ColorBleedingInDiffuse (DX11 MRE).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="19290" top="0" width="9000" height="15600">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -42,20 +42,6 @@
    </NODE>
    <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="1" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="GetSpread (Node)" filename="..\..\..\mcropack\nodes\modules\GetSpread (Node).v4p" nodename="GetSpread (Node)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="2055" top="1815" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Offset" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="Count" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="0" dstpinname="Input Node">
-   </LINK>
    <NODE systemname="Cons (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.Texture 2d)" componentmode="Hidden" id="7">
    <BOUNDS type="Node" left="1020" top="7560" width="100" height="100">
    </BOUNDS>
@@ -63,7 +49,7 @@
    </PIN>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Input 3" visible="1" slicecount="3" values=",,">
+   <PIN pinname="Input 3" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input 2" visible="1" slicecount="1" values="||">
    </PIN>
@@ -121,8 +107,6 @@
    <LINK srcnodeid="4" srcpinname="Output" dstnodeid="5" dstpinname="Input Node">
    </LINK>
    <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="7" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Output Node" dstnodeid="7" dstpinname="Input 3">
    </LINK>
    <NODE systemname="BlendBasic (DX11.TextureFX)" filename="%VVVV%\packs\dx11\nodes\texture11\Mixer\BlendBasic.tfx" nodename="BlendBasic (DX11.TextureFX)" componentmode="Hidden" id="11">
    <BOUNDS type="Node" left="1935" top="6255" width="100" height="100">
@@ -473,5 +457,23 @@
    <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Bleeding">
    </LINK>
    <LINK srcnodeid="14" srcpinname="Texture Out" dstnodeid="11" dstpinname="Texture In 2">
+   </LINK>
+   <NODE systemname="GetSlice (Node)" filename="" nodename="GetSlice (Node)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2055" top="1815" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Offset" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Index" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="0" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output Node" dstnodeid="7" dstpinname="Input 3">
    </LINK>
    </PATCH>

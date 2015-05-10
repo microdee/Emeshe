@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\SunLightBuffer (DX11 MRE).v4p" systemname="SunLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\SunLightBuffer (DX11 MRE).v4p" scrollx="1440" scrolly="150">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\CPU\SunLightBuffer (DX11 MRE).v4p" systemname="SunLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\SunLightBuffer (DX11 MRE).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="9375" top="315" width="12765" height="10785">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">

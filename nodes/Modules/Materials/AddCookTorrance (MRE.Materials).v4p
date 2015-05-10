@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
    <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddCookTorrance (MRE.Materials).v4p" systemname="AddCookTorrance (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddCookTorrance (MRE.Materials).v4p" scrollx="0" scrolly="60">
-   <BOUNDS type="Window" left="11685" top="5865" width="14115" height="9315">
+   <BOUNDS type="Window" left="7785" top="5205" width="13245" height="8040">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>

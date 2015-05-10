@@ -1,4 +1,4 @@
-Texture2D texOdjID: PREVIOUS;
+Texture2D NormTex: PREVIOUS;
 float2 R:TARGETSIZE;
 float4 color <bool color=true;> = 1;
 
@@ -8,17 +8,7 @@ cbuffer controls:register(b0){
 };
 SamplerState s0:IMMUTABLE <string uiname="Sampler";> {Filter=MIN_MAG_MIP_POINT;AddressU=CLAMP;AddressV=CLAMP;};
 float4 pSelect1(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
-	float4 c = ((texOdjID.Sample(s0,x).r)==ObjID) ? 1 : 0;
-	if(Stencil) c=1-c;
-    return c*color;
-}
-float4 pSelect2(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
-	float4 c = ((texOdjID.Sample(s0,x).g)==ObjID) ? 1 : 0;
-	if(Stencil) c=1-c;
-    return c*color;
-}
-float4 pSelectMat(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
-	float4 c = ((texOdjID.Sample(s0,x).b)==ObjID) ? 1 : 0;
+	float4 c = ((NormTex.Sample(s0,x).a)==ObjID) ? 1 : 0;
 	if(Stencil) c=1-c;
     return c*color;
 }
@@ -26,14 +16,6 @@ float4 pSelectMat(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target{
 technique10 Select1{
 	pass P1
 	{SetPixelShader(CompileShader(ps_4_0,pSelect1()));}
-}
-technique10 Select2{
-	pass P1
-	{SetPixelShader(CompileShader(ps_4_0,pSelect2()));}
-}
-technique10 SelectMaterial{
-	pass P1
-	{SetPixelShader(CompileShader(ps_4_0,pSelectMat()));}
 }
 
 

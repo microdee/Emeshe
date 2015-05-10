@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\SkullSceneNode15.v4p" systemname="SkullSceneNode15" filename="C:\vvvv\libs\Emeshe\girlpower\SkullSceneNode15.v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\SkullSceneNode15.v4p" systemname="SkullSceneNode15" filename="C:\vvvv\libs\Emeshe\girlpower\SkullSceneNode15.v4p" scrollx="7785" scrolly="4575">
    <BOUNDS type="Window" left="9705" top="1140" width="16950" height="9165">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -632,60 +632,6 @@
    <PIN pinname="Material ID" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="AddPhong (MRE.Materials)" filename="..\nodes\modules\Materials\AddPhong (MRE.Materials).v4p" componentmode="Hidden" id="88" nodename="..\nodes\Modules\AddPhong (MRE.Materials).v4p">
-   <BOUNDS type="Node" left="18375" top="8025" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="18375" top="8025" width="4800" height="3600">
-   </BOUNDS>
-   <BOUNDS type="Window" left="18030" top="1260" width="9000" height="6000">
-   </BOUNDS>
-   <PIN pinname="Material" visible="1">
-   </PIN>
-   <PIN pinname="Attenuation" visible="1">
-   </PIN>
-   <PIN pinname="Specular Power" visible="1">
-   </PIN>
-   <PIN pinname="Specular Strength" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Specular Color" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
-   </PIN>
-   <PIN pinname="Add" visible="1" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="89" srcpinname="Material Out" dstnodeid="88" dstpinname="Material">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="87" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="19785" top="6975" width="795" height="720">
-   </BOUNDS>
-   <BOUNDS type="Node" left="19785" top="6975" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0.25,0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Vector Size" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="3">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="87" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Attenuation">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="86" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="18795" top="7395" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="18795" top="7395" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="25">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="86" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Specular Power">
-   </LINK>
    <NODE systemname="AddFakeSSS (MRE.Materials)" filename="..\nodes\modules\Materials\AddFakeSSS (MRE.Materials).v4p" componentmode="Hidden" id="85" nodename="..\nodes\Modules\AddFakeSSS (MRE.Materials).v4p">
    <BOUNDS type="Node" left="17550" top="9225" width="100" height="100">
    </BOUNDS>
@@ -737,7 +683,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="18960" top="9420" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.46">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

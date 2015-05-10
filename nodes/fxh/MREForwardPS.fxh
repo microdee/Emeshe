@@ -17,6 +17,50 @@ cbuffer cbPerObjectPS : register( b2 )
 	float TriPlanarPow = 1;
 };
 
+interface IAddress
+{
+	float Address(float res);
+};
+class CWrap : IAddress
+{
+	float Address(float res)
+	{
+		return frac(res);
+	}
+};
+class CMirror : IAddress
+{
+	float Address(float res)
+	{
+		if(floor(res)%2==0)
+			return frac(res);
+		else
+			return 1-frac(res);
+	}
+};
+class CClamp : IAddress
+{
+	float Address(float res)
+	{
+		return saturate(res);
+	}
+};
+
+CWrap AWrap;
+CMirror AMirror;
+CClamp AClamp;
+
+IAddress addressU <string uiname="AddressU"; string linkclass="AWrap,AMirror,AClamp";> = AWrap;
+IAddress addressV <string uiname="AddressV"; string linkclass="AWrap,AMirror,AClamp";> = AWrap;
+
+float2 AddressUV(float2 uv)
+{
+	float2 res = uv;
+	res.x = addressU.Address(res.x);
+	res.y = addressV.Address(res.y);
+	return res;
+}
+
 PSOut PS(PSin In)
 {
 	float ii = In.ii;
@@ -92,9 +136,9 @@ PSOut PS(PSin In)
 	
     #if defined(TRIPLANAR)
 		float2 tuv = TriPlanar(In.TexCd.xyz, In.NormW, TriPlanarPow);
-    	Out.veluv.zw = tuv;
+    	Out.veluv.zw = AddressUV(tuv);
 	#else
-    	Out.veluv.zw = uvb;
+    	Out.veluv.zw = AddressUV(uvb);
 	#endif
 	
 	#if defined(INSTANCING)

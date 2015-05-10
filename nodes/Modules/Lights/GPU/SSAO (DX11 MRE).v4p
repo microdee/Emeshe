@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\SSAO (DX11 MRE).v4p" systemname="SSAO (DX11 MRE.Temporal)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\SSAO (DX11 MRE.Temporal).v4p" scrollx="0" scrolly="1800">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\SSAO (DX11 MRE).v4p" systemname="SSAO (DX11 MRE.Temporal)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\SSAO (DX11 MRE.Temporal).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="630" top="3210" width="15255" height="11565">
    </BOUNDS>
    <NODE id="5" systemname="Quad (DX11.Geometry)" filename="%VVVV%\directx11\plugins\VVVV.DX11.BasicPrimitives.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden">
@@ -145,7 +145,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7440" top="795" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.5">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.25">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -583,7 +583,7 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
    </PIN>
-   <PIN pinname="Input Node" slicecount="1" values="||" visible="1">
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
    </NODE>
    <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="67">
@@ -843,7 +843,7 @@
    </PIN>
    <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Texture In" slicecount="1" values="||" visible="1">
+   <PIN pinname="Texture In" slicecount="1" visible="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="99" srcpinname="Texture Out" dstnodeid="88" dstpinname="Texture In">

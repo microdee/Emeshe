@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\SponzaSceneNode15.v4p" systemname="SponzaSceneNode15" filename="C:\vvvv\libs\Emeshe\girlpower\SponzaSceneNode15.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\SponzaSceneNode15.v4p" systemname="SponzaSceneNode15" filename="C:\vvvv\libs\Emeshe\girlpower\SponzaSceneNode15.v4p" scrollx="3255" scrolly="5610">
    <BOUNDS type="Window" left="13905" top="2175" width="11730" height="9480">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -438,6 +438,8 @@
    <PIN pinname="Material Thru" visible="1">
    </PIN>
    <PIN pinname="Power" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Strength" slicecount="1" values="0.5">
    </PIN>
    </NODE>
    <LINK srcnodeid="37" srcpinname="Material Thru" dstnodeid="38" dstpinname="Material">
