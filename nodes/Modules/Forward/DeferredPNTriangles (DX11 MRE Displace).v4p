@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="1770" scrolly="1950">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="405" scrolly="6540">
    <BOUNDS type="Window" left="6510" top="5715" width="16815" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -1003,7 +1003,7 @@
    </PIN>
    <PIN pinname="alphatest" visible="1" slicecount="1" values="0.5">
    </PIN>
-   <PIN pinname="FBumpAmount" visible="1">
+   <PIN pinname="FBumpAmount" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="FDispAmount" visible="1">
    </PIN>
@@ -1051,7 +1051,7 @@
    </PIN>
    <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="DispAmount" visible="1">
+   <PIN pinname="DispAmount" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="0" dstpinname="Transform In" hiddenwhenlocked="1">

@@ -1,7 +1,6 @@
 //@author: microdee
 #include "../fxh/MREForward.fxh"
 
-Texture2D DiffTex;
 Texture2D DispTex;
 StructuredBuffer<InstanceParams> InstancedParams;
 

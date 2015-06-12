@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="2490" scrolly="7200">
-   <BOUNDS type="Window" left="1200" top="3375" width="16815" height="9885">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="4065" scrolly="8490">
+   <BOUNDS type="Window" left="1275" top="2235" width="16815" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="1170" top="1410" width="0" height="0">
@@ -43,7 +43,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="6900" top="2160" width="2205" height="240">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Diffuse Color|">
    </PIN>
@@ -673,7 +673,7 @@
    </PIN>
    </NODE>
    <NODE systemname="ConstantMREProp (DX11.Effect)" filename="..\dx11\ConstantMREProp.fx" nodename="ConstantMREProp (DX11.Effect)" componentmode="Hidden" id="296">
-   <BOUNDS type="Node" left="14505" top="13290" width="1950" height="270">
+   <BOUNDS type="Node" left="14505" top="13290" width="2400" height="270">
    </BOUNDS>
    <PIN pinname="Technique" slicecount="1" visible="1" values="DeferredProp">
    </PIN>
@@ -708,6 +708,10 @@
    <PIN pinname="Layout Message" visible="1">
    </PIN>
    <PIN pinname="Query" visible="1">
+   </PIN>
+   <PIN pinname="FBumpAmount" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="BumpTex" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Output Node" dstnodeid="296" dstpinname="Geometry" hiddenwhenlocked="1">
@@ -823,9 +827,9 @@
    </PIN>
    <PIN pinname="FlipNormalsXYZ" visible="1">
    </PIN>
-   <PIN pinname="AddressU" slicecount="1" values="AWrap" visible="1">
+   <PIN pinname="AddressU" slicecount="1" visible="1" values="AWrap">
    </PIN>
-   <PIN pinname="AddressV" slicecount="1" values="AWrap" visible="1">
+   <PIN pinname="AddressV" slicecount="1" visible="1" values="AWrap">
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Output Node" dstnodeid="305" dstpinname="Geometry">
@@ -975,5 +979,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="310" srcpinname="Output Enum" dstnodeid="305" dstpinname="AddressV">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="296" dstpinname="BumpTex">
+   </LINK>
+   <LINK srcnodeid="105" srcpinname="Y Output Value" dstnodeid="296" dstpinname="FBumpAmount">
    </LINK>
    </PATCH>

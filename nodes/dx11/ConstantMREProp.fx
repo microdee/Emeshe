@@ -1,7 +1,6 @@
 //@author: microdee
 #include "../fxh/MREForward.fxh"
 
-Texture2D DiffTex;
 StructuredBuffer<InstanceParams> InstancedParams;
 
 cbuffer cbPerDraw : register( b0 )

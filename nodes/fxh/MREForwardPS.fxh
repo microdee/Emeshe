@@ -86,7 +86,7 @@ PSOut PS(PSin In)
     	float4 diffcol = DiffTex.Sample( Sampler, uvb);
 	#endif
 	
-	if(depth!=0) PosV += In.NormV * mdepth * (depth/100);
+	if(depth!=0) PosV += In.NormV * mdepth * depth * 0.1;
 
     #if defined(HAS_NORMALMAP)
     	float3 normmap = NormalTex.Sample(Sampler, uvb).xyz*2-1;
