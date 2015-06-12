@@ -285,32 +285,32 @@
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Fresnel</Parameter>
-    <Size>1</Size>
+    <Size>2</Size>
     <Offset>1</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>FresnelPower</Parameter>
-    <Size>1</Size>
-    <Offset>2</Offset>
+    <Size>2</Size>
+    <Offset>3</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Blur</Parameter>
     <Size>1</Size>
-    <Offset>3</Offset>
+    <Offset>5</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Distance</Parameter>
     <Size>1</Size>
-    <Offset>4</Offset>
+    <Offset>6</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Multiply</Parameter>
     <Size>1</Size>
-    <Offset>5</Offset>
+    <Offset>7</Offset>
   </Features>
   <Features>
     <Feature>Reflection_Map</Feature>

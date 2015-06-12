@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="1725" scrolly="5445">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" systemname="FeatureTable" filename="C:\vvvv\libs\Emeshe\girlpower\FeatureTable.v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="11550" top="0" width="13350" height="15600">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -645,6 +645,8 @@
    </PIN>
    <PIN pinname="Error Message" visible="1">
    </PIN>
+   <PIN pinname="Success" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="235" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3870" top="14685" width="2265" height="240">
@@ -879,5 +881,21 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="273" srcpinname="Count" dstnodeid="274" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="275" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3240" top="17265" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3240" top="17265" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="234" srcpinname="Success" dstnodeid="275" dstpinname="Y Input Value">
    </LINK>
    </PATCH>
