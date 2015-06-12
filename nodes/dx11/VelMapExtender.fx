@@ -62,7 +62,8 @@ void GS(point vs2gs input[1], inout LineStream<gs2ps> gsout)
 	if(length(vel)>velocityepsilon && inp.mask)
 	{
 		float veltest = 0;
-		float2 asp=lerp(1,res.x/res.y,Aspect);
+		//float2 asp=lerp(1,res.x/res.y,Aspect);
+		float2 asp=1;
 		float2 newtxcd = ((inp.TexCd-.5)/asp+vel*float2(1,-1))*asp+.5;
 		if(ConstantVelCol)
 		{

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p" scrollx="0" scrolly="2115">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\CameraEffects\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="13755" top="945" width="11880" height="9570">
    </BOUNDS>
    <NODE systemname="NullGeometry (DX11.Drawer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="NullGeometry (DX11.Drawer)" componentmode="Hidden" id="2">
