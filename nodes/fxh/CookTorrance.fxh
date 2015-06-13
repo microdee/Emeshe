@@ -348,10 +348,13 @@ Components CookTorranceSpotSSS(SamplerState s0, float2 uv, float2 sR, float ligh
 		        	#if defined(DOSHADOWS)
 		        	if(spotlightprop[i].KnowShadows > 0.5)
 		        	{
+	        			float cbias = bias;
+	        			if(KnowFeature(matid, MF_LIGHTING_SHADOWS))
+	        				cbias = GetFloat(matid, MF_LIGHTING_SHADOWS, 0);
 		        		float3 lPosW = mul(float4(lPos, 1), CamViewInv).xyz;
 		        		float3 cPosW = mul(float4(PosV, 1), CamViewInv).xyz;
 		        		float penumbra = spotlightprop[i].Penumbra;
-			        	shad = SpotShadows(ShadowMaps, spotlightprop[i].MapID, lPosW, lRange, cPosW, projTexCd, bias, penumbra);
+			        	shad = SpotShadows(ShadowMaps, spotlightprop[i].MapID, lPosW, lRange, cPosW, projTexCd, cbias, penumbra);
 		        	}
 		        	#endif
 					
