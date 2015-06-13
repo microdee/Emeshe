@@ -12,21 +12,20 @@ FEATURES
 
 * **Lighting / Global Illumination**
   * HDR rendering
-  * Cook-Torrance and Phong models (Ashikmin-Shirley coming soon)
+  * Only Cook-Torrance model is available yet (Ashikmin-Shirley coming at some point)
   * Multiple Point, Spot, Sun lights
-  * Multiple PCSS Shadows for each light types
+  * Multiple PCSS Shadows for Point-, Spotlights
   * Separated light components for versatile composition
-    * Ambient
     * Diffuse
     * Specular
     * SSS
-    * Rimlight
   * Stochastic wide range SSAO with temporal reprojection (sampling by UNC)<br />
     *or Low Frequency SSAO*
-  * Classic short range Local SSAO (SSLAO)<br />
+  * Alchemy HBAO for short range Local AO (SSLAO)<br />
     *or High Frequency SSAO*
   * One-bounce stochastic Local Color Bleeding (CSSGI by ArKano22)
   * Environment map based Reflection / Refraction with roughness
+  * Screen Space Reflection with roughness
   * Spotlights can have custom texture.
   * Support for ZBrush MatCap
   * Emission
@@ -55,7 +54,7 @@ FEATURES
 * **Materials**
   * Flags driven modular deferred material system
   * 25 different predefined material features (out of current 32)
-  * 60+ possible predefined parameters per material and growing
+  * 70+ possible predefined parameters per material and growing
   * Texture mapped deferred parameters because UV is written in GBuffer
   * Custom features can be added without effort (there's place for 7 custom features)
   * VObject Oriented construction in patch
@@ -99,20 +98,17 @@ DeferredBase also provides a layer for mostly shadowmaps called "Prop Layer" whi
 Rendertargets
 ------
 
-Base layers should be grouped together and connected to the "MRE (DX11)" module which has a MRT renderer set to accept 4 rendertargets.
+Base layers should be grouped together and connected to the "MRE (DX11)" module which has a MRT renderer set to accept 3 rendertargets.
 
- - R16G16B16A16_Float for color (only RGB used)
- - R16G16B16A16_Float for normals (only RGB used)
- - R16G16_Float for velocity (read as Texture2D<float2>)
- - R16G16B16A16_Uint for UV (float2), Material ID, Object ID
+ - R16G16B16A16_Float for color (RGB) and Material ID (A)
+ - R16G16B16A16_Float for normals (RGB) and Object ID (A)
+ - R16G16B16A16_Float for velocity (RG) and UV coordinates (BA)
 
-MRE also reconstructs view-position from depth to a texture (however Vux said i shouldn't do it and i will probably keep his advice for next minor version) and reads the stencil texture from the Depth. It cons together all of these textures (7 buffers) which will give us the "GBuffer" texture spread. Also these textures are bundled with the material buffers to form the Resource Semantics group of Deferred part. Emeshe also provides commonly used values as Render/Custom Semantics. These semantics are:
+MRE also reads the stencil texture from the Depth. It cons together all of these textures (targets + depth + stencil = 5) which will give us the "GBuffer" texture spread. Also these textures are bundled with the material buffers to form the Resource Semantics group of Deferred part. Emeshe also provides commonly used values as Render/Custom Semantics. These semantics are:
 
  - MRE_COLOR
  - MRE_NORMALS
- - MRE_VELOCITY
- - MRE_MATERIAL
- - MRE_VIEWPOS
+ - MRE_VELUV
  - MRE_DEPTH
  - MRE_STENCIL
  - MF_MATERIALMETA
@@ -125,7 +121,7 @@ MRE also reconstructs view-position from depth to a texture (however Vux said i 
  - CAM_PROJINV
  - CAM_POSITION
  - MRE_DEPTHMODE (experimental doesn't really work)
- - MRE_OBJIDMODE (will be covered later)
+ - MRE_OBJIDMODE (experimental doesn't really work)
  - NEARFARDEPTHPOW (experimental doesn't really work)
 
 Materials
@@ -174,13 +170,11 @@ For shadows each light type has a separate "ShadowMap (MRE.*Light)" module. Unfo
 
 **Compositing**
 
-Lights then calculated by nodes named after the lighting model (like "CookTorrance (DX11 MRE)" and "Phong (DX11 MRE)" (which is a little bit behind of Cook-Torrance with fixes and features) ). These nodes will provide 5 textures which represent each components the actual luminance is put together with. These components are (in corresponding order)
+Lights then calculated by nodes named after the lighting model (like "CookTorrance (DX11 MRE)"). These nodes will provide 3 textures which represent each components the actual luminance is put together with. These components are (in corresponding order)
 
-0. Ambient
-1. Diffuse
-2. Specular
-3. SSS
-4. Rimlight
+0. Diffuse
+1. Specular
+2. SSS
 
 Light renderer nodes can only operate with a single type of light so if multiple types are used, a separate light renderer node have to be created for each of them. If you want to render shadows you have to turn it on also on the light renderer node which should perform the shadow. Note shadows are switched using a #define directive and turning on or off requires some time to recompile the shader.
 

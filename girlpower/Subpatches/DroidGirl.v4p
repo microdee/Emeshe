@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\DroidGirl.v4p" systemname="DroidGirl" filename="C:\vvvv\libs\Emeshe\girlpower\DroidGirl.v4p" scrollx="2955" scrolly="7830">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\DroidGirl.v4p" systemname="DroidGirl" filename="C:\vvvv\libs\Emeshe\girlpower\DroidGirl.v4p" scrollx="930" scrolly="7740">
    <BOUNDS type="Window" left="12855" top="1245" width="13530" height="13935">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -213,7 +213,7 @@
    </PIN>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="XYZ" slicecount="3" values="0.04,0.04,0.04">
+   <PIN pinname="XYZ" slicecount="3" values="0.01,0.01,0.01">
    </PIN>
    </NODE>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="43">
@@ -780,22 +780,6 @@
    <PIN pinname="Mesh Joints" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="Transform (Transform 3d)" nodename="Transform (Transform 3d)" componentmode="Hidden" id="323">
-   <BOUNDS type="Node" left="1425" top="13905" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   <PIN pinname="TranslateY" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="TranslateX" slicecount="1" values="-1.73">
-   </PIN>
-   <PIN pinname="Yaw" slicecount="1" visible="1" values="0.75">
-   </PIN>
-   <PIN pinname="TranslateZ" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="323" srcpinname="Transform Out" dstnodeid="40" dstpinname="Transform In">
-   </LINK>
    <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="325">
    <BOUNDS type="Node" left="5115" top="4365" width="100" height="100">
    </BOUNDS>
@@ -1828,20 +1812,6 @@
    </NODE>
    <LINK srcnodeid="448" srcpinname="Y Output Value" dstnodeid="386" dstpinname="Add">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="452" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3075" top="13350" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="3075" top="13350" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.34">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="452" srcpinname="Y Output Value" dstnodeid="323" dstpinname="Yaw">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="454" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3540" top="2835" width="2595" height="240">
    </BOUNDS>
@@ -2195,5 +2165,17 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="490" srcpinname="Y Output Value" dstnodeid="51" dstpinname="CurveAmount">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="491" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1380" top="13740" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1380" top="13740" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Transform In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="491" srcpinname="Output Node" dstnodeid="40" dstpinname="Transform In">
    </LINK>
    </PATCH>

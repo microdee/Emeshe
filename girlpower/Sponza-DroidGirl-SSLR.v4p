@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" systemname="Sponza-Skulls-SSLR" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" scrollx="3330" scrolly="18945">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" systemname="Sponza-Skulls-SSLR" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" scrollx="720" scrolly="3600">
    <BOUNDS type="Window" left="-720" top="1110" width="13620" height="14055">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -609,7 +609,7 @@
    </BOUNDS>
    <PIN pinname="Resolution" visible="1" slicecount="2" values="1920,1080">
    </PIN>
-   <PIN pinname="LightCount" slicecount="1" visible="1" values="1">
+   <PIN pinname="LightCount" slicecount="1" visible="1" values="3">
    </PIN>
    <PIN pinname="Technique" slicecount="1" visible="1" values="Point">
    </PIN>
@@ -795,13 +795,17 @@
    </PIN>
    </NODE>
    <NODE systemname="Transform (Transform 3d)" nodename="Transform (Transform 3d)" componentmode="Hidden" id="382">
-   <BOUNDS type="Node" left="3675" top="885" width="100" height="100">
+   <BOUNDS type="Node" left="2250" top="885" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="TranslateY" slicecount="1" values="1.3">
+   <PIN pinname="TranslateY" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Yaw" slicecount="1" values="0">
+   <PIN pinname="Yaw" slicecount="1" values="0.25">
+   </PIN>
+   <PIN pinname="TranslateX" slicecount="1" values="3.21">
+   </PIN>
+   <PIN pinname="TranslateZ" slicecount="1" visible="1" values="0.19">
    </PIN>
    </NODE>
    <NODE systemname="FileImage (CV.Image FreeImage)" filename="%VVVV%\packs\VVVV.Packs.Image\nodes\plugins\VVVV.Nodes.FreeImage.dll" nodename="FileImage (CV.Image FreeImage)" componentmode="Hidden" id="409">
@@ -1614,8 +1618,6 @@
    <PIN pinname="XYZ" visible="1" slicecount="3" values="-3.86271242968684,9.27938788531564,1.18882064536894">
    </PIN>
    </NODE>
-   <LINK srcnodeid="524" srcpinname="Base Layer" dstnodeid="210" dstpinname="Layer 3">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="533" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5040" top="30105" width="795" height="240">
    </BOUNDS>
@@ -1741,7 +1743,7 @@
    </PIN>
    <PIN pinname="Near Plane" slicecount="1" values="0.1">
    </PIN>
-   <PIN pinname="FOV" slicecount="1" values="0.17">
+   <PIN pinname="FOV" slicecount="1" values="0.14">
    </PIN>
    </NODE>
    <LINK srcnodeid="591" srcpinname="Transform Out" dstnodeid="347" dstpinname="Projection">
@@ -1751,17 +1753,17 @@
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="TranslateY" slicecount="1" values="3.56">
+   <PIN pinname="TranslateY" slicecount="1" visible="1" values="3.66">
    </PIN>
-   <PIN pinname="Pitch" slicecount="1" values="0.07">
+   <PIN pinname="Pitch" slicecount="1" values="0.02">
    </PIN>
-   <PIN pinname="Yaw" slicecount="1" values="-0.41">
+   <PIN pinname="Yaw" slicecount="1" values="-0.28">
    </PIN>
    <PIN pinname="Roll" slicecount="1" visible="1" values="0">
    </PIN>
-   <PIN pinname="TranslateZ" slicecount="1" values="2.37">
+   <PIN pinname="TranslateZ" slicecount="1" visible="1" values="0.46">
    </PIN>
-   <PIN pinname="TranslateX" slicecount="1" values="1.48">
+   <PIN pinname="TranslateX" slicecount="1" visible="1" values="5.79">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="593" systemname="IOBox (Value Advanced)">
@@ -2018,8 +2020,6 @@
    </NODE>
    <LINK srcnodeid="348" srcpinname="Lights" dstnodeid="622" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="622" srcpinname="Count" dstnodeid="167" dstpinname="LightCount">
-   </LINK>
    <NODE systemname="I (Spreads)" nodename="I (Spreads)" componentmode="Hidden" id="623">
    <BOUNDS type="Node" left="12870" top="11085" width="100" height="100">
    </BOUNDS>
@@ -2049,17 +2049,17 @@
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="TranslateY" slicecount="1" values="3.68">
+   <PIN pinname="TranslateY" slicecount="1" visible="1" values="3.68">
    </PIN>
-   <PIN pinname="Pitch" slicecount="1" values="0.18">
+   <PIN pinname="Pitch" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Yaw" slicecount="1" values="-0.2">
+   <PIN pinname="Yaw" slicecount="1" values="-0.27">
    </PIN>
    <PIN pinname="Roll" slicecount="1" visible="1" values="0">
    </PIN>
-   <PIN pinname="TranslateZ" slicecount="1" values="0.59">
+   <PIN pinname="TranslateZ" slicecount="1" visible="1" values="0.07">
    </PIN>
-   <PIN pinname="TranslateX" slicecount="1" values="0.01">
+   <PIN pinname="TranslateX" slicecount="1" visible="1" values="4.25">
    </PIN>
    </NODE>
    <NODE systemname="ShadowMap (MRE.SpotLight)" filename="..\nodes\modules\Lights\GPU\ShadowMap (MRE.SpotLight).v4p" componentmode="Hidden" id="632" nodename="..\nodes\Modules\Lights\ShadowMap (MRE.SpotLight).v4p">
@@ -2103,17 +2103,17 @@
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="TranslateY" slicecount="1" values="3.47">
+   <PIN pinname="TranslateY" slicecount="1" visible="1" values="1.08">
    </PIN>
-   <PIN pinname="Pitch" slicecount="1" values="0.16">
+   <PIN pinname="Pitch" slicecount="1" values="0.45">
    </PIN>
-   <PIN pinname="Yaw" slicecount="1" values="0.26">
+   <PIN pinname="Yaw" slicecount="1" values="0.25">
    </PIN>
    <PIN pinname="Roll" slicecount="1" visible="1" values="0">
    </PIN>
-   <PIN pinname="TranslateZ" slicecount="1" values="0.03">
+   <PIN pinname="TranslateZ" slicecount="1" visible="1" values="-0.58">
    </PIN>
-   <PIN pinname="TranslateX" slicecount="1" values="-2.42">
+   <PIN pinname="TranslateX" slicecount="1" visible="1" values="6.62">
    </PIN>
    </NODE>
    <NODE systemname="ShadowMap (MRE.SpotLight)" filename="..\nodes\modules\Lights\GPU\ShadowMap (MRE.SpotLight).v4p" componentmode="Hidden" id="635" nodename="..\nodes\Modules\Lights\ShadowMap (MRE.SpotLight).v4p">
@@ -2215,7 +2215,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="14940" top="12705" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="5">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -2489,6 +2489,8 @@
    </PIN>
    <PIN pinname="Radius" slicecount="1" values="0.74">
    </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <LINK srcnodeid="588" srcpinname="Texture Out" dstnodeid="667" dstpinname="Texture In">
    </LINK>
@@ -2505,26 +2507,6 @@
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="668" srcpinname="Base Layer" dstnodeid="210" dstpinname="Layer 1">
-   </LINK>
-   <NODE systemname="SkullScene" filename="Subpatches\SkullScene.v4p" nodename="Subpatches\SkullScene.v4p" componentmode="Hidden" id="669" debug="0">
-   <BOUNDS type="Node" left="5130" top="3660" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Base Layer" visible="1">
-   </PIN>
-   <PIN pinname="Prop Layer" visible="1">
-   </PIN>
-   <PIN pinname="Transform In" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="1500" top="4200" width="15795" height="9165">
-   </BOUNDS>
-   <PIN pinname="Pause" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="669" srcpinname="Base Layer" dstnodeid="210" dstpinname="Layer 2">
-   </LINK>
-   <LINK srcnodeid="669" srcpinname="Prop Layer" dstnodeid="465" dstpinname="Layer 2">
-   </LINK>
-   <LINK srcnodeid="382" srcpinname="Transform Out" dstnodeid="669" dstpinname="Transform In">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="670" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="13515" top="12360" width="480" height="480">
@@ -2755,7 +2737,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="17400" top="3630" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -2767,6 +2749,8 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="699" srcpinname="Y Output Value" dstnodeid="620" dstpinname="Pause">
    </LINK>
@@ -2777,7 +2761,7 @@
    <NODE systemname="Emission (DX11.TextureFX)" filename="..\nodes\texture11\Emission.tfx" nodename="Emission (DX11.TextureFX)" componentmode="Hidden" id="700">
    <BOUNDS type="Node" left="3750" top="24660" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
@@ -2788,8 +2772,6 @@
    <PIN pinname="Maps" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="678" srcpinname="Texture Out" dstnodeid="700" dstpinname="Texture In">
-   </LINK>
    <LINK srcnodeid="685" srcpinname="Input Value" dstnodeid="700" dstpinname="Custom Semantics">
    </LINK>
    <LINK srcnodeid="684" srcpinname="Input Value" dstnodeid="700" dstpinname="Resource Semantics">
@@ -2934,8 +2916,6 @@
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="710" srcpinname="Texture Out" dstnodeid="431" dstpinname="Texture In">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="711" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7815" top="25095" width="795" height="240">
    </BOUNDS>
@@ -2946,6 +2926,8 @@
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="711" srcpinname="Y Output Value" dstnodeid="709" dstpinname="rayLength">
@@ -3021,7 +3003,7 @@
    <NODE systemname="BlendBasic (DX11.TextureFX)" filename="%VVVV%\packs\dx11\nodes\texture11\Mixer\BlendBasic.tfx" nodename="BlendBasic (DX11.TextureFX)" componentmode="Hidden" id="717">
    <BOUNDS type="Node" left="4995" top="25650" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input" slicecount="1" visible="1" values="1">
    </PIN>
@@ -3032,11 +3014,7 @@
    <PIN pinname="Technique" slicecount="1" values="Add">
    </PIN>
    </NODE>
-   <LINK srcnodeid="700" srcpinname="Texture Out" dstnodeid="717" dstpinname="Texture In">
-   </LINK>
    <LINK srcnodeid="716" srcpinname="Texture Out" dstnodeid="717" dstpinname="Texture In 2">
-   </LINK>
-   <LINK srcnodeid="700" srcpinname="Texture Out" dstnodeid="710" dstpinname="Texture In">
    </LINK>
    <LINK srcnodeid="717" srcpinname="Texture Out" dstnodeid="709" dstpinname="Texture In">
    </LINK>
@@ -3105,7 +3083,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="9435" top="26115" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.05">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.03">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -3127,8 +3105,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="724" srcpinname="Y Output Value" dstnodeid="725" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="617" srcpinname="Texture Out" dstnodeid="587" dstpinname="Texture">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="726" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="9060" top="24990" width="795" height="240">
@@ -3171,7 +3147,7 @@
    </PIN>
    <PIN pinname="ClampZero" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="MultXYZ" slicecount="3" values="1,1,1">
+   <PIN pinname="MultXYZ" slicecount="1" visible="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="719" srcpinname="Texture Out" dstnodeid="729" dstpinname="Texture In">
@@ -3223,7 +3199,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7815" top="27960" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.21">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.3">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -3236,6 +3212,206 @@
    </LINK>
    <LINK srcnodeid="718" srcpinname="Texture Out" dstnodeid="716" dstpinname="Texture In">
    </LINK>
+   <NODE systemname="DroidGirl" filename="Subpatches\DroidGirl.v4p" nodename="Subpatches\DroidGirl.v4p" componentmode="Hidden" id="735">
+   <BOUNDS type="Node" left="2055" top="1725" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Base Layer" visible="1">
+   </PIN>
+   <PIN pinname="Property Layer" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Specular" visible="1">
+   </PIN>
+   <PIN pinname="SSS Map" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="735" srcpinname="Base Layer" dstnodeid="210" dstpinname="Layer 2">
+   </LINK>
+   <LINK srcnodeid="735" srcpinname="Property Layer" dstnodeid="465" dstpinname="Layer 2">
+   </LINK>
+   <NODE systemname="Scale (Transform Vector)" nodename="Scale (Transform Vector)" componentmode="Hidden" id="736">
+   <BOUNDS type="Node" left="3540" top="1305" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform In" visible="1">
+   </PIN>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="XYZ" slicecount="3" values="1.48,1.48,1.48">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="382" srcpinname="Transform Out" dstnodeid="736" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="736" srcpinname="Transform Out" dstnodeid="735" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="735" srcpinname="Specular" dstnodeid="167" dstpinname="RoughMaps">
+   </LINK>
+   <LINK srcnodeid="735" srcpinname="SSS Map" dstnodeid="167" dstpinname="SSSMaps">
+   </LINK>
    <LINK srcnodeid="723" srcpinname="Texture Out" dstnodeid="718" dstpinname="texMap">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="737" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="14475" top="6135" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="14475" top="6135" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="6.62">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="737" srcpinname="Y Output Value" dstnodeid="636" dstpinname="TranslateX">
+   </LINK>
+   <LINK srcnodeid="737" srcpinname="Y Output Value" dstnodeid="633" dstpinname="TranslateX">
+   </LINK>
+   <LINK srcnodeid="737" srcpinname="Y Output Value" dstnodeid="592" dstpinname="TranslateX">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="738" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="16335" top="5955" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="16335" top="5955" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1.08">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="738" srcpinname="Y Output Value" dstnodeid="636" dstpinname="TranslateY">
+   </LINK>
+   <LINK srcnodeid="738" srcpinname="Y Output Value" dstnodeid="633" dstpinname="TranslateY">
+   </LINK>
+   <LINK srcnodeid="738" srcpinname="Y Output Value" dstnodeid="592" dstpinname="TranslateY">
+   </LINK>
+   <NODE systemname="LinearSpread (Spreads)" nodename="LinearSpread (Spreads)" componentmode="Hidden" id="739">
+   <BOUNDS type="Node" left="18180" top="2850" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Spread Count" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Width" slicecount="1" values="0.12">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="740" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="19155" top="2265" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="19155" top="2265" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="3">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="740" srcpinname="Y Output Value" dstnodeid="739" dstpinname="Spread Count">
+   </LINK>
+   <NODE systemname="Vector (3d Split)" nodename="Vector (3d Split)" componentmode="Hidden" id="741">
+   <BOUNDS type="Node" left="18120" top="3285" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   <PIN pinname="X" visible="1">
+   </PIN>
+   <PIN pinname="Y" visible="1">
+   </PIN>
+   <PIN pinname="Z" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="739" srcpinname="Output" dstnodeid="741" dstpinname="XYZ">
+   </LINK>
+   <LINK srcnodeid="741" srcpinname="X" dstnodeid="592" dstpinname="TranslateZ">
+   </LINK>
+   <LINK srcnodeid="741" srcpinname="Y" dstnodeid="633" dstpinname="TranslateZ">
+   </LINK>
+   <LINK srcnodeid="741" srcpinname="Z" dstnodeid="636" dstpinname="TranslateZ">
+   </LINK>
+   <NODE systemname="Fog (DX11.TextureFX)" filename="..\nodes\texture11\Fog.tfx" nodename="Fog (DX11.TextureFX)" componentmode="Hidden" id="742">
+   <BOUNDS type="Node" left="1170" top="25605" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="ZFogTransform" visible="1">
+   </PIN>
+   <PIN pinname="YFogColor" slicecount="1" values="|1.00000,1.00000,1.00000,0.00000|">
+   </PIN>
+   <PIN pinname="ZFogColor" slicecount="1" visible="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   <PIN pinname="ZPow" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="685" srcpinname="Input Value" dstnodeid="742" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="684" srcpinname="Input Value" dstnodeid="742" dstpinname="Resource Semantics">
+   </LINK>
+   <NODE systemname="Transform (Transform 3d)" nodename="Transform (Transform 3d)" componentmode="Hidden" id="743">
+   <BOUNDS type="Node" left="1350" top="24690" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="TranslateZ" slicecount="1" values="-2.02">
+   </PIN>
+   <PIN pinname="ScaleZ" slicecount="1" values="0.16">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="743" srcpinname="Transform Out" dstnodeid="742" dstpinname="ZFogTransform">
+   </LINK>
+   <NODE systemname="HSV (Color Join)" nodename="HSV (Color Join)" componentmode="Hidden" id="744">
+   <BOUNDS type="Node" left="2145" top="25065" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Value" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="744" srcpinname="Output" dstnodeid="742" dstpinname="ZFogColor">
+   </LINK>
+   <LINK srcnodeid="678" srcpinname="Texture Out" dstnodeid="700" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="710" srcpinname="Texture Out" dstnodeid="431" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="700" srcpinname="Texture Out" dstnodeid="742" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="742" srcpinname="Texture Out" dstnodeid="710" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="700" srcpinname="Texture Out" dstnodeid="717" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="619" srcpinname="Texture Out" dstnodeid="587" dstpinname="Texture">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="745" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4590" top="510" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4590" top="510" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.26">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="745" srcpinname="Y Output Value" dstnodeid="739" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="745" srcpinname="Y Output Value" dstnodeid="382" dstpinname="TranslateZ">
    </LINK>
    </PATCH>
