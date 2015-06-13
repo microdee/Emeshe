@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\DinosaurNode15.v4p" systemname="DinosaurNode15" filename="C:\vvvv\libs\Emeshe\girlpower\DinosaurNode15.v4p" scrollx="0" scrolly="13140">
-   <BOUNDS type="Window" left="3990" top="4065" width="13530" height="13935">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\DinosaurNode15.v4p" systemname="DinosaurNode15" filename="C:\vvvv\libs\Emeshe\girlpower\DinosaurNode15.v4p" scrollx="780" scrolly="14580">
+   <BOUNDS type="Window" left="7710" top="3435" width="13530" height="13935">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -775,7 +775,7 @@
    <LINK srcnodeid="3" srcpinname="Bone Matrices" dstnodeid="194" dstpinname="Inverse Bind Pose">
    </LINK>
    <NODE systemname="SkeletonSimple (Assimp)" filename="..\..\mcropack\nodes\modules\SkeletonSimple (Assimp).v4p" nodename="SkeletonSimple (Assimp)" componentmode="Hidden" id="319">
-   <BOUNDS type="Node" left="3840" top="7500" width="100" height="100">
+   <BOUNDS type="Node" left="3855" top="6120" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Root" visible="1">
    </PIN>
@@ -787,9 +787,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="321" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="4455" top="7065" width="1830" height="240">
+   <BOUNDS type="Box" left="4275" top="5700" width="1020" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4455" top="7065" width="0" height="0">
+   <BOUNDS type="Node" left="4275" top="5700" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="unnamed">
    </PIN>
@@ -803,8 +803,6 @@
    <LINK srcnodeid="321" srcpinname="Output String" dstnodeid="319" dstpinname="Root">
    </LINK>
    <LINK srcnodeid="126" srcpinname="Scene" dstnodeid="319" dstpinname="Scene">
-   </LINK>
-   <LINK srcnodeid="319" srcpinname="Skeleton" dstnodeid="194" dstpinname="Skeleton">
    </LINK>
    <LINK srcnodeid="209" srcpinname="Output 1" dstnodeid="317" dstpinname="Data">
    </LINK>
@@ -825,7 +823,7 @@
    <LINK srcnodeid="323" srcpinname="Transform Out" dstnodeid="40" dstpinname="Transform In">
    </LINK>
    <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="325">
-   <BOUNDS type="Node" left="5115" top="6315" width="100" height="100">
+   <BOUNDS type="Node" left="5130" top="4935" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -835,7 +833,7 @@
    </PIN>
    </NODE>
    <NODE systemname="WaveShaper (Value)" nodename="WaveShaper (Value)" componentmode="Hidden" id="326">
-   <BOUNDS type="Node" left="5115" top="6735" width="100" height="100">
+   <BOUNDS type="Node" left="5130" top="5355" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -1385,7 +1383,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="382">
-   <BOUNDS type="Node" left="6435" top="4725" width="100" height="100">
+   <BOUNDS type="Node" left="7680" top="3705" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="20">
    </PIN>
@@ -1397,9 +1395,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="383" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="6465" top="4005" width="480" height="480">
+   <BOUNDS type="Box" left="7710" top="2985" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="6465" top="4005" width="0" height="0">
+   <BOUNDS type="Node" left="7710" top="2985" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -1483,9 +1481,9 @@
    <LINK srcnodeid="54" srcpinname="Render State" dstnodeid="51" dstpinname="Properties RenderState">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="396" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5280" top="5670" width="480" height="480">
+   <BOUNDS type="Box" left="5295" top="4290" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="5280" top="5670" width="0" height="0">
+   <BOUNDS type="Node" left="5295" top="4290" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -1727,6 +1725,8 @@
    </BOUNDS>
    <PIN pinname="Diffuse" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Composite Map" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="421" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7035" top="20850" width="480" height="480">
@@ -1817,6 +1817,8 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <LINK srcnodeid="426" srcpinname="Y Output Value" dstnodeid="36" dstpinname="Rim Map">
    </LINK>
@@ -1854,6 +1856,8 @@
    <PIN pinname="Value Type" slicecount="1" values="Boolean">
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="428" srcpinname="Y Output Value" dstnodeid="32" dstpinname="Spec/Rough Map">
@@ -1957,5 +1961,47 @@
    <LINK srcnodeid="435" srcpinname="Y Output Value" dstnodeid="36" dstpinname="Width">
    </LINK>
    <LINK srcnodeid="400" srcpinname="Texture Out" dstnodeid="51" dstpinname="Diffuse Texture">
+   </LINK>
+   <LINK srcnodeid="319" srcpinname="Skeleton" dstnodeid="194" dstpinname="Skeleton">
+   </LINK>
+   <NODE systemname="Plasma (DX11.TextureFX)" filename="..\..\..\mcropack\nodes\texture11\Plasma.tfx" nodename="Plasma (DX11.TextureFX)" componentmode="Hidden" id="436">
+   <BOUNDS type="Node" left="9780" top="22740" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   <PIN pinname="Saturation" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Transform (Transform 2d)" nodename="Transform (Transform 2d)" componentmode="Hidden" id="438">
+   <BOUNDS type="Node" left="10110" top="22380" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Rotate" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="438" srcpinname="Transform Out" dstnodeid="436" dstpinname="Transform">
+   </LINK>
+   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="439">
+   <BOUNDS type="Node" left="10860" top="21915" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Period" slicecount="1" values="10">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="439" srcpinname="Output" dstnodeid="438" dstpinname="Rotate">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="440" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="10740" top="23610" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10740" top="23610" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Composite Map|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="436" srcpinname="Texture Out" dstnodeid="440" dstpinname="Input Node">
    </LINK>
    </PATCH>

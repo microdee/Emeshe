@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\Object.v4p" systemname="Object" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\Object.v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\Object.v4p" systemname="Object" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\Object.v4p" scrollx="0" scrolly="5235">
    <BOUNDS type="Window" left="855" top="3960" width="13530" height="11490">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -43,6 +43,8 @@
    </PIN>
    <PIN pinname="Bone Matrices" visible="1">
    </PIN>
+   <PIN pinname="Bone Names Bin Size" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="16" srcpinname="Scene" dstnodeid="14" dstpinname="Scene">
    </LINK>
@@ -69,7 +71,9 @@
    </PIN>
    <PIN pinname="As Auto" visible="1">
    </PIN>
-   <PIN pinname="PrevPosMul" visible="1">
+   <PIN pinname="PrevPosMul" visible="1" slicecount="1" values="34">
+   </PIN>
+   <PIN pinname="BoneCount" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="GetMaxElement (DX11.Geometry GeomFX)" filename="..\..\..\mcropack\nodes\modules\GetMaxElement (DX11.Geometry GeomFX).v4p" nodename="GetMaxElement (DX11.Geometry GeomFX)" componentmode="Hidden" id="12">
@@ -1362,7 +1366,7 @@
    </NODE>
    <LINK srcnodeid="95" srcpinname="Y Output Value" dstnodeid="31" dstpinname="Spec/Rough Map">
    </LINK>
-   <NODE systemname="SkeletonSimple (Assimp)" filename="..\..\..\mcropack\nodes\modules\SkeletonSimple (Assimp).v4p" nodename="SkeletonSimple (Assimp)" componentmode="Hidden" id="97">
+   <NODE systemname="SkeletonSimple (Assimp)" filename="..\..\..\mcropack\nodes\modules\SkeletonSimple (Assimp).v4p" nodename="SkeletonSimple (Assimp)" componentmode="InAWindow" id="97">
    <BOUNDS type="Node" left="5685" top="3495" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Root" visible="1">
@@ -1381,7 +1385,7 @@
    </PIN>
    <PIN pinname="Output Node" visible="1">
    </PIN>
-   <PIN pinname="Index" slicecount="1" values="0">
+   <PIN pinname="Index" slicecount="1" values="0" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="14" srcpinname="Output" dstnodeid="98" dstpinname="Input Node">
@@ -1447,7 +1451,7 @@
    <LINK srcnodeid="14" srcpinname="Bone Matrices" dstnodeid="103" dstpinname="Inverse Bind Pose">
    </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Transform)" componentmode="Hidden" id="104">
-   <BOUNDS type="Node" left="2580" top="6555" width="100" height="100">
+   <BOUNDS type="Node" left="2760" top="6630" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Data" visible="1">
    </PIN>
@@ -1465,7 +1469,7 @@
    </PIN>
    </NODE>
    <NODE systemname="FrameDelay (Transform)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Transform)" componentmode="Hidden" id="106">
-   <BOUNDS type="Node" left="4215" top="6030" width="100" height="100">
+   <BOUNDS type="Node" left="4185" top="6015" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -1570,8 +1574,6 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    </NODE>
-   <LINK srcnodeid="116" srcpinname="Y Output Value" dstnodeid="13" dstpinname="PrevPosMul">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="117" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7740" top="2475" width="480" height="480">
    </BOUNDS>
@@ -1645,5 +1647,45 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="120" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Fresnel Power">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="122" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3075" top="3210" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3075" top="3210" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="122" srcpinname="Y Output Value" dstnodeid="98" dstpinname="Index">
+   </LINK>
+   <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="121">
+   <BOUNDS type="Node" left="1200" top="4425" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   <PIN pinname="Index" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="122" srcpinname="Y Output Value" dstnodeid="121" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Bone Names Bin Size" dstnodeid="121" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="116" srcpinname="Y Output Value" dstnodeid="13" dstpinname="PrevPosMul">
+   </LINK>
+   <LINK srcnodeid="121" srcpinname="Output" dstnodeid="13" dstpinname="BoneCount">
    </LINK>
    </PATCH>
