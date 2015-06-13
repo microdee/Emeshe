@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="2010" scrolly="0">
-   <BOUNDS type="Window" left="10200" top="4050" width="16230" height="11175">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\CameraEffects\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="555" scrolly="0">
+   <BOUNDS type="Window" left="16605" top="3750" width="16230" height="11175">
    </BOUNDS>
    <NODE systemname="BlurMask (DX11.TextureFX)" filename="%VVVV%\packs\mre.mdmod.2\nodes\texture11\BlurMask.tfx" nodename="BlurMask (DX11.TextureFX)" componentmode="Hidden" id="33">
    <BOUNDS type="Node" left="2385" top="5025" width="1350" height="270">
@@ -191,7 +191,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="1335" top="720" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="18.94">
+   <PIN pinname="Y Input Value" slicecount="1" values="16.72">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -267,7 +267,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5430" top="540" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -668,6 +668,8 @@
    <PIN pinname="Texture In 2" visible="1">
    </PIN>
    <PIN pinname="fade" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="120" srcpinname="Texture Out" dstnodeid="128" dstpinname="Texture In">

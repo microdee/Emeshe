@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddFakeSSS (MRE.Materials).v4p" systemname="AddFakeSSS (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddFakeSSS (MRE.Materials).v4p" scrollx="3810" scrolly="1005">
-   <BOUNDS type="Window" left="11955" top="8505" width="9000" height="6000">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddFakeSSS (MRE.Materials).v4p" systemname="AddFakeSSS (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddFakeSSS (MRE.Materials).v4p" scrollx="165" scrolly="0">
+   <BOUNDS type="Window" left="14955" top="7710" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -145,7 +145,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4980" top="1425" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
