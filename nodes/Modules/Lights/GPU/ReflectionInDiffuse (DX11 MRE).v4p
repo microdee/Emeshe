@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\ReflectionInDiffuse (DX11 MRE).v4p" systemname="ReflectionInDiffuse (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ReflectionInDiffuse (DX11 MRE).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\ReflectionInDiffuse (DX11 MRE).v4p" systemname="ReflectionInDiffuse (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ReflectionInDiffuse (DX11 MRE).v4p" scrollx="90" scrolly="315">
    <BOUNDS type="Window" left="8430" top="4380" width="9645" height="9345">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -263,7 +263,9 @@
    </PIN>
    <PIN pinname="Default SizeXY" visible="1" pintype="Input" slicecount="2" values="256,256">
    </PIN>
-   <PIN pinname="EnvTransform" visible="1">
+   <PIN pinname="EnvTransform" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="NotReflectiveIsBlack" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="12" srcpinname="Output Node" dstnodeid="7" dstpinname="Custom Semantics">
@@ -293,8 +295,6 @@
    <LINK srcnodeid="25" srcpinname="Y Output Value" dstnodeid="7" dstpinname="EnvStrength">
    </LINK>
    <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Blur">
-   </LINK>
-   <LINK srcnodeid="18" srcpinname="Output" dstnodeid="7" dstpinname="MaxMIPlevel">
    </LINK>
    <LINK srcnodeid="17" srcpinname="Output Node" dstnodeid="7" dstpinname="Environments">
    </LINK>
@@ -391,7 +391,7 @@
    <LINK srcnodeid="21" srcpinname="Y Output Value" dstnodeid="35" dstpinname="Switch">
    </LINK>
    <NODE systemname="Switch (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Switch (DX11.Texture 2d)" componentmode="Hidden" id="37">
-   <BOUNDS type="Node" left="1920" top="6120" width="100" height="100">
+   <BOUNDS type="Node" left="2205" top="6120" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
    </PIN>
@@ -427,5 +427,19 @@
    <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="37" dstpinname="Input 1">
    </LINK>
    <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="7" dstpinname="EnvTransform">
+   </LINK>
+   <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="38">
+   <BOUNDS type="Node" left="4575" top="4275" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Output" dstnodeid="38" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="38" srcpinname="Output" dstnodeid="7" dstpinname="MaxMIPlevel">
    </LINK>
    </PATCH>

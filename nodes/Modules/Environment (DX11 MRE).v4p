@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Environment (DX11 MRE).v4p" systemname="Environment (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Environment (DX11 MRE).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="5670" top="3435" width="10290" height="9270">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Environment (DX11 MRE).v4p" systemname="Environment (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Environment (DX11 MRE).v4p" scrollx="0" scrolly="165">
+   <BOUNDS type="Window" left="5670" top="3435" width="12255" height="9270">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -11,7 +11,7 @@
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
-   <PIN pinname="Radius" slicecount="1" values="30" visible="1">
+   <PIN pinname="Radius" slicecount="1" visible="1" values="30">
    </PIN>
    <PIN pinname="Resolution X" visible="1">
    </PIN>

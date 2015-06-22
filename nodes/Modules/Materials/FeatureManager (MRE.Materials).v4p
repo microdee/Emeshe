@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\FeatureManager (MRE.Materials).v4p" systemname="FeatureManager (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureManager (MRE.Materials).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\FeatureManager (MRE.Materials).v4p" systemname="FeatureManager (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureManager (MRE.Materials).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="12210" top="3795" width="14865" height="11805">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -353,9 +353,9 @@
    <LINK srcnodeid="36" srcpinname="Output" dstnodeid="33" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="37" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="7305" top="6735" width="795" height="240">
+   <BOUNDS type="Box" left="9015" top="6885" width="720" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7305" top="6735" width="0" height="0">
+   <BOUNDS type="Node" left="9015" top="6885" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -551,9 +551,13 @@
    </PIN>
    <PIN pinname="GlobalAdd" visible="1">
    </PIN>
-   <PIN pinname="Formular" slicecount="3" values="Emeshe.MaterialGlobals.Size,Emeshe.MaterialGlobals.ParameterBin,Emeshe.MaterialGlobals.GlobalAdd">
+   <PIN pinname="Formular" slicecount="4" values="Emeshe.MaterialGlobals.Size,Emeshe.MaterialGlobals.ParameterBin,Emeshe.MaterialGlobals.GlobalAdd,Emeshe.MaterialGlobals.Parameters">
    </PIN>
-   <PIN pinname="Definition" slicecount="1" values="|int Size, int ParameterBin, bool GlobalAdd|">
+   <PIN pinname="Definition" slicecount="1" values="|int Size, int ParameterBin, bool GlobalAdd, string Parameters|">
+   </PIN>
+   <PIN pinname="Parameters Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Parameters" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="26" srcpinname="Output" dstnodeid="34" dstpinname="Primitive Object">
@@ -795,5 +799,73 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="62" dstpinname="Query Save">
+   </LINK>
+   <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="63">
+   <BOUNDS type="Node" left="8385" top="3795" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="6">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Ord Value" dstnodeid="63" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Size" dstnodeid="63" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="ParameterBin" dstnodeid="63" dstpinname="Bin Size">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="64" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7770" top="6900" width="720" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7770" top="6900" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Parameter Size|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="63" srcpinname="Output" dstnodeid="64" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="GetSlice (String)" nodename="GetSlice (String)" componentmode="Hidden" id="65">
+   <BOUNDS type="Node" left="7980" top="5085" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="6">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Bin Size" visible="1" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Ord Value" dstnodeid="65" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="ParameterBin" dstnodeid="65" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Parameters" dstnodeid="65" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="66" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="6525" top="6915" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6525" top="6915" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Parameter Name|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Output" dstnodeid="66" dstpinname="Input String">
    </LINK>
    </PATCH>

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\Object.v4p" systemname="Object" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\Object.v4p" scrollx="0" scrolly="5235">
-   <BOUNDS type="Window" left="855" top="3960" width="13530" height="11490">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\Object.v4p" systemname="Object" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\Object.v4p" scrollx="0" scrolly="11880">
+   <BOUNDS type="Window" left="1365" top="2805" width="13530" height="11490">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -961,7 +961,7 @@
    <LINK srcnodeid="57" srcpinname="Layout Message" dstnodeid="63" dstpinname="Input String">
    </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="9465" top="17565" width="100" height="100">
+   <BOUNDS type="Node" left="3690" top="15735" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1" slicecount="1" values="||">
    </PIN>
@@ -1167,6 +1167,8 @@
    </PIN>
    <PIN pinname="Fresnel Power" visible="1">
    </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="73" srcpinname="Material Thru" dstnodeid="78" dstpinname="Material">
    </LINK>
@@ -1366,7 +1368,7 @@
    </NODE>
    <LINK srcnodeid="95" srcpinname="Y Output Value" dstnodeid="31" dstpinname="Spec/Rough Map">
    </LINK>
-   <NODE systemname="SkeletonSimple (Assimp)" filename="..\..\..\mcropack\nodes\modules\SkeletonSimple (Assimp).v4p" nodename="SkeletonSimple (Assimp)" componentmode="InAWindow" id="97">
+   <NODE systemname="SkeletonSimple (Assimp)" filename="..\..\..\mcropack\nodes\modules\SkeletonSimple (Assimp).v4p" nodename="SkeletonSimple (Assimp)" componentmode="Hidden" id="97">
    <BOUNDS type="Node" left="5685" top="3495" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Root" visible="1">
@@ -1385,7 +1387,7 @@
    </PIN>
    <PIN pinname="Output Node" visible="1">
    </PIN>
-   <PIN pinname="Index" slicecount="1" values="0" visible="1">
+   <PIN pinname="Index" slicecount="1" visible="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="14" srcpinname="Output" dstnodeid="98" dstpinname="Input Node">
@@ -1393,7 +1395,7 @@
    <LINK srcnodeid="98" srcpinname="Output Node" dstnodeid="13" dstpinname="Geometry In">
    </LINK>
    <NODE systemname="SceneFile (DX11.Geometry Assimp)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.Assimp.dll" nodename="SceneFile (DX11.Geometry Assimp)" componentmode="Hidden" id="101">
-   <BOUNDS type="Node" left="5610" top="1680" width="100" height="100">
+   <BOUNDS type="Node" left="5400" top="2370" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Filename" visible="1">
    </PIN>
@@ -1421,7 +1423,7 @@
    <LINK srcnodeid="100" srcpinname="Output String" dstnodeid="101" dstpinname="Filename">
    </LINK>
    <NODE systemname="FileName (File Split)" nodename="FileName (File Split)" componentmode="Hidden" id="102">
-   <BOUNDS type="Node" left="7275" top="1890" width="100" height="100">
+   <BOUNDS type="Node" left="5775" top="2865" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Filename" visible="1">
    </PIN>
@@ -1688,4 +1690,54 @@
    </LINK>
    <LINK srcnodeid="121" srcpinname="Output" dstnodeid="13" dstpinname="BoneCount">
    </LINK>
+   <NODE systemname="AddReflectionMap (MRE.Materials)" filename="..\..\nodes\modules\Materials\AddReflectionMap (MRE.Materials).v4p" nodename="AddReflectionMap (MRE.Materials)" componentmode="Hidden" id="123">
+   <BOUNDS type="Node" left="5820" top="21645" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Material" visible="1">
+   </PIN>
+   <PIN pinname="Add" visible="1">
+   </PIN>
+   <PIN pinname="Reflection Map" visible="1" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="78" srcpinname="Material Thru" dstnodeid="123" dstpinname="Material">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="124" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="6195" top="21105" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6195" top="21105" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="124" srcpinname="Y Output Value" dstnodeid="123" dstpinname="Add">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="125" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7125" top="21060" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7125" top="21060" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
    </PATCH>

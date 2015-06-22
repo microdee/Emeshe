@@ -1,0 +1,77 @@
+
+#include "../fxh/MRE.fxh"
+#include "../fxh/Materials.fxh"
+
+Texture2D texCOL : INITIAL;
+Texture2D texSharp;
+Texture2D<float> texDist;
+
+Texture2DArray ReflectionMaps;
+
+float2 R:TARGETSIZE;
+float AlphaPower = 1;
+
+SamplerState g_samLinear <string uiname="Sampler";>
+{
+	Filter = MIN_MAG_MIP_LINEAR;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+SamplerState g_samPoint : IMMUTABLE
+{
+	Filter = MIN_MAG_MIP_POINT;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+
+float4 pBLEND(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET
+{
+	float stencil = GetStencil(R, x);
+	uint matid = GetMatID(g_samPoint, x);
+
+	bool KnowReflect = KnowFeature(matid, MF_REFLECTION_SSLR);
+	float4 c=0;
+
+	if((stencil > 0) && KnowReflect)
+	{
+		
+		float2 fresnel = GetFloat2(matid, MF_REFLECTION_SSLR, MF_REFLECTION_SSLR_FRESNEL);
+		float2 fresnelPow = GetFloat2(matid, MF_REFLECTION_SSLR, MF_REFLECTION_SSLR_FRESNELPOWER);
+		
+		float3 vPos = GetViewPos(g_samLinear,x);
+		float3 rrV = normalize(vPos);
+		float3 onorm = Normals.Sample(g_samLinear,x).xyz;
+		
+		float2 rlFresnel = pow(saturate(dot(onorm, rrV) + lerp(-1,1,fresnel)), fresnelPow);
+		float strength = GetFloat(matid, MF_REFLECTION_SSLR, MF_REFLECTION_SSLR_STRENGTH);
+		float rlMul = GetFloat(matid, MF_REFLECTION_SSLR, MF_REFLECTION_SSLR_MULTIPLY);
+		float3 ammap = 1;
+		
+		bool KnowRlMap = KnowFeature(matid, MF_REFLECTION_MAP);
+		
+		if(KnowRlMap)
+		{
+			float2 SceneUV = GetUV(g_samLinear, x);
+			float ammapslice = GetFloat(matid, MF_REFLECTION_MAP, MF_REFLECTION_MAP_AMOUNTMAPID);
+			float4 map = ReflectionMaps.SampleLevel(g_samLinear, float3(SceneUV, ammapslice), 0);
+			ammap = map.rgb;
+		}
+		
+		float4 cb = texCOL.SampleLevel(g_samLinear,x,0);
+		float4 cs = texSharp.SampleLevel(g_samLinear,x,0);
+		c = lerp(cb, cs, rlFresnel.y);
+		float fam = max(rlFresnel.x, rlFresnel.y);
+		c.rgb *= ammap * strength;
+		c.rgb = lerp(c.rgb, c.rgb * Color.SampleLevel(g_samLinear,x,0).rgb, rlMul);
+		c.a *= fam;
+		c.a = pow(c.a, AlphaPower);
+	}
+	
+	//c.rgb=normalize(c.rgb);
+	return c;
+}
+
+technique10 SSLR_Map{
+	pass P0
+	{SetPixelShader(CompileShader(ps_4_0,pBLEND()));}
+}

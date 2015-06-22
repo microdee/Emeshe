@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\DroidGirl.v4p" systemname="DroidGirl" filename="C:\vvvv\libs\Emeshe\girlpower\DroidGirl.v4p" scrollx="930" scrolly="7740">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\DroidGirl.v4p" systemname="DroidGirl" filename="C:\vvvv\libs\Emeshe\girlpower\DroidGirl.v4p" scrollx="3405" scrolly="11730">
    <BOUNDS type="Window" left="12855" top="1245" width="13530" height="13935">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -161,11 +161,11 @@
    </PIN>
    <PIN pinname="Coefficient" visible="1" slicecount="1" values="|1.00000,0.87658,0.65247,1.00000|">
    </PIN>
-   <PIN pinname="Power" slicecount="1" values="0.77">
+   <PIN pinname="Power" slicecount="1" values="2">
    </PIN>
    <PIN pinname="Strength" slicecount="1" values="0.87">
    </PIN>
-   <PIN pinname="Thickness" slicecount="1" values="1.35">
+   <PIN pinname="Thickness" slicecount="1" values="0.39">
    </PIN>
    </NODE>
    <NODE systemname="AddFakeRimLight (MRE.Materials)" filename="..\nodes\modules\Materials\AddFakeRimLight (MRE.Materials).v4p" nodename="AddFakeRimLight (MRE.Materials)" componentmode="Hidden" id="36">
@@ -1267,7 +1267,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7380" top="19755" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.38897,0.65211,0.98519,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|1.00000,0.33465,0.23356,1.00000|">
    </PIN>
    <PIN pinname="Color Output" visible="1">
    </PIN>
@@ -1725,6 +1725,8 @@
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <LINK srcnodeid="414" srcpinname="Texture Out" dstnodeid="440" dstpinname="Texture In">
    </LINK>
@@ -1885,7 +1887,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8325" top="3705" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1895,7 +1897,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -2116,10 +2118,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="487" srcpinname="Y Output Value" dstnodeid="482" dstpinname="Pause">
-   </LINK>
-   <LINK srcnodeid="463" srcpinname="Mixed Pose" dstnodeid="194" dstpinname="Skeleton">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="488" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="4110" top="20055" width="795" height="480">
    </BOUNDS>
@@ -2177,5 +2175,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="491" srcpinname="Output Node" dstnodeid="40" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="460" srcpinname="Y Output Value" dstnodeid="482" dstpinname="Pause">
+   </LINK>
+   <LINK srcnodeid="463" srcpinname="Mixed Pose" dstnodeid="194" dstpinname="Skeleton">
    </LINK>
    </PATCH>

@@ -308,9 +308,27 @@
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
-    <Parameter>Multiply</Parameter>
+    <Parameter>DistanceFadePow</Parameter>
     <Size>1</Size>
     <Offset>7</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SSLR</Feature>
+    <Parameter>DistanceBlurPow</Parameter>
+    <Size>1</Size>
+    <Offset>8</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SSLR</Feature>
+    <Parameter>DistanceBlurThreshold</Parameter>
+    <Size>1</Size>
+    <Offset>9</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SSLR</Feature>
+    <Parameter>Multiply</Parameter>
+    <Size>1</Size>
+    <Offset>10</Offset>
   </Features>
   <Features>
     <Feature>Reflection_Map</Feature>

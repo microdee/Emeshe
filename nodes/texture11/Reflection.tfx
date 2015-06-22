@@ -22,10 +22,11 @@ float2 R : TARGETSIZE;
 cbuffer controls : register(b0)
 {
 	float4x4 EnvTransform;
-	bool IsInitial = true;
 	float EnvStrength = 1;
 	float Blur = 0;
 	float MaxMIPlevel = 8;
+	bool IsInitial = true;
+	bool NotReflectiveIsBlack = false;
 	//float3 RefractIndices = { 0.80, 0.82, 0.84 };
 };
 
@@ -114,7 +115,11 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 			return float4(col.rgb,ColorTex.Sample(s0,uv).a);
 		}
 	}
-	else return ColorTex.Sample(s0, uv);
+	else
+	{
+		if(NotReflectiveIsBlack) return 0;
+		else return ColorTex.Sample(s0, uv);
+	}
 }
 
 technique10 Main{
