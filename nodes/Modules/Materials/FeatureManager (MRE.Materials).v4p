@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\FeatureManager (MRE.Materials).v4p" systemname="FeatureManager (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureManager (MRE.Materials).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="C:\vvvv\app\vvvv_45beta33.7_x64\packs\Emeshe\nodes\modules\Materials\FeatureManager (MRE.Materials).v4p" systemname="FeatureManager (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureManager (MRE.Materials).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="12210" top="3795" width="14865" height="11805">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -50,6 +50,12 @@
    <PIN pinname="Manage Existing Object" visible="1" slicecount="1" values="Overwrite">
    </PIN>
    <PIN pinname="Manage Not-Existing Object" visible="1" slicecount="1" values="Create">
+   </PIN>
+   <PIN pinname="Name Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Source Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Add Bin Size" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7" systemname="IOBox (Value Advanced)">
@@ -701,7 +707,7 @@
    <NODE systemname="Remove (VObjectCollection)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Remove (VObjectCollection)" componentmode="Hidden" id="58">
    <BOUNDS type="Node" left="4770" top="9630" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Parent" visible="1">
+   <PIN pinname="Parent" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Name" visible="1">
    </PIN>
@@ -867,5 +873,27 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="65" srcpinname="Output" dstnodeid="66" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="67" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5190" top="7560" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5190" top="7560" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Name Bin Size">
+   </LINK>
+   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Source Bin Size">
+   </LINK>
+   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Add Bin Size">
    </LINK>
    </PATCH>

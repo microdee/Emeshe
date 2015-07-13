@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-DroidGirl-SSLR.v4p" systemname="Sponza-Skulls-SSLR" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-DroidGirl-SSLR.v4p" systemname="Sponza-Skulls-SSLR" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" scrollx="0" scrolly="5040">
    <BOUNDS type="Window" left="12915" top="1545" width="13620" height="14055">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -2305,7 +2305,7 @@
    </PIN>
    <PIN pinname="Resource Semantics" visible="1">
    </PIN>
-   <PIN pinname="Lod" slicecount="1" values="2" visible="1">
+   <PIN pinname="Lod" slicecount="1" visible="1" values="2">
    </PIN>
    </NODE>
    <LINK srcnodeid="620" srcpinname="Output" dstnodeid="633" dstpinname="Roll">

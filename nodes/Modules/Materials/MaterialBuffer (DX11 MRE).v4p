@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" systemname="MaterialBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\app\vvvv_45beta33.7_x64\packs\Emeshe\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" systemname="MaterialBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" scrollx="0" scrolly="330">
    <BOUNDS type="Window" left="7965" top="1995" width="13050" height="11325">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
@@ -181,7 +181,7 @@
    <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="26" dstpinname="Name">
    </LINK>
    <NODE systemname="Cast (To VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Cast (To VObjectCollection)" componentmode="Hidden" id="35">
-   <BOUNDS type="Node" left="2220" top="5115" width="100" height="100">
+   <BOUNDS type="Node" left="2220" top="5115" width="450" height="270">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -189,7 +189,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Info (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (VObjectCollection)" componentmode="Hidden" id="34">
-   <BOUNDS type="Node" left="2220" top="5565" width="100" height="100">
+   <BOUNDS type="Node" left="2220" top="5565" width="750" height="270">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -259,7 +259,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Sift (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Sift (VObjectCollection)" componentmode="Hidden" id="29">
-   <BOUNDS type="Node" left="2235" top="4560" width="100" height="100">
+   <BOUNDS type="Node" left="2235" top="4560" width="900" height="270">
    </BOUNDS>
    <PIN pinname="Source" visible="1" slicecount="1" values="||">
    </PIN>
@@ -431,7 +431,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Sift (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Sift (VObjectCollection)" componentmode="Hidden" id="51">
-   <BOUNDS type="Node" left="6930" top="5355" width="100" height="100">
+   <BOUNDS type="Node" left="6930" top="5355" width="900" height="270">
    </BOUNDS>
    <PIN pinname="Source" visible="1" slicecount="1" values="||">
    </PIN>

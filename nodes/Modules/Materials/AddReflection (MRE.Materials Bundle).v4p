@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\Modules\Materials\AddReflection (MRE.Materials Bundle).v4p" systemname="AddReflection (MRE.Materials Bundle)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Materials\AddReflection (MRE.Materials Bundle).v4p" scrollx="1275" scrolly="0">
+   <PATCH nodename="C:\vvvv\app\vvvv_45beta33.7_x64\packs\Emeshe\nodes\modules\Materials\AddReflection (MRE.Materials Bundle).v4p" systemname="AddReflection (MRE.Materials Bundle)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Materials\AddReflection (MRE.Materials Bundle).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="4650" top="6060" width="13185" height="8775">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -229,7 +229,7 @@
    </PIN>
    <PIN pinname="Fresnel Power" visible="1">
    </PIN>
-   <PIN pinname="Blur" slicecount="1" values="0.05" visible="1">
+   <PIN pinname="Blur" slicecount="1" visible="1" values="0.05">
    </PIN>
    <PIN pinname="Distance" visible="1">
    </PIN>
