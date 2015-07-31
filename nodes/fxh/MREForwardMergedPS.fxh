@@ -7,21 +7,16 @@
 // declare outside:
 // StructuredBuffer<InstanceParams> InstancedParams;
 
-Texture2D DiffTex;
-Texture2D BumpTex;
-Texture2D NormalTex;
+StructuredBuffer<float> SubsetTexID;
+Texture2DArray DiffTex;
+Texture2DArray BumpTex;
+Texture2DArray NormalTex;
 
 cbuffer cbPerObjectPS : register( b2 )
 {
-	float FDiffAmount = 1;
-	float4 FDiffColor <bool color=true;> = 1;
 	float alphatest = 0.5;
-	float FBumpAmount = 0;
 	float bumpOffset = 0;
-	int MatID = 0;
-	int2 ObjID = 0;
 	float gVelocityGain = 1;
-	float TriPlanarPow = 1;
 };
 
 interface IAddress
@@ -77,33 +72,25 @@ PSOut PS(PSin In)
 	float3 NormV = In.NormV;
 	
 	float2 uvb = In.TexCd.xy;
-	
-	#if defined(INSTANCING)
-		float bmpam = InstancedParams[ii].BumpAmount * FBumpAmount;
-	#else
-		float bmpam = FBumpAmount;
+
+	float depth = InstancedParams[ii].BumpAmount;
+	float TexID = SubsetTexID[ii];
+
+	#if defined(WRITEDEPTH) || defined(HAS_NORMALMAP)
+		float mdepth = BumpTex.Sample(Sampler, float3(uvb, TexID)).r + bumpOffset;
 	#endif
 
-	float depth = bmpam;
-	#if defined(TRIPLANAR)
-		float mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow).r + bumpOffset;
-		float4 diffcol = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow);
-	#else
-		float mdepth = BumpTex.Sample(Sampler, uvb).r + bumpOffset;
-    	float4 diffcol = DiffTex.Sample( Sampler, uvb);
-	#endif
-	
-	if(depth!=0) PosV += In.NormV * mdepth * depth * 0.1;
+    float4 diffcol = DiffTex.Sample(Sampler, float3(uvb, TexID));
 
     #if defined(HAS_NORMALMAP)
-    	float3 normmap = NormalTex.Sample(Sampler, uvb).xyz*2-1;
+    	float3 normmap = NormalTex.Sample(Sampler, float3(uvb, TexID)).xyz*2-1;
 		float3 outnorm = normalize(normmap.x * In.Tangent + normmap.y * In.Binormal + normmap.z * In.NormV);
 		Out.normalV = float4(lerp(NormV, outnorm, depth),1);
 	#else
 		Out.normalV = float4(NormV,1);
 	#endif
 
-	float alphat = diffcol.a * FDiffColor.a;
+	float alphat = diffcol.a;
 
 	#if defined(ALPHATEST)
 		if(alphatest!=0)
@@ -113,16 +100,13 @@ PSOut PS(PSin In)
 		}
 	#endif
 	
-	#if defined(INSTANCING)
-    	diffcol.rgb *= FDiffColor.rgb * FDiffAmount * InstancedParams[ii].DiffAmount * InstancedParams[ii].DiffCol.rgb;
-	#else
-		diffcol.rgb *= FDiffColor.rgb * FDiffAmount;
-	#endif
+    diffcol.rgb *= InstancedParams[ii].DiffAmount * InstancedParams[ii].DiffCol.rgb;
 	Out.color.rgb = diffcol.rgb;
 	//Out.color.rgb = HUEtoRGB(ii/10);
 	//Out.color.a = alphat;
 	
 	#if defined(WRITEDEPTH)
+		if(depth!=0) PosV += In.NormV * mdepth * depth * 0.1;
 		if(DepthMode == 1)
 		{
 			float d = length(PosV.xyz);
@@ -139,23 +123,13 @@ PSOut PS(PSin In)
 	#endif
 	
 	Out.veluv.xy = In.PosP.xy/In.PosP.w - In.velocity.xy/In.velocity.w;
-    Out.veluv.xy *= 0.5 * gVelocityGain;
+    Out.veluv.xy *= 0.5 * gVelocityGain * InstancedParams[ii].VelocityGain;
 	Out.veluv.xy += 0.5;
 	
-    #if defined(TRIPLANAR)
-		float2 tuv = TriPlanar(In.TexCd.xyz, In.NormW, TriPlanarPow);
-    	Out.veluv.zw = AddressUV(tuv);
-	#else
-    	Out.veluv.zw = AddressUV(uvb);
-	#endif
+    Out.veluv.zw = AddressUV(uvb);
 	
-	#if defined(INSTANCING)
-		Out.color.a = InstancedParams[ii].MatID;
-		Out.normalV.a = InstancedParams[ii].ObjID0;
-	#else
-		Out.color.a = MatID;
-		Out.normalV.a = ObjID.x;
-	#endif
+	Out.color.a = InstancedParams[ii].MatID;
+	Out.normalV.a = InstancedParams[ii].ObjID0;
 	
     return Out;
 }

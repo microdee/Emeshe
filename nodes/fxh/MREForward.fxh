@@ -28,14 +28,14 @@ struct VSin
 	float4 PosO : POSITION;
 	float3 NormO : NORMAL;
 	#if defined(HAS_TEXCOORD)
-		float4 TexCd: TEXCOORD0;
-	#endif
-	#if defined(HAS_GEOMVELOCITY)
-		float4 velocity : COLOR0;
+		float2 TexCd: TEXCOORD0;
 	#endif
 	#if defined(HAS_NORMALMAP)
 		float3 Tangent : TANGENT;
 		float3 Binormal : BINORMAL;
+	#endif
+	#if defined(HAS_GEOMVELOCITY)
+		float4 velocity : COLOR0;
 	#endif
 	uint vid : SV_VertexID;
 	uint iid : SV_InstanceID;

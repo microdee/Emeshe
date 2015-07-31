@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
    <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddLightCompositing (MRE.Materials).v4p" systemname="AddLightCompositing (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddLightCompositing (MRE.Materials).v4p" scrollx="30" scrolly="0">
    <BOUNDS type="Window" left="9525" top="480" width="9000" height="6000">
    </BOUNDS>
@@ -23,11 +23,13 @@
    </PIN>
    <PIN pinname="Feature Flag" visible="1">
    </PIN>
+   <PIN pinname="Remove" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="17" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="630" top="555" width="795" height="240">
+   <BOUNDS type="Box" left="360" top="510" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="630" top="555" width="0" height="0">
+   <BOUNDS type="Node" left="360" top="510" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -39,9 +41,9 @@
    <LINK srcnodeid="17" srcpinname="Output Node" dstnodeid="18" dstpinname="Material">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1710" top="465" width="480" height="480">
+   <BOUNDS type="Box" left="1440" top="420" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="1710" top="465" width="0" height="0">
+   <BOUNDS type="Node" left="1440" top="420" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -333,5 +335,25 @@
    <LINK srcnodeid="22" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 4">
    </LINK>
    <LINK srcnodeid="25" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input 5">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="26" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2295" top="420" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2295" top="420" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Remove">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="18" dstpinname="Remove">
    </LINK>
    </PATCH>

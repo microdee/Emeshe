@@ -1,7 +1,9 @@
 //@author: microdee
 #include "../fxh/MREForward.fxh"
+#include "../fxh/GetMergedID.fxh"
 
 StructuredBuffer<InstanceParams> InstancedParams;
+StructuredBuffer<uint> SubsetVertexCount;
 
 cbuffer cbPerDraw : register( b0 )
 {
@@ -13,10 +15,10 @@ cbuffer cbPerDraw : register( b0 )
 cbuffer cbPerObjectGeom : register( b1 )
 {
 	float4x4 tW : WORLD;
-	float4x4 tTex;
+	float SubsetCount = 1;
 };
 
-#include "../fxh/MREForwardPSProp.fxh"
+#include "../fxh/MREForwardMergedPSProp.fxh"
 
 PSinProp VS(VSin In)
 {
@@ -26,25 +28,18 @@ PSinProp VS(VSin In)
 	#if defined(IID_FROM_GEOM) && defined(HAS_GEOMVELOCITY)
 		float ii = In.velocity.w;
 	#else
-		float ii = In.iid;
+		float ii = GetMergedGeomID(SubsetVertexCount, In.vid, SubsetCount);
 	#endif
 	Out.ii = ii;
 	
 	// TexCoords
-	#if defined(INSTANCING)
-		float4x4 tT = mul(InstancedParams[ii].tTex,tTex);
-		float4x4 w = mul(InstancedParams[ii].tW,tW);
-	#else
-		float4x4 tT = tTex;
-		float4x4 w = tW;
-	#endif
+	float4x4 tT = InstancedParams[ii].tTex;
+	float4x4 w = mul(InstancedParams[ii].tW,tW);
 	
     Out.PosW = mul(In.PosO, w);
 	Out.NormW = mul(float4(In.NormO, 0), w).xyz;
 	
-	#if defined(TRIPLANAR)
-		Out.TexCd = mul(float4(In.PosO,1),tT);
-	#elif defined(HAS_TEXCOORD)
+	#if defined(HAS_TEXCOORD)
 		Out.TexCd = mul(float4(In.TexCd.xy,0,1), tT);
 	#else
 		Out.TexCd = 0;

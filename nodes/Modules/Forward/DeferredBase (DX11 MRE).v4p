@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="4065" scrolly="8490">
-   <BOUNDS type="Window" left="1275" top="2235" width="16815" height="9885">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="1575" scrolly="6285">
+   <BOUNDS type="Window" left="6510" top="5715" width="16815" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="1170" top="1410" width="0" height="0">
@@ -125,7 +125,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="12330" top="3840" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.27">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -713,6 +713,8 @@
    </PIN>
    <PIN pinname="BumpTex" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="bumpOffset" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Output Node" dstnodeid="296" dstpinname="Geometry" hiddenwhenlocked="1">
    </LINK>
@@ -980,8 +982,10 @@
    </NODE>
    <LINK srcnodeid="310" srcpinname="Output Enum" dstnodeid="305" dstpinname="AddressV">
    </LINK>
-   <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="296" dstpinname="BumpTex">
+   <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="296" dstpinname="BumpTex" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="105" srcpinname="Y Output Value" dstnodeid="296" dstpinname="FBumpAmount">
+   </LINK>
+   <LINK srcnodeid="248" srcpinname="Y Output Value" dstnodeid="296" dstpinname="bumpOffset" hiddenwhenlocked="1">
    </LINK>
    </PATCH>

@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\ShadowMap (MRE.PointLight).v4p" systemname="ShadowMap (MRE.PointLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ShadowMap (MRE.PointLight).v4p" scrollx="225" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\ShadowMap (MRE.PointLight).v4p" systemname="ShadowMap (MRE.PointLight)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\ShadowMap (MRE.PointLight).v4p" scrollx="945" scrolly="0">
    <BOUNDS type="Window" left="18900" top="4485" width="9000" height="10275">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -26,6 +26,8 @@
    <PIN pinname="Near Plane" visible="1">
    </PIN>
    <PIN pinname="Bind Whole Target" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="1" systemname="IOBox (Value Advanced)">
@@ -95,7 +97,7 @@
    </PIN>
    <PIN pinname="Texture Transform" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="1">
+   <PIN pinname="Enabled" slicecount="1" values="1" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="8" systemname="IOBox (Value Advanced)">
@@ -243,7 +245,7 @@
    </PIN>
    <PIN pinname="Render State" visible="1">
    </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="0">
+   <PIN pinname="Enabled" slicecount="1" values="0" visible="1">
    </PIN>
    <PIN pinname="Technique" slicecount="1" values="DeferredProp">
    </PIN>
@@ -379,5 +381,29 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="35" srcpinname="Y Output Value" dstnodeid="31" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="36" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7665" top="1020" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7665" top="1020" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="36" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Y Output Value" dstnodeid="22" dstpinname="Enabled">
    </LINK>
    </PATCH>

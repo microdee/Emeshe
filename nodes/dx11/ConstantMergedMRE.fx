@@ -1,7 +1,9 @@
 //@author: microdee
 #include "../fxh/MREForward.fxh"
+#include "../fxh/GetMergedID.fxh"
 
 StructuredBuffer<InstanceParams> InstancedParams;
+StructuredBuffer<uint> SubsetVertexCount;
 
 cbuffer cbPerDraw : register( b0 )
 {
@@ -18,11 +20,11 @@ cbuffer cbPerObjectGeom : register( b1 )
 {
 	float4x4 tW : WORLD;
 	float4x4 ptW;
-	float4x4 tTex;
+	float SubsetCount = 1;
 	float3 FlipNormals = 1;
 };
 
-#include "../fxh/MREForwardPS.fxh"
+#include "../fxh/MREForwardMergedPS.fxh"
 
 PSin VS(VSin In)
 {
@@ -33,18 +35,13 @@ PSin VS(VSin In)
 	#if defined(IID_FROM_GEOM) && defined(HAS_GEOMVELOCITY)
 		ii = In.velocity.w;
 	#else
-		ii = In.iid;
+		ii = GetMergedGeomID(SubsetVertexCount, In.vid, SubsetCount);
 	#endif
 	Out.ii = ii;
 	
 	// TexCoords
-	#if defined(INSTANCING)
-		float4x4 tT = mul(InstancedParams[ii].tTex,tTex);
-		float4x4 w = mul(InstancedParams[ii].tW,tW);
-	#else
-		float4x4 tT = tTex;
-		float4x4 w = tW;
-	#endif
+	float4x4 tT = InstancedParams[ii].tTex;
+	float4x4 w = mul(InstancedParams[ii].tW,tW);
 	
 	float4 dispPos = In.PosO;
 	float3 dispNorm = In.NormO * FlipNormals;
@@ -79,11 +76,7 @@ PSin VS(VSin In)
 		float4 pdispPos = In.PosO;
 	#endif
 
-	#if defined(INSTANCING)
-		float4x4 pw = mul(InstancedParams[ii].ptW,ptW);
-	#else
-		float4x4 pw = ptW;
-	#endif
+	float4x4 pw = mul(InstancedParams[ii].ptW,ptW);
 
 	float4x4 ptWVP = pw;
 	ptWVP = mul(ptWVP, ptV);

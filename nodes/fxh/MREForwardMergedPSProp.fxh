@@ -4,8 +4,10 @@
 // declare outside:
 // StructuredBuffer<InstanceParams> InstancedParams;
 
-Texture2D DiffTex;
-Texture2D BumpTex;
+StructuredBuffer<float> SubsetTexID;
+Texture2DArray DiffTex;
+Texture2DArray BumpTex;
+
 cbuffer cbPerDrawPS : register( b2 )
 {
 	float3 CamPos : CAM_POSITION;
@@ -13,11 +15,8 @@ cbuffer cbPerDrawPS : register( b2 )
 
 cbuffer cbPerObjectPS : register( b3 )
 {
-	float4 FDiffColor <bool color=true;> = 1;
-	float FBumpAmount = 0;
 	float alphatest = 0.5;
 	float bumpOffset = 0;
-	float TriPlanarPow = 1;
 };
 
 float PS(PSinProp In) : SV_Target
@@ -25,19 +24,11 @@ float PS(PSinProp In) : SV_Target
 	float ii = In.ii;
 	
 	float2 uvb = In.TexCd.xy;
+	float TexID = SubsetTexID[ii];
 	
 	#if defined(WRITEDEPTH)
-		#if defined(INSTANCING)
-			float bmpam = InstancedParams[ii].BumpAmount * FBumpAmount;
-		#else
-			float bmpam = FBumpAmount;
-		#endif
-		float depth = bmpam;
-		#if defined(TRIPLANAR)
-			float mdepth = TriPlanarSample(BumpTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow).r + bumpOffset;
-		#else
-			float mdepth = BumpTex.Sample(Sampler, uvb).r + bumpOffset;
-		#endif
+		float depth = InstancedParams[ii].BumpAmount;
+		float mdepth = BumpTex.Sample(Sampler, float3(uvb, TexID)).r + bumpOffset;
 		float3 PosW = In.PosW.xyz + In.NormW * mdepth * depth * 0.1;
 	#else
 		float3 PosW = In.PosW.xyz;
@@ -46,12 +37,8 @@ float PS(PSinProp In) : SV_Target
 	#if defined(ALPHATEST)
 		if(alphatest!=0)
 		{
-			#if defined(TRIPLANAR)
-				float4 diffcol = TriPlanarSample(DiffTex, Sampler, In.TexCd.xyz, In.NormW, TriPlanarPow);
-			#else
-		    	float4 diffcol = DiffTex.Sample( Sampler, uvb);
-			#endif
-			float alphat = diffcol.a * FDiffColor.a;
+		    float4 diffcol = DiffTex.Sample( Sampler, float3(uvb, TexID));
+			float alphat = diffcol.a;
 			alphat = lerp(alphat, (alphat>=alphatest), min(alphatest*10,1));
 			clip(alphat - (1-alphatest));
 		}

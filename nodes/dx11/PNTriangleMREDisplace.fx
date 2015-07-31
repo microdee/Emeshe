@@ -2,9 +2,6 @@
 
 #include "../fxh/MREForward.fxh"
 
-Texture2D DiffTex;
-Texture2D BumpTex;
-Texture2D NormalTex;
 Texture2D DispTex;
 StructuredBuffer<InstanceParams> InstancedParams;
 
