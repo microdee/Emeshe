@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\SSLAO (DX11 MRE).v4p" systemname="SSLAO (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\GPU\SSLAO (DX11 MRE).v4p" scrollx="-360" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\GPU\SSLAO (DX11 MRE).v4p" systemname="SSLAO (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\GPU\SSLAO (DX11 MRE).v4p" scrollx="-360" scrolly="0">
    <BOUNDS type="Window" left="7140" top="1605" width="13380" height="9675">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="5" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="2025" top="600" width="795" height="240">
@@ -113,7 +113,7 @@
    </PIN>
    <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
    </PIN>
-   <PIN pinname="screenResMulXY" slicecount="2" values="1,1">
+   <PIN pinname="screenResMulXY" slicecount="2" visible="1" values="1,1">
    </PIN>
    <PIN pinname="Noise" visible="1" slicecount="1" values="||">
    </PIN>
@@ -199,7 +199,7 @@
    </PIN>
    <PIN pinname="Phase" slicecount="1" values="0.18">
    </PIN>
-   <PIN pinname="RandomSeed" slicecount="1" values="0.26">
+   <PIN pinname="RandomSeed" slicecount="1" values="0.47">
    </PIN>
    <PIN pinname="Color1" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
    </PIN>
@@ -257,7 +257,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8265" top="3855" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.36">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.64">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -303,7 +303,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3615" top="2010" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.3">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.15">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -319,7 +319,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4785" top="2130" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.46">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.31">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

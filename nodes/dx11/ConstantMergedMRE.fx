@@ -1,6 +1,6 @@
 //@author: microdee
-#include "../fxh/MREForward.fxh"
-#include "../fxh/GetMergedID.fxh"
+#include "../../../mp.fxh/MREForward.fxh"
+#include "../../../mp.fxh/GetMergedID.fxh"
 
 StructuredBuffer<InstanceParams> InstancedParams;
 StructuredBuffer<uint> SubsetVertexCount;
@@ -24,7 +24,7 @@ cbuffer cbPerObjectGeom : register( b1 )
 	float3 FlipNormals = 1;
 };
 
-#include "../fxh/MREForwardMergedPS.fxh"
+#include "../../../mp.fxh/MREForwardMergedPS.fxh"
 
 PSin VS(VSin In)
 {

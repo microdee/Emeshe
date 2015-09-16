@@ -1,5 +1,5 @@
 
-#include "../fxh/MRE.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D Noise;
@@ -7,8 +7,8 @@ Texture2D Noise;
 SamplerState s0 <bool visible=false;string uiname="Sampler";>
 {
 	Filter=MIN_MAG_MIP_POINT;
-	AddressU=WRAP;
-	AddressV=WRAP;
+	AddressU=CLAMP;
+	AddressV=CLAMP;
 	//MipLODBias = -1;
 };
 

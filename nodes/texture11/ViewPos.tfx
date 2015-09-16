@@ -1,4 +1,4 @@
-#include "../fxh/MRE.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 
 SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
 float2 R:TARGETSIZE;

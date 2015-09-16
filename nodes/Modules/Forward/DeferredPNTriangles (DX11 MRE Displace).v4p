@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="405" scrolly="6540">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredPNTriangles (DX11 MRE Displace).v4p" systemname="DeferredPNTriangles (DX11 MRE Displace)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\DeferredPNTriangles (DX11 MRE Displace).v4p" scrollx="0" scrolly="2280">
    <BOUNDS type="Window" left="6510" top="5715" width="16815" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="56" systemname="IOBox (Node)">
    <BOUNDS type="Node" left="1155" top="1455" width="0" height="0">
@@ -129,7 +129,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="12315" top="3885" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -201,7 +201,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="315" top="11730" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.16">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -378,6 +378,10 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="28">
@@ -589,7 +593,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="810" top="10365" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -831,7 +835,7 @@
    <LINK srcnodeid="1" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Instancing">
    </LINK>
    <NODE systemname="PNTriangleMREDisplace (DX11.Effect)" filename="..\dx11\PNTriangleMREDisplace.fx" nodename="PNTriangleMREDisplace (DX11.Effect)" componentmode="Hidden" id="19">
-   <BOUNDS type="Node" left="1305" top="13095" width="12855" height="270">
+   <BOUNDS type="Node" left="1290" top="13095" width="12855" height="270">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -859,7 +863,7 @@
    </PIN>
    <PIN pinname="TriPlanarPow" visible="1" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="FBumpAmount" visible="1" slicecount="1" values="-0.001">
+   <PIN pinname="FBumpAmount" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="MatID" visible="1" slicecount="1" values="0">
    </PIN>
@@ -903,11 +907,11 @@
    </PIN>
    <PIN pinname="NormalTex" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="ObjIDXY" visible="1">
+   <PIN pinname="ObjIDXY" visible="1" slicecount="2" values="0,0">
    </PIN>
    <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="FlipNormals" visible="1">
+   <PIN pinname="FlipNormals" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Sampler" visible="1" slicecount="1" values="||">
    </PIN>
@@ -915,11 +919,11 @@
    </PIN>
    <PIN pinname="DispTex" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="DispAmountXY" visible="1">
+   <PIN pinname="DispAmountXY" visible="1" slicecount="2" values="0,0">
    </PIN>
-   <PIN pinname="AddressU" visible="1">
+   <PIN pinname="AddressU" visible="1" slicecount="1" values="AWrap">
    </PIN>
-   <PIN pinname="AddressV" visible="1">
+   <PIN pinname="AddressV" visible="1" slicecount="1" values="AWrap">
    </PIN>
    </NODE>
    <LINK srcnodeid="27" srcpinname="Output" dstnodeid="19" dstpinname="Transform In">
@@ -1159,24 +1163,26 @@
    </PIN>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Green" visible="1">
+   <PIN pinname="Green" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="58" srcpinname="Output Node" dstnodeid="61" dstpinname="Texture In">
    </LINK>
    <NODE systemname="FrameDelay (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="FrameDelay (DX11.Texture 2d)" componentmode="Hidden" id="62">
-   <BOUNDS type="Node" left="13815" top="7590" width="100" height="100">
+   <BOUNDS type="Node" left="13770" top="7455" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
+   <PIN pinname="Flush" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <LINK srcnodeid="58" srcpinname="Output Node" dstnodeid="62" dstpinname="Texture In">
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="Texture Out" dstnodeid="61" dstpinname="Green">
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="63" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="14550" top="7920" width="1140" height="240">
@@ -1233,5 +1239,7 @@
    <LINK srcnodeid="68" srcpinname="Output Enum" dstnodeid="19" dstpinname="AddressU">
    </LINK>
    <LINK srcnodeid="67" srcpinname="Output Enum" dstnodeid="19" dstpinname="AddressV">
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Texture Out" dstnodeid="61" dstpinname="Green">
    </LINK>
    </PATCH>

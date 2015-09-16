@@ -1,8 +1,8 @@
 #if !defined(MATERIALS_FXH)
-#include "../fxh/Materials.fxh"
+#include "../../../mp.fxh/Materials.fxh"
 #endif
 #if !defined(MRE_FXH)
-#include "../fxh/MRE.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 #endif
 
 Texture2D InTex: PREVIOUS;

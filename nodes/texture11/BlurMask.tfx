@@ -1,5 +1,5 @@
 #if !defined(MRE_FXH)
-#include "../fxh/MRE.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 #endif
 
 Texture2D<float> svpos;

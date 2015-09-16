@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\SponzaScene.v4p" systemname="SponzaScene" filename="C:\vvvv\libs\Emeshe\girlpower\SponzaScene.v4p" scrollx="1230" scrolly="5670">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\SponzaScene.v4p" systemname="SponzaScene" filename="C:\vvvv\libs\Emeshe\girlpower\SponzaScene.v4p" scrollx="1230" scrolly="-360">
    <BOUNDS type="Window" left="1890" top="3990" width="11730" height="9480">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">

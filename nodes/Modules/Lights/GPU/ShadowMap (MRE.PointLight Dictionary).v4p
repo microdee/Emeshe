@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\ShadowMap (MRE.PointLight Dictionary).v4p" systemname="ShadowMap (MRE.PointLight Dictionary)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\ShadowMap (MRE.PointLight Dictionary).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\GPU\ShadowMap (MRE.PointLight Dictionary).v4p" systemname="ShadowMap (MRE.PointLight Dictionary)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Lights\ShadowMap (MRE.PointLight Dictionary).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="29115" top="3585" width="14805" height="11730">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3240" top="5265" width="795" height="240">

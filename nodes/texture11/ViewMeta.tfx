@@ -1,5 +1,5 @@
-#include "../fxh/MRE.fxh"
-#include "../fxh/ColorSpace.fxh"
+#include "../../../mp.fxh/MRE.fxh"
+#include "../../../mp.fxh/ColorSpace.fxh"
 Texture2D tex0: PREVIOUS;
 
 SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};

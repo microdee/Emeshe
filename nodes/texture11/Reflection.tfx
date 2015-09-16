@@ -1,15 +1,8 @@
-#if !defined(POWS_FXH)
-#include "../fxh/pows.fxh"
-#endif
-#if !defined(MATERIALS_FXH)
-#include "../fxh/Materials.fxh"
-#endif
-#if !defined(MRE_FXH)
-#include "../fxh/MRE.fxh"
-#endif
-#if !defined(DISCSAMPLE_FXH)
-#include "../fxh/DiscSample.fxh"
-#endif
+
+#include "../../../mp.fxh/pows.fxh"
+#include "../../../mp.fxh/Materials.fxh"
+#include "../../../mp.fxh/MRE.fxh"
+#include "../../../mp.fxh/DiscSample.fxh"
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;

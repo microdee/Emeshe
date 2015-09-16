@@ -1,6 +1,6 @@
 //@author: microdee
 
-#include "../fxh/MREForward.fxh"
+#include "../../../mp.fxh/MREForward.fxh"
 
 StructuredBuffer<InstanceParams> InstancedParams;
 
@@ -26,7 +26,7 @@ cbuffer cbPerObjectGeom : register( b1 )
     bool FlipNormals = false;
 };
 
-#include "../fxh/MREForwardPS.fxh"
+#include "../../../mp.fxh/MREForwardPS.fxh"
 
 /////////////////////////
 //////// Structs ////////

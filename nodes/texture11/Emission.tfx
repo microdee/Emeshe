@@ -1,9 +1,6 @@
-#if !defined(MATERIALS_FXH)
-#include "../fxh/Materials.fxh"
-#endif
-#if !defined(MRE_FXH)
-#include "../fxh/MRE.fxh"
-#endif
+
+#include "../../../mp.fxh/Materials.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;

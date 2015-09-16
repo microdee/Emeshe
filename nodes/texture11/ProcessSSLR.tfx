@@ -1,6 +1,6 @@
 
-#include "../fxh/MRE.fxh"
-#include "../fxh/Materials.fxh"
+#include "../../../mp.fxh/MRE.fxh"
+#include "../../../mp.fxh/Materials.fxh"
 
 Texture2D<float> texPREV : PREVIOUS;
 

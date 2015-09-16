@@ -1,7 +1,7 @@
 
-#include "../fxh/MRE.fxh"
-#include "../fxh/PoissonDisc.fxh"
-#include "../fxh/ColorSpace.fxh"
+#include "../../../mp.fxh/MRE.fxh"
+#include "../../../mp.fxh/PoissonDisc.fxh"
+#include "../../../mp.fxh/ColorSpace.fxh"
 
 #define DISCSAMPLES 8
 #define DISCSAMPLES2 16

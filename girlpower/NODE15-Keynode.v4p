@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\NODE15-Keynode.v4p" systemname="NODE15-Keynode" filename="C:\vvvv\libs\Emeshe\girlpower\NODE15-Keynode.v4p" scrollx="1080" scrolly="-300">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\girlpower\NODE15-Keynode.v4p" systemname="NODE15-Keynode" filename="C:\vvvv\libs\Emeshe\girlpower\NODE15-Keynode.v4p" scrollx="1080" scrolly="-360">
    <BOUNDS type="Window" left="2430" top="1545" width="13350" height="13785">
    </BOUNDS>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="MRE (DX11)" filename="..\nodes\modules\MRE (DX11).v4p" nodename="MRE (DX11)" componentmode="Hidden" id="129">
    <BOUNDS type="Node" left="2595" top="10140" width="1500" height="270">
@@ -3160,7 +3160,7 @@
    </LINK>
    <LINK srcnodeid="586" srcpinname="SSS Map" dstnodeid="610" dstpinname="SSSMaps">
    </LINK>
-   <NODE systemname="EmesheDancerNode15" filename="Subpatches\EmesheDancerNode15.v4p" nodename="Subpatches\EmesheDancerNode15.v4p" componentmode="InAWindow" id="690">
+   <NODE systemname="EmesheDancerNode15" filename="Subpatches\EmesheDancerNode15.v4p" nodename="Subpatches\EmesheDancerNode15.v4p" componentmode="Hidden" id="690">
    <BOUNDS type="Node" left="3165" top="3270" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material ID" visible="1">
@@ -3479,6 +3479,8 @@
    </PIN>
    <PIN pinname="Reload" slicecount="1" values="0">
    </PIN>
+   <BOUNDS type="Window" left="10770" top="4950" width="9000" height="6000">
+   </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="718" systemname="IOBox (String)">
    <BOUNDS type="Box" left="6015" top="32925" width="795" height="240">
@@ -3568,7 +3570,9 @@
    <PIN pinname="Camera Thru" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="XBox360Controller (VOOCAM)" filename="..\..\mcropack\nodes\modules\XBox360Controller (VOOCAM).v4p" nodename="XBox360Controller (VOOCAM)" componentmode="Hidden" id="721">
+   <LINK srcnodeid="134" srcpinname="Camera Out" dstnodeid="720" dstpinname="Camera In">
+   </LINK>
+   <NODE systemname="SpaceMouse (VOOCAM)" filename="..\..\mcropack\nodes\modules\SpaceMouse (VOOCAM).v4p" nodename="SpaceMouse (VOOCAM)" componentmode="Hidden" id="721">
    <BOUNDS type="Node" left="6120" top="11130" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Camera In" visible="1">
@@ -3576,8 +3580,6 @@
    <PIN pinname="Dual Transition Mode" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="134" srcpinname="Camera Out" dstnodeid="720" dstpinname="Camera In">
-   </LINK>
    <LINK srcnodeid="720" srcpinname="Camera Thru" dstnodeid="721" dstpinname="Camera In">
    </LINK>
    </PATCH>

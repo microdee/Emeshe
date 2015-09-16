@@ -1,5 +1,5 @@
 //@author: microdee
-#include "../fxh/MREForward.fxh"
+#include "../../../mp.fxh/MREForward.fxh"
 
 StructuredBuffer<InstanceParams> InstancedParams;
 
@@ -22,7 +22,7 @@ cbuffer cbPerObjectGeom : register( b1 )
 	float3 FlipNormals = 1;
 };
 
-#include "../fxh/MREForwardPS.fxh"
+#include "../../../mp.fxh/MREForwardPS.fxh"
 
 PSin VS(VSin In)
 {

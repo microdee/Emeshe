@@ -1,6 +1,6 @@
 //@author: microdee
 
-#include "../fxh/MREForward.fxh"
+#include "../../../mp.fxh/MREForward.fxh"
 
 Texture2D DispTex;
 StructuredBuffer<InstanceParams> InstancedParams;
@@ -12,6 +12,7 @@ cbuffer cbPerDraw : register( b0 )
     float4x4 tVI : VIEWINVERSE;
     float4x4 ptV : PREVIOUSVIEW;
     float4x4 tP : PROJECTION;
+    float4x4 tVP : VIEWPROJECTION;
     float4x4 ptP : PREVIOUSPROJECTION;
 	float3 NearFarPow : NEARFARDEPTHPOW;
 	int ObjIDMode : MRE_OBJIDMODE;
@@ -30,7 +31,7 @@ cbuffer cbPerObjectGeom : register( b1 )
     bool FlipNormals = false;
 };
 
-#include "../fxh/MREForwardPS.fxh"
+#include "../../../mp.fxh/MREForwardPS.fxh"
 
 /////////////////////////
 //////// Structs ////////
@@ -104,7 +105,7 @@ HSin VS(VSin In)
     #if defined(TRIPLANAR)
         Out.TexCd = In.PosO;
     #elif defined(HAS_TEXCOORD)
-        Out.TexCd = In.TexCd;
+        Out.TexCd = float4(In.TexCd,0,1);
     #else
         Out.TexCd = 0;
     #endif
@@ -268,17 +269,23 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
         fUVW2, fUVW, CurveAmount,
         cPos, fPos
     );
-
+	/*
+    float3 f3FlatPos = InterpolateDir(
+        HSConstantData,
+        I[0].PosW.xyz, I[1].PosW.xyz, I[2].PosW.xyz,
+        fUVW2, fUVW, CurveAmount
+    );
+	*/
+    float3 pcPos, pfPos;
     #if defined(HAS_GEOMVELOCITY)
-        float3 pcPos, pfPos;
         float3 pf3Position = InterpolatePos(
             HSConstantData,
             I[0].Velocity.xyz, I[1].Velocity.xyz, I[2].Velocity.xyz,
             fUVW2, fUVW, pCurveAmount,
-            pcPos, pfPos
+        	pcPos, pfPos
         );
     #else
-        float3 pf3Position = lerp(fPos,cPos,pCurveAmount);
+        pfPos = fPos;
     #endif
 	
     float3 f3Normal = InterpolateDir(
@@ -314,16 +321,18 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
 	#endif
 	
 	float3 dispPos = f3Position + f3Normal * disp.r * DispAmount.x;
+	float3 dispFlatPos = fPos + f3Normal * disp.r * DispAmount.x;
 	float3 dispNorm = f3Normal;
 
-    float3 pdispPos = pf3Position + f3Normal * disp.g * DispAmount.y;
+    float3 pdispPos = pfPos + f3Normal * disp.g * DispAmount.y;
 
     float4 PosW = mul(float4(dispPos,1), w);
+    float4 FlatPosW = mul(float4(dispFlatPos,1), w);
     O.PosV = mul(PosW, tV);
     O.NormV = normalize(mul(float4(dispNorm,0), tWV).xyz);
     O.NormW = normalize(mul(float4(dispNorm,0), w).xyz);
     O.PosWVP = mul(O.PosV, tP);
-    O.PosP = O.PosWVP;
+    O.PosP = mul(FlatPosW, tVP);
 
     float4x4 ptWVP = pw;
     ptWVP = mul(ptWVP, ptV);
@@ -332,9 +341,6 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
    
     return O;
 }
-////////////////////
-//////// PS ////////
-////////////////////
 
 [maxvertexcount(3)]
 void GS(triangle PSin input[3], inout TriangleStream<PSin>GSOut)

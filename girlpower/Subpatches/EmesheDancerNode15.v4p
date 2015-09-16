@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\EmesheDancerNode15.v4p" systemname="EmesheDancerNode15" filename="C:\vvvv\libs\Emeshe\girlpower\EmesheDancerNode15.v4p" scrollx="0" scrolly="13395">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\girlpower\Subpatches\EmesheDancerNode15.v4p" systemname="EmesheDancerNode15" filename="C:\vvvv\libs\Emeshe\girlpower\EmesheDancerNode15.v4p" scrollx="0" scrolly="1440">
    <BOUNDS type="Window" left="4365" top="1485" width="13530" height="13935">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
    <BOUNDS type="Box" left="825" top="1425" width="4560" height="240">
@@ -292,26 +292,6 @@
    </LINK>
    <LINK srcnodeid="123" srcpinname="Y Output Value" dstnodeid="126" dstpinname="Reload">
    </LINK>
-   <NODE systemname="EmesheInpuElements (DX11 MRE)" filename="..\..\mcropack\nodes\modules\EmesheInpuElements (DX11 MRE).v4p" componentmode="Hidden" id="211" nodename="..\..\libs\mcropack\nodes\Modules\EmesheInpuElements (DX11 MRE).v4p">
-   <BOUNDS type="Node" left="9540" top="3780" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="9540" top="3780" width="4800" height="3600">
-   </BOUNDS>
-   <BOUNDS type="Window" left="14655" top="4710" width="9000" height="7815">
-   </BOUNDS>
-   <PIN pinname="Velocity" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Texture Coordinates" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1">
-   </PIN>
-   <PIN pinname="Input Elements" visible="1">
-   </PIN>
-   <PIN pinname="Tangent Vectors" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Skinning" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="EmesheGeomFeatures (MRE)" filename="..\..\mcropack\nodes\modules\EmesheGeomFeatures (MRE).v4p" componentmode="Hidden" id="212" nodename="..\..\libs\mcropack\nodes\Modules\EmesheGeomFeatures (MRE).v4p">
    <BOUNDS type="Node" left="7560" top="3840" width="100" height="100">
    </BOUNDS>
@@ -342,8 +322,6 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="211" srcpinname="Defines" dstnodeid="213" dstpinname="Input 2">
-   </LINK>
    <LINK srcnodeid="212" srcpinname="Defines" dstnodeid="213" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="227" systemname="IOBox (Value Advanced)">
@@ -362,8 +340,6 @@
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
    </NODE>
-   <LINK srcnodeid="227" srcpinname="Y Output Value" dstnodeid="211" dstpinname="Texture Coordinates">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="228" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="10080" top="3150" width="480" height="480">
    </BOUNDS>
@@ -424,10 +400,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="230" srcpinname="Y Output Value" dstnodeid="211" dstpinname="Skinning">
-   </LINK>
-   <LINK srcnodeid="229" srcpinname="Y Output Value" dstnodeid="211" dstpinname="Previous Position">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="234" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7410" top="3135" width="480" height="480">
    </BOUNDS>
@@ -530,8 +502,6 @@
    <PIN pinname="Input String" slicecount="1" values="OK">
    </PIN>
    </NODE>
-   <LINK srcnodeid="228" srcpinname="Y Output Value" dstnodeid="211" dstpinname="Tangent Vectors">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="304" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="2550" top="15030" width="480" height="480">
    </BOUNDS>
@@ -933,7 +903,7 @@
    </PIN>
    <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Output Layout" visible="1">
+   <PIN pinname="Output Layout" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Max Elements" visible="1" slicecount="1" values="28416">
    </PIN>
@@ -995,8 +965,6 @@
    <LINK srcnodeid="3" srcpinname="Bone Names Bin Size" dstnodeid="399" dstpinname="BoneCount">
    </LINK>
    <LINK srcnodeid="213" srcpinname="Output" dstnodeid="399" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="211" srcpinname="Input Elements" dstnodeid="399" dstpinname="Output Layout">
    </LINK>
    <NODE systemname="GetMaxElement (DX11.Geometry GeomFX)" filename="..\..\mcropack\nodes\modules\GetMaxElement (DX11.Geometry GeomFX).v4p" nodename="GetMaxElement (DX11.Geometry GeomFX)" componentmode="Hidden" id="404">
    <BOUNDS type="Node" left="4755" top="6690" width="100" height="100">
@@ -1399,7 +1367,7 @@
    </PIN>
    <PIN pinname="Add" visible="1">
    </PIN>
-   <PIN pinname="Blur" slicecount="1" values="0.24" visible="1">
+   <PIN pinname="Blur" slicecount="1" visible="1" values="0.24">
    </PIN>
    <PIN pinname="SSLR Strength" slicecount="1" values="2">
    </PIN>
@@ -1477,5 +1445,37 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="445" srcpinname="Y Output Value" dstnodeid="441" dstpinname="Blur">
+   </LINK>
+   <NODE systemname="EmesheInputElements (DX11 MRE)" filename="..\..\..\mp.dx\nodes\modules\geometry\EmesheInputElements (DX11 MRE).v4p" componentmode="Hidden" id="211" nodename="EmesheInputElements (DX11 MRE)">
+   <BOUNDS type="Node" left="9540" top="3780" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9540" top="3780" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="14655" top="4710" width="9000" height="7815">
+   </BOUNDS>
+   <PIN pinname="Velocity" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Texture Coordinates" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Defines" visible="1">
+   </PIN>
+   <PIN pinname="Input Elements" visible="1">
+   </PIN>
+   <PIN pinname="Tangent Vectors" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Skinning" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="211" srcpinname="Defines" dstnodeid="213" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="227" srcpinname="Y Output Value" dstnodeid="211" dstpinname="Texture Coordinates">
+   </LINK>
+   <LINK srcnodeid="230" srcpinname="Y Output Value" dstnodeid="211" dstpinname="Skinning">
+   </LINK>
+   <LINK srcnodeid="229" srcpinname="Y Output Value" dstnodeid="211" dstpinname="Previous Position">
+   </LINK>
+   <LINK srcnodeid="228" srcpinname="Y Output Value" dstnodeid="211" dstpinname="Tangent Vectors">
+   </LINK>
+   <LINK srcnodeid="211" srcpinname="Input Elements" dstnodeid="399" dstpinname="Output Layout">
    </LINK>
    </PATCH>

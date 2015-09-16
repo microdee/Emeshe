@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-DroidGirl-SSLR.v4p" systemname="Sponza-Skulls-SSLR" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" scrollx="0" scrolly="5040">
-   <BOUNDS type="Window" left="12915" top="1545" width="13620" height="14055">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-DroidGirl-SSLR.v4p" systemname="Sponza-Skulls-SSLR" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="3480" top="1095" width="13620" height="14055">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -439,7 +439,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6660" top="7650" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.11,0.25,0">
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.06,0.25,0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -457,7 +457,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8280" top="7380" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="2.13,-2.89,-0.31">
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0.92,0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -2543,6 +2543,8 @@
    </PIN>
    <PIN pinname="width" visible="1">
    </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="309" srcpinname="Texture Out" dstnodeid="677" dstpinname="Texture In">
    </LINK>
@@ -2553,8 +2555,6 @@
    <LINK srcnodeid="654" srcpinname="Y Output Value" dstnodeid="677" dstpinname="MFtoAF">
    </LINK>
    <LINK srcnodeid="137" srcpinname="Y" dstnodeid="677" dstpinname="Max Distance">
-   </LINK>
-   <LINK srcnodeid="677" srcpinname="Texture Out" dstnodeid="258" dstpinname="Texture In">
    </LINK>
    <LINK srcnodeid="676" srcpinname="Input Value" dstnodeid="677" dstpinname="Custom Semantics">
    </LINK>
@@ -2808,7 +2808,7 @@
    </LINK>
    <LINK srcnodeid="167" srcpinname="Light Out" dstnodeid="655" dstpinname="Light In">
    </LINK>
-   <NODE systemname="DroidGirl" filename="Subpatches\DroidGirl.v4p" nodename="Subpatches\DroidGirl.v4p" componentmode="Hidden" id="735">
+   <NODE systemname="DroidGirl" filename="Subpatches\DroidGirl.v4p" nodename="Subpatches\DroidGirl.v4p" componentmode="InAWindow" id="735">
    <BOUNDS type="Node" left="2055" top="1725" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Base Layer" visible="1">
@@ -2833,7 +2833,7 @@
    </PIN>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="XYZ" slicecount="3" values="1.48,1.48,1.48">
+   <PIN pinname="XYZ" slicecount="3" values="1,1,1">
    </PIN>
    </NODE>
    <LINK srcnodeid="382" srcpinname="Transform Out" dstnodeid="736" dstpinname="Transform In">
@@ -3283,5 +3283,7 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="768" srcpinname="Y Output Value" dstnodeid="655" dstpinname="Lod">
+   </LINK>
+   <LINK srcnodeid="677" srcpinname="Texture Out" dstnodeid="258" dstpinname="Texture In">
    </LINK>
    </PATCH>

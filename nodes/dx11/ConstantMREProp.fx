@@ -1,5 +1,5 @@
 //@author: microdee
-#include "../fxh/MREForward.fxh"
+#include "../../../mp.fxh/MREForward.fxh"
 
 StructuredBuffer<InstanceParams> InstancedParams;
 
@@ -16,7 +16,7 @@ cbuffer cbPerObjectGeom : register( b1 )
 	float4x4 tTex;
 };
 
-#include "../fxh/MREForwardPSProp.fxh"
+#include "../../../mp.fxh/MREForwardPSProp.fxh"
 
 PSinProp VS(VSin In)
 {

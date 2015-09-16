@@ -2,7 +2,7 @@
 //@help: lighting components
 
 #define PI 3.14159265358979
-#include "../fxh/CookTorrance.fxh"
+#include "../../../mp.fxh/CookTorrance.fxh"
 
 Texture2D Lights[3];
 Texture2D MaskTex;

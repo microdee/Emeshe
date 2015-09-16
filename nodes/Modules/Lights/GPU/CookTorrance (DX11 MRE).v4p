@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\GPU\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="2820" scrolly="3795">
-   <BOUNDS type="Window" left="11175" top="1935" width="15840" height="10875">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\GPU\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="2820" scrolly="1080">
+   <BOUNDS type="Window" left="6765" top="5265" width="15840" height="10875">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="CookTorranceLookupSource (DX11.TextureFX)" filename="..\texture11\CookTorranceLookupSource.tfx" nodename="CookTorranceLookupSource (DX11.TextureFX)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2895" top="5520" width="2205" height="270">
@@ -18,6 +18,8 @@
    <PIN pinname="Use Default Size" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Iterastion Count" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="base" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="3" systemname="IOBox (Value Advanced)">
@@ -592,18 +594,6 @@
    </LINK>
    <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="21" dstpinname="TexRoughness">
    </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="40" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="8580" top="1800" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="8580" top="1800" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Map Sampler|">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="40" srcpinname="Output Node" dstnodeid="21" dstpinname="Map Sampler">
-   </LINK>
    <LINK srcnodeid="13" srcpinname="Output Node" dstnodeid="21" dstpinname="SpecRoughMaps">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="41" systemname="IOBox (Node)">
@@ -853,5 +843,49 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="21" dstpinname="ComponentAmountXYZ">
+   </LINK>
+   <NODE systemname="Sampler (DX11 Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Sampler (DX11 Advanced)" componentmode="Hidden" id="62">
+   <BOUNDS type="Node" left="9015" top="8295" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Address U" visible="1">
+   </PIN>
+   <PIN pinname="Address V" visible="1">
+   </PIN>
+   <PIN pinname="Sampler" visible="1">
+   </PIN>
+   <PIN pinname="Address W" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="63" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="9045" top="7845" width="810" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9045" top="7845" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Clamp">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="62" dstpinname="Address U">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="62" dstpinname="Address V">
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Sampler" dstnodeid="21" dstpinname="Map Sampler">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="62" dstpinname="Address W">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="65" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4920" top="4725" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4920" top="4725" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.04">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Y Output Value" dstnodeid="0" dstpinname="base">
    </LINK>
    </PATCH>

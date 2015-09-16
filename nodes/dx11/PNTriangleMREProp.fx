@@ -1,5 +1,5 @@
 //@author: microdee
-#include "../fxh/MREForward.fxh"
+#include "../../../mp.fxh/MREForward.fxh"
 
 Texture2D DiffTex;
 StructuredBuffer<InstanceParams> InstancedParams;
@@ -20,7 +20,7 @@ cbuffer cbPerObject : register( b1 )
 	bool FlipNormals = false;
 };
 
-#include "../fxh/MREForwardPSProp.fxh"
+#include "../../../mp.fxh/MREForwardPSProp.fxh"
 
 struct HSin
 {

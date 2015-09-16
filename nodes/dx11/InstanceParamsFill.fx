@@ -1,6 +1,6 @@
 
 
-#include "../fxh/InstanceParams.fxh"
+#include "../../../mp.fxh/InstanceParams.fxh"
 
 RWStructuredBuffer<InstanceParams> BOutput : BACKBUFFER;
 

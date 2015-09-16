@@ -1,5 +1,5 @@
 
-#include "../fxh/MRE.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 
 Texture2D texNOIS <string uiname="Noise";>;
 Texture2D texCTRL <string uiname="Sample Control";>;

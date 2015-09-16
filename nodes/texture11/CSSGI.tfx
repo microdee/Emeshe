@@ -1,6 +1,6 @@
 #define NUM_SAMPLES 3
-#include "../fxh/ColorSpace.fxh"
-#include "../fxh/MRE.fxh"
+#include "../../../mp.fxh/ColorSpace.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 
 Texture2D color : PREVIOUS;
 

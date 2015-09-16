@@ -1,5 +1,5 @@
 //@author: microdee
-#include "../fxh/MREForward.fxh"
+#include "../../../mp.fxh/MREForward.fxh"
 
 Texture2D DispTex;
 StructuredBuffer<InstanceParams> InstancedParams;
@@ -21,7 +21,7 @@ cbuffer cbPerObjectGeom : register( b1 )
 	bool FlipNormals = false;
 };
 
-#include "../fxh/MREForwardPSProp.fxh"
+#include "../../../mp.fxh/MREForwardPSProp.fxh"
 
 struct HSin
 {
@@ -79,7 +79,7 @@ HSin VS(VSin In)
     #if defined(TRIPLANAR)
         Out.TexCd = In.PosO;
     #elif defined(HAS_TEXCOORD)
-        Out.TexCd = In.TexCd;
+        Out.TexCd = float4(In.TexCd,0,1);
     #else
         Out.TexCd = 0;
     #endif
