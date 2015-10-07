@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="1575" scrolly="6285">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="0" scrolly="8325">
    <BOUNDS type="Window" left="6510" top="5715" width="16815" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -43,7 +43,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="6900" top="2160" width="2205" height="240">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" values="|0.20575,0.20575,0.20575,1.00000|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Diffuse Color|">
    </PIN>
@@ -325,7 +325,7 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Toggle">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Instance From GeomFX|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Subset ID From GeomFX|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -470,7 +470,7 @@
    </NODE>
    <PACK Name="ImagePack" Version="0.1.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -672,7 +672,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="ConstantMREProp (DX11.Effect)" filename="..\dx11\ConstantMREProp.fx" nodename="ConstantMREProp (DX11.Effect)" componentmode="Hidden" id="296">
+   <NODE systemname="ConstantMREProp (DX11.Effect)" filename="..\..\dx11\ConstantMREProp.fx" nodename="ConstantMREProp (DX11.Effect)" componentmode="Hidden" id="296">
    <BOUNDS type="Node" left="14505" top="13290" width="2400" height="270">
    </BOUNDS>
    <PIN pinname="Technique" slicecount="1" visible="1" values="DeferredProp">
@@ -822,7 +822,7 @@
    </NODE>
    <LINK srcnodeid="296" srcpinname="Query" dstnodeid="304" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="ConstantMRE (DX11.Effect)" filename="..\dx11\ConstantMRE.fx" nodename="ConstantMRE (DX11.Effect)" componentmode="Hidden" id="305">
+   <NODE systemname="ConstantMRE (DX11.Effect)" filename="..\..\dx11\ConstantMRE.fx" nodename="ConstantMRE (DX11.Effect)" componentmode="Hidden" id="305">
    <BOUNDS type="Node" left="855" top="12585" width="11475" height="270">
    </BOUNDS>
    <PIN pinname="Defines" visible="1" slicecount="3" values="HAS_TEXCOORD=1,HAS_NORMALMAP=1,WRITEDEPTH=1">
@@ -926,7 +926,7 @@
    </LINK>
    <LINK srcnodeid="278" srcpinname="Y Output Value" dstnodeid="306" dstpinname="Write to Depth">
    </LINK>
-   <LINK srcnodeid="234" srcpinname="Y Output Value" dstnodeid="306" dstpinname="Instance From GeomFX">
+   <LINK srcnodeid="234" srcpinname="Y Output Value" dstnodeid="306" dstpinname="Subset ID From GeomFX">
    </LINK>
    <LINK srcnodeid="247" srcpinname="Y Output Value" dstnodeid="306" dstpinname="Instancing">
    </LINK>
@@ -957,7 +957,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7875" top="5340" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AWrap">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AMirror">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="AddressU">
    </PIN>
@@ -973,7 +973,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8040" top="5895" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AWrap">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AMirror">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="AddressV">
    </PIN>

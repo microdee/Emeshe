@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Sponza-DroidGirl-SSLR.v4p" systemname="Sponza-Skulls-SSLR" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\girlpower\Sponza-DroidGirl-SSLR.v4p" systemname="Sponza-Skulls-SSLR" filename="C:\vvvv\libs\Emeshe\girlpower\Sponza-Skulls-SSLR.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="3480" top="1095" width="13620" height="14055">
    </BOUNDS>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="MRE (DX11)" filename="..\nodes\modules\MRE (DX11).v4p" nodename="MRE (DX11)" componentmode="Hidden" id="129">
    <BOUNDS type="Node" left="2595" top="10140" width="1500" height="270">
@@ -35,7 +35,7 @@
    </PIN>
    <PIN pinname="Custom Semantics" visible="1">
    </PIN>
-   <PIN pinname="Material Buffers" visible="1" slicecount="1" values="||">
+   <PIN pinname="Material Buffers" visible="1" slicecount="2" values=",">
    </PIN>
    <PIN pinname="Depth Buffer" visible="1">
    </PIN>
@@ -409,9 +409,9 @@
    </PIN>
    <PIN pinname="Blend" slicecount="1" values="Mul">
    </PIN>
-   <PIN pinname="Custom Semantics" visible="1">
+   <PIN pinname="Custom Semantics" visible="1" slicecount="3" values=",,">
    </PIN>
-   <PIN pinname="Resource Semantics" visible="1">
+   <PIN pinname="Resource Semantics" visible="1" slicecount="8" values=",,,,,,,">
    </PIN>
    </NODE>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -561,9 +561,9 @@
    </PIN>
    <PIN pinname="Light Out" visible="1">
    </PIN>
-   <PIN pinname="Custom Semantics" visible="1" slicecount="8" values=",,,,,,,">
+   <PIN pinname="Custom Semantics" visible="1" slicecount="3" values=",,">
    </PIN>
-   <PIN pinname="Resource Semantics" visible="1" slicecount="9" values=",,,,,,,,">
+   <PIN pinname="Resource Semantics" visible="1" slicecount="8" values=",,,,,,,">
    </PIN>
    <PIN pinname="Initial" slicecount="1" values="1">
    </PIN>
@@ -818,10 +818,10 @@
    </NODE>
    <LINK srcnodeid="409" srcpinname="Output" dstnodeid="413" dstpinname="Image">
    </LINK>
-   <NODE systemname="GenerateMips (DX11.TextureFX)" filename="..\..\mcropack\nodes\texture11\GenerateMips.tfx" nodename="GenerateMips (DX11.TextureFX)" componentmode="Hidden" id="414">
+   <NODE systemname="GenerateMips (DX11.TextureFX)" filename="..\..\mp.dx\nodes\texture11\GenerateMips.tfx" nodename="GenerateMips (DX11.TextureFX)" componentmode="Hidden" id="414">
    <BOUNDS type="Node" left="1200" top="14700" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
@@ -969,7 +969,7 @@
    </PIN>
    <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="8" values=",,,,,,,">
+   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="3" values=",,">
    </PIN>
    <PIN pinname="FOV" visible="1" slicecount="1" values="0.030555209879454">
    </PIN>
@@ -1473,15 +1473,15 @@
    </PIN>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="3" values=",,">
    </PIN>
-   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="8" values=",,,,,,,">
    </PIN>
    <PIN pinname="SSS" visible="1">
    </PIN>
    <PIN pinname="Rim" visible="1">
    </PIN>
-   <PIN pinname="Lights" visible="1" slicecount="1" values="||">
+   <PIN pinname="Lights" visible="1" slicecount="3" values=",,">
    </PIN>
    <PIN pinname="Specular" slicecount="1" values="1">
    </PIN>
@@ -1628,7 +1628,7 @@
    </NODE>
    <LINK srcnodeid="348" srcpinname="Buffer Out" dstnodeid="167" dstpinname="Spotlight Buffer">
    </LINK>
-   <NODE systemname="Plasma (DX11.TextureFX)" filename="..\..\mcropack\nodes\texture11\Plasma.tfx" nodename="Plasma (DX11.TextureFX)" componentmode="Hidden" id="588">
+   <NODE systemname="Plasma (DX11.TextureFX)" filename="..\..\mp.dx\nodes\texture11\Plasma.tfx" nodename="Plasma (DX11.TextureFX)" componentmode="Hidden" id="588">
    <BOUNDS type="Node" left="13590" top="13890" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture Out" visible="1">
@@ -1736,7 +1736,7 @@
    </NODE>
    <LINK srcnodeid="594" srcpinname="Y Output Value" dstnodeid="274" dstpinname="Blur Radius">
    </LINK>
-   <NODE systemname="SetSlice (DX11.Texture2DArray)" filename="..\..\mcropack\nodes\modules\SetSlice (DX11.Texture2DArray).v4p" nodename="SetSlice (DX11.Texture2DArray)" componentmode="Hidden" id="587">
+   <NODE systemname="SetSlice (DX11.Texture2DArray)" filename="..\..\mp.dx\nodes\modules\texture\SetSlice (DX11.Texture2DArray).v4p" nodename="SetSlice (DX11.Texture2DArray)" componentmode="Hidden" id="587">
    <BOUNDS type="Node" left="13215" top="15675" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture Out" visible="1">
@@ -1750,7 +1750,7 @@
    </NODE>
    <LINK srcnodeid="587" srcpinname="Texture Out" dstnodeid="167" dstpinname="SpotTexArray">
    </LINK>
-   <NODE systemname="FakeFullscreen (VVVV)" filename="..\..\mcropack\nodes\modules\FakeFullscreen (VVVV).v4p" nodename="FakeFullscreen (VVVV)" componentmode="Hidden" id="602">
+   <NODE systemname="FakeFullscreen (VVVV)" filename="..\..\mp.essentials\nodes\modules\vvvv\FakeFullscreen (VVVV).v4p" nodename="FakeFullscreen (VVVV)" componentmode="Hidden" id="602">
    <BOUNDS type="Node" left="5190" top="36600" width="100" height="100">
    </BOUNDS>
    <PIN pinname="id" visible="1">
@@ -2130,7 +2130,7 @@
    </LINK>
    <LINK srcnodeid="636" srcpinname="Transform Out" dstnodeid="638" dstpinname="Input 3">
    </LINK>
-   <NODE systemname="SetSlice (DX11.Texture2DArray)" filename="..\..\mcropack\nodes\modules\SetSlice (DX11.Texture2DArray).v4p" nodename="SetSlice (DX11.Texture2DArray)" componentmode="Hidden" id="639">
+   <NODE systemname="SetSlice (DX11.Texture2DArray)" filename="..\..\mp.dx\nodes\modules\texture\SetSlice (DX11.Texture2DArray).v4p" nodename="SetSlice (DX11.Texture2DArray)" componentmode="Hidden" id="639">
    <BOUNDS type="Node" left="12780" top="10065" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture Out" visible="1">
@@ -2705,9 +2705,9 @@
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="3" values=",,">
    </PIN>
-   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="8" values=",,,,,,,">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
@@ -2736,7 +2736,7 @@
    </NODE>
    <LINK srcnodeid="701" srcpinname="Y Output Value" dstnodeid="524" dstpinname="XYZ">
    </LINK>
-   <NODE systemname="Plasma (DX11.TextureFX)" filename="..\..\mcropack\nodes\texture11\Plasma.tfx" nodename="Plasma (DX11.TextureFX)" componentmode="Hidden" id="702">
+   <NODE systemname="Plasma (DX11.TextureFX)" filename="..\..\mp.dx\nodes\texture11\Plasma.tfx" nodename="Plasma (DX11.TextureFX)" componentmode="Hidden" id="702">
    <BOUNDS type="Node" left="1980" top="23145" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture Out" visible="1">
@@ -2827,7 +2827,7 @@
    <LINK srcnodeid="735" srcpinname="Property Layer" dstnodeid="465" dstpinname="Layer 2">
    </LINK>
    <NODE systemname="Scale (Transform Vector)" nodename="Scale (Transform Vector)" componentmode="Hidden" id="736">
-   <BOUNDS type="Node" left="3540" top="1305" width="100" height="100">
+   <BOUNDS type="Node" left="2025" top="1290" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform In" visible="1">
    </PIN>
@@ -3002,7 +3002,7 @@
    </LINK>
    <LINK srcnodeid="745" srcpinname="Y Output Value" dstnodeid="382" dstpinname="TranslateZ">
    </LINK>
-   <NODE systemname="SSLR (DX11 MRE)" filename="..\nodes\Modules\Lights\GPU\SSLR (DX11 MRE).v4p" componentmode="Hidden" id="746" nodename="..\nodes\Modules\Lights\GPU\SSLR (DX11 MRE).v4p">
+   <NODE systemname="SSLR (DX11 MRE)" filename="..\nodes\modules\Lights\GPU\SSLR (DX11 MRE).v4p" componentmode="Hidden" id="746" nodename="..\nodes\Modules\Lights\GPU\SSLR (DX11 MRE).v4p">
    <BOUNDS type="Node" left="4050" top="26115" width="2100" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="4050" top="26115" width="4800" height="3600">
@@ -3106,7 +3106,7 @@
    </LINK>
    <LINK srcnodeid="756" srcpinname="Texture Out" dstnodeid="755" dstpinname="Texture In">
    </LINK>
-   <NODE systemname="ScalarOperationBundle (DX11.TextureFX)" filename="..\..\mcropack\nodes\texture11\ScalarOperationBundle.tfx" nodename="ScalarOperationBundle (DX11.TextureFX)" componentmode="Hidden" id="757">
+   <NODE systemname="ScalarOperationBundle (DX11.TextureFX)" filename="..\..\mp.dx\nodes\texture11\ScalarOperationBundle.tfx" nodename="ScalarOperationBundle (DX11.TextureFX)" componentmode="Hidden" id="757">
    <BOUNDS type="Node" left="8835" top="26670" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1">
@@ -3140,7 +3140,7 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Camera (Transform VOOCAM)" filename="..\..\mcropack\nodes\modules\Camera (Transform VOOCAM).v4p" nodename="Camera (Transform VOOCAM)" componentmode="Hidden" id="759">
+   <NODE systemname="Camera (Transform VOOCAM)" filename="..\..\mp.voocam\nodes\modules\Camera (Transform VOOCAM).v4p" nodename="Camera (Transform VOOCAM)" componentmode="Hidden" id="759">
    <BOUNDS type="Node" left="3780" top="9150" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Rotate XYZ" visible="1">
@@ -3180,7 +3180,7 @@
    </LINK>
    <LINK srcnodeid="137" srcpinname="Y" dstnodeid="759" dstpinname="Far">
    </LINK>
-   <NODE systemname="MouseKeyboard (VOOCAM)" filename="..\..\mcropack\nodes\modules\MouseKeyboard (VOOCAM).v4p" nodename="MouseKeyboard (VOOCAM)" componentmode="Hidden" id="761">
+   <NODE systemname="MouseKeyboard (VOOCAM)" filename="..\..\mp.voocam\nodes\modules\MouseKeyboard (VOOCAM).v4p" nodename="MouseKeyboard (VOOCAM)" componentmode="Hidden" id="761">
    <BOUNDS type="Node" left="6945" top="10080" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Camera In" visible="1">
@@ -3191,16 +3191,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="759" srcpinname="Camera Out" dstnodeid="761" dstpinname="Camera In">
-   </LINK>
-   <NODE systemname="XBox360Controller (VOOCAM)" filename="..\..\mcropack\nodes\modules\XBox360Controller (VOOCAM).v4p" nodename="XBox360Controller (VOOCAM)" componentmode="Hidden" id="762">
-   <BOUNDS type="Node" left="6975" top="10590" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Camera In" visible="1">
-   </PIN>
-   <PIN pinname="Dual Transition Mode" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="761" srcpinname="Camera Thru" dstnodeid="762" dstpinname="Camera In">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="763" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="8805" top="9840" width="480" height="480">
@@ -3220,8 +3210,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="763" srcpinname="Y Output Value" dstnodeid="762" dstpinname="Dual Transition Mode">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="765" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5040" top="25635" width="795" height="240">
    </BOUNDS>
@@ -3285,5 +3273,13 @@
    <LINK srcnodeid="768" srcpinname="Y Output Value" dstnodeid="655" dstpinname="Lod">
    </LINK>
    <LINK srcnodeid="677" srcpinname="Texture Out" dstnodeid="258" dstpinname="Texture In">
+   </LINK>
+   <NODE systemname="SpaceMouse (VOOCAM)" filename="..\..\mp.voocam\nodes\modules\SpaceMouse (VOOCAM).v4p" nodename="SpaceMouse (VOOCAM)" componentmode="Hidden" id="769">
+   <BOUNDS type="Node" left="6945" top="10545" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Camera In" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="761" srcpinname="Camera Thru" dstnodeid="769" dstpinname="Camera In">
    </LINK>
    </PATCH>

@@ -32,8 +32,8 @@ PSin VS(VSin In)
     PSin Out = (PSin)0;
 	float ii = 0;
 	// get Instance ID from GeomFX
-	#if defined(IID_FROM_GEOM) && defined(HAS_GEOMVELOCITY)
-		ii = In.velocity.w;
+	#if defined(HAS_SUBSETID)
+		ii = In.SubsetID;
 	#else
 		ii = GetMergedGeomID(SubsetVertexCount, In.vid, SubsetCount);
 	#endif
@@ -71,7 +71,7 @@ PSin VS(VSin In)
 	
 	// velocity
 	#if defined(HAS_GEOMVELOCITY)
-		float4 pdispPos = float4(In.velocity.xyz,1);
+		float4 pdispPos = float4(In.velocity,1);
 	#else
 		float4 pdispPos = In.PosO;
 	#endif

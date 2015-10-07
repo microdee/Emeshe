@@ -9,6 +9,9 @@ float IDScale = 0.1;
 float4 pUV(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
     return float4(GetUV(s0, x), 0, 1);
 }
+float4 pVel(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return float4(Velocity.SampleLevel(s0, x, 0).rg, 0, 1);
+}
 float4 pMatID(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
     return float4(HUEtoRGB(GetMatID(s0, x) * IDScale), 1);
 }
@@ -19,5 +22,6 @@ float4 pObjID(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
 
 
 technique10 UV{pass P1{SetPixelShader(CompileShader(ps_4_0,pUV()));}}
+technique10 Vel{pass P1{SetPixelShader(CompileShader(ps_4_0,pVel()));}}
 technique10 MatID{pass P1{SetPixelShader(CompileShader(ps_4_0,pMatID()));}}
 technique10 ObjID{pass P1{SetPixelShader(CompileShader(ps_4_0,pObjID()));}}

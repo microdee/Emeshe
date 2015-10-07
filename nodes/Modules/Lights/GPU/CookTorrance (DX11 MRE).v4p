@@ -1,12 +1,12 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\GPU\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="2820" scrolly="1080">
-   <BOUNDS type="Window" left="6765" top="5265" width="15840" height="10875">
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\GPU\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="5280" scrolly="2760">
+   <BOUNDS type="Window" left="3375" top="2250" width="15840" height="10875">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
-   <NODE systemname="CookTorranceLookupSource (DX11.TextureFX)" filename="..\texture11\CookTorranceLookupSource.tfx" nodename="CookTorranceLookupSource (DX11.TextureFX)" componentmode="Hidden" id="0">
+   <NODE systemname="CookTorranceLookupSource (DX11.TextureFX)" filename="..\..\..\texture11\CookTorranceLookupSource.tfx" nodename="CookTorranceLookupSource (DX11.TextureFX)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2895" top="5520" width="2205" height="270">
    </BOUNDS>
    <PIN pinname="Texture Out" visible="1">
@@ -42,7 +42,7 @@
    </NODE>
    <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Default SizeXY">
    </LINK>
-   <NODE systemname="Renderer (DX11 MRT)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 MRT)" componentmode="Hidden" id="39">
+   <NODE systemname="Renderer (DX11 MRT)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 MRT)" componentmode="Hidden" id="39">
    <BOUNDS type="Node" left="6975" top="11790" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Target Count" slicecount="1" values="1">
@@ -88,7 +88,7 @@
    </NODE>
    <LINK srcnodeid="37" srcpinname="Output Enum" dstnodeid="39" dstpinname="Target Format">
    </LINK>
-   <NODE systemname="Quad (DX11.Geometry)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden" id="36">
+   <NODE systemname="Quad (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden" id="36">
    <BOUNDS type="Node" left="7035" top="5895" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
@@ -494,7 +494,7 @@
    </NODE>
    <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="5" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="CookTorranceSeparate (DX11.Effect)" filename="..\dx11\CookTorranceSeparate.fx" nodename="CookTorranceSeparate (DX11.Effect)" componentmode="Hidden" id="21">
+   <NODE systemname="CookTorranceSeparate (DX11.Effect)" filename="..\..\..\dx11\CookTorranceSeparate.fx" nodename="CookTorranceSeparate (DX11.Effect)" componentmode="Hidden" id="21">
    <BOUNDS type="Node" left="7245" top="9480" width="5100" height="270">
    </BOUNDS>
    <PIN pinname="Technique">
@@ -685,7 +685,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="11415" top="7665" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.06">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.2">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -703,7 +703,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="12090" top="6285" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.15">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.72">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -721,7 +721,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="12660" top="7650" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.16">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.4">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

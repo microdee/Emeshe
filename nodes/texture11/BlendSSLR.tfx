@@ -4,7 +4,6 @@
 
 Texture2D texCOL : INITIAL;
 Texture2D texSharp;
-Texture2D<float> texDist;
 
 Texture2DArray ReflectionMaps;
 
@@ -59,12 +58,12 @@ float4 pBLEND(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET
 		
 		float4 cb = texCOL.SampleLevel(g_samLinear,x,0);
 		float4 cs = texSharp.SampleLevel(g_samLinear,x,0);
-		c = lerp(cb, cs, rlFresnel.y);
+		c = lerp(cb, cs, rlFresnel.y)*rlFresnel.x;
 		float fam = max(rlFresnel.x, rlFresnel.y);
 		c.rgb *= ammap * strength;
 		c.rgb = lerp(c.rgb, c.rgb * Color.SampleLevel(g_samLinear,x,0).rgb, rlMul);
 		c.a *= fam;
-		c.a = pow(c.a, AlphaPower);
+		c.a = pows(c.a, AlphaPower);
 	}
 	
 	//c.rgb=normalize(c.rgb);

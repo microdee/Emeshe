@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha33.9.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" systemname="DeferredMergedGeomBase (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" scrollx="2880" scrolly="9000">
-   <BOUNDS type="Window" left="6915" top="6525" width="19935" height="10875">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" systemname="DeferredMergedGeomBase (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" scrollx="0" scrolly="8295">
+   <BOUNDS type="Window" left="6510" top="5715" width="16815" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -141,7 +141,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1470" top="5475" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.1">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.16">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -219,7 +219,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="15795" top="7290" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -232,6 +232,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Subset ID From GeomFX|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="32" systemname="IOBox (Node)">
@@ -630,7 +632,7 @@
    </LINK>
    <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Write to Depth">
    </LINK>
-   <LINK srcnodeid="33" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Instance From GeomFX">
+   <LINK srcnodeid="33" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Subset ID From GeomFX">
    </LINK>
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="17" dstpinname="Input String">
    </LINK>
@@ -707,9 +709,9 @@
    </PIN>
    <PIN pinname="NormalTex" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="SubsetVertexCount" visible="1">
+   <PIN pinname="SubsetVertexCount" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="SubsetCount" visible="1">
+   <PIN pinname="SubsetCount" visible="1" slicecount="1" values="6">
    </PIN>
    <PIN pinname="SubsetTexID" visible="1">
    </PIN>
@@ -787,9 +789,9 @@
    </PIN>
    <PIN pinname="bumpOffset" visible="1">
    </PIN>
-   <PIN pinname="SubsetVertexCount" visible="1">
+   <PIN pinname="SubsetVertexCount" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="SubsetCount" visible="1">
+   <PIN pinname="SubsetCount" visible="1" slicecount="1" values="6">
    </PIN>
    <PIN pinname="SubsetTexID" visible="1">
    </PIN>
@@ -836,40 +838,8 @@
    </LINK>
    <LINK srcnodeid="32" srcpinname="Output Node" dstnodeid="12" dstpinname="InstancedParams" hiddenwhenlocked="1">
    </LINK>
-   <NODE systemname="DynamicBuffer (DX11.Buffer UInt)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer UInt)" componentmode="Hidden" id="55">
-   <BOUNDS type="Node" left="4995" top="10695" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Data" visible="1">
-   </PIN>
-   <PIN pinname="Buffer" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="56" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4470" top="6510" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4470" top="6510" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Integer">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Subset Vertex Count|">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="55" dstpinname="Data">
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Buffer" dstnodeid="4" dstpinname="SubsetVertexCount">
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Buffer" dstnodeid="12" dstpinname="SubsetVertexCount" hiddenwhenlocked="1">
-   </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Value)" componentmode="Hidden" id="57">
-   <BOUNDS type="Node" left="5490" top="9840" width="100" height="100">
+   <BOUNDS type="Node" left="5520" top="8400" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Data" visible="1" slicecount="1" values="0">
    </PIN>
@@ -877,9 +847,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="58" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5475" top="6930" width="795" height="240">
+   <BOUNDS type="Box" left="5535" top="7125" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5475" top="6930" width="0" height="0">
+   <BOUNDS type="Node" left="5535" top="7125" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -894,20 +864,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden" id="59">
-   <BOUNDS type="Node" left="4425" top="7095" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Count" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="59" srcpinname="Count" dstnodeid="4" dstpinname="SubsetCount">
-   </LINK>
-   <LINK srcnodeid="59" srcpinname="Count" dstnodeid="12" dstpinname="SubsetCount" hiddenwhenlocked="1">
-   </LINK>
    <LINK srcnodeid="57" srcpinname="Buffer" dstnodeid="4" dstpinname="SubsetTexID">
    </LINK>
    <LINK srcnodeid="57" srcpinname="Buffer" dstnodeid="12" dstpinname="SubsetTexID" hiddenwhenlocked="1">
@@ -919,17 +875,57 @@
    <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="60">
    <BOUNDS type="Node" left="5505" top="7755" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Count" visible="1">
+   <PIN pinname="Count" visible="1" slicecount="1" values="6">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="59" srcpinname="Count" dstnodeid="60" dstpinname="Count">
-   </LINK>
    <LINK srcnodeid="58" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="60" srcpinname="Output" dstnodeid="57" dstpinname="Data">
+   </LINK>
+   <PACK Name="addonpack" Version="34.1.0">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="62" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4740" top="5835" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4740" top="5835" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="6">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Subset Count|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="True">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="4" dstpinname="SubsetCount">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="63" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="5310" top="11865" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5310" top="11865" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Subset Vertex Count Buffer|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="63" srcpinname="Output Node" dstnodeid="4" dstpinname="SubsetVertexCount">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Output Node" dstnodeid="12" dstpinname="SubsetVertexCount" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Count">
    </LINK>
    </PATCH>

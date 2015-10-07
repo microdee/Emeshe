@@ -23,7 +23,7 @@ float4 pEM(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 	uint matid = GetMatID(s0, uv);
 
     bool KnowEmission = KnowFeature(matid, MF_LIGHTING_EMISSION);
-    if(KnowEmission)
+    if(KnowEmission && GetStencil(R, uv) > 0.5)
     {
     	bool KnowEmissionMap = KnowFeature(matid, MF_LIGHTING_EMISSION_MAP);
     	float3 emcol = GetFloat3(matid, MF_LIGHTING_EMISSION, MF_LIGHTING_EMISSION_COLOR);

@@ -25,10 +25,11 @@ PSinProp VS(VSin In)
     // inititalize
     PSinProp Out = (PSinProp)0;
 	// get Instance ID from GeomFX
-	#if defined(IID_FROM_GEOM) && defined(HAS_GEOMVELOCITY)
-		float ii = In.velocity.w;
+	float ii = 0;
+	#if defined(HAS_SUBSETID)
+		ii = In.SubsetID;
 	#else
-		float ii = GetMergedGeomID(SubsetVertexCount, In.vid, SubsetCount);
+		ii = GetMergedGeomID(SubsetVertexCount, In.vid, SubsetCount);
 	#endif
 	Out.ii = ii;
 	

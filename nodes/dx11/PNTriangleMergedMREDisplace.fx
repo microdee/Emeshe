@@ -1,10 +1,11 @@
 //@author: microdee
 
 #include "../../../mp.fxh/MREForward.fxh"
+#include "../../../mp.fxh/GetMergedID.fxh"
 
-Texture2D DispTex;
+Texture2DArray DispTex;
 StructuredBuffer<InstanceParams> InstancedParams;
-
+StructuredBuffer<uint> SubsetVertexCount;
 
 cbuffer cbPerDraw : register( b0 )
 {
@@ -23,7 +24,7 @@ cbuffer cbPerObjectGeom : register( b1 )
 {
     float4x4 tW : WORLD;
     float4x4 ptW;
-    float4x4 tTex;
+	float SubsetCount = 1;
     float2 DispAmount = 0;
 	float DisplaceNormalInfluence = 1;
     float CurveAmount = 1;
@@ -32,7 +33,7 @@ cbuffer cbPerObjectGeom : register( b1 )
     bool FlipNormals = false;
 };
 
-#include "../../../mp.fxh/MREForwardPS.fxh"
+#include "../../../mp.fxh/MREForwardMergedPS.fxh"
 #include "../../../mp.fxh/MREForwardTessellator.fxh"
 
 
@@ -48,7 +49,7 @@ HSin VS(VSin In)
 	#if defined(HAS_SUBSETID)
         float ii = In.SubsetID;
     #else
-        float ii = In.iid;
+        float ii = GetMergedGeomID(SubsetVertexCount, In.vid, SubsetCount);
     #endif
     Out.ii = ii;
 	
@@ -57,9 +58,7 @@ HSin VS(VSin In)
 	
     Out.PosW = In.PosO;
 	Out.TexCd = 0;
-    #if defined(TRIPLANAR)
-        Out.TexCd = In.PosO;
-    #elif defined(HAS_TEXCOORD)
+    #if defined(HAS_TEXCOORD)
         Out.TexCd = float4(In.TexCd,0,1);
     #else
         Out.TexCd = 0;
@@ -86,15 +85,9 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
 	O.ii = ii;
 	
     // TexCoords
-    #if defined(INSTANCING)
-        float4x4 tT = mul(InstancedParams[ii].tTex,tTex);
+        float4x4 tT = InstancedParams[ii].tTex;
         float4x4 w = mul(InstancedParams[ii].tW,tW);
         float4x4 pw = mul(InstancedParams[ii].ptW,ptW);
-    #else
-        float4x4 tT = tTex;
-        float4x4 w = tW;
-        float4x4 pw = ptW;
-    #endif
     float4x4 tWV = mul(w, tV);
 
     float3 fUVW = f3BarycentricCoords;
@@ -118,7 +111,7 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
     #if defined(HAS_GEOMVELOCITY)
         float3 pf3Position = InterpolatePos(
             HSConstantData,
-            I[0].Velocity.xyz, I[1].Velocity.xyz, I[2].Velocity.xyz,
+            I[0].Velocity, I[1].Velocity, I[2].Velocity,
             fUVW2, fUVW, pCurveAmount,
         	pcPos, pfPos
         );
@@ -144,13 +137,13 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
             I[0].Binormal, I[1].Binormal, I[2].Binormal,
             fUVW2, fUVW, CurveAmount
         );
-
+	
 		float3x3 nt = 0;
 		nt[0] = f3Normal;
 		nt[1] = f3Tangent;
 		nt[2] = f3Binormal;
 	
-		float3x3 rnt = SampleNormalTangents(nt, DispTex, Sampler, O.TexCd.xy, 0.01, DispAmount.x * DisplaceNormalInfluence, 0);
+		float3x3 rnt = SampleArrayNormalTangents(nt, DispTex, Sampler, O.TexCd.xy, ii, 0.01, DispAmount.x * DisplaceNormalInfluence, 0);
 
         O.Tangent = normalize(mul(float4(rnt[1],0), tWV).xyz);
         O.Binormal = normalize(mul(float4(rnt[2],0), tWV).xyz);
@@ -159,19 +152,16 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
 	float4 f3UV = I[0].TexCd * fUVW.z + I[1].TexCd * fUVW.x + I[2].TexCd * fUVW.y;
     O.TexCd = mul(float4(f3UV.xyz,1), tT);
 	
-    #if defined(TRIPLANAR)
-		float2 disp = TriPlanarSampleLevel(DispTex, Sampler, mul(float4(f3Position,1), tT).xyz, f3Normal, TriPlanarPow, 0).rg-.5;
-	#else
-		float2 disp = DispTex.SampleLevel(Sampler, O.TexCd.xy, 0).rg-.5;
-	#endif
+	float2 disp = DispTex.SampleLevel(Sampler, float3(O.TexCd.xy, ii), 0).rg-.5;
 	
 	float3 dispPos = f3Position + f3Normal * disp.r * DispAmount.x;
 	float3 dispFlatPos = fPos + f3Normal * disp.r * DispAmount.x;
     #if defined(HAS_NORMALMAP)
 		float3 dispNorm = rnt[0];
 	#else
-		float3 dispNorm = SampleNormal(f3Normal, DispTex, Sampler, O.TexCd.xy, 0.01, DispAmount.x * DisplaceNormalInfluence, 0);
+		float3 dispNorm = SampleArrayNormal(f3Normal, DispTex, Sampler, O.TexCd.xy, ii, 0.01, DispAmount.x * DisplaceNormalInfluence, 0);
 	#endif
+	//float3 dispNorm = f3Normal;
 
     float3 pdispPos = pfPos + f3Normal * disp.g * DispAmount.y;
 
