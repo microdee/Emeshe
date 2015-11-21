@@ -2,7 +2,7 @@
    <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\CameraEffects\VelMapExtender (DX11.MRE).v4p" systemname="VelMapExtender (DX11.MRE)" filename="F:\vvvv\app\vvvv_45beta31.2_x86\packs\mre.mdmod.2\nodes\Modules\VelMapExtender (DX11.MRE).v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="7635" top="1575" width="11880" height="9570">
    </BOUNDS>
-   <NODE systemname="NullGeometry (DX11.Drawer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="NullGeometry (DX11.Drawer)" componentmode="Hidden" id="2">
+   <NODE systemname="NullGeometry (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="NullGeometry (DX11.Drawer)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="1620" top="4395" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Vertex Count" visible="1">
@@ -22,7 +22,7 @@
    </NODE>
    <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="2" dstpinname="Topology">
    </LINK>
-   <NODE systemname="VelMapExtender (DX11.Effect)" filename="%VVVV%\packs\mre.mdmod.2\nodes\dx11\VelMapExtender.fx" nodename="VelMapExtender (DX11.Effect)" componentmode="Hidden" id="9">
+   <NODE systemname="VelMapExtender (DX11.Effect)" filename="..\..\dx11\VelMapExtender.fx" nodename="VelMapExtender (DX11.Effect)" componentmode="Hidden" id="9">
    <BOUNDS type="Node" left="3015" top="4995" width="2550" height="270">
    </BOUNDS>
    <PIN pinname="resXY" visible="1">
@@ -40,6 +40,8 @@
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="depth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="11">
@@ -154,7 +156,7 @@
    </LINK>
    <LINK srcnodeid="2" srcpinname="Geometry Out" dstnodeid="9" dstpinname="Geometry">
    </LINK>
-   <NODE systemname="FillVel (DX11.TextureFX)" filename="%VVVV%\packs\mre.mdmod.2\nodes\texture11\FillVel.tfx" nodename="FillVel (DX11.TextureFX)" componentmode="Hidden" id="24">
+   <NODE systemname="FillVel (DX11.TextureFX)" filename="..\..\texture11\FillVel.tfx" nodename="FillVel (DX11.TextureFX)" componentmode="Hidden" id="24">
    <BOUNDS type="Node" left="6915" top="3600" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1">
@@ -169,7 +171,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4245" top="4245" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.25">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.5">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -180,7 +182,7 @@
    </NODE>
    <LINK srcnodeid="25" srcpinname="Y Output Value" dstnodeid="9" dstpinname="maxextend">
    </LINK>
-   <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="28">
+   <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="28">
    <BOUNDS type="Node" left="2700" top="7185" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
@@ -206,7 +208,7 @@
    <PIN pinname="Target Format" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Cons (DX11.Texture 2d)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.Texture 2d)" componentmode="Hidden" id="35">
+   <NODE systemname="Cons (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.Texture 2d)" componentmode="Hidden" id="35">
    <BOUNDS type="Node" left="2700" top="10380" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="5">
@@ -374,7 +376,7 @@
    </LINK>
    <PACK Name="testPack" Version="0.1.0">
    </PACK>
-   <NODE systemname="Place (DX11.TextureFX)" filename="%VVVV%\packs\mrre\nodes\texture11\Place.tfx" nodename="Place (DX11.TextureFX)" componentmode="Hidden" id="55">
+   <NODE systemname="Place (DX11.TextureFX)" filename="..\..\texture11\Place.tfx" nodename="Place (DX11.TextureFX)" componentmode="Hidden" id="55">
    <BOUNDS type="Node" left="6915" top="3210" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
@@ -584,7 +586,7 @@
    </NODE>
    <LINK srcnodeid="67" srcpinname="Output" dstnodeid="72" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="SplitGBuffer (DX11 MRE)" filename="SplitGBuffer (DX11 MRE).v4p" componentmode="Hidden" id="34" nodename="SplitGBuffer (DX11 MRE)">
+   <NODE systemname="SplitGBuffer (DX11 MRE)" filename="..\SplitGBuffer (DX11 MRE).v4p" componentmode="Hidden" id="34" nodename="SplitGBuffer (DX11 MRE)">
    <BOUNDS type="Node" left="2700" top="7965" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="2700" top="7965" width="4800" height="3600">
@@ -640,7 +642,7 @@
    </LINK>
    <LINK srcnodeid="34" srcpinname="Stencil" dstnodeid="35" dstpinname="Input 5">
    </LINK>
-   <NODE systemname="Info (DX11.Texture 2d)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Info (DX11.Texture 2d)" componentmode="Hidden" id="75">
+   <NODE systemname="Info (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Info (DX11.Texture 2d)" componentmode="Hidden" id="75">
    <BOUNDS type="Node" left="810" top="1620" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" slicecount="1" values="||">

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" systemname="DeferredMergedGeomBase (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" scrollx="0" scrolly="8295">
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" systemname="DeferredMergedGeomBase (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" scrollx="1500" scrolly="5370">
    <BOUNDS type="Window" left="6510" top="5715" width="16815" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -141,7 +141,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1470" top="5475" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.16">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -497,7 +497,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7305" top="5400" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -671,7 +671,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8805" top="6900" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AWrap">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AMirror">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="AddressV">
    </PIN>

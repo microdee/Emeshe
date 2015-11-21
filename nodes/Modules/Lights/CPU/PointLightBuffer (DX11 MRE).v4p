@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Lights\PointLightBuffer (DX11 MRE).v4p" systemname="PointLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\PointLightBuffer (DX11 MRE).v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\CPU\PointLightBuffer (DX11 MRE).v4p" systemname="PointLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\PointLightBuffer (DX11 MRE).v4p" scrollx="0" scrolly="1200">
    <BOUNDS type="Window" left="6480" top="3240" width="14055" height="9825">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="840" top="735" width="480" height="480">
@@ -28,7 +28,7 @@
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE systemname="Construct (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Construct (VObjectCollection)" componentmode="Hidden" id="5">
+   <NODE systemname="Construct (VObjectCollection)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Construct (VObjectCollection)" componentmode="Hidden" id="5">
    <BOUNDS type="Node" left="840" top="2130" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Construct" visible="1">
@@ -66,7 +66,7 @@
    </NODE>
    <LINK srcnodeid="3" srcpinname="Output String" dstnodeid="5" dstpinname="Name">
    </LINK>
-   <NODE systemname="Add (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="2">
+   <NODE systemname="Add (VObjectCollection)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="1890" top="3045" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Add" visible="1">
@@ -100,7 +100,7 @@
    </NODE>
    <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="2" dstpinname="Name">
    </LINK>
-   <NODE systemname="PrimitiveObject (VObject Construct)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Construct)" componentmode="Hidden" id="0">
+   <NODE systemname="PrimitiveObject (VObject Construct)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Construct)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="2100" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Configuration" slicecount="1" values="|string Features, string Parameters, int Size, int Offset, int ParameterBin, bool GlobalAdd|">
@@ -190,7 +190,7 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="8">
+   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="8">
    <BOUNDS type="Node" left="5220" top="3585" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Definition" visible="1">
@@ -204,7 +204,7 @@
    </LINK>
    <LINK srcnodeid="10" srcpinname="Output String" dstnodeid="8" dstpinname="Formular Name">
    </LINK>
-   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="7">
+   <NODE systemname="Formular (PrimitiveObject)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Formular (PrimitiveObject)" componentmode="Hidden" id="7">
    <BOUNDS type="Node" left="8355" top="3765" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Formular Name" visible="1">
@@ -290,7 +290,7 @@
    </LINK>
    <LINK srcnodeid="16" srcpinname="Output" dstnodeid="0" dstpinname="GlobalAdd">
    </LINK>
-   <NODE systemname="Formular (PrimitiveObject Individual)" filename="..\..\..\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" nodename="Formular (PrimitiveObject Individual)" componentmode="Hidden" id="19">
+   <NODE systemname="Formular (PrimitiveObject Individual)" filename="..\..\..\..\..\VObjects\nodes\modules\PrimitiveObjects\Formular (PrimitiveObject Individual).v4p" nodename="Formular (PrimitiveObject Individual)" componentmode="Hidden" id="19">
    <BOUNDS type="Node" left="7335" top="4260" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Prefix" visible="1">
@@ -346,7 +346,7 @@
    <PIN pinname="Buffers" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="LightDataFill (DX11.Effect)" filename="..\dx11\LightDataFill.fx" nodename="LightDataFill (DX11.Effect)" componentmode="Hidden" id="24">
+   <NODE systemname="LightDataFill (DX11.Effect)" filename="..\..\..\dx11\LightDataFill.fx" nodename="LightDataFill (DX11.Effect)" componentmode="Hidden" id="24">
    <BOUNDS type="Node" left="5115" top="10140" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Technique" slicecount="1" visible="1" values="Point">
@@ -460,7 +460,7 @@
    </NODE>
    <LINK srcnodeid="33" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Stride">
    </LINK>
-   <NODE systemname="Sift (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Sift (VObjectCollection)" componentmode="Hidden" id="34">
+   <NODE systemname="Sift (VObjectCollection)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Sift (VObjectCollection)" componentmode="Hidden" id="34">
    <BOUNDS type="Node" left="840" top="3690" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Filter" visible="1">
@@ -484,7 +484,7 @@
    <LINKPOINT x="5280" y="7898">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="38">
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="38">
    <BOUNDS type="Node" left="840" top="5295" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Formular" slicecount="1" values="Emeshe.PointLight">
@@ -708,7 +708,7 @@
    <LINKPOINT x="6270" y="7418">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Info (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (VObjectCollection)" componentmode="Hidden" id="48">
+   <NODE systemname="Info (VObjectCollection)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Info (VObjectCollection)" componentmode="Hidden" id="48">
    <BOUNDS type="Node" left="1800" top="9000" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">

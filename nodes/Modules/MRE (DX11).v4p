@@ -1,8 +1,8 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="6300" top="3420" width="22245" height="10200">
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\MRE (DX11).v4p" systemname="MRE (DX11)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\MRE (DX11).v4p" scrollx="0" scrolly="480">
+   <BOUNDS type="Window" left="3765" top="2625" width="22245" height="10200">
    </BOUNDS>
-   <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
+   <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2520" top="5490" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer Out" visible="1">
@@ -124,17 +124,17 @@
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="12">
+   <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="12">
    <BOUNDS type="Node" left="2760" top="2265" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Mandatory" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="15">
+   <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="15">
    <BOUNDS type="Node" left="3345" top="3450" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
@@ -196,10 +196,10 @@
    </NODE>
    <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="19" dstpinname="Transform In 1">
    </LINK>
-   <NODE systemname="Cons (DX11.RenderSemantic)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.RenderSemantic)" componentmode="Hidden" id="51">
+   <NODE systemname="Cons (DX11.RenderSemantic)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.RenderSemantic)" componentmode="Hidden" id="51">
    <BOUNDS type="Node" left="2760" top="4335" width="1890" height="270">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -216,37 +216,11 @@
    <PIN pinname="Input 6" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="51" dstpinname="Input 1">
-   </LINK>
    <LINK srcnodeid="15" srcpinname="Output" dstnodeid="51" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="51" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics">
    </LINK>
-   <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="112">
-   <BOUNDS type="Node" left="2760" top="1440" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="112" dstpinname="Transform In">
-   </LINK>
-   <NODE id="113" systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden">
-   <PIN pinname="Transform In" visible="1">
-   </PIN>
-   <BOUNDS type="Node" left="7395" top="2940" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="113" srcpinname="Transform Out" dstnodeid="15" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="19" srcpinname="Transform Out" dstnodeid="113" dstpinname="Transform In">
-   </LINK>
-   <LINK srcnodeid="112" srcpinname="Transform Out" dstnodeid="12" dstpinname="Input">
-   </LINK>
-   <NODE id="2" systemname="Renderer (DX11 MRT)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 MRT)" componentmode="Hidden">
+   <NODE id="2" systemname="Renderer (DX11 MRT)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 MRT)" componentmode="Hidden">
    <PIN pinname="Target Count">
    </PIN>
    <PIN pinname="AA Samples per Pixel" slicecount="1" visible="1" values="1">
@@ -284,6 +258,8 @@
    <PIN pinname="Generate Mip Maps" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Clear" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Clear Depth" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Layer Out" dstnodeid="2" dstpinname="Layer">
@@ -590,7 +566,7 @@
    </NODE>
    <LINK srcnodeid="256" srcpinname="Output String" dstnodeid="255" dstpinname="Semantic">
    </LINK>
-   <NODE systemname="PackCamera (Transform)" filename="..\..\..\mcropack\nodes\modules\PackCamera (Transform).v4p" nodename="PackCamera (Transform)" componentmode="Hidden" id="257">
+   <NODE systemname="PackCamera (Transform)" filename="..\..\..\mp.essentials\nodes\modules\transform\PackCamera (Transform).v4p" nodename="PackCamera (Transform)" componentmode="Hidden" id="257">
    <BOUNDS type="Node" left="7800" top="7650" width="100" height="100">
    </BOUNDS>
    <PIN pinname="View" visible="1" slicecount="1" values="||">
@@ -1093,5 +1069,27 @@
    <LINK srcnodeid="278" srcpinname="Texture Out" dstnodeid="307" dstpinname="Input 5">
    </LINK>
    <LINK srcnodeid="307" srcpinname="Output" dstnodeid="266" dstpinname="Input Node">
+   </LINK>
+   <NODE id="308" systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform Legacy).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden">
+   <BOUNDS type="Node" left="7395" top="2940" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="308" srcpinname="Transform Out" dstnodeid="15" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Transform Out" dstnodeid="308" dstpinname="Transform In">
+   </LINK>
+   <NODE systemname="FrameDelay (Transform Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\FrameDelay (Transform Legacy).v4p" nodename="FrameDelay (Transform)" componentmode="Hidden" id="309">
+   <BOUNDS type="Node" left="2760" top="1440" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="309" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="309" srcpinname="Transform Out" dstnodeid="12" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="51" dstpinname="Input 1">
    </LINK>
    </PATCH>

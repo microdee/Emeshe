@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\ToneMapping (DX11 MRE).v4p" systemname="ToneMapping (DX11 MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\ToneMapping (DX11 MRE).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\CameraEffects\ToneMapping (DX11 MRE).v4p" systemname="ToneMapping (DX11 MRE)" filename="G:\vvvv\app\vvvv_45alpha31.7_x86\packs\mrre\nodes\Modules\ToneMapping (DX11 MRE).v4p" scrollx="0" scrolly="1080">
    <BOUNDS type="Window" left="4740" top="840" width="18345" height="12720">
    </BOUNDS>
-   <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="0">
+   <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="2385" top="4845" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Mip Map Levels" slicecount="1" values="0">
@@ -38,7 +38,7 @@
    </NODE>
    <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In">
    </LINK>
-   <NODE systemname="Constant (DX11.Effect)" filename="%VVVV%\packs\DX11\nodes\dx11\Constant.fx" nodename="Constant (DX11.Effect)" componentmode="Hidden" id="2">
+   <NODE systemname="Constant (DX11.Effect)" filename="%VVVV%\packs\dx11\nodes\dx11\Constant.fx" nodename="Constant (DX11.Effect)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="2700" top="2895" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Render State" visible="1">
@@ -54,7 +54,7 @@
    <PIN pinname="Alpha" slicecount="1" visible="1" values="1">
    </PIN>
    </NODE>
-   <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="3">
+   <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="3">
    <BOUNDS type="Node" left="2340" top="2100" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
@@ -64,7 +64,7 @@
    </NODE>
    <LINK srcnodeid="3" srcpinname="Render State" dstnodeid="2" dstpinname="Render State">
    </LINK>
-   <NODE systemname="Quad (DX11.Geometry)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden" id="5">
+   <NODE systemname="Quad (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Geometry)" componentmode="Hidden" id="5">
    <BOUNDS type="Node" left="2730" top="1710" width="100" height="100">
    </BOUNDS>
    <PIN pinname="SizeXY" slicecount="2" values="2,2">
@@ -150,7 +150,7 @@
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="32">
+   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="32">
    <BOUNDS type="Node" left="2355" top="4050" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer 2" visible="1">
@@ -168,7 +168,7 @@
    </LINK>
    <LINK srcnodeid="32" srcpinname="Layer Out" dstnodeid="0" dstpinname="Layer">
    </LINK>
-   <NODE systemname="Quad (DX11.Layer)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Layer)" componentmode="Hidden" id="33">
+   <NODE systemname="Quad (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Quad (DX11.Layer)" componentmode="Hidden" id="33">
    <BOUNDS type="Node" left="2265" top="3450" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform" visible="1">
@@ -192,7 +192,7 @@
    </LINK>
    <LINK srcnodeid="33" srcpinname="Layer" dstnodeid="32" dstpinname="Layer 1">
    </LINK>
-   <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\DX11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="35">
+   <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="35">
    <BOUNDS type="Node" left="720" top="2895" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
@@ -238,7 +238,7 @@
    </LINK>
    <LINK srcnodeid="36" srcpinname="Output" dstnodeid="33" dstpinname="Color">
    </LINK>
-   <NODE systemname="ToneMapping (DX11.TextureFX)" filename="..\texture11\ToneMapping.tfx" nodename="ToneMapping (DX11.TextureFX)" componentmode="Hidden" id="14">
+   <NODE systemname="ToneMapping (DX11.TextureFX)" filename="..\..\texture11\ToneMapping.tfx" nodename="ToneMapping (DX11.TextureFX)" componentmode="Hidden" id="14">
    <BOUNDS type="Node" left="1560" top="11220" width="3150" height="270">
    </BOUNDS>
    <PIN pinname="AvgLuminance" visible="1" slicecount="1" values="||">
@@ -586,7 +586,7 @@
    </LINK>
    <LINK srcnodeid="57" srcpinname="OnChange" dstnodeid="56" dstpinname="Input 1">
    </LINK>
-   <NODE systemname="ToneMappingVisualizer (DX11.TextureFX)" filename="%VVVV%\packs\Emeshe\nodes\texture11\ToneMappingVisualizer.tfx" nodename="ToneMappingVisualizer (DX11.TextureFX)" componentmode="Hidden" id="58">
+   <NODE systemname="ToneMappingVisualizer (DX11.TextureFX)" filename="..\..\texture11\ToneMappingVisualizer.tfx" nodename="ToneMappingVisualizer (DX11.TextureFX)" componentmode="Hidden" id="58">
    <BOUNDS type="Node" left="4050" top="12240" width="3450" height="270">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
@@ -900,11 +900,11 @@
    </LINK>
    <LINK srcnodeid="76" srcpinname="Output" dstnodeid="72" dstpinname="Color">
    </LINK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <NODE systemname="BlurMax (DX11.TextureFX)" filename="texture11\BlurMax.tfx" nodename="BlurMax (DX11.TextureFX)" componentmode="Hidden" id="69">
+   <NODE systemname="BlurMax (DX11.TextureFX)" filename="..\texture11\BlurMax.tfx" nodename="BlurMax (DX11.TextureFX)" componentmode="Hidden" id="69">
    <BOUNDS type="Node" left="3690" top="5400" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Enabled" slicecount="1" values="1">
@@ -953,7 +953,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2700" top="8505" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.49">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.26">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
