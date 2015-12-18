@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\CameraEffects\Glare (DX11 MRE).v4p" systemname="Glare (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\Glare (DX11 MRE).v4p" scrollx="0" scrolly="255">
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\CameraEffects\Glare (DX11 MRE).v4p" systemname="Glare (DX11 MRE)" filename="D:\vvvv\KIBU.ECTK\prealpha\nodes\modules\mre.mdmod.dx11\Glare (DX11 MRE).v4p" scrollx="990" scrolly="0">
    <BOUNDS type="Window" left="2355" top="3480" width="14610" height="6000">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
@@ -93,7 +93,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3435" top="510" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="0.55">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -111,7 +111,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="4320" top="525" width="795" height="240">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0.5">
+   <PIN pinname="Y Input Value" slicecount="1" values="2">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -175,11 +175,11 @@
    </PIN>
    <PIN pinname="Width" visible="1">
    </PIN>
-   <PIN pinname="Shape" slicecount="1" values="-0.02" visible="1">
+   <PIN pinname="Shape" slicecount="1" visible="1" values="-0.02">
    </PIN>
    <PIN pinname="FallOff" visible="1">
    </PIN>
-   <PIN pinname="MapAm" slicecount="1" values="0" visible="1">
+   <PIN pinname="MapAm" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="MapPow" visible="1">
    </PIN>
@@ -403,6 +403,8 @@
    </PIN>
    <PIN pinname="Control" visible="1">
    </PIN>
+   <PIN pinname="MaxValue" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="23" dstpinname="DirectionXY">
    </LINK>
@@ -433,7 +435,7 @@
    </PIN>
    <PIN pinname="Opacity" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Input" slicecount="1" values="1" visible="1">
+   <PIN pinname="Input" slicecount="1" visible="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="3" dstpinname="Texture In">
@@ -465,7 +467,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="1530" top="1620" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.13">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -502,8 +504,20 @@
    </NODE>
    <LINK srcnodeid="46" srcpinname="Y Output Value" dstnodeid="0" dstpinname="MapPow">
    </LINK>
-   <NODE systemname="FakeLensFlare (DX11.TextureFX)" filename="..\..\texture11\FakeLensFlare.tfx" nodename="FakeLensFlare (DX11.TextureFX)" componentmode="Hidden" id="47">
-   <BOUNDS type="Node" left="8730" top="2955" width="100" height="100">
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="48" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="14040" top="1365" width="795" height="240">
    </BOUNDS>
+   <BOUNDS type="Node" left="14040" top="1365" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="MaxValue">
+   </PIN>
    </NODE>
+   <LINK srcnodeid="48" srcpinname="Y Output Value" dstnodeid="23" dstpinname="MaxValue">
+   </LINK>
    </PATCH>

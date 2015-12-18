@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\CameraEffects\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="2115" scrolly="825">
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\CameraEffects\DOF (DX11 MRE).v4p" systemname="DOF (MRE Advanced)" filename="D:\vvvv\github\mdbot\mdbot\vvvv_45alpha31.1_x86\packs\mre.mdmod.2\nodes\Modules\DOF (MRE Advanced).v4p" scrollx="6645" scrolly="0">
    <BOUNDS type="Window" left="11775" top="3960" width="16230" height="11175">
    </BOUNDS>
    <NODE systemname="BlurMask (DX11.TextureFX)" filename="..\..\texture11\BlurMask.tfx" nodename="BlurMask (DX11.TextureFX)" componentmode="Hidden" id="33">
@@ -395,6 +395,8 @@
    </PIN>
    <PIN pinname="GammaComp" visible="1">
    </PIN>
+   <PIN pinname="MaxValue" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="45" srcpinname="Output Node" dstnodeid="107" dstpinname="Texture In">
    </LINK>
@@ -725,5 +727,21 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="136" srcpinname="Output" dstnodeid="107" dstpinname="Seed">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="137" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="18015" top="5145" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="18015" top="5145" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="MaxValue">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="137" srcpinname="Y Output Value" dstnodeid="107" dstpinname="MaxValue">
    </LINK>
    </PATCH>

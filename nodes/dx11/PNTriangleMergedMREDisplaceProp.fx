@@ -4,7 +4,9 @@
 
 Texture2DArray DispTex;
 StructuredBuffer<InstanceParams> InstancedParams;
-StructuredBuffer<uint> SubsetVertexCount;
+#if !defined(HAS_SUBSETID)
+	StructuredBuffer<uint> SubsetVertexCount : FR_SUBSETVCOUNT;
+#endif
 
 cbuffer cbPerDraw : register( b0 )
 {

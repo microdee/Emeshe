@@ -1,7 +1,9 @@
 //@author: microdee
 #include "../../../mp.fxh/MREForward.fxh"
 
-StructuredBuffer<InstanceParams> InstancedParams;
+#if defined(INSTANCING)
+	StructuredBuffer<InstanceParams> InstancedParams : FR_INSTANCEDPARAMS;
+#endif
 
 cbuffer cbPerDraw : register( b0 )
 {

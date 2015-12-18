@@ -23,6 +23,8 @@
    </PIN>
    <PIN pinname="Enabled" visible="1">
    </PIN>
+   <PIN pinname="Normal Mapping" visible="1" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="5970" top="2460" width="100" height="100">
@@ -108,18 +110,6 @@
    </NODE>
    <LINK srcnodeid="0" srcpinname="Base Layer" dstnodeid="6" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="Sift (VObjectCollection)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Sift (VObjectCollection)" componentmode="Hidden" id="12">
-   <BOUNDS type="Node" left="2295" top="1725" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Filter" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Contains" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="11" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="2310" top="540" width="795" height="240">
    </BOUNDS>
@@ -130,8 +120,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Light Dictionary|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="11" srcpinname="Output Node" dstnodeid="12" dstpinname="Source">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="10" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3540" top="450" width="795" height="240">
    </BOUNDS>
@@ -148,8 +136,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Filter">
    </PIN>
    </NODE>
-   <LINK srcnodeid="10" srcpinname="Output String" dstnodeid="12" dstpinname="Filter">
-   </LINK>
    <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="9">
    <BOUNDS type="Node" left="2265" top="2295" width="100" height="100">
    </BOUNDS>
@@ -157,7 +143,7 @@
    </PIN>
    <PIN pinname="Definition" slicecount="1" values="|Vector3D ShadowMapCenter, Vector4D LightCol, float LightStrength|">
    </PIN>
-   <PIN pinname="Primitive Object" visible="1">
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="ShadowMapCenterXYZ" visible="1">
    </PIN>
@@ -166,8 +152,6 @@
    <PIN pinname="LightStrength" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="9" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="8">
    <BOUNDS type="Node" left="2805" top="3045" width="100" height="100">
    </BOUNDS>
@@ -220,8 +204,6 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="13" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Contains">
-   </LINK>
    <NODE systemname="Translate (Transform Vector)" nodename="Translate (Transform Vector)" componentmode="Hidden" id="14">
    <BOUNDS type="Node" left="2295" top="3555" width="100" height="100">
    </BOUNDS>
@@ -355,5 +337,43 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="22" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3375" top="3435" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3375" top="3435" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Normal Mapping">
+   </LINK>
+   <NODE systemname="GetObject (VObjectCollection)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="GetObject (VObjectCollection)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="2295" top="1725" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Contains" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Output Node" dstnodeid="12" dstpinname="Source">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Output String" dstnodeid="12" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="9" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Contains">
    </LINK>
    </PATCH>

@@ -110,16 +110,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Sift (VObjectCollection)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Sift (VObjectCollection)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="6750" top="2595" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Filter" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="22" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="6765" top="1410" width="795" height="240">
    </BOUNDS>
@@ -130,8 +120,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Light Dictionary|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="22" srcpinname="Output Node" dstnodeid="21" dstpinname="Source">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="23" systemname="IOBox (String)">
    <BOUNDS type="Box" left="8580" top="1350" width="795" height="240">
    </BOUNDS>
@@ -148,22 +136,18 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Filter">
    </PIN>
    </NODE>
-   <LINK srcnodeid="23" srcpinname="Output String" dstnodeid="21" dstpinname="Filter">
-   </LINK>
-   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="25">
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="25">
    <BOUNDS type="Node" left="6720" top="3165" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Formular" slicecount="1" values="Emeshe.PointLight.ShadowMapCenter">
    </PIN>
    <PIN pinname="Definition" slicecount="1" values="|Vector3D ShadowMapCenter|">
    </PIN>
-   <PIN pinname="Primitive Object" visible="1">
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="ShadowMapCenterXYZ" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="25" dstpinname="Primitive Object">
-   </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="26">
    <BOUNDS type="Node" left="7260" top="3915" width="100" height="100">
    </BOUNDS>
@@ -204,8 +188,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Light Object|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="28" dstpinname="Input Node">
-   </LINK>
    <NODE systemname="ShadowMap (MRE.PointLight)" filename="ShadowMap (MRE.PointLight).v4p" nodename="ShadowMap (MRE.PointLight)" componentmode="Hidden" id="29">
    <BOUNDS type="Node" left="2775" top="6870" width="100" height="100">
    </BOUNDS>
@@ -263,5 +245,23 @@
    <LINK srcnodeid="29" srcpinname="Cubemap" dstnodeid="12" dstpinname="Input Node">
    </LINK>
    <LINK srcnodeid="29" srcpinname="Shadow Map" dstnodeid="13" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="GetObject (VObjectCollection)" filename="..\..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="GetObject (VObjectCollection)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="6750" top="2595" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="Output Node" dstnodeid="21" dstpinname="Source">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Output String" dstnodeid="21" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="25" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="28" dstpinname="Input Node">
    </LINK>
    </PATCH>

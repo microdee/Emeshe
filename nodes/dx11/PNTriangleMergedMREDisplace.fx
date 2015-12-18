@@ -5,7 +5,9 @@
 
 Texture2DArray DispTex;
 StructuredBuffer<InstanceParams> InstancedParams;
-StructuredBuffer<uint> SubsetVertexCount;
+#if !defined(HAS_SUBSETID)
+	StructuredBuffer<uint> SubsetVertexCount : FR_SUBSETVCOUNT;
+#endif
 
 cbuffer cbPerDraw : register( b0 )
 {
@@ -27,6 +29,7 @@ cbuffer cbPerObjectGeom : register( b1 )
 	float SubsetCount = 1;
     float2 DispAmount = 0;
 	float DisplaceNormalInfluence = 1;
+	float DisplaceVelocityGain = 1;
     float CurveAmount = 1;
     float pCurveAmount = 1;
     float Factor = 1;
@@ -138,15 +141,15 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
             fUVW2, fUVW, CurveAmount
         );
 	
-		float3x3 nt = 0;
-		nt[0] = f3Normal;
-		nt[1] = f3Tangent;
-		nt[2] = f3Binormal;
+		TangentSpace nt = (TangentSpace)0;
+		nt.n = f3Normal;
+		nt.t = f3Tangent;
+		nt.b = f3Binormal;
 	
-		float3x3 rnt = SampleArrayNormalTangents(nt, DispTex, Sampler, O.TexCd.xy, ii, 0.01, DispAmount.x * DisplaceNormalInfluence, 0);
+		TangentSpace rnt = SampleArrayNormalTangents(nt, DispTex, Sampler, O.TexCd.xy, ii, 0.01, DispAmount.x * DisplaceNormalInfluence, 0);
 
-        O.Tangent = normalize(mul(float4(rnt[1],0), tWV).xyz);
-        O.Binormal = normalize(mul(float4(rnt[2],0), tWV).xyz);
+        O.Tangent = normalize(mul(float4(rnt.t,0), tWV).xyz);
+        O.Binormal = normalize(mul(float4(rnt.b,0), tWV).xyz);
     #endif
 	
 	float4 f3UV = I[0].TexCd * fUVW.z + I[1].TexCd * fUVW.x + I[2].TexCd * fUVW.y;
@@ -157,13 +160,14 @@ PSin DS( hsconst HSConstantData, const OutputPatch<DSin, 3> I, float3 f3Barycent
 	float3 dispPos = f3Position + f3Normal * disp.r * DispAmount.x;
 	float3 dispFlatPos = fPos + f3Normal * disp.r * DispAmount.x;
     #if defined(HAS_NORMALMAP)
-		float3 dispNorm = rnt[0];
+		float3 dispNorm = rnt.n;
 	#else
 		float3 dispNorm = SampleArrayNormal(f3Normal, DispTex, Sampler, O.TexCd.xy, ii, 0.01, DispAmount.x * DisplaceNormalInfluence, 0);
 	#endif
 	//float3 dispNorm = f3Normal;
 
-    float3 pdispPos = pfPos + f3Normal * disp.g * DispAmount.y;
+	float pdisp = disp.g + (disp.r - disp.g) * DisplaceVelocityGain;
+    float3 pdispPos = pfPos + f3Normal * pdisp * DispAmount.y;
 
     float4 PosW = mul(float4(dispPos,1), w);
     float4 FlatPosW = mul(float4(dispFlatPos,1), w);

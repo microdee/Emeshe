@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\app\vvvv_45beta33.7_x64\packs\Emeshe\nodes\modules\Materials\FeatureManager (MRE.Materials).v4p" systemname="FeatureManager (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureManager (MRE.Materials).v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Materials\FeatureManager (MRE.Materials).v4p" systemname="FeatureManager (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\FeatureManager (MRE.Materials).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="12210" top="3795" width="14865" height="11805">
    </BOUNDS>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="0" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="1350" top="405" width="795" height="240">
@@ -36,7 +36,7 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Add">
    </PIN>
    </NODE>
-   <NODE systemname="Add (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="5">
+   <NODE systemname="Add (VObjectCollection)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Add (VObjectCollection)" componentmode="Hidden" id="5">
    <BOUNDS type="Node" left="5055" top="8685" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Add" visible="1">
@@ -264,34 +264,14 @@
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <NODE systemname="Sift (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Sift (VObjectCollection)" componentmode="Hidden" id="26">
-   <BOUNDS type="Node" left="1335" top="1815" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Filter" visible="1">
-   </PIN>
-   <PIN pinname="Exclude" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="28" srcpinname="Output String" dstnodeid="26" dstpinname="Filter">
-   </LINK>
-   <LINK srcnodeid="27" srcpinname="Y Output Value" dstnodeid="26" dstpinname="Enabled">
-   </LINK>
    <NODE systemname="Count (Node)" nodename="Count (Node)" componentmode="Hidden" id="30">
    <BOUNDS type="Node" left="1650" top="2775" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Count" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="26" srcpinname="Output" dstnodeid="30" dstpinname="Input">
-   </LINK>
    <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="31">
    <BOUNDS type="Node" left="2325" top="3000" width="100" height="100">
    </BOUNDS>
@@ -490,8 +470,6 @@
    </NODE>
    <LINK srcnodeid="0" srcpinname="Output Node" dstnodeid="45" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="0" srcpinname="Output Node" dstnodeid="26" dstpinname="Source">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="46" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="6180" top="7875" width="1065" height="240">
    </BOUNDS>
@@ -544,12 +522,12 @@
    </NODE>
    <LINK srcnodeid="48" srcpinname="Output" dstnodeid="50" dstpinname="Input">
    </LINK>
-   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="34">
+   <NODE systemname="PrimitiveObject (VObject Split)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Split)" componentmode="Hidden" id="34">
    <BOUNDS type="Node" left="5325" top="1410" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Configuration" slicecount="1" values="|int Size, int ParameterBin, bool GlobalAdd|">
    </PIN>
-   <PIN pinname="Primitive Object" visible="1">
+   <PIN pinname="Primitive Object" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Size" visible="1">
    </PIN>
@@ -566,8 +544,6 @@
    <PIN pinname="Parameters" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="26" srcpinname="Output" dstnodeid="34" dstpinname="Primitive Object">
-   </LINK>
    <LINK srcnodeid="34" srcpinname="Size" dstnodeid="35" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="34" srcpinname="ParameterBin" dstnodeid="35" dstpinname="Bin Size">
@@ -576,7 +552,7 @@
    </LINK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <NODE systemname="PrimitiveObject (VObject Construct)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Construct)" componentmode="Hidden" id="2">
+   <NODE systemname="PrimitiveObject (VObject Construct)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="PrimitiveObject (VObject Construct)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="5685" top="6255" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
@@ -599,9 +575,9 @@
    </PIN>
    <PIN pinname="Construct" visible="1">
    </PIN>
+   <PIN pinname="Output Object" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="5" dstpinname="Source">
-   </LINK>
    <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="2" dstpinname="Parameters">
    </LINK>
    <LINK srcnodeid="33" srcpinname="Output" dstnodeid="2" dstpinname="Parameters Bin Size">
@@ -895,5 +871,31 @@
    <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Source Bin Size">
    </LINK>
    <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Add Bin Size">
+   </LINK>
+   <NODE systemname="GetObject (VObjectCollection)" filename="..\..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="GetObject (VObjectCollection)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="1335" top="1815" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Source" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Filter" visible="1">
+   </PIN>
+   <PIN pinname="Exclude" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="28" srcpinname="Output String" dstnodeid="26" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Y Output Value" dstnodeid="26" dstpinname="Enabled">
+   </LINK>
+   <LINK srcnodeid="26" srcpinname="Output" dstnodeid="30" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output Node" dstnodeid="26" dstpinname="Source">
+   </LINK>
+   <LINK srcnodeid="26" srcpinname="Output" dstnodeid="34" dstpinname="Primitive Object">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output Object" dstnodeid="5" dstpinname="Source">
    </LINK>
    </PATCH>
