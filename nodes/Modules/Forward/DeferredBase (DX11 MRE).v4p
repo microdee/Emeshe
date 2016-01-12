@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="330" scrolly="11580">
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredBase (DX11 MRE).v4p" systemname="DeferredBase (DX11 MRE Simple Geometry Velocity)" filename="C:\DM\sandbox\MirrorStuff\mre.mdmod.dx11\Base\DeferredBase (DX11 MRE Simple Geometry Velocity).v4p" locked="0" scrollx="10545" scrolly="2655">
    <BOUNDS type="Window" left="5895" top="2880" width="16815" height="9885">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="2" systemname="IOBox (Node)">
@@ -253,7 +253,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="19335" top="7440" width="480" height="480">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1002,8 +1002,6 @@
    </NODE>
    <LINK srcnodeid="305" srcpinname="Layer" dstnodeid="311" dstpinname="Layer In">
    </LINK>
-   <LINK srcnodeid="311" srcpinname="Layer Out" dstnodeid="97" dstpinname="Input Node">
-   </LINK>
    <NODE systemname="Cons (DX11.ResourceSemantic)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.ResourceSemantic)" componentmode="Hidden" id="312">
    <BOUNDS type="Node" left="2160" top="15150" width="2715" height="270">
    </BOUNDS>
@@ -1239,5 +1237,7 @@
    <LINK srcnodeid="296" srcpinname="Layer" dstnodeid="329" dstpinname="Layer In">
    </LINK>
    <LINK srcnodeid="329" srcpinname="Layer Out" dstnodeid="301" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="311" srcpinname="Layer Out" dstnodeid="97" dstpinname="Input Node">
    </LINK>
    </PATCH>

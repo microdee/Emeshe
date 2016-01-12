@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\GPU\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="5280" scrolly="2760">
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\GPU\CookTorrance (DX11 MRE).v4p" systemname="CookTorrance (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\CookTorrance (DX11 MRE).v4p" scrollx="3480" scrolly="2955">
    <BOUNDS type="Window" left="3375" top="2250" width="15840" height="10875">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -58,6 +58,8 @@
    <PIN pinname="Buffers" visible="1">
    </PIN>
    <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Background Color" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="38" systemname="IOBox (Value Advanced)">
@@ -263,9 +265,9 @@
    <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="39" dstpinname="Enabled">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="23" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="5280" top="13065" width="570" height="240">
+   <BOUNDS type="Box" left="5355" top="12885" width="570" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5280" top="13065" width="0" height="0">
+   <BOUNDS type="Node" left="5355" top="12885" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Light Out|">
    </PIN>
@@ -721,7 +723,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="12660" top="7650" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.4">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.07">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

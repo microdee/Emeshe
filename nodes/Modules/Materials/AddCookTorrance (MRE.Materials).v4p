@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Materials\AddCookTorrance (MRE.Materials).v4p" systemname="AddCookTorrance (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddCookTorrance (MRE.Materials).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Materials\AddCookTorrance (MRE.Materials).v4p" systemname="AddCookTorrance (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddCookTorrance (MRE.Materials).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="11685" top="5865" width="14115" height="9315">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -255,7 +255,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5160" top="1710" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.04">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>

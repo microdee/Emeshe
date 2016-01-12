@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" systemname="DeferredMergedGeomBase (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" scrollx="0" scrolly="4575">
-   <BOUNDS type="Window" left="4515" top="3405" width="16815" height="9885">
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" systemname="DeferredMergedGeomBase (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Forward\DeferredMergedGeomBase (DX11 MRE).v4p" scrollx="960" scrolly="7320">
+   <BOUNDS type="Window" left="3825" top="5430" width="16815" height="9885">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -731,7 +731,7 @@
    </PIN>
    <PIN pinname="SubsetCount" visible="1" slicecount="1" values="6">
    </PIN>
-   <PIN pinname="SubsetTexID" visible="1">
+   <PIN pinname="SubsetTexID" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="12" dstpinname="Geometry" hiddenwhenlocked="1">
@@ -758,14 +758,6 @@
    </LINK>
    <LINK srcnodeid="32" srcpinname="Output Node" dstnodeid="12" dstpinname="InstancedParams" hiddenwhenlocked="1">
    </LINK>
-   <NODE systemname="DynamicBuffer (DX11.Buffer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Value)" componentmode="Hidden" id="57">
-   <BOUNDS type="Node" left="5520" top="8400" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Data" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Buffer" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="58" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5535" top="7125" width="795" height="240">
    </BOUNDS>
@@ -784,25 +776,9 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="57" srcpinname="Buffer" dstnodeid="12" dstpinname="SubsetTexID" hiddenwhenlocked="1">
-   </LINK>
    <LINK srcnodeid="48" srcpinname="Output Node" dstnodeid="12" dstpinname="DiffTex" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="12" dstpinname="BumpTex" hiddenwhenlocked="1">
-   </LINK>
-   <NODE systemname="GetSpread (Spreads)" nodename="GetSpread (Spreads)" componentmode="Hidden" id="60">
-   <BOUNDS type="Node" left="5505" top="7755" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Count" visible="1" slicecount="1" values="6">
-   </PIN>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="58" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="60" srcpinname="Output" dstnodeid="57" dstpinname="Data">
    </LINK>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -839,8 +815,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="63" srcpinname="Output Node" dstnodeid="12" dstpinname="SubsetVertexCount" hiddenwhenlocked="1">
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Count">
    </LINK>
    <NODE systemname="Cons (DX11.ResourceSemantic)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.ResourceSemantic)" componentmode="Hidden" id="76">
    <BOUNDS type="Node" left="2295" top="16740" width="2775" height="270">
@@ -1073,7 +1047,7 @@
    </BOUNDS>
    <PIN pinname="Semantic" visible="1">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -1106,18 +1080,14 @@
    </LINK>
    <LINK srcnodeid="71" srcpinname="Output" dstnodeid="75" dstpinname="Input">
    </LINK>
-   <NODE systemname="PipelineStatistics (DX11.Query)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="PipelineStatistics (DX11.Query)" componentmode="Hidden" id="87">
-   <BOUNDS type="Node" left="11310" top="15090" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Query Source" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="82" srcpinname="Layer Out" dstnodeid="46" dstpinname="Input Node">
    </LINK>
    <NODE systemname="ConstantMergedMRE (DX11.Effect)" filename="..\..\dx11\ConstantMergedMRE.fx" nodename="ConstantMergedMRE (DX11.Effect)" componentmode="Hidden" id="90">
    <BOUNDS type="Node" left="1620" top="13590" width="11475" height="270">
    </BOUNDS>
    <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="SubsetTexID" slicecount="1" visible="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="37" srcpinname="Y Output Value" dstnodeid="90" dstpinname="Enabled">
@@ -1158,14 +1128,52 @@
    </LINK>
    <LINK srcnodeid="48" srcpinname="Output Node" dstnodeid="90" dstpinname="DiffTex">
    </LINK>
-   <LINK srcnodeid="57" srcpinname="Buffer" dstnodeid="90" dstpinname="SubsetTexID">
-   </LINK>
    <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="90" dstpinname="SubsetCount">
    </LINK>
    <LINK srcnodeid="90" srcpinname="Layer" dstnodeid="82" dstpinname="Layer In">
    </LINK>
-   <LINK srcnodeid="90" srcpinname="Query" dstnodeid="87" dstpinname="Query Source">
-   </LINK>
    <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="90" dstpinname="Geometry">
+   </LINK>
+   <NODE systemname="DynamicBuffer (DX11.Buffer 4d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 4d)" componentmode="Hidden" id="57">
+   <BOUNDS type="Node" left="5505" top="9195" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Data" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   <PIN pinname="DataXYZW" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="57" srcpinname="Buffer" dstnodeid="12" dstpinname="SubsetTexID" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Buffer" dstnodeid="90" dstpinname="SubsetTexID">
+   </LINK>
+   <NODE systemname="GetSpread (Spreads Advanced)" nodename="GetSpread (Spreads Advanced)" componentmode="Hidden" id="60" filename="%VVVV%\addonpack\lib\nodes\plugins\GetSpreadAdv.dll">
+   <BOUNDS type="Node" left="5505" top="8010" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1" slicecount="1" values="393">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="58" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="91">
+   <BOUNDS type="Node" left="6255" top="7620" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="91" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="91" srcpinname="Output" dstnodeid="60" dstpinname="Count">
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Output" dstnodeid="57" dstpinname="DataXYZW">
    </LINK>
    </PATCH>

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" systemname="MaterialBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" scrollx="3510" scrolly="0">
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Materials\MaterialBuffer (DX11 MRE).v4p" systemname="MaterialBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\MaterialBuffer (DX11 MRE).v4p" scrollx="0" scrolly="4845">
    <BOUNDS type="Window" left="13410" top="2160" width="13050" height="11325">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
@@ -643,7 +643,7 @@
    <NODE systemname="MonoFlop (Animation Framebased)" filename="%VVVV%\addonpack\lib\nodes\plugins\MonoFlop.dll" nodename="MonoFlop (Animation Framebased)" componentmode="Hidden" id="105">
    <BOUNDS type="Node" left="7080" top="2730" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Frames" slicecount="1" values="4" visible="1">
+   <PIN pinname="Frames" slicecount="1" visible="1" values="4">
    </PIN>
    <PIN pinname="Set" visible="1">
    </PIN>

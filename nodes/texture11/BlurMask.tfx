@@ -28,7 +28,7 @@ float4 pADD(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target
 	float bckg = max(depth-focus-cwidth/2,0)*bckgmul;
 	float frg = -min(depth-focus+cwidth*frgmul*0.5,0);
 	if(foreground) return float4(frg.xxx * ForeBackGroundRat.x,1);
-	else return float4(pow(bckg.xxx * ForeBackGroundRat.y, 0.5),1);
+	else return float4(pows(bckg.xxx * ForeBackGroundRat.y, 0.5),1);
 }
 
 technique10 Scalar{

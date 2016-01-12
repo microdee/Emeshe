@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
-   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\CPU\SpotLightBuffer (DX11 MRE).v4p" systemname="SpotLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\SpotLightBuffer (DX11 MRE).v4p" scrollx="0" scrolly="6840">
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Lights\CPU\SpotLightBuffer (DX11 MRE).v4p" systemname="SpotLightBuffer (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\SpotLightBuffer (DX11 MRE).v4p" scrollx="2160" scrolly="-360">
    <BOUNDS type="Window" left="9150" top="510" width="14115" height="13890">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -339,7 +339,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6195" top="10200" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Sun">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Spot">
    </PIN>
    <PIN pinname="Output Enum" visible="1">
    </PIN>
@@ -733,7 +733,7 @@
    <LINK srcnodeid="78" srcpinname="TexID" dstnodeid="77" dstpinname="Input 8">
    </LINK>
    <NODE systemname="Unzip (Transform)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (Transform)" componentmode="Hidden" id="63">
-   <BOUNDS type="Node" left="5685" top="6120" width="100" height="100">
+   <BOUNDS type="Node" left="4785" top="6105" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output Count" slicecount="1" values="4">
    </PIN>
@@ -759,15 +759,13 @@
    <NODE systemname="Multiply (Transform)" nodename="Multiply (Transform)" componentmode="Hidden" id="61">
    <BOUNDS type="Node" left="1560" top="6360" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Transform In 2" visible="1">
+   <PIN pinname="Transform In 2" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Transform In 1" visible="1">
    </PIN>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="63" srcpinname="Output 1" dstnodeid="61" dstpinname="Transform In 2">
-   </LINK>
    <LINK srcnodeid="78" srcpinname="lView" dstnodeid="61" dstpinname="Transform In 1">
    </LINK>
    <NODE systemname="ApplyTransform (Transform Vector)" nodename="ApplyTransform (Transform Vector)" componentmode="Hidden" id="60">
@@ -890,8 +888,6 @@
    </NODE>
    <LINK srcnodeid="61" srcpinname="Transform Out" dstnodeid="110" dstpinname="Source">
    </LINK>
-   <LINK srcnodeid="110" srcpinname="Transform Out" dstnodeid="64" dstpinname="Transform">
-   </LINK>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="111">
    <BOUNDS type="Node" left="7620" top="13560" width="100" height="100">
    </BOUNDS>
@@ -902,14 +898,6 @@
    </NODE>
    <LINK srcnodeid="80" srcpinname="Y Output Value" dstnodeid="111" dstpinname="Input">
    </LINK>
-   <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="112">
-   <BOUNDS type="Node" left="1155" top="11055" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Input 2" slicecount="1" values="3">
-   </PIN>
-   </NODE>
    <NODE systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden" id="113">
    <BOUNDS type="Node" left="1170" top="10050" width="100" height="100">
    </BOUNDS>
@@ -919,8 +907,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="77" srcpinname="Output" dstnodeid="113" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="113" srcpinname="Count" dstnodeid="112" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="100" srcpinname="Output String" dstnodeid="91" dstpinname="Prefix">
    </LINK>
@@ -965,5 +951,41 @@
    <LINK srcnodeid="106" srcpinname="Output Object" dstnodeid="68" dstpinname="Input Collection">
    </LINK>
    <LINK srcnodeid="106" srcpinname="Output Object" dstnodeid="69" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Output 1" dstnodeid="61" dstpinname="Transform In 2">
+   </LINK>
+   <LINK srcnodeid="110" srcpinname="Transform Out" dstnodeid="64" dstpinname="Transform">
+   </LINK>
+   <NODE id="112" systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden">
+   <BOUNDS type="Node" left="1155" top="11055" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="3">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="113" srcpinname="Count" dstnodeid="112" dstpinname="Input">
+   </LINK>
+   <NODE systemname="ReadBack (DX11.Buffer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="ReadBack (DX11.Buffer)" componentmode="Hidden" id="115">
+   <BOUNDS type="Node" left="6360" top="15735" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layout" slicecount="1" values="|float4x4,float4x4,float4,float3,float,float,float,float,float,float,float|">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output 2" visible="1">
+   </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="88" srcpinname="Buffers" dstnodeid="115" dstpinname="Input">
+   </LINK>
+   <NODE systemname="GetMatrix (Transform)" nodename="GetMatrix (Transform)" componentmode="Hidden" id="116">
+   <BOUNDS type="Node" left="6645" top="16320" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="115" srcpinname="Output 1" dstnodeid="116" dstpinname="Transform">
    </LINK>
    </PATCH>
