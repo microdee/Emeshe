@@ -1,12 +1,12 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddCookTorrance (MRE.Materials).v4p" systemname="AddCookTorrance (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddCookTorrance (MRE.Materials).v4p" scrollx="0" scrolly="60">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="E:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Materials\AddCookTorrance (MRE.Materials).v4p" systemname="AddCookTorrance (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddCookTorrance (MRE.Materials).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="11685" top="5865" width="14115" height="9315">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
-   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\modules\FeatureManager (MRE.Materials).v4p" nodename="FeatureManager (MRE.Materials)" componentmode="Hidden" id="34">
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="FeatureManager (MRE.Materials).v4p" nodename="FeatureManager (MRE.Materials)" componentmode="Hidden" id="34" debug="0">
    <BOUNDS type="Node" left="1755" top="3900" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material" visible="1" slicecount="1" values="||">
@@ -23,11 +23,13 @@
    </PIN>
    <PIN pinname="Feature Flag" visible="1">
    </PIN>
+   <PIN pinname="Remove" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="33" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="885" top="1005" width="795" height="240">
+   <BOUNDS type="Box" left="435" top="1005" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="885" top="1005" width="0" height="0">
+   <BOUNDS type="Node" left="435" top="1005" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -39,9 +41,9 @@
    <LINK srcnodeid="33" srcpinname="Output Node" dstnodeid="34" dstpinname="Material">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="32" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1965" top="915" width="480" height="480">
+   <BOUNDS type="Box" left="1515" top="915" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="1965" top="915" width="0" height="0">
+   <BOUNDS type="Node" left="1515" top="915" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -117,15 +119,15 @@
    <LINK srcnodeid="26" srcpinname="Output" dstnodeid="34" dstpinname="Parameters">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="22" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="1710" top="4800" width="795" height="240">
+   <BOUNDS type="Box" left="1080" top="5070" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1710" top="4800" width="0" height="0">
+   <BOUNDS type="Node" left="1080" top="5070" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Material Thru|">
    </PIN>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="34" srcpinname="Material Thru" dstnodeid="22" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="21" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3405" top="4860" width="795" height="240">
    </BOUNDS>
@@ -230,22 +232,8 @@
    </LINK>
    <LINK srcnodeid="17" srcpinname="Output Enum" dstnodeid="42" dstpinname="Map Feature">
    </LINK>
-   <LINK srcnodeid="42" srcpinname="Rough Map Flag" dstnodeid="14" dstpinname="Y Input Value">
+   <LINK srcnodeid="42" srcpinname="Feature Flag" dstnodeid="14" dstpinname="Y Input Value">
    </LINK>
-   <NODE id="37" nodename="IOBox (String)" componentmode="InABox" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="6195" top="1170" width="1470" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="6195" top="1170" width="1470" height="270">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|to be implemented|">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   </NODE>
    <NODE id="36" nodename="IOBox (Value Advanced)" componentmode="InABox" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="6120" top="1755" width="795" height="240">
    </BOUNDS>
@@ -259,7 +247,7 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Reflectance">
    </PIN>
-   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   <PIN pinname="Pin Visibility" slicecount="1" values="True">
    </PIN>
    </NODE>
    <NODE id="35" nodename="IOBox (Value Advanced)" componentmode="InABox" systemname="IOBox (Value Advanced)">
@@ -267,7 +255,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5160" top="1710" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.04">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -353,5 +341,27 @@
    <LINK srcnodeid="45" srcpinname="Y Output Value" dstnodeid="42" dstpinname="MapID Bin Size">
    </LINK>
    <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="42" dstpinname="MapID">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="46" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2130" top="930" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2130" top="930" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Remove">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="46" srcpinname="Y Output Value" dstnodeid="34" dstpinname="Remove">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Material Thru" dstnodeid="22" dstpinname="Input Node">
    </LINK>
    </PATCH>

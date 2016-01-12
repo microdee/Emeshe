@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\SponzaSceneNode15.v4p" systemname="SponzaSceneNode15" filename="C:\vvvv\libs\Emeshe\girlpower\SponzaSceneNode15.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\Subpatches\SponzaSceneNode15.v4p" systemname="SponzaSceneNode15" filename="C:\vvvv\libs\Emeshe\girlpower\SponzaSceneNode15.v4p" scrollx="5535" scrolly="5280">
    <BOUNDS type="Window" left="13905" top="2175" width="11730" height="9480">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -338,8 +338,6 @@
    </NODE>
    <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="21" dstpinname="Reload">
    </LINK>
-   <LINK srcnodeid="14" srcpinname="Output Node" dstnodeid="29" dstpinname="Diffuse Texture">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="30" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="3150" top="7785" width="795" height="240">
    </BOUNDS>
@@ -439,21 +437,11 @@
    </PIN>
    <PIN pinname="Power" slicecount="1" values="4">
    </PIN>
+   <PIN pinname="Strength" slicecount="1" values="0.5">
+   </PIN>
    </NODE>
    <LINK srcnodeid="37" srcpinname="Material Thru" dstnodeid="38" dstpinname="Material">
    </LINK>
-   <NODE systemname="AddReflection (MRE.Materials SphereMap)" filename="..\nodes\modules\Materials\AddReflection (MRE.Materials SphereMap).v4p" nodename="AddReflection (MRE.Materials SphereMap)" componentmode="Hidden" id="39">
-   <BOUNDS type="Node" left="9450" top="11115" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Material" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Blur" visible="1" slicecount="1" values="1.1">
-   </PIN>
-   <PIN pinname="Add" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Material Thru" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="42" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="11205" top="7920" width="795" height="240">
    </BOUNDS>
@@ -469,7 +457,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="41">
-   <BOUNDS type="Node" left="11535" top="8325" width="100" height="100">
+   <BOUNDS type="Node" left="10980" top="8415" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="0.33">
    </PIN>
@@ -481,7 +469,7 @@
    <LINK srcnodeid="42" srcpinname="Y Output Value" dstnodeid="41" dstpinname="Input 1">
    </LINK>
    <NODE systemname="Add (Value)" nodename="Add (Value)" componentmode="Hidden" id="40">
-   <BOUNDS type="Node" left="11505" top="9015" width="100" height="100">
+   <BOUNDS type="Node" left="10995" top="8955" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -515,8 +503,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="42" srcpinname="Y Output Value" dstnodeid="44" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="44" srcpinname="Output" dstnodeid="39" dstpinname="Blur">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="45" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="8655" top="3660" width="480" height="480">
@@ -673,5 +659,107 @@
    <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="56" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="56" srcpinname="Output" dstnodeid="29" dstpinname="Normal Mapping">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Output Node" dstnodeid="29" dstpinname="Diffuse Texture">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="58" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8610" top="9990" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8610" top="9990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="59" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="8535" top="10950" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8535" top="10950" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="AddReflection (MRE.Materials SSLR)" filename="..\..\nodes\modules\Materials\AddReflection (MRE.Materials SSLR).v4p" componentmode="Hidden" id="60" nodename="AddReflection (MRE.Materials SSLR)">
+   <BOUNDS type="Node" left="9450" top="11370" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9450" top="11370" width="4800" height="3600">
+   </BOUNDS>
+   <BOUNDS type="Window" left="4650" top="6060" width="13185" height="8775">
+   </BOUNDS>
+   <PIN pinname="Material" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Material Thru" visible="1">
+   </PIN>
+   <PIN pinname="Add" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Blur" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Remove" visible="1">
+   </PIN>
+   <PIN pinname="Distance" slicecount="1" values="10">
+   </PIN>
+   <PIN pinname="Multiply With Color" visible="1">
+   </PIN>
+   <PIN pinname="Strength" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Distance Blur Threshold" slicecount="1" values="0.4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="38" srcpinname="Material Thru" dstnodeid="60" dstpinname="Material">
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Add">
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Remove">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="61" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="10500" top="10890" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10500" top="10890" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.07">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Blur">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="62" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="11550" top="11145" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11550" top="11145" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="60" dstpinname="Multiply With Color">
    </LINK>
    </PATCH>

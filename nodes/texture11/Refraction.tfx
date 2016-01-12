@@ -1,15 +1,8 @@
-#if !defined(POWS_FXH)
-#include "../fxh/pows.fxh"
-#endif
-#if !defined(MATERIALS_FXH)
-#include "../fxh/Materials.fxh"
-#endif
-#if !defined(MRE_FXH)
-#include "../fxh/MRE.fxh"
-#endif
-#if !defined(DISCSAMPLE_FXH)
-#include "../fxh/DiscSample.fxh"
-#endif
+
+#include "../../../mp.fxh/pows.fxh"
+#include "../../../mp.fxh/Materials.fxh"
+#include "../../../mp.fxh/MRE.fxh"
+#include "../../../mp.fxh/DiscSample.fxh"
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
@@ -42,7 +35,7 @@ SamplerState s0 <string uiname="Sampler";>
 float4 pRef(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
 	float stencil = GetStencil(R, uv);
-	uint matid = GetMatID(R,uv);
+	uint matid = GetMatID(s0, uv);
 	float4 col = float4(0,0,0,1);
 
 	bool KnowRefract = KnowFeature(matid, MF_REFRACTION_SPHEREMAP);
@@ -50,17 +43,18 @@ float4 pRef(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 	if((stencil > 0) && KnowRefract)
 	{
 		float4 input = ColorTex.Sample(s0, uv);
-		float4 diffcol = Color.Sample(s0, uv);
+		float4 diffcol = float4(Color.Sample(s0, uv).rgb, 1);
 		float2 SceneUV = 0;
 		bool KnowRrMap = KnowFeature(matid, MF_REFRACTION_MAP);
 
 		if(KnowRrMap)
 		{
-			SceneUV = GetUV(uv, R);
+			SceneUV = GetUV(s0, uv);
 		}
 
 		float3 vPos = GetViewPos(s0, uv);
-		float3 norm = mul(float4(Normals.Sample(s0,uv).xyz,0),EnvTransform).xyz;
+		float3 onorm = Normals.Sample(s0,uv).xyz;
+		float3 norm = mul(float4(onorm,0),EnvTransform).xyz;
 		if(!IsInitial) col = input;
 
 		float3 rrV = -normalize(vPos);
@@ -93,7 +87,7 @@ float4 pRef(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 		float2 fresnel = GetFloat2(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_FRESNEL);
 		float2 fresnelPow = GetFloat2(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_FRESNELPOWER);
 		float3 IOR = GetFloat3(matid, MF_REFRACTION_SPHEREMAP, MF_REFRACTION_SPHEREMAP_IOR);
-		float2 rrFresnel = pow(saturate(dot(norm, rrV) + lerp(1,-1,fresnel)), fresnelPow);
+		float2 rrFresnel = pow(saturate(dot(onorm, rrV) + lerp(1,-1,fresnel)), fresnelPow);
 
 		const half4 colors[3] =
 	    {

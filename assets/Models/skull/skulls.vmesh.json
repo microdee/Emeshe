@@ -1,0 +1,239 @@
+{
+  "Topic": "VMeshMeta",
+  "TimeStamp": {
+    "UTC": "2015-05-19 03:44:43.7838",
+    "ZoneId": "GMT Standard Time"
+  },
+  "Data": {
+    "InputElements": {
+      "Message": [
+        {
+          "Topic": "VMeshInputElement",
+          "TimeStamp": {
+            "UTC": "2015-05-19 03:44:43.7828",
+            "ZoneId": "GMT Standard Time"
+          },
+          "Data": {
+            "Slot": {
+              "int": [
+                0
+              ]
+            },
+            "Semantic": {
+              "string": [
+                "POSITION"
+              ]
+            },
+            "SemanticIndex": {
+              "int": [
+                0
+              ]
+            },
+            "Format": {
+              "string": [
+                "R32G32B32_Float"
+              ]
+            },
+            "Size": {
+              "int": [
+                12
+              ]
+            }
+          }
+        },
+        {
+          "Topic": "VMeshInputElement",
+          "TimeStamp": {
+            "UTC": "2015-05-19 03:44:43.7828",
+            "ZoneId": "GMT Standard Time"
+          },
+          "Data": {
+            "Slot": {
+              "int": [
+                0
+              ]
+            },
+            "Semantic": {
+              "string": [
+                "NORMAL"
+              ]
+            },
+            "SemanticIndex": {
+              "int": [
+                0
+              ]
+            },
+            "Format": {
+              "string": [
+                "R32G32B32_Float"
+              ]
+            },
+            "Size": {
+              "int": [
+                12
+              ]
+            }
+          }
+        },
+        {
+          "Topic": "VMeshInputElement",
+          "TimeStamp": {
+            "UTC": "2015-05-19 03:44:43.7828",
+            "ZoneId": "GMT Standard Time"
+          },
+          "Data": {
+            "Slot": {
+              "int": [
+                0
+              ]
+            },
+            "Semantic": {
+              "string": [
+                "TEXCOORD"
+              ]
+            },
+            "SemanticIndex": {
+              "int": [
+                0
+              ]
+            },
+            "Format": {
+              "string": [
+                "R32G32_Float"
+              ]
+            },
+            "Size": {
+              "int": [
+                8
+              ]
+            }
+          }
+        },
+        {
+          "Topic": "VMeshInputElement",
+          "TimeStamp": {
+            "UTC": "2015-05-19 03:44:43.7828",
+            "ZoneId": "GMT Standard Time"
+          },
+          "Data": {
+            "Slot": {
+              "int": [
+                0
+              ]
+            },
+            "Semantic": {
+              "string": [
+                "TANGENT"
+              ]
+            },
+            "SemanticIndex": {
+              "int": [
+                0
+              ]
+            },
+            "Format": {
+              "string": [
+                "R32G32B32_Float"
+              ]
+            },
+            "Size": {
+              "int": [
+                12
+              ]
+            }
+          }
+        },
+        {
+          "Topic": "VMeshInputElement",
+          "TimeStamp": {
+            "UTC": "2015-05-19 03:44:43.7828",
+            "ZoneId": "GMT Standard Time"
+          },
+          "Data": {
+            "Slot": {
+              "int": [
+                0
+              ]
+            },
+            "Semantic": {
+              "string": [
+                "BINORMAL"
+              ]
+            },
+            "SemanticIndex": {
+              "int": [
+                0
+              ]
+            },
+            "Format": {
+              "string": [
+                "R32G32B32_Float"
+              ]
+            },
+            "Size": {
+              "int": [
+                12
+              ]
+            }
+          }
+        },
+        {
+          "Topic": "VMeshInputElement",
+          "TimeStamp": {
+            "UTC": "2015-05-19 03:44:43.7828",
+            "ZoneId": "GMT Standard Time"
+          },
+          "Data": {
+            "Slot": {
+              "int": [
+                0
+              ]
+            },
+            "Semantic": {
+              "string": [
+                "COLOR"
+              ]
+            },
+            "SemanticIndex": {
+              "int": [
+                0
+              ]
+            },
+            "Format": {
+              "string": [
+                "R32G32B32A32_Float"
+              ]
+            },
+            "Size": {
+              "int": [
+                16
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "TotalStrides": {
+      "int": [
+        72
+      ]
+    },
+    "VertexCounts": {
+      "int": [
+        48768,
+        48768,
+        114288
+      ]
+    },
+    "TotalVertexCount": {
+      "int": [
+        211824
+      ]
+    },
+    "LZMA": {
+      "bool": [
+        true
+      ]
+    }
+  }
+}

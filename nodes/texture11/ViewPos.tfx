@@ -1,5 +1,4 @@
-#include "../fxh/MRE.fxh"
-Texture2D tex0: PREVIOUS;
+#include "../../../mp.fxh/MRE.fxh"
 
 SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
 float2 R:TARGETSIZE;
@@ -10,7 +9,23 @@ float4 pWORLD(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
 float4 pVIEW(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
     return float4(GetViewPos(s0, x), 1);
 }
+float pLDEPTH(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    return GetViewPos(s0, x).z;
+}
 
 
-technique10 World{pass P1{SetPixelShader(CompileShader(ps_4_0,pWORLD()));}}
-technique10 View{pass P1{SetPixelShader(CompileShader(ps_4_0,pVIEW()));}}
+technique10 World
+{
+	pass P1 <string format="R16G16B16A16_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pWORLD()));}
+}
+technique10 View
+{
+	pass P1 <string format="R16G16B16A16_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pVIEW()));}
+}
+technique10 LinDepth
+{
+	pass P1 <string format="R16_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pLDEPTH()));}
+}

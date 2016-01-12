@@ -2,14 +2,16 @@
 //@help: template for texture fx
 //@tags: texture
 //@credits: 
-#include "../fxh/pows.fxh"
+#include "../../../mp.fxh/pows.fxh"
  
 float2 R:TARGETSIZE;
 float Width <float uimin=0.0; float uimax=1.0;> =0.3;
 float Gamma =5;
+float GammaComp = 1.25;
 float Seed <float uimin=0.0; float uimax=1.0;> =1;
 float MaxBlur =0.5;
 float Iterations <float uimin=1.0; float uimax=80.0;> =17;
+float MaxValue = 10;
  
 Texture2D tex0 : PREVIOUS;
 Texture2D tex1;
@@ -17,8 +19,8 @@ Texture2D tex1;
 SamplerState linearSampler : IMMUTABLE
 {
     Filter = MIN_MAG_MIP_LINEAR;
-    AddressU = Clamp;
-    AddressV = Clamp;
+    AddressU = Mirror;
+    AddressV = Mirror;
 };
  
 struct psInput
@@ -35,7 +37,7 @@ float4 PSgamma(psInput input) : SV_Target
     //float2 vp = .xy *2;
     //float2 x=(vp+.5)/R;
     float4 c = tex0.Sample(linearSampler,input.uv);
-    c.rgb=saturate(pows(length(c.rgb),Gamma)*normalize(c.rgb))+0.0001;
+    c.rgb=saturate((pows(length(c.rgb),Gamma)*normalize(c.rgb))/MaxValue) * MaxValue+0.0001;
     return c;
 }
  
@@ -49,18 +51,18 @@ float4 PSblur(psInput input) : SV_Target
     float mask=tex1.Sample(linearSampler,input.uv).r;
     float wd=min(pows(Width,2)*mask,MaxBlur);
     float iter=12;
-    float4 satc = saturate(tex0.Sample(linearSampler,input.uv));
+    float4 satc = saturate(tex0.Sample(linearSampler,input.uv)/MaxValue);
     float2 def=length(sin(x*718+Seed*222+wd*888+1882*satc))*12.7+1*dot(input.uv%2,.03*float2(1,2));
     //def=0;
     for(float i=0;i<1;i+=1./max(0,min(Iterations,80))){
         float2 off=pows(i*.9999,.4)*sin((i*iter*8*.315+def+float2(.25,0))*acos(-1)*2);
         //off*=R.x/R;
-        float4 satci = 
-        c+=float4(saturate(tex0.SampleLevel(linearSampler,input.uv+off*wd*R.x/R,1+log2(min(R.x,R.y)*wd*.6*pows(1-length(off),.6)))).rgb,1)*pows(2,-3*pows(length(off),2));
+        //float4 satci = 
+        c+=float4(saturate(tex0.SampleLevel(linearSampler,input.uv+off*wd*R.x/R,1+log2(min(R.x,R.y)*wd*.6*pows(1-length(off),.6)))/MaxValue).rgb,1)*pows(2,-3*pows(length(off),2));
     }
     c/=c.a;
     //c=pows(c,1./Gamma);
-    c.rgb=pows(length(c.rgb),1./Gamma)*normalize(c.rgb);
+    c.rgb=pows(length(c.rgb),GammaComp/Gamma)*normalize(c.rgb) * MaxValue;
     return c;
 }
  
@@ -75,7 +77,7 @@ technique10 Process
         SetPixelShader(CompileShader(ps_4_0,PSgamma()));
     }
 	
-    pass P2 /*<string format="R16G16B16A16_Float";>*/
+    pass P2 <string format="R16G16B16A16_Float";>
     {
         SetPixelShader(CompileShader(ps_4_0,PSblur()));
     }

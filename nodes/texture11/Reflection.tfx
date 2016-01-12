@@ -1,15 +1,8 @@
-#if !defined(POWS_FXH)
-#include "../fxh/pows.fxh"
-#endif
-#if !defined(MATERIALS_FXH)
-#include "../fxh/Materials.fxh"
-#endif
-#if !defined(MRE_FXH)
-#include "../fxh/MRE.fxh"
-#endif
-#if !defined(DISCSAMPLE_FXH)
-#include "../fxh/DiscSample.fxh"
-#endif
+
+#include "../../../mp.fxh/pows.fxh"
+#include "../../../mp.fxh/Materials.fxh"
+#include "../../../mp.fxh/MRE.fxh"
+#include "../../../mp.fxh/DiscSample.fxh"
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
@@ -21,11 +14,12 @@ float2 R : TARGETSIZE;
 
 cbuffer controls : register(b0)
 {
-	float4x4 ReflTransform;
-	bool IsInitial = true;
+	float4x4 EnvTransform;
 	float EnvStrength = 1;
 	float Blur = 0;
 	float MaxMIPlevel = 8;
+	bool IsInitial = true;
+	bool NotReflectiveIsBlack = false;
 	//float3 RefractIndices = { 0.80, 0.82, 0.84 };
 };
 
@@ -41,7 +35,7 @@ SamplerState s0 <string uiname="Sampler";>
 float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
 	float stencil = GetStencil(R, uv);
-	uint matid = GetMatID(R, uv);
+	uint matid = GetMatID(s0, uv);
 	float4 col = float4(0,0,0,1);
 
 	bool KnowReflect = KnowFeature(matid, MF_REFLECTION_SPHEREMAP);
@@ -49,17 +43,18 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 	if((stencil > 0) && KnowReflect)
 	{
 		float4 input = ColorTex.Sample(s0, uv);
-		float4 diffcol = Color.Sample(s0, uv);
+		float4 diffcol = float4(Color.Sample(s0, uv).rgb, 1);
 		float2 SceneUV = 0;
 		bool KnowRlMap = KnowFeature(matid, MF_REFLECTION_MAP);
 
 		if(KnowRlMap)
 		{
-			SceneUV = GetUV(uv, R);
+			SceneUV = GetUV(s0, uv);
 		}
 
 		float3 vPos = GetViewPos(s0, uv);
-		float3 norm = mul(float4(Normals.Sample(s0,uv).xyz,0),ReflTransform).xyz;
+		float3 onorm = Normals.Sample(s0,uv).xyz;
+		float3 norm = mul(float4(onorm,0),EnvTransform).xyz;
 		if(!IsInitial) col = input;
 
 		float3 rrV = normalize(vPos);
@@ -92,7 +87,7 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 
 		float2 fresnel = GetFloat2(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_FRESNEL);
 		float2 fresnelPow = GetFloat2(matid, MF_REFLECTION_SPHEREMAP, MF_REFLECTION_SPHEREMAP_FRESNELPOWER);
-		float2 rlFresnel = pow(saturate(dot(norm, rrV) + lerp(-1,1,fresnel)), fresnelPow);
+		float2 rlFresnel = pow(saturate(dot(onorm, rrV) + lerp(-1,1,fresnel)), fresnelPow);
 
 		float4 reflColor = DiscSample(Environments, s0, rrR, rlBlur, rlSlice, MaxMIPlevel);
 		float4 sReflColor = Environments.SampleLevel(s0, float3(DirToUV(rrR), rlSlice), 0);
@@ -113,7 +108,11 @@ float4 pRefleract(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 			return float4(col.rgb,ColorTex.Sample(s0,uv).a);
 		}
 	}
-	else return ColorTex.Sample(s0, uv);
+	else
+	{
+		if(NotReflectiveIsBlack) return 0;
+		else return ColorTex.Sample(s0, uv);
+	}
 }
 
 technique10 Main{

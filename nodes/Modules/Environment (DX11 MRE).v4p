@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Environment (DX11 MRE).v4p" systemname="Environment (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Environment (DX11 MRE).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="5670" top="3435" width="10290" height="9270">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Environment (DX11 MRE).v4p" systemname="Environment (DX11 MRE)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\Environment (DX11 MRE).v4p" scrollx="0" scrolly="165">
+   <BOUNDS type="Window" left="5670" top="3435" width="12255" height="9270">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -11,7 +11,7 @@
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
-   <PIN pinname="Radius" slicecount="1" values="3">
+   <PIN pinname="Radius" slicecount="1" visible="1" values="30">
    </PIN>
    <PIN pinname="Resolution X" visible="1">
    </PIN>
@@ -35,7 +35,7 @@
    <LINK srcnodeid="13" srcpinname="Geometry Out" dstnodeid="12" dstpinname="Geometry">
    </LINK>
    <NODE systemname="Rasterizer (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Rasterizer (DX11.RenderState)" componentmode="Hidden" id="11">
-   <BOUNDS type="Node" left="3030" top="1740" width="100" height="100">
+   <BOUNDS type="Node" left="2895" top="1995" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
    </PIN>
@@ -451,5 +451,23 @@
    <LINK srcnodeid="32" srcpinname="Output Node" dstnodeid="33" dstpinname="Transform In 1">
    </LINK>
    <LINK srcnodeid="33" srcpinname="Transform Out" dstnodeid="1" dstpinname="Transform In">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3330" top="885" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3330" top="885" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="30">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Sphere Radius|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="34" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Radius">
    </LINK>
    </PATCH>

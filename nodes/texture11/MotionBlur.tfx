@@ -4,7 +4,7 @@ Texture2D ColorTex: INITIAL;
 //Texture2D OffsVelTex1: PASSRESULT2;
 //Texture2D OffsVelTex2: PASSRESULT3;
 #define PI 3.14159265358979
-#include "../fxh/MRE.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 
 float2 ScreenSize:TARGETSIZE;
 
@@ -39,7 +39,7 @@ SamplerState s_vel : IMMUTABLE
 };
 float2 FillVel(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
-    float2 colin = Velocity.Sample(s_vel,uv);
+    float2 colin = Velocity.Sample(s_vel,uv).xy;
 	float2 col = colin;
 	float FillEpsilon = 0.01;
 	
@@ -80,7 +80,8 @@ float2 velmblur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target
     float2 vel = vmap -.5;
 	vel *= Amount*2;
 	
-	float2 asp=lerp(1,ScreenSize.x/ScreenSize,Aspect);
+	//float2 asp=lerp(1,ScreenSize.x/ScreenSize,Aspect);
+	float2 asp=1;
     float2 c=0;
 	int iter=saturate(length(vel.xy)*SampleFreq)*abs(MaxSamples/2-MinSamples/2)+MinSamples/2;
     for (float i=0;i<1;i+=1./iter){
@@ -96,7 +97,8 @@ float4 mblur(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target
     float2 vel = vmap-0.5;
 	vel *= Amount;
 	
-	float2 asp=lerp(1,ScreenSize.x/ScreenSize,Aspect);
+	//float2 asp=lerp(1,ScreenSize.x/ScreenSize,Aspect);
+	float2 asp=1;
     float4 c=0;
 	int iter=saturate(length(vel.xy)*SampleFreq)*abs(MaxSamples-MinSamples)+MinSamples;
     for (float i=0;i<1;i+=1./iter){

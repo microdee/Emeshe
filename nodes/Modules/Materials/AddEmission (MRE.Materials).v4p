@@ -1,12 +1,12 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\Modules\AddEmission (MRE.Materials).v4p" systemname="AddEmission (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddEmission (MRE.Materials).v4p" scrollx="0" scrolly="180">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.1.dtd" >
+   <PATCH nodename="C:\vvvv\libs\mcropack\packs\Emeshe\nodes\modules\Materials\AddEmission (MRE.Materials).v4p" systemname="AddEmission (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddEmission (MRE.Materials).v4p" scrollx="0" scrolly="180">
    <BOUNDS type="Window" left="15690" top="6780" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <PACK Name="addonpack" Version="33.7.0">
+   <PACK Name="addonpack" Version="34.1.0">
    </PACK>
-   <NODE systemname="FeatureManager (MRE.Materials)" filename="..\nodes\modules\FeatureManager (MRE.Materials).v4p" nodename="FeatureManager (MRE.Materials)" componentmode="Hidden" id="18">
+   <NODE systemname="FeatureManager (MRE.Materials)" filename="FeatureManager (MRE.Materials).v4p" nodename="FeatureManager (MRE.Materials)" componentmode="Hidden" id="18">
    <BOUNDS type="Node" left="1260" top="3660" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Material" visible="1" slicecount="1" values="||">
@@ -22,6 +22,8 @@
    <PIN pinname="Material Thru" visible="1">
    </PIN>
    <PIN pinname="Feature Flag" visible="1">
+   </PIN>
+   <PIN pinname="Remove" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="17" systemname="IOBox (Node)">
@@ -281,5 +283,25 @@
    <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="0" dstpinname="Map Feature">
    </LINK>
    <LINK srcnodeid="0" srcpinname="Rough Map Flag" dstnodeid="1" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1695" top="1830" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1695" top="1830" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Remove">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="18" dstpinname="Remove">
    </LINK>
    </PATCH>

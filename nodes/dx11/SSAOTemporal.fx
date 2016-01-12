@@ -1,21 +1,12 @@
-Texture2D texPOSW <string uiname="WorldPos Buffer";>;
-Texture2D texNORW <string uiname="WorldNorm Buffer";>;
+
+#include "../../../mp.fxh/MRE.fxh"
+
 Texture2D texNOIS <string uiname="Noise";>;
 Texture2D texCTRL <string uiname="Sample Control";>;
 
-SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
-SamplerState s1:IMMUTABLE {Filter=MIN_MAG_MIP_POINT;AddressU=MIRROR;AddressV=MIRROR;};
 SamplerState s2:IMMUTABLE {Filter=MIN_MAG_MIP_POINT;AddressU=CLAMP;AddressV=CLAMP;};
 SamplerState s3:IMMUTABLE {Filter=MIN_MAG_MIP_LINEAR;AddressU=WRAP;AddressV=WRAP;};
 float2 R:TARGETSIZE;
-
-	float4x4 tVP : VIEWPROJECTION;
-	float4x4 tVI : VIEWINVERSE;
-	float4x4 tV : VIEW;
-	float4x4 tP : PROJECTION;
-	float4x4 tWVI:VIEWINVERSE;
-	float4x4 tPI:PROJECTIONINVERSE;
-
 
 float SelfShadowCut=.02;
 float Seed=0;
@@ -32,12 +23,12 @@ float Gamma <float uimin=0;float uimax=16;> =1;
 
 float4 pWTFAO(float2 UV:TEXCOORD0,float4 PosWVP:SV_POSITION):SV_Target{
 	float4 c=1;
-	float4 p=texPOSW.SampleLevel(s2,UV,0);
-	float3 n=texNORW.SampleLevel(s2,UV,0).xyz;
+	float4 p=float4(GetViewPos(s2,UV),1);
+	float3 n=Normals.SampleLevel(s2,UV,0).xyz;
 	int itr=Iterations*texCTRL.SampleLevel(s2,UV,0).r;
 	float ao=0;
 	if(length(p.xyz)>800)return 1;
-	float z=mul(float4(p.xyz,1),tVP).z;
+	float z=mul(float4(p.xyz,1),CamProj).z;
 	float nois=texNOIS.SampleLevel(s3,(PosWVP.xy+0.5)/8.,0).x;
 	for(int i=0;i<itr&&i<128;i++){
 		float2 off=sin((float(i)/itr*3+nois*4+dot(p.xyz,n+nois)*222+Seed*8+float2(.25,0))*acos(-1)*2);
@@ -46,8 +37,8 @@ float4 pWTFAO(float2 UV:TEXCOORD0,float4 PosWVP:SV_POSITION):SV_Target{
 		
 		off=off*Radius/z;
 		off*=pow(2,(float(i)/itr-.5)*Range);
-		float4 np=texPOSW.SampleLevel(s2,UV+off,0);
-		float4 nn=texNORW.SampleLevel(s2,UV+off,0);
+		float4 np=float4(GetViewPos(s2,UV+off),1);
+		float4 nn=Normals.SampleLevel(s2,UV+off,0);
 		float3 V=np.xyz-p.xyz;
 		float d=length(V);
 		float occ=max(0,dot(n,V))*(1.0/(1.0+d));

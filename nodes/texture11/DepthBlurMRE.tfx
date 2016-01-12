@@ -1,15 +1,14 @@
-#include "../fxh/MRE.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 
 Texture2D texCOL : PREVIOUS;
+Texture2D<float> texMap;
 
 
 //TextureCube texENVI <string uiname="Cubemap";>;
-SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
-SamplerState s1:IMMUTABLE {Filter=MIN_MAG_MIP_POINT;AddressU=MIRROR;AddressV=MIRROR;};
 
 float2 R:TARGETSIZE;
 
-SamplerState g_samLinear : IMMUTABLE
+SamplerState g_samLinear <string uiname="Sampler";>
 {
 	Filter = MIN_MAG_MIP_LINEAR;
 	AddressU = Clamp;
@@ -25,7 +24,7 @@ SamplerState g_samPoint : IMMUTABLE
 cbuffer controls:register(b0){
 	float Seed=0;
 	
-	float Radius=3.5;
+	float Radius=0.5;
 	//float Amount=.5;
 	float Limit=2;
 	float Range=1;
@@ -39,7 +38,7 @@ float rand(float2 co)
 #define bld(op,c0,c1) float4(lerp((c0*c0.a+c1*c1.a*(1-c0.a))/saturate(c0.a+c1.a*(1-c0.a)),(op),c0.a*c1.a).rgb,saturate(c0.a+c1.a*(1-c0.a)))
 
 float4 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
-	return texCOL.SampleLevel(s0,x,0);
+	return texCOL.SampleLevel(g_samLinear,x,0);
 }
 float4 pUNC(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
 	float3 p=GetViewPos(g_samPoint,x);
@@ -86,18 +85,19 @@ float4 pFB_P1(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
 	float z=Depth.SampleLevel(g_samLinear,x,0).x;
 	float sum=.2;
 	float lod=log2(max(R.x,R.y));
-	lod=Radius*log2(max(R.x,R.y));
+	float map = texMap.SampleLevel(g_samLinear,x,0);
+	lod=Radius*log2(max(R.x,R.y)) * map;
 	float4 c=0;
 	float2 off=.5/R*pow(2,lod)*saturate(lod);
 	lod-=2;
 	for(int i=0;i<9;i++){
 		if(i==4) off *= offmul;
 		float3 np=GetViewPos(g_samPoint,x+uvoff[i]*off);
-		float4 nn=Normals.SampleLevel(g_samPoint,x+uvoff[i]*off,0);
-		float4 nc=texCOL.SampleLevel(g_samLinear,x+uvoff[i]*off,lod);
+		float3 nn=Normals.SampleLevel(g_samPoint,x+uvoff[i]*off,0).xyz;
 		float3 V=np.xyz-p.xyz;
-		float d=length(V)+length(n-nn.xyz);
+		float d=length(V)+distance(n,nn);
 		float k=sqrt(smoothstep(Limit,0,d));
+		float4 nc=texCOL.SampleLevel(g_samLinear,x+uvoff[i]*off,lod*k);
 		c+=nc*k;
 		sum+=k;
 
@@ -115,17 +115,18 @@ float4 pFB_P2(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
 	float z=Depth.SampleLevel(g_samLinear,x,0).x;
 	float sum=.2;
 	float lod=log2(max(R.x,R.y));
-	lod=Radius*log2(max(R.x,R.y));
+	float map = texMap.SampleLevel(g_samLinear,x,0);
+	lod=Radius*log2(max(R.x,R.y)) * map;
 	float4 c=0;
 	float2 off=.5/R*pow(2,lod)*saturate(lod);
 	for(int i=0;i<9;i++){
 		if(i==4) off *= offmul;
 		float3 np=GetViewPos(g_samPoint,x+uvoff[i]*off);
-		float4 nn=Normals.SampleLevel(g_samPoint,x+uvoff[i]*off,0);
-		float4 nc=texCOL.SampleLevel(g_samLinear,x+uvoff[i]*off,lod);
+		float3 nn=Normals.SampleLevel(g_samPoint,x+uvoff[i]*off,0).xyz;
 		float3 V=np.xyz-p.xyz;
-		float d=length(V)+length(n-nn.xyz);
+		float d=length(V)+distance(n,nn);
 		float k=sqrt(smoothstep(Limit,0,d));
+		float4 nc=texCOL.SampleLevel(g_samLinear,x+uvoff[i]*off,lod*(k<1));
 		c+=nc*k;
 		sum+=k;
 

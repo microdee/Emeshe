@@ -1,0 +1,48 @@
+//@author: 
+//@help: 
+//@tags: filter
+//@credits:
+
+#include "../../../mp.fxh/ColorSpace.fxh"
+
+Texture2D tex0: PREVIOUS;
+Texture2D tex1 <string uiname="Control";>;
+SamplerState s0 <string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float Amount=0.5;
+	float2 Direction = {1,0};
+	float SampleCenter <float uimin=-1;float uimax=1.0;> = 0;
+	float Hue <float uimin=0.0;float uimax=1.0;> = 0.0;
+};
+
+float4 pFILTER(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c=tex0.SampleLevel(s0,x,0);
+
+    return c;
+}
+float4 hueshift(float2 x,float2 off){
+	x+=normalize(Direction)*Amount*off;
+	return float4(HSVtoRGB(float3(Hue,0,0)+RGBtoHSV(saturate(tex0.SampleLevel(s0,x,0).xyz))),1);
+}
+
+float4 pSHIFTRGB(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+    float4 c=saturate(tex0.SampleLevel(s0,x,0));
+    float sh=.1*saturate(tex1.SampleLevel(s0,x,0).x);
+    c.r=hueshift(x,sh*( 1+SampleCenter)).r;
+    c.g=hueshift(x,sh*( 0+SampleCenter)).g;
+    c.b=hueshift(x,sh*(-1+SampleCenter)).b;
+    c.rgb=max(HSVtoRGB(-float3(Hue,0,0)+RGBtoHSV(c.xyz)),0);
+    //if(Alpha)c=float4(c.rgb*c.a,pa);
+
+    return c;
+}
+
+technique10 ShiftRGB{
+	pass P1
+	{SetPixelShader(CompileShader(ps_4_0,pSHIFTRGB()));}
+}
+
+
+

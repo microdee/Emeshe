@@ -1,9 +1,6 @@
-#if !defined(MATERIALS_FXH)
-#include "../fxh/Materials.fxh"
-#endif
-#if !defined(MRE_FXH)
-#include "../fxh/MRE.fxh"
-#endif
+
+#include "../../../mp.fxh/Materials.fxh"
+#include "../../../mp.fxh/MRE.fxh"
 
 Texture2D PrevTex: PREVIOUS;
 Texture2D ColorTex: INITIAL;
@@ -23,10 +20,10 @@ float4 pEM(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
 
 	float4 col = ColorTex.Sample(s0, uv);
-	uint matid = GetMatID(uv, R);
+	uint matid = GetMatID(s0, uv);
 
     bool KnowEmission = KnowFeature(matid, MF_LIGHTING_EMISSION);
-    if(KnowEmission)
+    if(KnowEmission && GetStencil(R, uv) > 0.5)
     {
     	bool KnowEmissionMap = KnowFeature(matid, MF_LIGHTING_EMISSION_MAP);
     	float3 emcol = GetFloat3(matid, MF_LIGHTING_EMISSION, MF_LIGHTING_EMISSION_COLOR);
@@ -34,7 +31,7 @@ float4 pEM(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 
     	if(KnowEmissionMap)
     	{
-			float2 scnuv = GetUV(uv, R);
+			float2 scnuv = GetUV(s0, uv);
 			float slice = GetFloat(matid, MF_LIGHTING_EMISSION_MAP, 0);
 			emcol *= Maps.SampleLevel(s0, float3(scnuv, slice), 0).rgb;
     	}

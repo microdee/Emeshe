@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddFakeSSS (MRE.Materials).v4p" systemname="AddFakeSSS (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddFakeSSS (MRE.Materials).v4p" scrollx="3810" scrolly="1005">
-   <BOUNDS type="Window" left="11955" top="8505" width="9000" height="6000">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddFakeSSS (MRE.Materials).v4p" systemname="AddFakeSSS (MRE.Materials)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddFakeSSS (MRE.Materials).v4p" scrollx="165" scrolly="0">
+   <BOUNDS type="Window" left="14955" top="7710" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
@@ -21,11 +21,13 @@
    </PIN>
    <PIN pinname="Feature Flag" visible="1">
    </PIN>
+   <PIN pinname="Remove" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="12" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="900" top="630" width="795" height="240">
+   <BOUNDS type="Box" left="450" top="630" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="900" top="630" width="0" height="0">
+   <BOUNDS type="Node" left="450" top="630" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -37,9 +39,9 @@
    <LINK srcnodeid="12" srcpinname="Output Node" dstnodeid="13" dstpinname="Material">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="11" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1980" top="540" width="480" height="480">
+   <BOUNDS type="Box" left="1530" top="540" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="1980" top="540" width="0" height="0">
+   <BOUNDS type="Node" left="1530" top="540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -145,7 +147,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4980" top="1425" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -358,10 +360,30 @@
    </LINK>
    <LINK srcnodeid="18" srcpinname="Output Enum" dstnodeid="23" dstpinname="Map Feature">
    </LINK>
-   <LINK srcnodeid="23" srcpinname="Rough Map Flag" dstnodeid="15" dstpinname="Y Input Value">
+   <LINK srcnodeid="23" srcpinname="Feature Flag" dstnodeid="15" dstpinname="Y Input Value">
    </LINK>
    <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Add">
    </LINK>
    <LINK srcnodeid="12" srcpinname="Output Node" dstnodeid="23" dstpinname="Material">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2085" top="540" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2085" top="540" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Remove">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Remove">
    </LINK>
    </PATCH>

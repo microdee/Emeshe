@@ -1,0 +1,30 @@
+
+#include "../../../mp.fxh/MRE.fxh"
+
+Texture2D InCol: PREVIOUS;
+Texture2D PreviousWorld;
+Texture2D ColorFeedBack;
+
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float DiffThreshold = 0;
+	float Smooth = 0;
+};
+
+float4 pMIX(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float4 c0=InCol.Sample(s0,x);
+	float4 c1=ColorFeedBack.Sample(s0,x);
+	float3 w0=GetWorldPos(s0,x);
+	float3 w1=PreviousWorld.Sample(s0,x).xyz;
+	
+	float diff = distance(w0, w1);
+	float lrp = Smooth;
+	if(diff > DiffThreshold) lrp = 1;
+	float3 col = lerp(c1.rgb,c0.rgb,lrp);
+    return float4(col,1);
+}
+
+
+technique10 Mix{pass P1{SetPixelShader(CompileShader(ps_4_0,pMIX()));}}

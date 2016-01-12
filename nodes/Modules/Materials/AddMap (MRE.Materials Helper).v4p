@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\AddMap (MRE.Materials Helper).v4p" systemname="AddMap (MRE.Materials Helper)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddMap (MRE.Materials Helper).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\nodes\modules\Materials\AddMap (MRE.Materials Helper).v4p" systemname="AddMap (MRE.Materials Helper)" filename="C:\vvvv\libs\Emeshe\nodes\Modules\AddMap (MRE.Materials Helper).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="18720" top="2010" width="9000" height="6000">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -39,11 +39,13 @@
    </PIN>
    <PIN pinname="Global Add" visible="1">
    </PIN>
+   <PIN pinname="Remove" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="8" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3450" top="2100" width="285" height="240">
+   <BOUNDS type="Box" left="3795" top="2190" width="285" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3450" top="2100" width="0" height="0">
+   <BOUNDS type="Node" left="3795" top="2190" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -111,7 +113,7 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Rough Map Flag|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Feature Flag|">
    </PIN>
    </NODE>
    <LINK srcnodeid="9" srcpinname="Feature Flag" dstnodeid="4" dstpinname="Y Input Value">
@@ -133,7 +135,7 @@
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="9" dstpinname="Add">
    </LINK>
    <NODE systemname="TogEdge (Animation)" nodename="TogEdge (Animation)" componentmode="Hidden" id="2">
-   <BOUNDS type="Node" left="4170" top="2220" width="100" height="100">
+   <BOUNDS type="Node" left="2700" top="2175" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -145,38 +147,6 @@
    <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="2" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="2" srcpinname="Up Edge" dstnodeid="3" dstpinname="Input 2">
-   </LINK>
-   <NODE systemname="Remove (VObjectCollection)" filename="..\..\..\VObjects\nodes\plugins\x64\VVVV.Nodes.VObjects.dll" nodename="Remove (VObjectCollection)" componentmode="Hidden" id="1">
-   <BOUNDS type="Node" left="2415" top="4605" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Remove" visible="1">
-   </PIN>
-   <PIN pinname="Name" visible="1">
-   </PIN>
-   <PIN pinname="Remove Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Parent" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Match Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Name Bin Size" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Match" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="2" srcpinname="Down Edge" dstnodeid="1" dstpinname="Remove">
-   </LINK>
-   <NODE systemname="FormatValue (String)" filename="" nodename="FormatValue (String)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="3240" top="4155" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="9" srcpinname="Feature Flag" dstnodeid="0" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="1" dstpinname="Name">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="11" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="420" top="945" width="795" height="240">
@@ -191,8 +161,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="11" srcpinname="Output Node" dstnodeid="9" dstpinname="Material">
-   </LINK>
-   <LINK srcnodeid="11" srcpinname="Output Node" dstnodeid="1" dstpinname="Parent">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="1440" top="900" width="480" height="480">
@@ -215,5 +183,17 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="12" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Down Edge" dstnodeid="9" dstpinname="Remove">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="13" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1740" top="4650" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1740" top="4650" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Material Thru|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Material Thru" dstnodeid="13" dstpinname="Input Node">
    </LINK>
    </PATCH>

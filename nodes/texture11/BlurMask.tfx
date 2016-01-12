@@ -1,0 +1,40 @@
+#if !defined(MRE_FXH)
+#include "../../../mp.fxh/MRE.fxh"
+#endif
+
+Texture2D<float> svpos;
+float2 R:TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float Focus = 0;
+	float width;
+	float2 AFpoint;
+	float MFtoAF;
+	float maxdist = 20;
+	float refdist = 10;
+	float2 ForeBackGroundRat = 1;
+	bool foreground = false;
+};
+SamplerState s0:IMMUTABLE <string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
+float4 pADD(float4 PosWVP: SV_POSITION,float2 x: TEXCOORD0):SV_Target
+{
+	float autofocus = svpos.Sample(s0,AFpoint/2+0.5);
+	float focus = lerp(Focus,autofocus,MFtoAF);
+	float depth = min(GetViewPos(s0,x).z, maxdist);
+	float focdistmod = focus/refdist-0.1;
+	float bckgmul = lerp(100/focus,1,saturate(focdistmod));
+	float frgmul = lerp(1,4,pow(focdistmod,0.5));
+	float cwidth = lerp(width*0.01, width, focdistmod);
+	float bckg = max(depth-focus-cwidth/2,0)*bckgmul;
+	float frg = -min(depth-focus+cwidth*frgmul*0.5,0);
+	if(foreground) return float4(frg.xxx * ForeBackGroundRat.x,1);
+	else return float4(pows(bckg.xxx * ForeBackGroundRat.y, 0.5),1);
+}
+
+technique10 Scalar{
+	pass P1 <string format="R16_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pADD()));}
+}
+
+
+

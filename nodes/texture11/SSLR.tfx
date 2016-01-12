@@ -1,24 +1,26 @@
 
-#include "ColorSpace.fxh"
+#include "../../../mp.fxh/MRE.fxh"
+#include "../../../mp.fxh/Materials.fxh"
 
-Texture2D ViewMap;
-Texture2D<float> Depth;
-Texture2D Normal;
 Texture2D ColorTex : PREVIOUS;
 
-float4x4 tP;
-float4x4 tV;
-float zFar = 100.0;
-float2 UvScale = 1;   
-float zNear = 0.1;
-float StepSize = 0.02;
-float Threshold = 0.001;
-float StepsCount = 35;    // Quality. With too match value may 
-                        // be problem on non-nvidia cards
-                                
-float fade = 1.1;       // Fade out reflection
-
 float2 R : TARGETSIZE;
+
+cbuffer controls:register(b0){
+	float StepCount = 16;
+	float FineStepCount = 16;
+	float rayLength = 10;
+	float EpsilonMul = 1;
+	float uvshapepow = 4;
+	float uvfadepow = 4;
+	float distpow = 1;
+	float distclamp = 0;
+};
+
+#if !defined(DISCRAYS)
+    #define DISCRAYS 6
+#endif
+
 
 SamplerState s0 <string uiname="Sampler";>
 {
@@ -28,68 +30,97 @@ SamplerState s0 <string uiname="Sampler";>
 	BorderColor=float4(0,0,0,0);
 };
 
-float Join(float a, float b)
+float2 GetUV (float3 p)
 {
-	uint ab = f32tof16(a);
-	uint bb = f32tof16(b);
-	bb = bb << 16;
-	uint ret = ab | bb;
-	return asfloat(ret);
+	float4 trpos = mul(float4(p, 1), CamProj);
+	float2 uv = trpos.xy / trpos.w;
+	uv.y *= -1;
+	return (uv+1) * 0.5;
 }
-float2 Split(float a)
+
+struct RayData
 {
-	uint2 ret = 0;
-	ret.x = f16tof32(asuint(a));
-	ret.y = f16tof32(asuint(a) >> 16);
-	return asfloat(ret);
-}
-float3 GetUV (float3 position)
+	float3 vpos;
+	float2 uv;
+	float dist;
+};
+
+RayData RayCast(float3 OPos, float3 Dir, float RayL, float EpsMul)
 {
-     float4 pvp = mul(float4(position, 1.0), tP) ; 
-     //pvp .xy = float2 ( 0.5, 0.5) + float2 ( 0.5, - 0.5) * pvp.xy / pvp.w ; 
-     pvp .xy = float2 ( 0.5, 0.5) + float2 ( 0.25, -0.25) * (pvp.xy/pvp.w) * UvScale; 
-     return float3 ( pvp.xy , pvp.z / pvp.w ) ; 
-}
-float4 RayCast(float3 StartPos, float3 Direction)
-{
-	float3 raypos = 0;
-	float2 nuv = -1;
-	float sL = zFar/StepsCount;
-	float L = 0;
-	bool Found = false;
-	float4 outcol = 0;
+	float cStepL = RayL/StepCount;
+	float3 raypos = OPos;
+	bool hit = false;
+	float4 col = 0;
 	
-	for(float i = 0; i < StepsCount; i++)
+	RayData o = (RayData)0;
+	
+	for(float i=0; i<StepCount; i++)
 	{
-		L += sL;
-		raypos = StartPos + Direction * L;
-		float2 uv = GetUV(raypos).xy;
-		float3 vPos = ViewMap.SampleLevel(s0,uv,0).xyz;
-		float vDepth = Depth.SampleLevel(s0,uv,0);
-		float d = raypos.z - vPos.z;
-		//float d = distance(raypos, vPos.z);
-		if(d <= 0)
+		raypos += Dir * cStepL;
+		float2 cuv = GetUV(raypos);
+		float3 cnorm = Normals.SampleLevel(s0, cuv, 0).xyz;
+		float3 cpos = GetViewPos(s0, cuv);
+		if(dot(cnorm, Dir) < 0)
 		{
-			nuv = float2(uv.x,uv.y);
-			break;
+			float cdist = distance(cpos, raypos);
+			if(cdist < cStepL)
+			{
+				raypos -= Dir * cStepL * 0.5;
+				float fStepL = cStepL / FineStepCount;
+				for(float i=0; i<StepCount; i++)
+				{
+					raypos += Dir * fStepL;
+					float2 fuv = GetUV(raypos);
+					float3 fnorm = Normals.SampleLevel(s0, fuv, 0).xyz;
+					float3 fpos = GetViewPos(s0, fuv);
+					if(dot(fnorm, Dir) < 0)
+					{
+						float fdist = distance(fpos, raypos);
+						if(fdist < fStepL * EpsMul)
+						{
+							hit = true;
+							o.vpos = raypos;
+							o.uv = fuv;
+							o.dist = distance(OPos, raypos);
+							
+							break;
+						}
+					}
+				}
+			}
+			if(hit) break;
 		}
 	}
-	float3 cnuv = ColorTex.SampleLevel(s0,nuv,0).rgb;
-	return float4(cnuv, L);
+	return o;
 }
 
 float4 SSLR(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
-    float3 N = normalize(Normal.SampleLevel(s0, uv, 0).xyz);
-    float3 P = ViewMap.SampleLevel(s0, uv, 0).xyz;
-    float3 V = normalize(P);
-    float3 R = normalize(reflect(V, N));
-    float4 ocolor = RayCast(P, R);
-	ocolor.a = 1;
-    return ocolor;
+	//float stencil = GetStencil(R, uv);
+	//uint matid = GetMatID(s0, uv);
+	float4 col = float4(0,0,0,1);
+
+	float3 vPos = GetViewPos(s0, uv);
+	float3 onorm = Normals.Sample(s0,uv).xyz;
+	float3 rrV = normalize(vPos);
+	float3 R = reflect(rrV, onorm);
+
+    RayData oray = RayCast(vPos, R, rayLength, EpsilonMul);
+	
+	float uvd = pow(pow(abs(oray.uv.x-.5), uvshapepow) + pow(abs(oray.uv.y-.5), uvshapepow), 1/uvshapepow);
+	float fadeuv = saturate(1 - pow(uvd*2,uvfadepow));
+	float fadedist = 1 - oray.dist/rayLength;
+	
+	float distout = pow(lerp(saturate((oray.dist-distclamp)/rayLength),1,oray.dist==0), distpow) * rayLength;
+	
+	float4 colout = ColorTex.SampleLevel(s0, oray.uv, 0);
+	colout.rgb *= fadeuv * fadedist;
+	colout.a = distout;
+	
+    return colout;
 }
 
 technique11 sslr{
-    pass P0
+    pass P1
     {SetPixelShader(CompileShader(ps_5_0,SSLR()));}
 }

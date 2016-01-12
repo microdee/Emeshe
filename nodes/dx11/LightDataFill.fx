@@ -1,6 +1,6 @@
 
 #if !defined(LIGHTSTRUCTS_FXH)
-#include "../fxh/LightStructs.fxh"
+#include "../../../mp.fxh/LightStructs.fxh"
 #endif
 
 #define POINT 0

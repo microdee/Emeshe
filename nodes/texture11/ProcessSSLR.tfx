@@ -1,0 +1,97 @@
+
+#include "../../../mp.fxh/MRE.fxh"
+#include "../../../mp.fxh/Materials.fxh"
+
+Texture2D<float> texPREV : PREVIOUS;
+
+Texture2DArray ReflectionMaps;
+
+float2 R:TARGETSIZE;
+
+SamplerState g_samLinear <string uiname="Sampler";>
+{
+	Filter = MIN_MAG_MIP_LINEAR;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+SamplerState g_samPoint : IMMUTABLE
+{
+	Filter = MIN_MAG_MIP_POINT;
+	AddressU = Clamp;
+	AddressV = Clamp;
+};
+
+cbuffer controls:register(b0){
+	float RadiusMul = 1;
+	float RadiusMax = 1;
+	float Limit=2;
+};
+
+#define bld(op,c0,c1) float4(lerp((c0*c0.a+c1*c1.a*(1-c0.a))/saturate(c0.a+c1.a*(1-c0.a)),(op),c0.a*c1.a).rgb,saturate(c0.a+c1.a*(1-c0.a)))
+
+float pGETDIST(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
+	return texPREV.SampleLevel(g_samLinear,x,0);
+}
+
+float2 uvoff[9] : IMMUTABLE = 
+{
+	{0,0}, {1,1}, {1,-1}, {-1,-1}, {-1,1},
+	{0,1}, {0,-1}, {-1,0}, {1,0}
+};
+float offmul : IMMUTABLE = 1.86;
+
+float pBLURDIST(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET
+{
+	float stencil = GetStencil(R, x);
+	uint matid = GetMatID(g_samPoint, x);
+
+	bool KnowReflect = KnowFeature(matid, MF_REFLECTION_SSLR);
+	float c=0;
+
+	if((stencil > 0) && KnowReflect)
+	{
+		
+		float rayLength = GetFloat(matid, MF_REFLECTION_SSLR, MF_REFLECTION_SSLR_DISTANCE);
+		float distblur = GetFloat(matid, MF_REFLECTION_SSLR, MF_REFLECTION_SSLR_BLUR);
+		float roughness = 1;
+		
+		bool KnowRlMap = KnowFeature(matid, MF_REFLECTION_MAP);
+		
+		if(KnowRlMap)
+		{
+			float2 SceneUV = GetUV(g_samLinear, x);
+			float roughmapslice = GetFloat(matid, MF_REFLECTION_MAP, MF_REFLECTION_MAP_ROUGHNESSMAPID);
+			float4 map = ReflectionMaps.SampleLevel(g_samLinear, float3(SceneUV, roughmapslice), 0);
+			roughness = map.a;
+		}
+		
+		float Radius = distblur * roughness * RadiusMul * 10;
+		
+		
+		float map=saturate(texPREV.SampleLevel(g_samPoint,x,0).r * rayLength);
+		float lod=map*(Radius)*log2(max(R.x,R.y));
+		float2 off=.5/R*pow(2,lod)*saturate(lod);
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(0,0)*off,lod).r;
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(1,1)*off,lod).r;
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(1,-1)*off,lod).r;
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(-1,-1)*off,lod).r;
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(-1,1)*off,lod).r;
+		off*=1.86;
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(0,1)*off,lod).r;
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(0,-1)*off,lod).r;
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(-1,0)*off,lod).r;
+		c+=texPREV.SampleLevel(g_samLinear,x+float2(1,0)*off,lod).r;
+		c/=9;
+		c *= rayLength * distblur * roughness * RadiusMul;
+	}
+	
+	//c.rgb=normalize(c.rgb);
+	return c;
+}
+
+technique10 SSLR_Map{
+	pass P0 <bool mips=true; string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pGETDIST()));}
+	pass P1 <string format="R32_Float";>
+	{SetPixelShader(CompileShader(ps_4_0,pBLURDIST()));}
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta33.7.dtd" >
-   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\Compositing.v4p" systemname="Compositing" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\Compositing.v4p" scrollx="600" scrolly="5175">
+   <PATCH nodename="C:\vvvv\libs\Emeshe\girlpower\ProjectTemplate\Compositing.v4p" systemname="Compositing" filename="C:\vvvv\libs\Emeshe\girlpower\Workshop\Compositing.v4p" scrollx="0" scrolly="1440">
    <BOUNDS type="Window" left="18090" top="1935" width="9000" height="10350">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
@@ -7,11 +7,11 @@
    <PACK Name="addonpack" Version="33.7.0">
    </PACK>
    <NODE systemname="LightRender" filename="LightRender.v4p" componentmode="Hidden" id="0" nodename="LightRender.v4p">
-   <BOUNDS type="Node" left="4230" top="1980" width="100" height="100">
+   <BOUNDS type="Node" left="3795" top="1770" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="4230" top="1980" width="4800" height="3600">
+   <BOUNDS type="Box" left="3795" top="1770" width="4800" height="3600">
    </BOUNDS>
-   <BOUNDS type="Window" left="16530" top="4800" width="11505" height="9315">
+   <BOUNDS type="Window" left="7005" top="2295" width="11505" height="9315">
    </BOUNDS>
    <PIN pinname="Light Out" visible="1">
    </PIN>
@@ -113,27 +113,11 @@
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
-   </NODE>
-   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="8">
-   <BOUNDS type="Node" left="3090" top="3825" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="GBuffer">
+   <PIN pinname="Custom Semantics" visible="1">
    </PIN>
-   <PIN pinname="Input Value" visible="1">
+   <PIN pinname="Resource Semantics" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="8" srcpinname="Input Value" dstnodeid="7" dstpinname="GBuffer">
-   </LINK>
-   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="9">
-   <BOUNDS type="Node" left="4155" top="3720" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="Camera">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="9" srcpinname="Input Value" dstnodeid="7" dstpinname="Camera">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5625" top="3660" width="795" height="240">
    </BOUNDS>
@@ -152,30 +136,8 @@
    </NODE>
    <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="7" dstpinname="LOD">
    </LINK>
-   <NODE systemname="SSLAO (DX11.TextureFX)" filename="..\..\nodes\texture11\SSLAO.tfx" nodename="SSLAO (DX11.TextureFX)" componentmode="Hidden" id="11">
-   <BOUNDS type="Node" left="2835" top="5700" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="FOV" visible="1">
-   </PIN>
-   <PIN pinname="Texture Out" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Bias" slicecount="1" values="0.05">
-   </PIN>
-   <PIN pinname="Intensity" slicecount="1" values="2">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="7" srcpinname="Texture Out" dstnodeid="11" dstpinname="Texture In">
-   </LINK>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="17">
-   <BOUNDS type="Node" left="4080" top="4995" width="100" height="100">
+   <BOUNDS type="Node" left="3270" top="5085" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="CustomSemantics">
    </PIN>
@@ -183,17 +145,13 @@
    </PIN>
    </NODE>
    <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="16">
-   <BOUNDS type="Node" left="4275" top="5280" width="100" height="100">
+   <BOUNDS type="Node" left="3465" top="5370" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Receive String" slicecount="1" values="Resources">
    </PIN>
    <PIN pinname="Input Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="17" srcpinname="Input Value" dstnodeid="11" dstpinname="Custom Semantics">
-   </LINK>
-   <LINK srcnodeid="16" srcpinname="Input Value" dstnodeid="11" dstpinname="Resource Semantics">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="18" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="6465" top="3990" width="795" height="240">
    </BOUNDS>
@@ -206,8 +164,6 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    </NODE>
-   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="11" dstpinname="FOV">
-   </LINK>
    <LINK srcnodeid="1" srcpinname="Texture Out" dstnodeid="7" dstpinname="Texture In">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
@@ -265,7 +221,7 @@
    </PIN>
    <PIN pinname="Camera" visible="1">
    </PIN>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
@@ -273,6 +229,8 @@
    </PIN>
    <PIN pinname="GBuffer" visible="1">
    </PIN>
+   <BOUNDS type="Window" left="5670" top="3435" width="12255" height="9270">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Environments" dstnodeid="22" dstpinname="Spheremap">
    </LINK>
@@ -287,7 +245,7 @@
    <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="24">
    <BOUNDS type="Node" left="2280" top="6510" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input Node" visible="1" slicecount="7" values=",,,,,,">
+   <PIN pinname="Input Node" visible="1" slicecount="5" values=",,,,">
    </PIN>
    <PIN pinname="Index" slicecount="1" values="5">
    </PIN>
@@ -307,8 +265,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="25" srcpinname="Input Value" dstnodeid="22" dstpinname="Camera">
-   </LINK>
-   <LINK srcnodeid="11" srcpinname="Texture Out" dstnodeid="22" dstpinname="Texture In">
    </LINK>
    <NODE systemname="ToneMapping (DX11 MRE)" filename="..\..\nodes\modules\ToneMapping (DX11 MRE).v4p" nodename="ToneMapping (DX11 MRE)" componentmode="Hidden" id="27">
    <BOUNDS type="Node" left="2370" top="9735" width="100" height="100">
@@ -464,54 +420,16 @@
    </LINK>
    <LINK srcnodeid="34" srcpinname="Resource Semantics" dstnodeid="33" dstpinname="Resource Semantics">
    </LINK>
-   <NODE systemname="DOF (DX11 MRE)" filename="..\..\nodes\modules\DOF (DX11 MRE).v4p" nodename="DOF (DX11 MRE)" componentmode="Hidden" id="41">
-   <BOUNDS type="Node" left="2355" top="10770" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
-   </PIN>
-   <PIN pinname="GBuffer" visible="1">
-   </PIN>
-   <PIN pinname="Texture Out" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="1">
-   </PIN>
-   <BOUNDS type="Window" left="16605" top="3750" width="16230" height="11175">
-   </BOUNDS>
-   <PIN pinname="MFtoAF" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="focus" slicecount="1" values="16.72">
-   </PIN>
-   <PIN pinname="width" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="AFpointXY" visible="1" slicecount="2" values="0,0">
-   </PIN>
-   <PIN pinname="Filter Time" slicecount="1" values="0.8">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="27" srcpinname="Texture Out" dstnodeid="41" dstpinname="Texture In">
-   </LINK>
-   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="42">
-   <BOUNDS type="Node" left="2505" top="10290" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Receive String" slicecount="1" values="GBuffer">
-   </PIN>
-   <PIN pinname="Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="42" srcpinname="Input Value" dstnodeid="41" dstpinname="GBuffer">
-   </LINK>
    <NODE systemname="Glare (DX11 MRE)" filename="..\..\nodes\modules\Glare (DX11 MRE).v4p" nodename="Glare (DX11 MRE)" componentmode="Hidden" id="44">
    <BOUNDS type="Node" left="2355" top="11685" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
    <PIN pinname="Control" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="41" srcpinname="Texture Out" dstnodeid="44" dstpinname="Texture In">
-   </LINK>
    <LINK srcnodeid="44" srcpinname="Texture Out" dstnodeid="32" dstpinname="Texture In">
    </LINK>
    <NODE systemname="FileTexture (DX11 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="FileTexture (DX11 2d)" componentmode="Hidden" id="45">
@@ -578,8 +496,6 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    </NODE>
-   <LINK srcnodeid="49" srcpinname="Y Output Value" dstnodeid="41" dstpinname="width">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="50" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5625" top="9015" width="795" height="240">
    </BOUNDS>
@@ -593,5 +509,87 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="27" dstpinname="Blur Luminance">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="52">
+   <BOUNDS type="Node" left="3135" top="3705" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="CustomSemantics">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="51">
+   <BOUNDS type="Node" left="3330" top="3990" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Resources">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="Input Value" dstnodeid="7" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="51" srcpinname="Input Value" dstnodeid="7" dstpinname="Resource Semantics">
+   </LINK>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="54">
+   <BOUNDS type="Node" left="2790" top="10170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="CustomSemantics">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="R (Node)" nodename="R (Node)" componentmode="Hidden" id="53">
+   <BOUNDS type="Node" left="2985" top="10455" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Receive String" slicecount="1" values="Resources">
+   </PIN>
+   <PIN pinname="Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="DOF (DX11 MRE)" filename="..\..\nodes\modules\DOF (DX11 MRE).v4p" nodename="DOF (DX11 MRE)" componentmode="Hidden" id="55">
+   <BOUNDS type="Node" left="2355" top="10770" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="16605" top="3750" width="16230" height="11175">
+   </BOUNDS>
+   <PIN pinname="Enabled" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="Texture Out" dstnodeid="55" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Texture Out" dstnodeid="44" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Y Output Value" dstnodeid="55" dstpinname="width">
+   </LINK>
+   <LINK srcnodeid="54" srcpinname="Input Value" dstnodeid="55" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="53" srcpinname="Input Value" dstnodeid="55" dstpinname="Resource Semantics">
+   </LINK>
+   <NODE systemname="SSLAO (DX11 MRE)" filename="..\..\nodes\modules\Lights\GPU\SSLAO (DX11 MRE).v4p" nodename="SSLAO (DX11 MRE)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="2850" top="5700" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Resource Semantics" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="FOV" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Bias" slicecount="1" values="0.05">
+   </PIN>
+   <PIN pinname="Intensity" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Texture Out" dstnodeid="11" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="17" srcpinname="Input Value" dstnodeid="11" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Input Value" dstnodeid="11" dstpinname="Resource Semantics">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Texture Out" dstnodeid="22" dstpinname="Texture In">
    </LINK>
    </PATCH>

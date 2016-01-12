@@ -31,36 +31,6 @@
     <Offset>3</Offset>
   </Features>
   <Features>
-    <Feature>Lighting_Phong</Feature>
-    <Parameter>SpecularColor</Parameter>
-    <Size>3</Size>
-    <Offset>0</Offset>
-  </Features>
-  <Features>
-    <Feature>Lighting_Phong</Feature>
-    <Parameter>SpecularPower</Parameter>
-    <Size>1</Size>
-    <Offset>3</Offset>
-  </Features>
-  <Features>
-    <Feature>Lighting_Phong</Feature>
-    <Parameter>SpecularStrength</Parameter>
-    <Size>1</Size>
-    <Offset>4</Offset>
-  </Features>
-  <Features>
-    <Feature>Lighting_Phong</Feature>
-    <Parameter>Attenuation</Parameter>
-    <Size>3</Size>
-    <Offset>5</Offset>
-  </Features>
-  <Features>
-    <Feature>Lighting_Phong_SpecularMap</Feature>
-    <Parameter>MapID</Parameter>
-    <Size>1</Size>
-    <Offset>0</Offset>
-  </Features>
-  <Features>
     <Feature>Lighting_CookTorrance</Feature>
     <Parameter>SpecularColor</Parameter>
     <Size>3</Size>
@@ -92,51 +62,33 @@
   </Features>
   <Features>
     <Feature>Lighting_Composite</Feature>
-    <Parameter>Ambient</Parameter>
+    <Parameter>Diffuse</Parameter>
     <Size>1</Size>
     <Offset>0</Offset>
   </Features>
   <Features>
     <Feature>Lighting_Composite</Feature>
-    <Parameter>Diffuse</Parameter>
+    <Parameter>Specular</Parameter>
     <Size>1</Size>
     <Offset>1</Offset>
   </Features>
   <Features>
     <Feature>Lighting_Composite</Feature>
-    <Parameter>Specular</Parameter>
+    <Parameter>SpecMul</Parameter>
     <Size>1</Size>
     <Offset>2</Offset>
   </Features>
   <Features>
     <Feature>Lighting_Composite</Feature>
-    <Parameter>SpecMul</Parameter>
+    <Parameter>SSS</Parameter>
     <Size>1</Size>
     <Offset>3</Offset>
   </Features>
   <Features>
     <Feature>Lighting_Composite</Feature>
-    <Parameter>SSS</Parameter>
-    <Size>1</Size>
-    <Offset>4</Offset>
-  </Features>
-  <Features>
-    <Feature>Lighting_Composite</Feature>
     <Parameter>SSSMul</Parameter>
     <Size>1</Size>
-    <Offset>5</Offset>
-  </Features>
-  <Features>
-    <Feature>Lighting_Composite</Feature>
-    <Parameter>Rim</Parameter>
-    <Size>1</Size>
-    <Offset>6</Offset>
-  </Features>
-  <Features>
-    <Feature>Lighting_Composite</Feature>
-    <Parameter>RimMul</Parameter>
-    <Size>1</Size>
-    <Offset>7</Offset>
+    <Offset>4</Offset>
   </Features>
   <Features>
     <Feature>Lighting_Composite_Map</Feature>
@@ -191,6 +143,12 @@
     <Parameter>Power</Parameter>
     <Size>1</Size>
     <Offset>1</Offset>
+  </Features>
+  <Features>
+    <Feature>Lighting_FakeRimLight</Feature>
+    <Parameter>Width</Parameter>
+    <Size>1</Size>
+    <Offset>2</Offset>
   </Features>
   <Features>
     <Feature>Lighting_FakeRimLight_Map</Feature>
@@ -327,32 +285,50 @@
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Fresnel</Parameter>
-    <Size>1</Size>
+    <Size>2</Size>
     <Offset>1</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>FresnelPower</Parameter>
-    <Size>1</Size>
-    <Offset>2</Offset>
+    <Size>2</Size>
+    <Offset>3</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Blur</Parameter>
     <Size>1</Size>
-    <Offset>3</Offset>
+    <Offset>5</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Distance</Parameter>
     <Size>1</Size>
-    <Offset>4</Offset>
+    <Offset>6</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SSLR</Feature>
+    <Parameter>DistanceFadePow</Parameter>
+    <Size>1</Size>
+    <Offset>7</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SSLR</Feature>
+    <Parameter>DistanceBlurPow</Parameter>
+    <Size>1</Size>
+    <Offset>8</Offset>
+  </Features>
+  <Features>
+    <Feature>Reflection_SSLR</Feature>
+    <Parameter>DistanceBlurThreshold</Parameter>
+    <Size>1</Size>
+    <Offset>9</Offset>
   </Features>
   <Features>
     <Feature>Reflection_SSLR</Feature>
     <Parameter>Multiply</Parameter>
     <Size>1</Size>
-    <Offset>5</Offset>
+    <Offset>10</Offset>
   </Features>
   <Features>
     <Feature>Reflection_Map</Feature>
