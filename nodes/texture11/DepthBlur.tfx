@@ -1,16 +1,16 @@
+
+#include "../../../mp.fxh/depthreconstruct.fxh"
+
 Texture2D texCOL : PREVIOUS;
-Texture2D texPOSW <string uiname="Position";>;
-Texture2D texNORW <string uiname="Normal";>;
-Texture2D texD <string uiname="Depth";>;
+Texture2D<float> texMap;
+Texture2D<float> texD;
 
 
 //TextureCube texENVI <string uiname="Cubemap";>;
-SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
-SamplerState s1:IMMUTABLE {Filter=MIN_MAG_MIP_POINT;AddressU=MIRROR;AddressV=MIRROR;};
 
 float2 R:TARGETSIZE;
 
-SamplerState g_samLinear : IMMUTABLE
+SamplerState g_samLinear <string uiname="Sampler";>
 {
 	Filter = MIN_MAG_MIP_LINEAR;
 	AddressU = Clamp;
@@ -24,9 +24,10 @@ SamplerState g_samPoint : IMMUTABLE
 };
 
 cbuffer controls:register(b0){
+	float4x4 tP;
+	float4x4 tPI;
 	float Seed=0;
-	
-	float Radius=3.5;
+	float Radius=0.5;
 	//float Amount=.5;
 	float Limit=2;
 	float Range=1;
@@ -40,13 +41,32 @@ float rand(float2 co)
 #define bld(op,c0,c1) float4(lerp((c0*c0.a+c1*c1.a*(1-c0.a))/saturate(c0.a+c1.a*(1-c0.a)),(op),c0.a*c1.a).rgb,saturate(c0.a+c1.a*(1-c0.a)))
 
 float4 pMIPS(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_Target{
-	return texCOL.SampleLevel(s0,x,0);
+	return texCOL.SampleLevel(g_samLinear,x,0);
+}
+float3 GetViewPos(SamplerState SS, float2 uv)
+{
+	float d = texD.SampleLevel(SS, uv, 0);
+	return UVZtoVIEW(uv, d, tP, tPI);
+}
+float3 getFaceNormal(SamplerState s0, float3 position , float2 uv)
+{	
+	// Get the face normal by using position buffer derivatives
+	// dFdx/dFdy may also be used
+	float2 pixelStep = 1.0 / ( R.x * R.xy );
+	
+	float3 n1 = cross( ( GetViewPos(s0, uv - pixelStep * float2( 1, 0 ) ) - position ), 
+					 ( GetViewPos(s0, uv - pixelStep * float2( 0, 1 ) ) - position ) );
+						  
+	float3 n2 = cross( ( GetViewPos(s0, uv + pixelStep * float2( 1, 0 ) ) - position ), 
+					 ( GetViewPos(s0, uv + pixelStep * float2( 0, 1 ) ) - position ) );
+	  
+	return normalize( n1 + n2 );
 }
 float4 pUNC(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
-	float4 p=texPOSW.SampleLevel(g_samPoint,x,0);
-	float3 n=texNORW.SampleLevel(g_samPoint,x,0).xyz;
+	float z = texD.SampleLevel(g_samPoint, x, 0);
+	float3 p=UVZtoVIEW(x, z, tP, tPI);
+	float3 n=getFaceNormal(g_samPoint,p,x);
 	int itr=Iterations;
-	float z=texD.SampleLevel(g_samLinear,x,0).x;
 	float sum=.2;
 	float4 c=texCOL.SampleLevel(g_samLinear,x,0)*sum;
 	for(int i=0;i<itr&&i<128;i++){
@@ -57,8 +77,8 @@ float4 pUNC(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
 		off/=R/min(R.x,R.y);
 		off=off*Radius*.02/z+float2(rand(off),rand(off+0.0425))*Range*Radius;
 		off*=pow(2,(float(i)/itr-.5)*Range);
-		float4 np=texPOSW.SampleLevel(g_samPoint,x+off,0);
-		float4 nn=texNORW.SampleLevel(g_samPoint,x+off,0);
+		float3 np=GetViewPos(g_samPoint,x+off);
+		float3 nn=getFaceNormal(g_samPoint, np, x+off);
 		float4 nc=texCOL.SampleLevel(g_samLinear,x+off,3);
 		float3 V=np.xyz-p.xyz;
 		float d=length(V)+length(n-nn.xyz);
@@ -81,24 +101,25 @@ float2 uvoff[9] : IMMUTABLE =
 float offmul : IMMUTABLE = 1.86;
 
 float4 pFB_P1(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
-	float4 p=texPOSW.SampleLevel(g_samPoint,x,0);
-	float3 n=texNORW.SampleLevel(g_samPoint,x,0).xyz;
+	float z = texD.SampleLevel(g_samPoint, x, 0);
+	float3 p=UVZtoVIEW(x, z, tP, tPI);
+	float3 n=getFaceNormal(g_samPoint,p,x);
 	int itr=Iterations;
-	float z=texD.SampleLevel(g_samLinear,x,0).x;
 	float sum=.2;
 	float lod=log2(max(R.x,R.y));
-	lod=Radius*log2(max(R.x,R.y));
+	float map = texMap.SampleLevel(g_samLinear,x,0);
+	lod=Radius*log2(max(R.x,R.y)) * map;
 	float4 c=0;
 	float2 off=.5/R*pow(2,lod)*saturate(lod);
 	lod-=2;
 	for(int i=0;i<9;i++){
 		if(i==4) off *= offmul;
-		float4 np=texPOSW.SampleLevel(g_samPoint,x+uvoff[i]*off,0);
-		float4 nn=texNORW.SampleLevel(g_samPoint,x+uvoff[i]*off,0);
-		float4 nc=texCOL.SampleLevel(g_samLinear,x+uvoff[i]*off,lod);
+		float3 np=GetViewPos(g_samPoint, x+uvoff[i]*off);
+		float3 nn=getFaceNormal(g_samPoint, np, x+uvoff[i]*off);
 		float3 V=np.xyz-p.xyz;
-		float d=length(V)+length(n-nn.xyz);
+		float d=length(V)+distance(n,nn);
 		float k=sqrt(smoothstep(Limit,0,d));
+		float4 nc=texCOL.SampleLevel(g_samLinear,x+uvoff[i]*off,lod*k);
 		c+=nc*k;
 		sum+=k;
 
@@ -110,23 +131,24 @@ float4 pFB_P1(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
 }
 
 float4 pFB_P2(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
-	float4 p=texPOSW.SampleLevel(g_samPoint,x,0);
-	float3 n=texNORW.SampleLevel(g_samPoint,x,0).xyz;
+	float z = texD.SampleLevel(g_samPoint, x, 0);
+	float3 p=UVZtoVIEW(x, z, tP, tPI);
+	float3 n=getFaceNormal(g_samPoint,p,x);
 	int itr=Iterations;
-	float z=texD.SampleLevel(g_samLinear,x,0).x;
 	float sum=.2;
 	float lod=log2(max(R.x,R.y));
-	lod=Radius*log2(max(R.x,R.y));
+	float map = texMap.SampleLevel(g_samLinear,x,0);
+	lod=Radius*log2(max(R.x,R.y)) * map;
 	float4 c=0;
 	float2 off=.5/R*pow(2,lod)*saturate(lod);
 	for(int i=0;i<9;i++){
 		if(i==4) off *= offmul;
-		float4 np=texPOSW.SampleLevel(g_samPoint,x+uvoff[i]*off,0);
-		float4 nn=texNORW.SampleLevel(g_samPoint,x+uvoff[i]*off,0);
-		float4 nc=texCOL.SampleLevel(g_samLinear,x+uvoff[i]*off,lod);
+		float3 np=GetViewPos(g_samPoint, x+uvoff[i]*off);
+		float3 nn=getFaceNormal(g_samPoint, np, x+uvoff[i]*off);
 		float3 V=np.xyz-p.xyz;
-		float d=length(V)+length(n-nn.xyz);
+		float d=length(V)+distance(n,nn);
 		float k=sqrt(smoothstep(Limit,0,d));
+		float4 nc=texCOL.SampleLevel(g_samLinear,x+uvoff[i]*off,lod*(k<1));
 		c+=nc*k;
 		sum+=k;
 

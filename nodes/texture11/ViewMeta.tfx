@@ -3,14 +3,21 @@
 Texture2D tex0: PREVIOUS;
 
 SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_LINEAR;AddressU=CLAMP;AddressV=CLAMP;};
-float2 R:TARGETSIZE;
-float IDScale = 0.1;
+cbuffer cbuf
+{
+	float2 R:TARGETSIZE;
+	float IDScale = 0.1;
+	float velScale = 10;
+};
 
 float4 pUV(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
     return float4(GetUV(s0, x), 0, 1);
 }
 float4 pVel(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
-    return float4(Velocity.SampleLevel(s0, x, 0).rg, 0, 1);
+	float3 c = float3(Velocity.SampleLevel(s0, x, 0).rg, 0.5) -0.5;
+	c *= velScale;
+	c += 0.5;
+    return float4(c * saturate(GetStencil(R, x)), 1);
 }
 float4 pMatID(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
     return float4(HUEtoRGB(GetMatID(s0, x) * IDScale), 1);

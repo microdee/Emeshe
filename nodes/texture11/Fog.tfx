@@ -10,14 +10,18 @@ SamplerState s0 <bool visible=false;string uiname="Sampler";>
 	AddressV=WRAP;
 	//MipLODBias = -1;
 };
-
-float2 R : TARGETSIZE;
-float4x4 ZFogTransform;
-float4x4 YFogTransform;
-float4 ZFogColor <bool color=true;> = float4(0,0,0,1);
-float4 YFogColor <bool color=true;> = 1;
-float YPow = 0.5;
-float ZPow = 0.5;
+cbuffer cbuf
+{
+	float4x4 ZFogTransform;
+	float4x4 YFogTransform;
+	float4 ZFogColor <bool color=true;> = float4(0,0,0,1);
+	float4 YFogColor <bool color=true;> = 1;
+	float2 R : TARGETSIZE;
+	float YPow = 0.5;
+	float ZPow = 0.5;
+	float YAmount = 0;
+	float ZAmount = 0;
+}
 
 float4 PS(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 {
@@ -26,10 +30,10 @@ float4 PS(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0): SV_Target
 	float3 incol = PrevTex.SampleLevel(s0, uv, 0);
 	float4 ycol = float4(0,0,0,1);
 	ycol.rgb = lerp(YFogColor.rgb, incol.rgb, pow(saturate(wpos.y), YPow));
-	ycol.rgb = lerp(incol.rgb, ycol.rgb, YFogColor.a);
+	ycol.rgb = lerp(incol.rgb, ycol.rgb, YFogColor.a * YAmount);
 	float4 zcol = float4(0,0,0,1);
 	zcol.rgb = lerp(ZFogColor.rgb, ycol.rgb, 1-pow(saturate(vpos.z), ZPow));
-	zcol.rgb = lerp(ycol.rgb, zcol.rgb, ZFogColor.a);
+	zcol.rgb = lerp(ycol.rgb, zcol.rgb, ZFogColor.a * ZAmount);
 	return zcol;
 }
 
